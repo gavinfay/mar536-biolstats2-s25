@@ -1,0 +1,5 @@
+---
+title: "MAR 536: Biological Statistics II"
+---
+
+Statistical analysis of ecological data. This course provides guided learning in advanced statistical analysis, as applied to ecological research and other fields of marine science. Advanced concepts in probability, statistical model building, hypothesis testing, inference, estimation and prediction, including analyses of example data sets and problems. Students will be required to learn and present topics to the class that are relevant to their graduate research and complete a class project. Course materials will be presented using the statistical programming language R; a computer lab focused on introductory and intermediate R programming will be held for the first half of the semester.

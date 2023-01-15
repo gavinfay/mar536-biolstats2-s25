@@ -1,0 +1,33 @@
+---
+title: "MAR 536: Biological Statistics II"
+tbl-colwidths: [5,10,30,5,5,5,5,5,5,5]
+---
+
+## Course Syllabus
+
+[**Click here**](documents/MAR536_BiolStats2_syllabus_SPR2023_20230115.pdf "PDF of syllabus") **to download a PDF copy of the syllabus.**
+
+## Course Schedule
+
+This page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, with all changes documented here.
+
+::: column-screen-inset-right
+|          Week           | Date        | Topic                      |                            Prepare                             |                                   Slides                                   | AE  |                                    Lab                                     | HW  | Exam | Project |
+|:------:|--------|--------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+| [1](/weeks/week-1.html) | Tue, Jan 17 | Introduction               | [📖](/weeks/week-01.html#prepare){aria-label="Week 1 summary"} |    [🖥️](/lectures/lec-01.pptx "Lab slides"){aria-label="Lab 0 slides"}     |     |                                                                            |     |      |         |
+|                         | Wed, Jan 18 | Lab 1 -Intro to R/RStudio  |                                                                |                                                                            |     | [💻](/labs/lab-0.html "Lab instructions"){aria-label="Lab 0 instructions"} |     |      |         |
+|                         | Thu, Jan 19 | Probability review         | [📖](/weeks/week-1.html#prepare){aria-label="Week 1 summary"}  | [🖥️](/lectures/lec-02.pdf "Lecture slides"){aria-label="Lecture 1 slides"} |     |                                                                            |     |      |         |
+| [2](/weeks/week-2.html) | Tue, Jan 24 | Data exploration, checking | [📖](/weeks/week-02.html#prepare){aria-label="Week 1 summary"} |     [🖥️](/lectures/lec-03.pdf "Lab slides"){aria-label="Lab 1 slides"}     |     |                                                                            |     |      |         |
+|                         | Wed, Jan 25 | Due: Lab 1                 |                                                                |                                                                            |     |                                                                            | ✍️  |      |         |
+|                         | Wed, Jan 25 | Lab 2 - Visualizing data   |                                                                |                                                                            |     | [💻](/labs/lab-0.html "Lab instructions"){aria-label="Lab 0 instructions"} |     |      |         |
+|                         | Thu, Jan 26 | Linear regression review   | [📖](/weeks/week-02.html#prepare){aria-label="Week 2 summary"} |  [🖥️](/slides/lec-3.html "Lecture slides"){aria-label="Lecture 3 slides"}  |     |                                                                            |     |      |         |
+|                         | Thu, Jan 26 | Due: Project topic         |                                                                |                                                                            |     |                                                                            |     |      |   📂    |
+:::
+
+```{r echo = FALSE}
+knitr::knit_exit()
+```
+
+|      |      |       | Prepare | Slides | AE  |                                                    Labs                                                    | HW  | Exam | Project |
+|--------|--------|--------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+| Week | Date | Topic |   📖    |   🖥️   | 📋  | [💻](https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786) | ✍️  |  ✅  |   📂    |
