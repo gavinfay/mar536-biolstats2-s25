@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.505">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gavin Fay">
+<meta name="dcterms.date" content="2023-01-18">
+
+<title>MAR 536 - Spring 2023 - Biological Stats II : Lab 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<meta property="og:title" content="MAR 536 - Spring 2023 - Biological Stats II : Lab 1">
+<meta property="og:site-name" content="MAR 536 - Spring 2023">
+<meta name="twitter:title" content="MAR 536 - Spring 2023 - Biological Stats II : Lab 1">
+<meta name="twitter:image" content="https://gavinfay.github.io/mar536-biolstats2-s23/images/twitter-card.png">
+<meta name="twitter:creator" content="@gavin_fay">
+<meta name="twitter:image-height" content="418">
+<meta name="twitter:image-width" content="800">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Biological Stats II : Lab 1</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main">
+    <a href="https://github.com/gavinfay/mar536-biolstats2-s23" title="GitHub" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle sidebar-tool" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">Course information</a>
+      <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course-overview.html" class="sidebar-item-text sidebar-link">Overview</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./course-syllabus.html" class="sidebar-item-text sidebar-link">Syllabus</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Schedule</a>
+  </div>
+</li>
+    </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">Weekly materials</a>
+      <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/week-01.html" class="sidebar-item-text sidebar-link">Week 1</a>
+  </div>
+</li>
+    </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lab-schedule" id="toc-lab-schedule" class="nav-link active" data-scroll-target="#lab-schedule">Lab schedule</a></li>
+  <li><a href="#format-for-lab-component" id="toc-format-for-lab-component" class="nav-link" data-scroll-target="#format-for-lab-component">Format for lab component</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  <li><a href="#why-r" id="toc-why-r" class="nav-link" data-scroll-target="#why-r">Why R?</a></li>
+  <li><a href="#recommended-reading" id="toc-recommended-reading" class="nav-link" data-scroll-target="#recommended-reading">Recommended reading</a></li>
+  <li><a href="#recommended-reading-1" id="toc-recommended-reading-1" class="nav-link" data-scroll-target="#recommended-reading-1">Recommended reading</a></li>
+  <li><a href="#installing-r-and-r-studio" id="toc-installing-r-and-r-studio" class="nav-link" data-scroll-target="#installing-r-and-r-studio">Installing R and R Studio</a></li>
+  <li><a href="#using-r-today-rstudio-cloud" id="toc-using-r-today-rstudio-cloud" class="nav-link" data-scroll-target="#using-r-today-rstudio-cloud">Using R today: RStudio Cloud</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
+  <li><a href="#simple-commands" id="toc-simple-commands" class="nav-link" data-scroll-target="#simple-commands">Simple commands</a></li>
+  <li><a href="#scripts-and-rstudio" id="toc-scripts-and-rstudio" class="nav-link" data-scroll-target="#scripts-and-rstudio">Scripts and RStudio</a></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio">RStudio</a></li>
+  <li><a href="#projects-in-rstudio" id="toc-projects-in-rstudio" class="nav-link" data-scroll-target="#projects-in-rstudio">Projects in RStudio</a></li>
+  <li><a href="#getting-help-in-r" id="toc-getting-help-in-r" class="nav-link" data-scroll-target="#getting-help-in-r">Getting Help in R</a></li>
+  <li><a href="#getting-help-in-r-1" id="toc-getting-help-in-r-1" class="nav-link" data-scroll-target="#getting-help-in-r-1">Getting Help in R</a></li>
+  <li><a href="#r-help-files-mean" id="toc-r-help-files-mean" class="nav-link" data-scroll-target="#r-help-files-mean">R Help files (<code>?mean</code>)</a></li>
+  <li><a href="#lab-exercise-14" id="toc-lab-exercise-14" class="nav-link" data-scroll-target="#lab-exercise-14">Lab exercise 1/4</a></li>
+  <li><a href="#objects" id="toc-objects" class="nav-link" data-scroll-target="#objects">Objects</a></li>
+  <li><a href="#data-types-modes" id="toc-data-types-modes" class="nav-link" data-scroll-target="#data-types-modes">Data types (modes)</a></li>
+  <li><a href="#data-types-ii" id="toc-data-types-ii" class="nav-link" data-scroll-target="#data-types-ii">Data types II</a></li>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
+  <li><a href="#more-on-vectors" id="toc-more-on-vectors" class="nav-link" data-scroll-target="#more-on-vectors">More on Vectors</a></li>
+  <li><a href="#lab-exercise-24" id="toc-lab-exercise-24" class="nav-link" data-scroll-target="#lab-exercise-24">Lab exercise 2/4</a></li>
+  <li><a href="#useful-functions" id="toc-useful-functions" class="nav-link" data-scroll-target="#useful-functions">Useful functions</a></li>
+  <li><a href="#boolean-logic-operators" id="toc-boolean-logic-operators" class="nav-link" data-scroll-target="#boolean-logic-operators">Boolean logic operators</a></li>
+  <li><a href="#boolean-examples" id="toc-boolean-examples" class="nav-link" data-scroll-target="#boolean-examples">Boolean examples</a></li>
+  <li><a href="#lab-exercise-34" id="toc-lab-exercise-34" class="nav-link" data-scroll-target="#lab-exercise-34">Lab exercise 3/4</a></li>
+  <li><a href="#other-types-of-objects" id="toc-other-types-of-objects" class="nav-link" data-scroll-target="#other-types-of-objects">Other types of objects</a></li>
+  <li><a href="#dataframes" id="toc-dataframes" class="nav-link" data-scroll-target="#dataframes">Dataframes</a></li>
+  <li><a href="#extracting-information-from-data-frames" id="toc-extracting-information-from-data-frames" class="nav-link" data-scroll-target="#extracting-information-from-data-frames">Extracting information from data frames</a></li>
+  <li><a href="#extracting-information-from-data-frames-2" id="toc-extracting-information-from-data-frames-2" class="nav-link" data-scroll-target="#extracting-information-from-data-frames-2">Extracting information from data frames (2)</a></li>
+  <li><a href="#quickly-visualize-the-dataset" id="toc-quickly-visualize-the-dataset" class="nav-link" data-scroll-target="#quickly-visualize-the-dataset">Quickly visualize the dataset</a></li>
+  <li><a href="#extracting-elements-logically" id="toc-extracting-elements-logically" class="nav-link" data-scroll-target="#extracting-elements-logically">Extracting elements logically</a></li>
+  <li><a href="#using-the-pipe" id="toc-using-the-pipe" class="nav-link" data-scroll-target="#using-the-pipe">Using the Pipe</a></li>
+  <li><a href="#summarizing-data" id="toc-summarizing-data" class="nav-link" data-scroll-target="#summarizing-data">Summarizing Data</a></li>
+  <li><a href="#tips-and-tricks" id="toc-tips-and-tricks" class="nav-link" data-scroll-target="#tips-and-tricks">Tips and Tricks</a></li>
+  <li><a href="#lab-exercise-44-data-frames-using-hills" id="toc-lab-exercise-44-data-frames-using-hills" class="nav-link" data-scroll-target="#lab-exercise-44-data-frames-using-hills">Lab exercise 4/4 (data frames using <code>hills</code>)</a></li>
+  <li><a href="#next-time" id="toc-next-time" class="nav-link" data-scroll-target="#next-time">Next time…</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/gavinfay/mar536-biolstats2-s23/edit/main/lab-01.md" class="toc-action">Edit this page</a></p><p><a href="https://github.com/gavinfay/mar536-biolstats2-s23/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Biological Stats II : Lab 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gavin Fay </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 18, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="lab-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="lab-schedule">Lab schedule</h2>
+<p><strong>1/18: Introduction to R and R Studio, working with data</strong><br>
+1/25: Intro to Vizualization<br>
+2/01: Probability, linear modeling<br>
+2/08: Data wrangling, model summaries<br>
+2/15: Iteration<br>
+2/22: Creating functions, debugging<br>
+3/01: Simulation, Resampling<br>
+3/15: Flex: more modeling (brms, glmmTMB)<br>
+3/29: Spatial data or tidymodeling</p>
+</section>
+<section id="format-for-lab-component" class="level2">
+<h2 class="anchored" data-anchor-id="format-for-lab-component">Format for lab component</h2>
+<p>Description/overview of concepts by instructor</p>
+<p>Live coding. Interactive, follow along yourselves</p>
+<p>Lab exercises to practice material</p>
+<p>Assignment each week is to finish the exercises</p>
+<p>Extra credit: #TidyTuesday</p>
+<p>Community support<br>
+<em>“Try stuff and see what happens”</em></p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p><img src="figs/WhyR.png" class="img-fluid"></p>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<p><img src="figs/datascience_workflow.png" class="img-fluid"></p>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<p><img src="figs/WhyR.png" class="img-fluid"></p>
+</section>
+<section id="why-r" class="level2">
+<h2 class="anchored" data-anchor-id="why-r">Why R?</h2>
+<p><strong>Reproducible</strong><br>
+- command line interface encourages organization<br>
+- scripts allow others (and you!) to reproduce analyses from end-to-end<br>
+- integration of analysis with document creation</p>
+<p><strong>Extensible</strong><br>
+- new methods delivered as developed<br>
+- continual expansion through new packages</p>
+<p><strong>Open-source</strong><br>
+- all code can be examined by the user</p>
+<p><strong>Free</strong><br>
+- available to large set of users (and therefore developers)</p>
+<p>R is not the only solution out there.<br>
+The real goal is not to teach R, but concepts that all programming depends on.</p>
+<hr>
+<p>Trevor Branch rule:</p>
+<blockquote class="blockquote">
+<p>“Every analysis you do on a dataset will have to be redone 10–15 times before publication. Plan accordingly.”</p>
+</blockquote>
+</section>
+<section id="recommended-reading" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-reading">Recommended reading</h2>
+<p>R for Data Science, 2017 (Wickham and Grolemund)<br>
+<a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a><br>
+<img src="figs/r4ds.png" class="img-fluid"></p>
+</section>
+<section id="recommended-reading-1" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-reading-1">Recommended reading</h2>
+<p>An introduction to R (Venables et al.)<br>
+– <a href="http://cran.r-project.org/doc/manuals/R-intro.pdf" class="uri">http://cran.r-project.org/doc/manuals/R-intro.pdf</a></p>
+<p>R reference card 2.0 (Baggott)<br>
+– <a href="http://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf" class="uri">http://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf</a><br>
+– Extremely useful handout: put on wall in view of your desk</p>
+<p>Cheatsheets<br>
+- <a href="https://posit.co/resources/cheatsheets/" class="uri">https://posit.co/resources/cheatsheets/</a></p>
+<p>There are many (many) R books out there. Good for reference. e.g.<br>
+- The R Book, 2007 (Crawley)<br>
+- Modern Applied Statistics with S, 20002 (Venables and Ripley)<br>
+- Introductory Statistics with R, 2002 (Dalgaard)</p>
+</section>
+<section id="installing-r-and-r-studio" class="level2">
+<h2 class="anchored" data-anchor-id="installing-r-and-r-studio">Installing R and R Studio</h2>
+<p><strong>R</strong> (<a href="http://r-project.org" class="uri">http://r-project.org</a>)<br>
+- download appropriate version for your OS</p>
+<p><strong>R Studio</strong> (<a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>)<br>
+- a very good Integrated Development Environment (IDE) for R<br>
+provides:<br>
+- text editor<br>
+- syntax highlighting<br>
+- seamless code execution with R</p>
+<p>You can use other text editors with R, but RStudio is well organized.<br>
+(also looks the same regardless of Operating System)</p>
+</section>
+<section id="using-r-today-rstudio-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="using-r-today-rstudio-cloud">Using R today: RStudio Cloud</h2>
+<p>An alternative:</p>
+<ul>
+<li>web browser interface<br>
+<a href="https://rstudio.cloud/spaces/47288/project/856390" class="uri">https://rstudio.cloud/spaces/47288/project/856390</a></li>
+</ul>
+</section>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting started</h2>
+<p>Enter instructions at R console command line prompt (<code>&gt;</code>):<br>
+e.g.&nbsp;type</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R acts as a calculator and returns (prints) the result.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="simple-commands" class="level2">
+<h2 class="anchored" data-anchor-id="simple-commands">Simple commands</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">3</span><span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">9</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">6</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">log</span>(<span class="dv">10</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">2.302585</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">exp</span>(<span class="dv">1</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">2.718282</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>x</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>&lt;-</code> means ‘assign’. i.e.&nbsp;‘assign a value of 3 to the variable x’.<br>
+<code>&lt;-</code> is preferable to using <code>=</code></p>
+</section>
+<section id="scripts-and-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="scripts-and-rstudio">Scripts and RStudio</h2>
+<ul>
+<li><p>Typing commands into the console can get tedious.</p></li>
+<li><p>Scripts are text files containing lines of code.</p></li>
+<li><p>Scripts provide a complete record of analyses.</p></li>
+<li><p>Code can be run (executed) from these files repeatedly.</p></li>
+<li><p>Scripts can be created in a text editor and copied into the R console.</p></li>
+</ul>
+<p>Or…</p>
+<ul>
+<li><p>RStudio integrates scripts, R console, and output in a user-friendly development environment.</p></li>
+<li><p>To run code in RStudio, select code and type<br>
+<code>Ctrl+Enter</code> (Windows)<br>
+<code>Command+Enter</code> (Mac)<br>
+The code will run in the R console.</p></li>
+</ul>
+</section>
+<section id="rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio">RStudio</h2>
+<p><img src="figs/rstudiolayout2.png" class="img-fluid"></p>
+</section>
+<section id="projects-in-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="projects-in-rstudio">Projects in RStudio</h2>
+<p>Good to keep all the files associated with a particular project organized together – input data, R scripts, analytical results, figures.</p>
+<p>RStudio has built-in support for this via its projects.</p>
+<p>Projects provide an easy organization of your files and analyses.</p>
+<p>R runs from a working directory, the location (folder) on your computer that R will use as a default when looking for data files, producing output, etc.</p>
+<p>Project files (<code>.Rproj</code>)</p>
+<p>When you open a project, RStudio sets the working directory to the folder in which the <code>.Rproj</code> file exists.</p>
+<p>Using projects can be VERY helpful.</p>
+</section>
+<section id="getting-help-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help-in-r">Getting Help in R</h2>
+<p>R is a programming language, there is a learning curve.</p>
+<p>Fortunately, there are lots of resources:</p>
+<p><img src="figs/notxkcd_priorities2.png" class="img-fluid"></p>
+<p><strong>Don’t</strong> summon a wish-granting computer demon.</p>
+</section>
+<section id="getting-help-in-r-1" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help-in-r-1">Getting Help in R</h2>
+<p>R is a programming language, there is a learning curve.</p>
+<p>Fortunately, there are lots of resources:<br>
+- help files<br>
+- online search results<br>
+- books<br>
+- colleagues<br>
+- RStudio Community</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ?(mean)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(<span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The above both get help for the function <code>mean</code>.<br>
+Use <code>help.search("function.name")</code> to search across packages.</p>
+<p><code>str(object.name)</code> shows the structure of an object. </p>
+</section>
+<section id="r-help-files-mean" class="level2">
+<h2 class="anchored" data-anchor-id="r-help-files-mean">R Help files (<code>?mean</code>)</h2>
+<p>Common format:</p>
+<ul>
+<li>Description (what the function does)<br>
+</li>
+<li>Usage (how to use it)<br>
+</li>
+<li>Arguments (what the function needs, options)<br>
+</li>
+<li>Value (what does the function return)<br>
+</li>
+<li>See Also (related functions)<br>
+</li>
+<li>Examples (sample code showing how the function works)</li>
+</ul>
+<p>Read function documentation and explore behavior by running examples!</p>
+</section>
+<section id="lab-exercise-14" class="level2">
+<h2 class="anchored" data-anchor-id="lab-exercise-14">Lab exercise 1/4</h2>
+<p>(Instructions also in lab-exercise-01.pdf)</p>
+<p>Start a new project. (call it biostats2 or something similar)<br>
+Open a new R markdown file. Save it. (name it lastname_lab1.Rmd or something similar)<br>
+At the top of the script, add comments with your name and lab 1.<br>
+Work in pairs or individually.<br>
+Submit your .Rmd file via myCourses before lab next week.</p>
+<p>Write code that evaluates the following when run. <span class="math display">\[7 + 5(4+3)\]</span> <span class="math display">\[e^{-5(0.2+0.15)}\]</span> <span class="math display">\[\frac{\sqrt{1+2(3+2)}}{\ln(3^2+2)}\]</span></p>
+</section>
+<section id="objects" class="level2">
+<h2 class="anchored" data-anchor-id="objects">Objects</h2>
+<p>Common types of objects<br>
+- Numbers<br>
+- Characters (i.e.&nbsp;text or strings)<br>
+- Tables<br>
+- Vectors and matrices<br>
+- Plots<br>
+- Statistical output<br>
+- Functions</p>
+<p>Objects in R are global</p>
+<p>Viewing objects: In RStudio see top-right Workspace tab<br>
+More generally:<br>
+</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   <span class="fu">print</span>(myobject)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   myobject</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>ls()</code> lists all objects in the workspace.<br>
+Use <code>rm()</code> to remove an object.</p>
+</section>
+<section id="data-types-modes" class="level2">
+<h2 class="anchored" data-anchor-id="data-types-modes">Data types (modes)</h2>
+<p>Describe how objects are stored in computer memory.</p>
+<p>In R you do <strong><em>not</em></strong> need to specify the data type.</p>
+<p>Common data types:</p>
+<ul>
+<li><p>Numeric (integer, floating point numbers or doubles)</p></li>
+<li><p>Logical (Boolean, true or false)</p></li>
+<li><p>Characters (text or string data)</p></li>
+</ul>
+<p>Types are not always obvious in R, but can be important to know.</p>
+</section>
+<section id="data-types-ii" class="level2">
+<h2 class="anchored" data-anchor-id="data-types-ii">Data types II</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> myobject <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">10</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mode</span>(myobject)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"numeric"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">is.numeric</span>(myobject)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(myobject)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"double"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> newobject <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(myobject)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(newobject)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"integer"</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">is.character</span>(myobject)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">typeof</span>(<span class="st">"hello world"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="vectors" class="level2">
+<h2 class="anchored" data-anchor-id="vectors">Vectors</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> weights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.3</span>,<span class="fl">5.4</span>,<span class="fl">7.5</span>,<span class="dv">9</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">print</span>(weights)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">2.3</span> <span class="fl">5.4</span> <span class="fl">7.5</span> <span class="fl">9.0</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> years <span class="ot">&lt;-</span> <span class="dv">2007</span><span class="sc">:</span><span class="dv">2016</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">print</span>(years)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">2007</span> <span class="dv">2008</span> <span class="dv">2009</span> <span class="dv">2010</span> <span class="dv">2011</span> <span class="dv">2012</span> <span class="dv">2013</span> <span class="dv">2014</span> <span class="dv">2015</span> <span class="dv">2016</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> years <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">2000</span>,<span class="at">to=</span><span class="dv">2016</span>,<span class="at">by=</span><span class="dv">2</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">print</span>(years)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2000</span> <span class="dv">2002</span> <span class="dv">2004</span> <span class="dv">2006</span> <span class="dv">2008</span> <span class="dv">2010</span> <span class="dv">2012</span> <span class="dv">2014</span> <span class="dv">2016</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">3</span>,<span class="at">times=</span><span class="dv">10</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">print</span>(x)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">times=</span><span class="dv">3</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">length=</span><span class="dv">10</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="more-on-vectors" class="level2">
+<h2 class="anchored" data-anchor-id="more-on-vectors">More on Vectors</h2>
+<p>Vectors are ordered and can be referred to by element(s) using [ ]</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (years <span class="ot">&lt;-</span> <span class="dv">2007</span><span class="sc">:</span><span class="dv">2016</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">2007</span> <span class="dv">2008</span> <span class="dv">2009</span> <span class="dv">2010</span> <span class="dv">2011</span> <span class="dv">2012</span> <span class="dv">2013</span> <span class="dv">2014</span> <span class="dv">2015</span> <span class="dv">2016</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> years[<span class="dv">3</span>]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2009</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> years[<span class="dv">5</span><span class="sc">:</span><span class="dv">6</span>]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2011</span> <span class="dv">2012</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">which</span>(years<span class="sc">==</span><span class="dv">2010</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> years[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] <span class="co"># A negative index excludes elements</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2007</span> <span class="dv">2009</span> <span class="dv">2011</span> <span class="dv">2012</span> <span class="dv">2013</span> <span class="dv">2014</span> <span class="dv">2015</span> <span class="dv">2016</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Vector operations are element-wise</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> (x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>x</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">6</span>  <span class="dv">8</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="lab-exercise-24" class="level2">
+<h2 class="anchored" data-anchor-id="lab-exercise-24">Lab exercise 2/4</h2>
+<p>(Instructions also in lab-exercise-01.pdf)</p>
+<p>Create vectors using <code>seq()</code>, <code>rep()</code>, and mathematical operators. Only use <code>c()</code> when absolutely necessary.<br>
+<em>hint</em> Remember you can get help on a function by typing <code>?functionname</code></p>
+<ul>
+<li>Positive integers from 1 to 99<br>
+</li>
+<li>Odd integers between 1 and 99<br>
+</li>
+<li>The numbers 1,1,1, 2,2,2, 3,3,3<br>
+</li>
+<li>The numbers -5,-4,-3,-5,-4,-3,-5,-4,-3<br>
+</li>
+<li>The fractions 1, 1/2, 1/3, 1/4, …, 1/10<br>
+</li>
+<li>The cubes 1, 8, 27, 64, 125, 216</li>
+</ul>
+</section>
+<section id="useful-functions" class="level2">
+<h2 class="anchored" data-anchor-id="useful-functions">Useful functions</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">9</span>,<span class="dv">1</span>,<span class="dv">18</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(x)  <span class="co"># length of vector x</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sort</span>(<span class="fu">unique</span>(x))  <span class="co"># sorted vector of unique values in x</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">5</span>  <span class="dv">6</span>  <span class="dv">9</span> <span class="dv">18</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">min</span>(x)     <span class="co"># minimum value in x</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">max</span>(x)     <span class="co"># maximum value in x</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(x)    <span class="co"># mean of x</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.875</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">median</span>(x)  <span class="co"># median of x</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sd</span>(x)      <span class="co"># standard deviation of x</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.514591</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">range</span>(x)   <span class="co"># range of values in x</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">1</span> <span class="dv">18</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">range</span>(x)[<span class="dv">2</span>]  <span class="co"># 2nd element of values returned by range()</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">quantile</span>(x) <span class="co"># optional argument 'probs' can be handy</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>   <span class="dv">0</span><span class="sc">%   25%</span>   <span class="dv">50</span><span class="sc">%   75%</span>  <span class="dv">100</span>% </span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a> <span class="fl">1.00</span>  <span class="fl">2.75</span>  <span class="fl">4.00</span>  <span class="fl">6.75</span> <span class="fl">18.00</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="boolean-logic-operators" class="level2">
+<h2 class="anchored" data-anchor-id="boolean-logic-operators">Boolean logic operators</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>R Code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AND</td>
+<td>&amp; (&amp;&amp;)</td>
+</tr>
+<tr class="even">
+<td>OR</td>
+<td>| (||)</td>
+</tr>
+<tr class="odd">
+<td>NOT</td>
+<td>!</td>
+</tr>
+<tr class="even">
+<td>less than</td>
+<td>&lt;</td>
+</tr>
+<tr class="odd">
+<td>greater than</td>
+<td>&gt;</td>
+</tr>
+<tr class="even">
+<td>less than or equal</td>
+<td>&lt;=</td>
+</tr>
+<tr class="odd">
+<td>greater than or equal</td>
+<td>&gt;=</td>
+</tr>
+<tr class="even">
+<td>equals</td>
+<td>==</td>
+</tr>
+<tr class="odd">
+<td>NOT equal</td>
+<td>!=</td>
+</tr>
+</tbody>
+</table>
+<p>&amp;&amp; and || are used when asking IF statements.<br>
+These only use a single value, not a vector.</p>
+</section>
+<section id="boolean-examples" class="level2">
+<h2 class="anchored" data-anchor-id="boolean-examples">Boolean examples</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">7</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">==</span> <span class="dv">7</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">&lt;</span> <span class="dv">10</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">3</span> </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> x <span class="sc">&lt;=</span> <span class="dv">12</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">&gt;=</span> <span class="dv">10</span> <span class="sc">|</span> x <span class="sc">&lt;</span> <span class="dv">0</span> </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">8</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="sc">&gt;</span> <span class="dv">5</span>   <span class="co">#returns a logical vector</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span>  <span class="cn">TRUE</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y[y<span class="sc">&gt;</span><span class="dv">5</span>]  <span class="co">#returns elements of y that meet condition</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">which</span>(y<span class="sc">&gt;</span><span class="dv">5</span>) <span class="co">#index of y that meets condition</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">any</span>(y<span class="sc">&gt;</span><span class="dv">5</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">all</span>(y<span class="sc">&gt;</span><span class="dv">5</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="lab-exercise-34" class="level2">
+<h2 class="anchored" data-anchor-id="lab-exercise-34">Lab exercise 3/4</h2>
+<p>Complete the following using the vector <code>y</code>:</p>
+<p><code>y &lt;- c(3,2,15,-1,22,1,9,17,5)</code></p>
+<ul>
+<li>Display the first and last values.<br>
+</li>
+<li>Find the last value for a vector of any length.<br>
+</li>
+<li>Display the values that are greater than the mean of <code>y</code>.<br>
+</li>
+<li>Display the positions (indices) of the values greater than the mean.<br>
+</li>
+<li>Are all the values positive?<br>
+</li>
+<li>Are any of the values equal to the mean?<br>
+</li>
+<li>Are any of the values equal to the median?</li>
+</ul>
+</section>
+<section id="other-types-of-objects" class="level2">
+<h2 class="anchored" data-anchor-id="other-types-of-objects">Other types of objects</h2>
+<p><strong><em>matrices</em></strong> (more generally, arrays)<br>
+- multi-dimensional generalizations of vectors.<br>
+- are vectors that can be indexed by two or more indices.</p>
+<p><strong><em>factors</em></strong><br>
+- compact ways to handle categorical data.</p>
+<p><strong><em>lists</em></strong><br>
+- general form of vector, elements need not be the same type.<br>
+- elements often themselves vectors or lists.<br>
+- convenient way to return results of statistical computations.</p>
+<p><strong><em>dataframes</em></strong><br>
+- matrix-like structures, columns can be of different types.<br>
+- often ‘data matrices’ with one row per observational unit but with (possibly) both numerical and categorical variables.<br>
+- experiments are often best described by data frames: treatments are categorical but the response is numeric.</p>
+<p><strong><em>functions</em></strong><br>
+- are themselves objects in R which can be stored in the project’s workspace.<br>
+- provide a simple and convenient way to extend R.</p>
+</section>
+<section id="dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="dataframes">Dataframes</h2>
+<p>There are lots of data set examples in R.<br>
+e.g.&nbsp;record times for 35 Scottish hill races<br>
+</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(MASS)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(hills,<span class="at">n=</span><span class="dv">3</span>) <span class="co"># shows first few lines. Also tail()</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>             dist climb   time</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>Greenmantle   <span class="fl">2.5</span>   <span class="dv">650</span> <span class="fl">16.083</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>Carnethy      <span class="fl">6.0</span>  <span class="dv">2500</span> <span class="fl">48.350</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>Craig Dunain  <span class="fl">6.0</span>   <span class="dv">900</span> <span class="fl">33.650</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">names</span>(hills)  <span class="co"># get the names of the data frame</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"dist"</span>  <span class="st">"climb"</span> <span class="st">"time"</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Creating dataframes </p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fish <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cod"</span>,<span class="st">"haddock"</span>,<span class="st">"dogfish"</span>,<span class="st">"pollock"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> length <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">34</span>,<span class="dv">23</span>,<span class="dv">75</span>,<span class="dv">18</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">17</span>,<span class="dv">2</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fish.data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fish=</span>fish,<span class="at">length=</span>length,<span class="at">age=</span>age)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">head</span>(fish.data)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>     fish length age</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>     cod     <span class="dv">34</span>   <span class="dv">6</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> haddock     <span class="dv">23</span>   <span class="dv">3</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> dogfish     <span class="dv">75</span>  <span class="dv">17</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> pollock     <span class="dv">18</span>   <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="extracting-information-from-data-frames" class="level2">
+<h2 class="anchored" data-anchor-id="extracting-information-from-data-frames">Extracting information from data frames</h2>
+<p>Use the $ to extract vectors from a data frame</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> hills<span class="sc">$</span>dist</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]  <span class="fl">2.5</span>  <span class="fl">6.0</span>  <span class="fl">6.0</span>  <span class="fl">7.5</span>  <span class="fl">8.0</span>  <span class="fl">8.0</span> <span class="fl">16.0</span>  <span class="fl">6.0</span>  <span class="fl">5.0</span>  <span class="fl">6.0</span> <span class="fl">28.0</span>  <span class="fl">5.0</span>  <span class="fl">9.5</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">14</span>]  <span class="fl">6.0</span>  <span class="fl">4.5</span> <span class="fl">10.0</span> <span class="fl">14.0</span>  <span class="fl">3.0</span>  <span class="fl">4.5</span>  <span class="fl">5.5</span>  <span class="fl">3.0</span>  <span class="fl">3.5</span>  <span class="fl">6.0</span>  <span class="fl">2.0</span>  <span class="fl">3.0</span>  <span class="fl">4.0</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">27</span>]  <span class="fl">6.0</span>  <span class="fl">5.0</span>  <span class="fl">6.5</span>  <span class="fl">5.0</span> <span class="fl">10.0</span>  <span class="fl">6.0</span> <span class="fl">18.0</span>  <span class="fl">4.5</span> <span class="fl">20.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also specify the row index, column index, or both <code>object[row,column]</code></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract the element in row 1, column 2</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hills[<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">650</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> hills<span class="sc">$</span>climb[<span class="dv">1</span>]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">650</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract the first row</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hills[<span class="dv">1</span>,]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>            dist climb   time</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>Greenmantle  <span class="fl">2.5</span>   <span class="dv">650</span> <span class="fl">16.083</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract all of column 2</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hills[,<span class="dv">2</span>]   <span class="co"># also hills[,"climb"]</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]  <span class="dv">650</span> <span class="dv">2500</span>  <span class="dv">900</span>  <span class="dv">800</span> <span class="dv">3070</span> <span class="dv">2866</span> <span class="dv">7500</span>  <span class="dv">800</span>  <span class="dv">800</span>  <span class="dv">650</span> <span class="dv">2100</span> <span class="dv">2000</span> <span class="dv">2200</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">14</span>]  <span class="dv">500</span> <span class="dv">1500</span> <span class="dv">3000</span> <span class="dv">2200</span>  <span class="dv">350</span> <span class="dv">1000</span>  <span class="dv">600</span>  <span class="dv">300</span> <span class="dv">1500</span> <span class="dv">2200</span>  <span class="dv">900</span>  <span class="dv">600</span> <span class="dv">2000</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">27</span>]  <span class="dv">800</span>  <span class="dv">950</span> <span class="dv">1750</span>  <span class="dv">500</span> <span class="dv">4400</span>  <span class="dv">600</span> <span class="dv">5200</span>  <span class="dv">850</span> <span class="dv">5000</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># exclude column 1, but retain the other columns (1st 3 rows)</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hills[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="sc">-</span><span class="dv">1</span>]  </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>             climb   time</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>Greenmantle    <span class="dv">650</span> <span class="fl">16.083</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>Carnethy      <span class="dv">2500</span> <span class="fl">48.350</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>Craig Dunain   <span class="dv">900</span> <span class="fl">33.650</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract rows 4 and 7</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> hills[<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">7</span>),]</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>             dist climb    time</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>Ben Rha       <span class="fl">7.5</span>   <span class="dv">800</span>  <span class="fl">45.600</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>Bens of Jura <span class="fl">16.0</span>  <span class="dv">7500</span> <span class="fl">204.617</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># extract the rows that are specified by the object x</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">7</span>,<span class="fu">nrow</span>(hills))</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> hills[x,]</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>             dist climb    time</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>Ben Rha       <span class="fl">7.5</span>   <span class="dv">800</span>  <span class="fl">45.600</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>Bens of Jura <span class="fl">16.0</span>  <span class="dv">7500</span> <span class="fl">204.617</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>Moffat Chase <span class="fl">20.0</span>  <span class="dv">5000</span> <span class="fl">159.833</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="extracting-information-from-data-frames-2" class="level2">
+<h2 class="anchored" data-anchor-id="extracting-information-from-data-frames-2">Extracting information from data frames (2)</h2>
+<p>The ‘tidyverse’ is a popular set of R packages for interacting with data and performing statistical analyses.<br>
+Data frames are commonly used in a structure called a ‘tibble’</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#install.packages('tidyverse')</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> hills_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(hills)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> hills_tbl</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 35 × 3</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    dist climb  time</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>   <span class="sc">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>   <span class="fl">2.5</span>   <span class="dv">650</span>  <span class="fl">16.1</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span>   <span class="dv">6</span>    <span class="dv">2500</span>  <span class="fl">48.4</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>   <span class="dv">6</span>     <span class="dv">900</span>  <span class="fl">33.6</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span>   <span class="fl">7.5</span>   <span class="dv">800</span>  <span class="fl">45.6</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span>   <span class="dv">8</span>    <span class="dv">3070</span>  <span class="fl">62.3</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span>   <span class="dv">8</span>    <span class="dv">2866</span>  <span class="fl">73.2</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span>  <span class="dv">16</span>    <span class="dv">7500</span> <span class="fl">205.</span> </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span>   <span class="dv">6</span>     <span class="dv">800</span>  <span class="fl">36.4</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span>   <span class="dv">5</span>     <span class="dv">800</span>  <span class="fl">29.8</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>   <span class="dv">6</span>     <span class="dv">650</span>  <span class="fl">39.8</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># … with 25 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p>Extract variables using the <code>select</code> verb function in the <code>dplyr</code> package</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(hills,dist)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                 dist</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Greenmantle       <span class="fl">2.5</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Carnethy          <span class="fl">6.0</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>Craig Dunain      <span class="fl">6.0</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>Ben Rha           <span class="fl">7.5</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>Ben Lomond        <span class="fl">8.0</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>Goatfell          <span class="fl">8.0</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>Bens of Jura     <span class="fl">16.0</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>Cairnpapple       <span class="fl">6.0</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>Scolty            <span class="fl">5.0</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>Traprain          <span class="fl">6.0</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>Lairig Ghru      <span class="fl">28.0</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>Dollar            <span class="fl">5.0</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>Lomonds           <span class="fl">9.5</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>Cairn Table       <span class="fl">6.0</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>Eildon Two        <span class="fl">4.5</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>Cairngorm        <span class="fl">10.0</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>Seven Hills      <span class="fl">14.0</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>Knock Hill        <span class="fl">3.0</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>Black Hill        <span class="fl">4.5</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>Creag Beag        <span class="fl">5.5</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>Kildcon Hill      <span class="fl">3.0</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>Meall Ant<span class="sc">-</span>Suidhe  <span class="fl">3.5</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>Half Ben Nevis    <span class="fl">6.0</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>Cow Hill          <span class="fl">2.0</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>N Berwick Law     <span class="fl">3.0</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>Creag Dubh        <span class="fl">4.0</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>Burnswark         <span class="fl">6.0</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>Largo Law         <span class="fl">5.0</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>Criffel           <span class="fl">6.5</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>Acmony            <span class="fl">5.0</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>Ben Nevis        <span class="fl">10.0</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>Knockfarrel       <span class="fl">6.0</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>Two Breweries    <span class="fl">18.0</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>Cockleroi         <span class="fl">4.5</span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>Moffat Chase     <span class="fl">20.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p>Create a new variable of the race names</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   hills_tbl <span class="ot">&lt;-</span> <span class="fu">mutate</span>(hills_tbl,<span class="at">race=</span><span class="fu">rownames</span>(hills))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   hills_tbl <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(hills_tbl,race,<span class="fu">everything</span>())</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>   hills_tbl</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 35 × 4</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>   race          dist climb  time</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>   <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>        <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span> Greenmantle    <span class="fl">2.5</span>   <span class="dv">650</span>  <span class="fl">16.1</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a> <span class="dv">2</span> Carnethy       <span class="dv">6</span>    <span class="dv">2500</span>  <span class="fl">48.4</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span> Craig Dunain   <span class="dv">6</span>     <span class="dv">900</span>  <span class="fl">33.6</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a> <span class="dv">4</span> Ben Rha        <span class="fl">7.5</span>   <span class="dv">800</span>  <span class="fl">45.6</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a> <span class="dv">5</span> Ben Lomond     <span class="dv">8</span>    <span class="dv">3070</span>  <span class="fl">62.3</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">6</span> Goatfell       <span class="dv">8</span>    <span class="dv">2866</span>  <span class="fl">73.2</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a> <span class="dv">7</span> Bens of Jura  <span class="dv">16</span>    <span class="dv">7500</span> <span class="fl">205.</span> </span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a> <span class="dv">8</span> Cairnpapple    <span class="dv">6</span>     <span class="dv">800</span>  <span class="fl">36.4</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a> <span class="dv">9</span> Scolty         <span class="dv">5</span>     <span class="dv">800</span>  <span class="fl">29.8</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> Traprain       <span class="dv">6</span>     <span class="dv">650</span>  <span class="fl">39.8</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># … with 25 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="quickly-visualize-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="quickly-visualize-the-dataset">Quickly visualize the dataset</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hills_tbl, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>dist,<span class="at">y=</span>time)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> climb), <span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Distance (miles)"</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Record Time (mins)"</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>,<span class="dv">30</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">225</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="figure/unnamed-chunk-23-1.png" title="plot of chunk unnamed-chunk-23" alt="plot of chunk unnamed-chunk-23" width="70%"></p>
+</section>
+<section id="extracting-elements-logically" class="level2">
+<h2 class="anchored" data-anchor-id="extracting-elements-logically">Extracting elements logically</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fish <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cod"</span>,<span class="st">"haddock"</span>,<span class="st">"dogfish"</span>,<span class="st">"pollock"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> length <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">34</span>,<span class="dv">23</span>,<span class="dv">75</span>,<span class="dv">18</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">17</span>,<span class="dv">2</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fish_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">fish=</span>fish,<span class="at">length=</span>length,<span class="at">age=</span>age)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fish_data<span class="sc">$</span>age   <span class="co"># a vector</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="dv">6</span>  <span class="dv">3</span> <span class="dv">17</span>  <span class="dv">2</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fish_data<span class="sc">$</span>age <span class="sc">&gt;</span> <span class="dv">5</span>  <span class="co"># a logical vector</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span>  <span class="cn">TRUE</span> <span class="cn">FALSE</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">filter</span>(fish_data, age<span class="sc">&gt;</span><span class="dv">5</span>) <span class="co">#avoids having to create a logical vector</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 2 × 3</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  fish    length   age</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> cod         <span class="dv">34</span>     <span class="dv">6</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> dogfish     <span class="dv">75</span>    <span class="dv">17</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># combining conditions</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">filter</span>(fish_data, age <span class="sc">&gt;</span> <span class="dv">5</span>, fish <span class="sc">==</span> <span class="st">"dogfish"</span>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 1 × 3</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  fish    length   age</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> dogfish     <span class="dv">75</span>    <span class="dv">17</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">filter</span>(fish_data, length <span class="sc">&lt;</span> <span class="dv">25</span> <span class="sc">|</span> length <span class="sc">&gt;=</span> <span class="dv">50</span>)</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 3 × 3</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>  fish    length   age</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> haddock     <span class="dv">23</span>     <span class="dv">3</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> dogfish     <span class="dv">75</span>    <span class="dv">17</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> pollock     <span class="dv">18</span>     <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="using-the-pipe" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-pipe">Using the Pipe</h2>
+<p>Combine verb operations with the pipe operator (<code>|&gt;</code>) e.g.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fish_data <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">mutate</span>(<span class="at">weight =</span> (length<span class="sc">/</span><span class="dv">100</span>)<span class="sc">^</span><span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">5</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 2 × 4</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  fish    length   age weight</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>chr<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> cod         <span class="dv">34</span>     <span class="dv">6</span> <span class="fl">0.0393</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> dogfish     <span class="dv">75</span>    <span class="dv">17</span> <span class="fl">0.422</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The pipe passes the result from one function call to the next.<br>
+Can be read as “and then”.<br>
+(also the older tidyverse pipe: %&gt;% )<br>
+</p>
+</section>
+<section id="summarizing-data" class="level2">
+<h2 class="anchored" data-anchor-id="summarizing-data">Summarizing Data</h2>
+<p>After selecting data we might like to perform analyses on it.<br>
+We can use <code>group_by()</code> to recognize structure in the data.<br>
+Then apply functions to variables using <code>summarize()</code><br>
+Recall gapminder data, find the average life expectancy in 2007 for each continent</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#install.packages('gapminder')</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(gapminder)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">summarize</span>(<span class="at">avg_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># A tibble: 5 × 2</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  continent avg_lifeExp</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="sc">&lt;</span>fct<span class="sc">&gt;</span>           <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> Africa           <span class="fl">54.8</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> Americas         <span class="fl">73.6</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> Asia             <span class="fl">70.7</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> Europe           <span class="fl">77.6</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> Oceania          <span class="fl">80.7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tips-and-tricks" class="level2">
+<h2 class="anchored" data-anchor-id="tips-and-tricks">Tips and Tricks</h2>
+<p><strong>Comments</strong><br>
+Use comments within R code to document the purpose of your code. Anything on a line after a <code>#</code> is ignored by R. RStudio uses a different color to help readability.</p>
+<p><strong>SAVE</strong> your scripts(!), not workspaces. Use meaningful variable names. Adopt a coding style and use consistently.<br>
+(e.g.&nbsp;<a href="https://google.github.io/styleguide/Rguide.xml" class="uri">https://google.github.io/styleguide/Rguide.xml</a>)</p>
+<p>The <code>str()</code> function can be incredibly helpful when querying objects.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">str</span>(hills)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="st">'data.frame'</span><span class="sc">:</span>   <span class="dv">35</span> obs. of  <span class="dv">3</span> variables<span class="sc">:</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a> <span class="er">$</span> dist <span class="sc">:</span> num  <span class="fl">2.5</span> <span class="dv">6</span> <span class="dv">6</span> <span class="fl">7.5</span> <span class="dv">8</span> <span class="dv">8</span> <span class="dv">16</span> <span class="dv">6</span> <span class="dv">5</span> <span class="dv">6</span> ...</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a> <span class="sc">$</span> climb<span class="sc">:</span> int  <span class="dv">650</span> <span class="dv">2500</span> <span class="dv">900</span> <span class="dv">800</span> <span class="dv">3070</span> <span class="dv">2866</span> <span class="dv">7500</span> <span class="dv">800</span> <span class="dv">800</span> <span class="dv">650</span> ...</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a> <span class="sc">$</span> time <span class="sc">:</span> num  <span class="fl">16.1</span> <span class="fl">48.4</span> <span class="fl">33.6</span> <span class="fl">45.6</span> <span class="fl">62.3</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make use of <code>help()</code> documentation.</p>
+<p>There are almost always multiple ways of getting the same result.<br>
+We’ll mostly use low level functions to help you understand how R works.<br>
+Some advanced functions are cleaner and do things more quickly.<br>
+</p>
+</section>
+<section id="lab-exercise-44-data-frames-using-hills" class="level2">
+<h2 class="anchored" data-anchor-id="lab-exercise-44-data-frames-using-hills">Lab exercise 4/4 (data frames using <code>hills</code>)</h2>
+<ol type="1">
+<li>Display the first 5 rows of the <code>hills</code> dataframe.<br>
+</li>
+<li>Find the fastest time.<br>
+</li>
+<li>Display the hill races (and distance, climbs, and times) with the 3 fastest times.<br>
+</li>
+<li>Extract and display the record time for Cairngorm.<br>
+</li>
+<li>Find how many hill races have a climb greater than the mean.<br>
+</li>
+<li>Display the names of the hill races that have a climb greater than the mean.<br>
+</li>
+<li>Display the names and times of the races that are at least 10 miles long and have a climb greater than 4000 feet.<br>
+</li>
+<li>Find the positions (indices) of hills that either have a climb greater than 5000 feet or have a record time less than 20 minutes.<br>
+</li>
+<li>Find the standard deviation of the record times for all races except for the highest climb, the Bens of Jura.<br>
+</li>
+<li>Display the range (minimum and maximum) of the average speed for the races.<br>
+</li>
+<li>Find the race that had the fastest average speed.<br>
+</li>
+<li><strong>BONUS</strong> Find the mean of the record times for races whose names start with letters A through K.</li>
+</ol>
+</section>
+<section id="next-time" class="level2">
+<h2 class="anchored" data-anchor-id="next-time">Next time…</h2>
+<p>1/18: Introduction to R and R Studio, working with data<br>
+<strong>1/25: Intro to Vizualization</strong><br>
+2/01: Probability, linear modeling<br>
+2/08: Data wrangling, model summaries<br>
+2/15: Iteration<br>
+2/22: Creating functions, debugging<br>
+3/01: Simulation, Resampling<br>
+3/15: Flex: more modeling (brms, glmmTMB)<br>
+3/29: Spatial data or tidymodeling</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+    } else {
+      disableStylesheet(alternateStylesheets);
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Copyright 2022, Mine Çetinkaya-Rundel</div>   
+    <div class="nav-footer-right">This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>
