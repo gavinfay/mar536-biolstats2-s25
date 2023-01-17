@@ -1,0 +1,27 @@
+---
+title: "Week 1"
+subtitle: "Welcome to MAR 536"
+editor: visual
+---
+
+## Prepare
+
+📖 Read the [syllabus](/course-syllabus.html)
+
+📖 Read [Chapter 1.1-1.2 of McElreath](../readings/Statistical_Rethinking_chap1_extract.pdf) (Tue)
+
+📖 Read/reference [Chapter 4 of Bolker 2008](../readings/Statistical_Rethinking_chap1_extract.pdf) (Thu)
+
+## Participate
+
+🖥️ [Lecture 1 -Introduction](../lectures/lec-01.pptx) (📋 [gapminder data](../data/gapminder.xlsx))
+
+⌨️ [Lab 1 -Intro to R](../labs/lab-01.pdf) (just the [exercise](../labs/lab-exercise-01.pdf))
+
+🖥️ [Lecture 2 - Probability review](../lectures/lec-02.pdf)
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/ "Course schedule") ⏎
+:::
