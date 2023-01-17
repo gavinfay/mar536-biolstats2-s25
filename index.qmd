@@ -13,7 +13,7 @@ This page will contain an outline of the topics, content, and assignments for th
 
 ::: column-screen-inset-right
 |           Week           | Date        | Topic                      |                            Prepare                             |                                   Slides                                   |               AE               |                                     Lab                                     | HW  | Exam | Project |
-|:------:|--------|--------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+|:------------------------:|-------------|----------------------------|:--------------------------------------------------------------:|:--------------------------------------------------------------------------:|:------------------------------:|:---------------------------------------------------------------------------:|:---:|:----:|:-------:|
 | [1](/weeks/week-01.html) | Tue, Jan 17 | Introduction               | [📖](/weeks/week-01.html#prepare){aria-label="Week 1 summary"} |    [🖥️](/lectures/lec-01.pptx "Lab slides"){aria-label="Lab 0 slides"}     |                                |                                                                             |     |      |         |
 |                          | Wed, Jan 18 | Lab 1 -Intro to R/RStudio  |                                                                |                                                                            | [📋](labs/lab-exercise-01.pdf) | [💻](/labs/lab-01.html "Lab instructions"){aria-label="Lab 0 instructions"} |     |      |         |
 |                          | Thu, Jan 19 | Probability review         | [📖](/weeks/week-01.html#prepare){aria-label="Week 1 summary"} | [🖥️](/lectures/lec-02.pdf "Lecture slides"){aria-label="Lecture 1 slides"} |                                |                                                                             |     |      |         |
@@ -29,5 +29,5 @@ knitr::knit_exit()
 ```
 
 |      |      |       | Prepare | Slides | AE  |                                                    Labs                                                    | HW  | Exam | Project |
-|--------|--------|--------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
+|------|------|-------|:-------:|:------:|:---:|:----------------------------------------------------------------------------------------------------------:|:---:|:----:|:-------:|
 | Week | Date | Topic |   📖    |   🖥️   | 📋  | [💻](https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786) | ✍️  |  ✅  |   📂    |

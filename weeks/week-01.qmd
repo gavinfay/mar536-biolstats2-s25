@@ -10,7 +10,7 @@ editor: visual
 
 📖 Read [Chapter 1.1-1.2 of McElreath](../readings/Statistical_Rethinking_chap1_extract.pdf) (Tue)
 
-📖 Read/reference [Chapter 4 of Bolker 2008](../readings/Statistical_Rethinking_chap1_extract.pdf) (Thu)
+📖 Read/reference [Chapter 4 of Bolker 2008](https://ms.mcmaster.ca/~bolker/emdbook/chap4A.pdf) (Thu)
 
 ## Participate
 
