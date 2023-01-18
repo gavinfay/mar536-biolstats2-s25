@@ -1,0 +1,829 @@
+---
+title: 'Biological Stats 2: Lab 1'
+author: "Dr. Gavin Fay"
+date: "01/18/2023"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+logo: "../images/logo.png"
+format: 
+  revealjs: 
+    theme: slides.scss
+    multiplex: true
+    transition: fade
+    slide-number: true
+editor: visual
+execute:
+  freeze: auto
+#output:
+  #beamer_presentation:
+  #  colortheme: seagull
+  #  fonttheme: structurebold
+  #ioslides_presentation: default
+  #slidy_presentation: default
+---
+
+
+```{r}
+#| include: false
+library(countdown)
+```
+
+
+## Lab schedule
+
+**1/18: Introduction to R and R Studio, working with data**\
+1/25: Intro to Visualization\
+2/01: Probability, linear modeling\
+2/08: Data wrangling, model summaries\
+2/15: Iteration\
+2/22: Creating functions, debugging\
+3/01: Simulation, Resampling\
+3/15: Flex: more modeling (brms, glmmTMB)\
+3/29: Spatial data or tidymodeling
+
+## Format for lab component
+
+- Description/overview of concepts by instructor
+- Live coding. Interactive, follow along yourselves
+- Lab exercises to practice material
+- Assignment each week is to finish the exercises
+- Extra credit: #TidyTuesday
+- Community support\
+*"Try stuff and see what happens"*
+
+## 
+
+![](figs/WhyR.png)
+
+## 
+
+![](figs/datascience_workflow.png)
+
+
+## Why R? {.small}
+
+**Reproducible**\
+- command line interface encourages organization\
+- scripts allow others (and you!) to reproduce analyses from end-to-end\
+- integration of analysis with document creation
+
+**Extensible**\
+- new methods delivered as developed\
+- continual expansion through new packages
+
+**Open-source**\
+- all code can be examined by the user
+
+**Free**\
+- available to large set of users (and therefore developers)
+
+R is not the only solution out there.\
+The real goal is not to teach R, but concepts that all programming depends on.
+
+------------------------------------------------------------------------
+
+Trevor Branch rule:
+
+> "Every analysis you do on a dataset will have to be redone 10--15 times before publication. Plan accordingly."
+
+## Recommended reading
+
+R for Data Science, 2017 (Wickham and Grolemund)\
+<https://r4ds.had.co.nz/>\
+![](figs/r4ds.png)
+
+## Recommended reading {.small}
+
+An introduction to R (Venables et al.)\
+-- <http://cran.r-project.org/doc/manuals/R-intro.pdf>
+
+R reference card 2.0 (Baggott)\
+-- <http://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf>\
+-- Extremely useful handout: put on wall in view of your desk
+
+Cheatsheets\
+- <https://posit.co/resources/cheatsheets/>
+
+There are many (many) R books out there. Good for reference. e.g.\
+- The R Book, 2007 (Crawley)\
+- Modern Applied Statistics with S, 20002 (Venables and Ripley)\
+- Introductory Statistics with R, 2002 (Dalgaard)
+
+
+## Reproducibility checklist
+
+_What does it mean for a data analysis to be "reproducible"?_
+
+. . .
+
+Near-term goals:
+
+-   Are the tables and figures reproducible from the code and data?
+-   Does the code actually do what you think it does?
+-   In addition to what was done, is it clear *why* it was done?
+
+Long-term goals:
+
+-   Can the code be used for other data?
+-   Can you extend the code to do other things?
+
+------------------------------------------------------------------------
+
+## Toolkit for reproducibility
+
+-   Scriptability $\rightarrow$ R
+-   Literate programming (code, narrative, output in one place) $\rightarrow$ R Markdown
+-   Version control $\rightarrow$ Git / GitHub
+
+
+## R and RStudio {.small}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r echo=FALSE, out.width="25%"}
+knitr::include_graphics("img/r-logo.png")
+```
+
+-   R is an open-source statistical **programming language**
+-   R is also an environment for statistical computing and graphics
+-   It's easily extensible with *packages* 
+
+:::
+
+::: {.column width="50%"}
+
+```{r echo=FALSE, out.width="50%"}
+knitr::include_graphics("img/RStudio-Logo-Flat.png")
+```
+
+-   RStudio is a convenient interface for R called an **IDE** (integrated development environment), e.g. *"I write R code in the RStudio IDE"*
+-   RStudio is not a requirement for programming with R, but it's very commonly used by R programmers and data scientists
+
+:::
+::::
+
+
+## Using R today: RStudio Cloud
+
+An alternative:
+
+-   web browser interface
+    <https://rstudio.cloud/spaces/47288/project/856390>
+
+GF needs to update with 2023 link!
+
+------------------------------------------------------------------------
+
+## R packages {.small}
+
+-   **Packages** are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data ^[Wickham and Bryan, [R Packages](https://r-pkgs.org/)]
+
+-   As of September 2020, there are over 16,000 R packages available on **CRAN** (the Comprehensive R Archive Network)^[[CRAN contributed packages](https://cran.r-project.org/web/packages/)]
+
+-   We're going to work with a small (but important) subset of these!
+
+------------------------------------------------------------------------
+
+## Tour: R and RStudio
+
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/tour-r-rstudio.png")
+```
+
+------------------------------------------------------------------------
+
+## A short list (for now) of R essentials
+
+-   Functions are (most often) verbs, followed by what they will be applied to in parentheses:
+
+```{r eval=FALSE, echo=TRUE}
+do_this(to_this)
+do_that(to_this, to_that, with_those)
+```
+
+. . . 
+
+-   Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
+
+```{r eval=FALSE, echo=TRUE}
+install.packages("package_name")
+library(package_name)
+```
+
+------------------------------------------------------------------------
+
+## tidyverse
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r echo=FALSE, out.width="99%"}
+knitr::include_graphics("img/tidyverse.png")
+```
+
+:::
+
+::: {.column width="50%"}
+
+[tidyverse.org](https://www.tidyverse.org/)
+
+-   The **tidyverse** is an opinionated collection of R packages designed for data science
+-   All packages share an underlying philosophy and a common grammar
+
+:::
+::::
+
+------------------------------------------------------------------------
+
+## Getting started
+
+Enter instructions at R console command line prompt (`>`):
+e.g. type
+
+```{r,results='hide',prompt=TRUE,strip.white=TRUE, echo=TRUE}
+2 + 2
+```
+
+R acts as a calculator and returns (prints) the result.
+
+```{r,prompt=TRUE,strip.white=TRUE,collapse=TRUE,comment='',echo=TRUE}
+2 + 2
+```
+
+## Simple commands
+
+```{r,prompt=TRUE,strip.white=TRUE,collapse=TRUE,comment='', echo=TRUE}
+3^2
+2*(2+2)
+2*2+2
+log(10)
+exp(1)
+x <- 3
+2*x
+```
+
+The `<-` means 'assign'. i.e. 'assign a value of 3 to the variable x'.
+`<-` is preferable to using `=`
+
+## Scripts and RStudio {.small}
+
+-   Typing commands into the console can get tedious.
+
+-   Scripts are text files containing lines of code.
+
+-   Scripts provide a complete record of analyses.
+
+-   Code can be run (executed) from these files repeatedly.
+
+-   Scripts can be created in a text editor and copied into the R console.
+
+. . .
+
+Or...
+
+-   RStudio integrates scripts, R console, and output in a user-friendly development environment.
+
+-   To run code in RStudio, select code and type\
+    `Ctrl+Enter` (Windows)\
+    `Command+Enter` (Mac)\
+    The code will run in the R console.
+
+<!-- ## RStudio -->
+
+<!-- ![](figs/rstudiolayout2.png) -->
+
+## rmarkdown {.small}
+
+:::: {.columns}
+
+::: {.column width="70%"}
+
+[rmarkdown.rstudio.com](https://rmarkdown.rstudio.com/)
+
+-   **rmarkdown** and the various packages that support it enable R users to write their code and prose in reproducible computational documents
+-   We will generally refer to R Markdown documents (with `.Rmd` extension), e.g. *"Do this in your R Markdown document"* and rarely discuss loading the rmarkdown package 
+
+:::
+
+::: {.column width="30%"}
+
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rmarkdown.png")
+```
+:::
+::::
+
+------------------------------------------------------------------------
+
+## R Markdown
+
+-   Fully reproducible reports -- each time you knit the analysis is ran from the beginning
+-   Simple markdown syntax for text
+-   Code goes in chunks, defined by three backticks, narrative goes outside of chunks
+
+------------------------------------------------------------------------
+
+## Tour: R Markdown
+
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("img/tour-rmarkdown.png")
+```
+
+------------------------------------------------------------------------
+
+## Getting Help in R
+
+R is a programming language, there is a learning curve.
+
+Fortunately, there are lots of resources:
+
+![](figs/notxkcd_priorities2.png)
+
+**Don't** summon a wish-granting computer demon.
+
+## Getting Help in R {.small}
+
+R is a programming language, there is a learning curve.
+
+Fortunately, there are lots of resources:\
+- help files\
+- online search results\
+- books\
+- colleagues\
+- RStudio Community
+
+```{r prompt=TRUE,results='hide',echo=TRUE,collapse=TRUE}
+?(mean)
+help("mean")
+```
+
+The above both get help for the function `mean`.\
+Use `help.search("function.name")` to search across packages.
+
+`str(object.name)` shows the structure of an object.
+
+## R Help files (`?mean`)
+
+Common format:
+
+-   Description (what the function does)\
+-   Usage (how to use it)\
+-   Arguments (what the function needs, options)\
+-   Value (what does the function return)\
+-   See Also (related functions)\
+-   Examples (sample code showing how the function works)
+
+Read function documentation and explore behavior by running examples!
+
+## R Markdown help
+
+:::: {.columns}
+
+::: {.column width="50%"}
+R Markdown Cheat Sheet\
+`Help -> Cheatsheets`\
+
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/rmd-cheatsheet.png")
+```
+:::
+
+::: {.column width="50%"}
+Markdown Quick Reference\
+`Help -> Markdown Quick Reference`
+
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/md-cheatsheet.png")
+```
+:::
+::::
+
+## Projects in RStudio {.small}
+
+Good to keep all the files associated with a particular project organized together -- input data, R scripts, analytical results, figures.
+
+RStudio has built-in support for this via its projects.
+
+Projects provide an easy organization of your files and analyses.
+
+R runs from a working directory, the location (folder) on your computer that R will use as a default when looking for data files, producing output, etc.
+
+Project files (`.Rproj`)
+
+When you open a project, RStudio sets the working directory to the folder in which the `.Rproj` file exists.
+
+Using projects can be VERY helpful.
+
+## Lab exercise 1/4 {.small}
+
+(Instructions also in lab-exercise-01.pdf)
+
+Start a new project. (call it biostats2 or something similar)\
+Open a new R markdown file. Save it. (name it lastname_lab1.Rmd or something similar)\
+At the top of the script, add comments with your name and lab 1.\
+Work in pairs or individually.\
+Submit your .Rmd file via myCourses before lab next week.
+
+Write code that evaluates the following when run. $$7 + 5(4+3)$$ $$e^{-5(0.2+0.15)}$$ $$\frac{\sqrt{1+2(3+2)}}{\ln(3^2+2)}$$
+
+## Objects {.small}
+
+Common types of objects\
+- Numbers\
+- Characters (i.e. text or strings)\
+- Tables\
+- Vectors and matrices\
+- Plots\
+- Statistical output\
+- Functions
+
+Objects in R are global
+
+Viewing objects: In RStudio see top-right Workspace tab\
+More generally:\
+
+```{r prompt=TRUE,echo=TRUE,comment='',results='hide',eval=FALSE}
+  print(myobject)
+  myobject
+```
+
+`ls()` lists all objects in the workspace.\
+Use `rm()` to remove an object.
+
+## Data types (modes) {.small}
+
+Describe how objects are stored in computer memory.
+
+In R you do ***not*** need to specify the data type.
+
+Common data types:
+
+-   Numeric (integer, floating point numbers or doubles)
+
+-   Logical (Boolean, true or false)
+
+-   Characters (text or string data)
+
+Types are not always obvious in R, but can be important to know.
+
+## Data types II
+
+```{r prompt=TRUE,echo=TRUE,comment='',strip.white=TRUE,collapse=TRUE}
+myobject <- log(10)
+mode(myobject)
+is.numeric(myobject)
+typeof(myobject)
+newobject <- as.integer(myobject)
+typeof(newobject)
+is.character(myobject)
+typeof("hello world")
+```
+
+## Vectors
+
+```{r prompt=TRUE,echo=TRUE,comment='',collapse=TRUE,tidy=TRUE}
+weights <- c(2.3,5.4,7.5,9)
+print(weights)
+years <- 2007:2016
+print(years)
+years <- seq(from=2000,to=2016,by=2)
+print(years)
+x <- rep(3,times=10)
+print(x)
+rep(1:3,times=3)
+rep(1:3,length=10)
+```
+
+## More on Vectors {.small}
+
+Vectors are ordered and can be referred to by element(s) using \[ \]
+
+```{r prompt=TRUE,echo=TRUE,comment='',collapse=TRUE}
+(years <- 2007:2016)
+years[3]
+years[5:6]
+which(years==2010)
+years[-c(2,4)] # A negative index excludes elements
+```
+
+Vector operations are element-wise
+
+```{r prompt=TRUE,echo=TRUE,comment='',collapse=TRUE}
+(x <- 1:5)
+2*x
+```
+
+## Lab exercise 2/4 {.small}
+
+(Instructions also in lab-exercise-01.pdf)
+
+Create vectors using `seq()`, `rep()`, and mathematical operators. Only use `c()` when absolutely necessary.\
+*hint* Remember you can get help on a function by typing `?functionname`
+
+-   Positive integers from 1 to 99\
+-   Odd integers between 1 and 99\
+-   The numbers 1,1,1, 2,2,2, 3,3,3\
+-   The numbers -5,-4,-3,-5,-4,-3,-5,-4,-3\
+-   The fractions 1, 1/2, 1/3, 1/4, ..., 1/10\
+-   The cubes 1, 8, 27, 64, 125, 216
+
+## Useful functions {.small}
+
+```{r prompt=TRUE, echo=TRUE,comment='',collapse=TRUE}
+x <- c(5,3,2,6,3,9,1,18)
+length(x)  # length of vector x
+sort(unique(x))  # sorted vector of unique values in x
+min(x)     # minimum value in x
+max(x)     # maximum value in x
+mean(x)    # mean of x
+median(x)  # median of x
+sd(x)      # standard deviation of x
+range(x)   # range of values in x
+range(x)[2]  # 2nd element of values returned by range()
+quantile(x) # optional argument 'probs' can be handy
+```
+
+## Boolean logic operators {.small}
+
+| Operator              | R Code    |
+|-----------------------|-----------|
+| AND                   | & (&&)    |
+| OR                    | \| (\|\|) |
+| NOT                   | !         |
+| less than             | \<        |
+| greater than          | \>        |
+| less than or equal    | \<=       |
+| greater than or equal | \>=       |
+| equals                | ==        |
+| NOT equal             | !=        |
+
+&& and \|\| are used when asking IF statements.\
+These only use a single value, not a vector.
+
+## Boolean examples {.small}
+
+```{r comment='',prompt=TRUE,echo=TRUE,collapse=TRUE}
+x <- 7 
+x == 7 
+x < 10 
+x < -3 
+x > 0 & x <= 12
+x >= 10 | x < 0 
+```
+
+```{r comment='',echo=TRUE,prompt=TRUE,collapse=TRUE}
+y <- c(4,8)
+y > 5   #returns a logical vector
+y[y>5]  #returns elements of y that meet condition
+which(y>5) #index of y that meets condition
+any(y>5)
+all(y>5)
+```
+
+## Lab exercise 3/4 {.smaller}
+
+Complete the following using the vector `y`:
+
+`y <- c(3,2,15,-1,22,1,9,17,5)`
+
+-   Display the first and last values.\
+-   Find the last value for a vector of any length.\
+-   Display the values that are greater than the mean of `y`.\
+-   Display the positions (indices) of the values greater than the mean.\
+-   Are all the values positive?\
+-   Are any of the values equal to the mean?\
+-   Are any of the values equal to the median?
+
+## Other types of objects {.smaller}
+
+***matrices*** (more generally, arrays)\
+- multi-dimensional generalizations of vectors.\
+- are vectors that can be indexed by two or more indices.
+
+***factors***\
+- compact ways to handle categorical data.
+
+***lists***\
+- general form of vector, elements need not be the same type.\
+- elements often themselves vectors or lists.\
+- convenient way to return results of statistical computations.
+
+***dataframes***\
+- matrix-like structures, columns can be of different types.\
+- often 'data matrices' with one row per observational unit but with (possibly) both numerical and categorical variables.\
+
+***functions***\
+- are themselves objects in R which can be stored in the project's workspace.\
+- provide a simple and convenient way to extend R.
+
+## Dataframes {.small}
+
+There are lots of data set examples in R.\
+e.g. record times for 35 Scottish hill races\
+
+```{r prompt=TRUE,echo=TRUE, comment='',collapse=TRUE,R.options=library(MASS)}
+library(MASS)
+head(hills,n=3) # shows first few lines. Also tail()
+names(hills)  # get the names of the data frame
+```
+
+. . . 
+
+Creating dataframes 
+
+```{r prompt=TRUE,echo=TRUE, comment='',collapse=TRUE}
+fish <- c("cod","haddock","dogfish","pollock")
+length <- c(34,23,75,18)
+age <- c(6,3,17,2)
+fish.data <- data.frame(fish=fish,length=length,age=age)
+head(fish.data)
+```
+
+## Extracting information from data frames {.small}
+
+Use the \$ to extract vectors from a data frame
+
+```{r prompt=TRUE,comment='',echo=TRUE, collapse=TRUE,R.options=library(MASS)}
+hills$dist
+```
+
+You can also specify the row index, column index, or both `object[row,column]`
+
+```{r prompt=TRUE,comment='',echo=TRUE, collapse=TRUE,R.options=library(MASS)}
+# extract the element in row 1, column 2
+hills[1,2]
+hills$climb[1]
+# extract the first row
+hills[1,]
+```
+
+
+------------------------------------------------------------------------
+
+```{r prompt=TRUE,comment='',echo =TRUE, collapse=TRUE,R.options=library(MASS)}
+# extract all of column 2
+hills[,2]   # also hills[,"climb"]
+# exclude column 1, but retain the other columns (1st 3 rows)
+hills[1:3,-1]  
+# extract rows 4 and 7
+hills[c(4,7),]
+# extract the rows that are specified by the object x
+x <- c(4,7,nrow(hills))
+hills[x,]
+```
+
+## Extracting information from data frames (2) {.small}
+
+Data frames are commonly used in a structure called a 'tibble', from the tidyverse.
+
+```{r prompt=TRUE,echo=TRUE,comment='',collapse=TRUE, eval=TRUE, results='hide', message=FALSE, warning=FALSE}
+#install.packages('tidyverse')
+library(tidyverse)
+```
+
+
+```{r prompt=TRUE,echo=TRUE, comment='',collapse=TRUE}
+hills_tbl <- as_tibble(hills)
+hills_tbl
+```
+
+
+------------------------------------------------------------------------
+
+Extract variables using the `select` verb function in the `dplyr` package
+
+```{r prompt=TRUE,comment='',echo=TRUE, collapse=TRUE,R.options=library(MASS)}
+dplyr::select(hills,dist)
+```
+
+
+------------------------------------------------------------------------
+
+Create a new variable of the race names
+
+```{r prompt=TRUE,echo=TRUE, comment='',collapse=TRUE}
+  hills_tbl <- mutate(hills_tbl,race=rownames(hills))
+  hills_tbl <- dplyr::select(hills_tbl,race,everything())
+  hills_tbl
+```
+
+## Quickly visualize the dataset {.small}
+
+<!-- :::: {.columns} -->
+
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r, prompt=TRUE,comment='',echo=TRUE,eval=FALSE, collapse=TRUE,R.options=library(MASS)} -->
+<!-- library(ggplot2) -->
+<!-- ggplot(data = hills_tbl, mapping = aes(x=dist,y=time)) + -->
+<!--   geom_point(aes(size = climb), alpha = 1/3) + -->
+<!--   xlab("Distance (miles)") + -->
+<!--   ylab("Record Time (mins)") + -->
+<!--   xlim(0,30) + ylim(0,225) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+```{r, prompt=TRUE,comment='',echo=TRUE,eval=TRUE, collapse=TRUE,R.options=library(MASS)}
+library(ggplot2)
+ggplot(data = hills_tbl, mapping = aes(x=dist,y=time)) +
+  geom_point(aes(size = climb), alpha = 1/3) +
+  xlab("Distance (miles)") +
+  ylab("Record Time (mins)") +
+  xlim(0,30) + ylim(0,225)
+```
+<!-- ::: -->
+<!-- :::: -->
+
+## Extracting elements logically {.small}
+
+```{r prompt=TRUE,comment='',echo=TRUE, collapse=TRUE,tidy=TRUE}
+fish <- c("cod","haddock","dogfish","pollock")
+length <- c(34,23,75,18)
+age <- c(6,3,17,2)
+fish_data <- tibble(fish=fish,length=length,age=age)
+fish_data$age   # a vector
+fish_data$age > 5  # a logical vector
+filter(fish_data, age>5) #avoids having to create a logical vector
+# combining conditions
+filter(fish_data, age > 5, fish == "dogfish")
+filter(fish_data, length < 25 | length >= 50)
+```
+
+## Using the Pipe {.small}
+
+Combine verb operations with the pipe operator (`|>`) e.g.
+
+```{r prompt=TRUE,comment='',echo=TRUE,collapse=TRUE,tidy=TRUE}
+fish_data |>
+  mutate(weight = (length/100)^3) |>
+  filter(age > 5)
+```
+
+The pipe passes the result from one function call to the next.\
+Can be read as "and then".\
+(also the older tidyverse pipe: %\>% )\
+
+
+## Summarizing Data {.small}
+
+After selecting data we might like to perform analyses on it.\
+We can use `group_by()` to recognize structure in the data.\
+Then apply functions to variables using `summarize()`\
+Recall gapminder data, find the average life expectancy in 2007 for each continent
+
+```{r prompt=TRUE,echo=TRUE, comment='',collapse=TRUE,tidy=TRUE}
+#install.packages('gapminder')
+library(gapminder)
+gapminder |> 
+  filter(year == 2007) |> 
+  group_by(continent) |>
+  summarize(avg_lifeExp = mean(lifeExp))
+```
+
+## Tips and Tricks {.small}
+
+**Comments**\
+Use comments within R code to document the purpose of your code. Anything on a line after a `#` is ignored by R. RStudio uses a different color to help readability.
+
+**SAVE** your scripts(!), not workspaces. Use meaningful variable names. Adopt a coding style and use consistently.\
+(e.g. <https://google.github.io/styleguide/Rguide.xml>)
+
+The `str()` function can be incredibly helpful when querying objects.
+
+Make use of `help()` documentation.
+
+There are almost always multiple ways of getting the same result.\
+We'll mostly use low level functions to help you understand how R works.\
+Some advanced functions are cleaner and do things more quickly.\
+
+## Lab exercise 4/4 (data frames using `hills`) {.smaller}
+
+1.  Display the first 5 rows of the `hills` dataframe.\
+2.  Find the fastest time.\
+3.  Display the hill races (and distance, climbs, and times) with the 3 fastest times.\
+4.  Extract and display the record time for Cairngorm.\
+5.  Find how many hill races have a climb greater than the mean.\
+6.  Display the names of the hill races that have a climb greater than the mean.\
+7.  Display the names and times of the races that are at least 10 miles long and have a climb greater than 4000 feet.\
+8.  Find the standard deviation of the record times for all races except for the highest climb, the Bens of Jura.\
+9. Display the range (minimum and maximum) of the average speed for the races.\
+10. Find the race that had the fastest average speed.\
+11. **BONUS** Find the mean of the record times for races whose names start with letters A through K.
+
+## Next time...
+
+1/18: Introduction to R and R Studio, working with data\
+**1/25: Intro to Vizualization**\
+2/01: Probability, linear modeling\
+2/08: Data wrangling, model summaries\
+2/15: Iteration\
+2/22: Creating functions, debugging\
+3/01: Simulation, Resampling\
+3/15: Flex: more modeling (brms, glmmTMB)\
+3/29: Spatial data or tidymodeling
+
+
+
+
