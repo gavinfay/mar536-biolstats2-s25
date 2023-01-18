@@ -16,7 +16,7 @@ editor: visual
 
 🖥️ [Lecture 1 -Introduction](../lectures/lec-01.pptx) (📋 [gapminder data](../data/gapminder.xlsx))
 
-⌨️ [Lab 1 -Intro to R](../labs/lab-01.pdf) (just the [exercise](../labs/lab-exercise-01.pdf))
+⌨️ [Lab 1 -Intro to R](../labs/lab-01.html) (just the [exercise](../labs/lab-exercise-01.pdf))
 
 🖥️ [Lecture 2 - Probability review](../lectures/lec-02.pdf)
 

@@ -1,73 +1,73 @@
 [
   {
-    "objectID": "labs/lab-01.html",
-    "href": "labs/lab-01.html",
-    "title": "Biological Stats II : Lab 1",
-    "section": "",
-    "text": "1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling"
+    "objectID": "labs/lab-01.html#lab-schedule",
+    "href": "labs/lab-01.html#lab-schedule",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "Lab schedule",
+    "text": "Lab schedule\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling"
   },
   {
     "objectID": "labs/lab-01.html#format-for-lab-component",
     "href": "labs/lab-01.html#format-for-lab-component",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Format for lab component",
-    "text": "Format for lab component\nDescription/overview of concepts by instructor\nLive coding. Interactive, follow along yourselves\nLab exercises to practice material\nAssignment each week is to finish the exercises\nExtra credit: #TidyTuesday\nCommunity support\n“Try stuff and see what happens”"
+    "text": "Format for lab component\n\nDescription/overview of concepts by instructor\nLive coding. Interactive, follow along yourselves\nLab exercises to practice material\nAssignment each week is to finish the exercises\nExtra credit: #TidyTuesday\nCommunity support\n“Try stuff and see what happens”"
   },
   {
     "objectID": "labs/lab-01.html#why-r",
     "href": "labs/lab-01.html#why-r",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Why R?",
-    "text": "Why R?\nReproducible\n- command line interface encourages organization\n- scripts allow others (and you!) to reproduce analyses from end-to-end\n- integration of analysis with document creation\nExtensible\n- new methods delivered as developed\n- continual expansion through new packages\nOpen-source\n- all code can be examined by the user\nFree\n- available to large set of users (and therefore developers)\nR is not the only solution out there.\nThe real goal is not to teach R, but concepts that all programming depends on.\n\nTrevor Branch rule:\n\n“Every analysis you do on a dataset will have to be redone 10–15 times before publication. Plan accordingly.”"
+    "text": "Why R?\nReproducible\n- command line interface encourages organization\n- scripts allow others (and you!) to reproduce analyses from end-to-end\n- integration of analysis with document creation\nExtensible\n- new methods delivered as developed\n- continual expansion through new packages\nOpen-source\n- all code can be examined by the user\nFree\n- available to large set of users (and therefore developers)\nR is not the only solution out there.\nThe real goal is not to teach R, but concepts that all programming depends on."
   },
   {
     "objectID": "labs/lab-01.html#recommended-reading",
     "href": "labs/lab-01.html#recommended-reading",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Recommended reading",
     "text": "Recommended reading\nR for Data Science, 2017 (Wickham and Grolemund)\nhttps://r4ds.had.co.nz/"
   },
   {
     "objectID": "labs/lab-01.html#recommended-reading-1",
     "href": "labs/lab-01.html#recommended-reading-1",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Recommended reading",
     "text": "Recommended reading\nAn introduction to R (Venables et al.)\n– http://cran.r-project.org/doc/manuals/R-intro.pdf\nR reference card 2.0 (Baggott)\n– http://cran.r-project.org/doc/contrib/Baggott-refcard-v2.pdf\n– Extremely useful handout: put on wall in view of your desk\nCheatsheets\n- https://posit.co/resources/cheatsheets/\nThere are many (many) R books out there. Good for reference. e.g.\n- The R Book, 2007 (Crawley)\n- Modern Applied Statistics with S, 20002 (Venables and Ripley)\n- Introductory Statistics with R, 2002 (Dalgaard)"
   },
   {
     "objectID": "labs/lab-01.html#installing-r-and-r-studio",
     "href": "labs/lab-01.html#installing-r-and-r-studio",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Installing R and R Studio",
-    "text": "Installing R and R Studio\nR (http://r-project.org)\n- download appropriate version for your OS\nR Studio (https://posit.co/download/rstudio-desktop/)\n- a very good Integrated Development Environment (IDE) for R\nprovides:\n- text editor\n- syntax highlighting\n- seamless code execution with R\nYou can use other text editors with R, but RStudio is well organized.\n(also looks the same regardless of Operating System)"
+    "text": "Installing R and R Studio\nR (http://r-project.org) - download appropriate version for your OS\nR Studio (https://posit.co/download/rstudio-desktop/) - a very good Integrated Development Environment (IDE) for R provides: - text editor - syntax highlighting - seamless code execution with R\nYou can use other text editors with R, but RStudio is well organized. (also looks the same regardless of Operating System)"
   },
   {
     "objectID": "labs/lab-01.html#using-r-today-rstudio-cloud",
     "href": "labs/lab-01.html#using-r-today-rstudio-cloud",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Using R today: RStudio Cloud",
-    "text": "Using R today: RStudio Cloud\nAn alternative:\n\nweb browser interface\nhttps://rstudio.cloud/spaces/47288/project/856390"
+    "text": "Using R today: RStudio Cloud\nAn alternative:\n\nweb browser interface https://rstudio.cloud/spaces/47288/project/856390\n\nGF needs to update with 2023 link!"
   },
   {
     "objectID": "labs/lab-01.html#getting-started",
     "href": "labs/lab-01.html#getting-started",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Getting started",
-    "text": "Getting started\nEnter instructions at R console command line prompt (>):\ne.g. type\n\n> 2 + 2\n\nR acts as a calculator and returns (prints) the result.\n\n> 2 + 2\n[1] 4"
+    "text": "Getting started\nEnter instructions at R console command line prompt (>): e.g. type\n\n> 2 + 2\n\nR acts as a calculator and returns (prints) the result.\n\n> 2 + 2\n[1] 4"
   },
   {
     "objectID": "labs/lab-01.html#simple-commands",
     "href": "labs/lab-01.html#simple-commands",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Simple commands",
-    "text": "Simple commands\n\n> 3^2\n[1] 9\n> 2*(2+2)\n[1] 8\n> 2*2+2\n[1] 6\n> log(10)\n[1] 2.302585\n> exp(1)\n[1] 2.718282\n> x <- 3\n> 2*x\n[1] 6\n\nThe <- means ‘assign’. i.e. ‘assign a value of 3 to the variable x’.\n<- is preferable to using ="
+    "text": "Simple commands\n\n> 3^2\n[1] 9\n> 2*(2+2)\n[1] 8\n> 2*2+2\n[1] 6\n> log(10)\n[1] 2.302585\n> exp(1)\n[1] 2.718282\n> x <- 3\n> 2*x\n[1] 6\n\nThe <- means ‘assign’. i.e. ‘assign a value of 3 to the variable x’. <- is preferable to using ="
   },
   {
     "objectID": "labs/lab-01.html#scripts-and-rstudio",
     "href": "labs/lab-01.html#scripts-and-rstudio",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Scripts and RStudio",
-    "text": "Scripts and RStudio\n\nTyping commands into the console can get tedious.\nScripts are text files containing lines of code.\nScripts provide a complete record of analyses.\nCode can be run (executed) from these files repeatedly.\nScripts can be created in a text editor and copied into the R console.\n\nOr…\n\nRStudio integrates scripts, R console, and output in a user-friendly development environment.\nTo run code in RStudio, select code and type\nCtrl+Enter (Windows)\nCommand+Enter (Mac)\nThe code will run in the R console."
+    "text": "Scripts and RStudio\n\nTyping commands into the console can get tedious.\nScripts are text files containing lines of code.\nScripts provide a complete record of analyses.\nCode can be run (executed) from these files repeatedly.\nScripts can be created in a text editor and copied into the R console.\n\n\nOr…\n\nRStudio integrates scripts, R console, and output in a user-friendly development environment.\nTo run code in RStudio, select code and type\nCtrl+Enter (Windows)\nCommand+Enter (Mac)\nThe code will run in the R console."
   },
   {
     "objectID": "labs/lab-01.html#rstudio",
@@ -79,191 +79,261 @@
   {
     "objectID": "labs/lab-01.html#projects-in-rstudio",
     "href": "labs/lab-01.html#projects-in-rstudio",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Projects in RStudio",
     "text": "Projects in RStudio\nGood to keep all the files associated with a particular project organized together – input data, R scripts, analytical results, figures.\nRStudio has built-in support for this via its projects.\nProjects provide an easy organization of your files and analyses.\nR runs from a working directory, the location (folder) on your computer that R will use as a default when looking for data files, producing output, etc.\nProject files (.Rproj)\nWhen you open a project, RStudio sets the working directory to the folder in which the .Rproj file exists.\nUsing projects can be VERY helpful."
   },
   {
     "objectID": "labs/lab-01.html#getting-help-in-r",
     "href": "labs/lab-01.html#getting-help-in-r",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Getting Help in R",
     "text": "Getting Help in R\nR is a programming language, there is a learning curve.\nFortunately, there are lots of resources:\n\nDon’t summon a wish-granting computer demon."
   },
   {
     "objectID": "labs/lab-01.html#getting-help-in-r-1",
     "href": "labs/lab-01.html#getting-help-in-r-1",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Getting Help in R",
     "text": "Getting Help in R\nR is a programming language, there is a learning curve.\nFortunately, there are lots of resources:\n- help files\n- online search results\n- books\n- colleagues\n- RStudio Community\n\n> ?(mean)\n> help(\"mean\")\n\nThe above both get help for the function mean.\nUse help.search(\"function.name\") to search across packages.\nstr(object.name) shows the structure of an object."
   },
   {
     "objectID": "labs/lab-01.html#r-help-files-mean",
     "href": "labs/lab-01.html#r-help-files-mean",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "R Help files (?mean)",
     "text": "R Help files (?mean)\nCommon format:\n\nDescription (what the function does)\n\nUsage (how to use it)\n\nArguments (what the function needs, options)\n\nValue (what does the function return)\n\nSee Also (related functions)\n\nExamples (sample code showing how the function works)\n\nRead function documentation and explore behavior by running examples!"
   },
   {
     "objectID": "labs/lab-01.html#lab-exercise-14",
     "href": "labs/lab-01.html#lab-exercise-14",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Lab exercise 1/4",
     "text": "Lab exercise 1/4\n(Instructions also in lab-exercise-01.pdf)\nStart a new project. (call it biostats2 or something similar)\nOpen a new R markdown file. Save it. (name it lastname_lab1.Rmd or something similar)\nAt the top of the script, add comments with your name and lab 1.\nWork in pairs or individually.\nSubmit your .Rmd file via myCourses before lab next week.\nWrite code that evaluates the following when run. \\[7 + 5(4+3)\\] \\[e^{-5(0.2+0.15)}\\] \\[\\frac{\\sqrt{1+2(3+2)}}{\\ln(3^2+2)}\\]"
   },
   {
     "objectID": "labs/lab-01.html#objects",
     "href": "labs/lab-01.html#objects",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Objects",
     "text": "Objects\nCommon types of objects\n- Numbers\n- Characters (i.e. text or strings)\n- Tables\n- Vectors and matrices\n- Plots\n- Statistical output\n- Functions\nObjects in R are global\nViewing objects: In RStudio see top-right Workspace tab\nMore generally:\n\n\n>   print(myobject)\n>   myobject\n\nls() lists all objects in the workspace.\nUse rm() to remove an object."
   },
   {
     "objectID": "labs/lab-01.html#data-types-modes",
     "href": "labs/lab-01.html#data-types-modes",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Data types (modes)",
     "text": "Data types (modes)\nDescribe how objects are stored in computer memory.\nIn R you do not need to specify the data type.\nCommon data types:\n\nNumeric (integer, floating point numbers or doubles)\nLogical (Boolean, true or false)\nCharacters (text or string data)\n\nTypes are not always obvious in R, but can be important to know."
   },
   {
     "objectID": "labs/lab-01.html#data-types-ii",
     "href": "labs/lab-01.html#data-types-ii",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Data types II",
     "text": "Data types II\n\n> myobject <- log(10)\n> mode(myobject)\n[1] \"numeric\"\n> is.numeric(myobject)\n[1] TRUE\n> typeof(myobject)\n[1] \"double\"\n> newobject <- as.integer(myobject)\n> typeof(newobject)\n[1] \"integer\"\n> is.character(myobject)\n[1] FALSE\n> typeof(\"hello world\")\n[1] \"character\""
   },
   {
     "objectID": "labs/lab-01.html#vectors",
     "href": "labs/lab-01.html#vectors",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Vectors",
     "text": "Vectors\n\n> weights <- c(2.3,5.4,7.5,9)\n> print(weights)\n[1] 2.3 5.4 7.5 9.0\n> years <- 2007:2016\n> print(years)\n [1] 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016\n> years <- seq(from=2000,to=2016,by=2)\n> print(years)\n[1] 2000 2002 2004 2006 2008 2010 2012 2014 2016\n> x <- rep(3,times=10)\n> print(x)\n [1] 3 3 3 3 3 3 3 3 3 3\n> rep(1:3,times=3)\n[1] 1 2 3 1 2 3 1 2 3\n> rep(1:3,length=10)\n [1] 1 2 3 1 2 3 1 2 3 1"
   },
   {
     "objectID": "labs/lab-01.html#more-on-vectors",
     "href": "labs/lab-01.html#more-on-vectors",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "More on Vectors",
     "text": "More on Vectors\nVectors are ordered and can be referred to by element(s) using [ ]\n\n> (years <- 2007:2016)\n [1] 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016\n> years[3]\n[1] 2009\n> years[5:6]\n[1] 2011 2012\n> which(years==2010)\n[1] 4\n> years[-c(2,4)] # A negative index excludes elements\n[1] 2007 2009 2011 2012 2013 2014 2015 2016\n\nVector operations are element-wise\n\n> (x <- 1:5)\n[1] 1 2 3 4 5\n> 2*x\n[1]  2  4  6  8 10"
   },
   {
     "objectID": "labs/lab-01.html#lab-exercise-24",
     "href": "labs/lab-01.html#lab-exercise-24",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Lab exercise 2/4",
     "text": "Lab exercise 2/4\n(Instructions also in lab-exercise-01.pdf)\nCreate vectors using seq(), rep(), and mathematical operators. Only use c() when absolutely necessary.\nhint Remember you can get help on a function by typing ?functionname\n\nPositive integers from 1 to 99\n\nOdd integers between 1 and 99\n\nThe numbers 1,1,1, 2,2,2, 3,3,3\n\nThe numbers -5,-4,-3,-5,-4,-3,-5,-4,-3\n\nThe fractions 1, 1/2, 1/3, 1/4, …, 1/10\n\nThe cubes 1, 8, 27, 64, 125, 216"
   },
   {
     "objectID": "labs/lab-01.html#useful-functions",
     "href": "labs/lab-01.html#useful-functions",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Useful functions",
     "text": "Useful functions\n\n> x <- c(5,3,2,6,3,9,1,18)\n> length(x)  # length of vector x\n[1] 8\n> sort(unique(x))  # sorted vector of unique values in x\n[1]  1  2  3  5  6  9 18\n> min(x)     # minimum value in x\n[1] 1\n> max(x)     # maximum value in x\n[1] 18\n> mean(x)    # mean of x\n[1] 5.875\n> median(x)  # median of x\n[1] 4\n> sd(x)      # standard deviation of x\n[1] 5.514591\n> range(x)   # range of values in x\n[1]  1 18\n> range(x)[2]  # 2nd element of values returned by range()\n[1] 18\n> quantile(x) # optional argument 'probs' can be handy\n   0%   25%   50%   75%  100% \n 1.00  2.75  4.00  6.75 18.00"
   },
   {
     "objectID": "labs/lab-01.html#boolean-logic-operators",
     "href": "labs/lab-01.html#boolean-logic-operators",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Boolean logic operators",
     "text": "Boolean logic operators\n\n\n\nOperator\nR Code\n\n\n\n\nAND\n& (&&)\n\n\nOR\n| (||)\n\n\nNOT\n!\n\n\nless than\n<\n\n\ngreater than\n>\n\n\nless than or equal\n<=\n\n\ngreater than or equal\n>=\n\n\nequals\n==\n\n\nNOT equal\n!=\n\n\n\n&& and || are used when asking IF statements.\nThese only use a single value, not a vector."
   },
   {
     "objectID": "labs/lab-01.html#boolean-examples",
     "href": "labs/lab-01.html#boolean-examples",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Boolean examples",
     "text": "Boolean examples\n\n> x <- 7 \n> x == 7 \n[1] TRUE\n> x < 10 \n[1] TRUE\n> x < -3 \n[1] FALSE\n> x > 0 & x <= 12\n[1] TRUE\n> x >= 10 | x < 0 \n[1] FALSE\n\n\n> y <- c(4,8)\n> y > 5   #returns a logical vector\n[1] FALSE  TRUE\n> y[y>5]  #returns elements of y that meet condition\n[1] 8\n> which(y>5) #index of y that meets condition\n[1] 2\n> any(y>5)\n[1] TRUE\n> all(y>5)\n[1] FALSE"
   },
   {
     "objectID": "labs/lab-01.html#lab-exercise-34",
     "href": "labs/lab-01.html#lab-exercise-34",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Lab exercise 3/4",
     "text": "Lab exercise 3/4\nComplete the following using the vector y:\ny <- c(3,2,15,-1,22,1,9,17,5)\n\nDisplay the first and last values.\n\nFind the last value for a vector of any length.\n\nDisplay the values that are greater than the mean of y.\n\nDisplay the positions (indices) of the values greater than the mean.\n\nAre all the values positive?\n\nAre any of the values equal to the mean?\n\nAre any of the values equal to the median?"
   },
   {
     "objectID": "labs/lab-01.html#other-types-of-objects",
     "href": "labs/lab-01.html#other-types-of-objects",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Other types of objects",
-    "text": "Other types of objects\nmatrices (more generally, arrays)\n- multi-dimensional generalizations of vectors.\n- are vectors that can be indexed by two or more indices.\nfactors\n- compact ways to handle categorical data.\nlists\n- general form of vector, elements need not be the same type.\n- elements often themselves vectors or lists.\n- convenient way to return results of statistical computations.\ndataframes\n- matrix-like structures, columns can be of different types.\n- often ‘data matrices’ with one row per observational unit but with (possibly) both numerical and categorical variables.\n- experiments are often best described by data frames: treatments are categorical but the response is numeric.\nfunctions\n- are themselves objects in R which can be stored in the project’s workspace.\n- provide a simple and convenient way to extend R."
+    "text": "Other types of objects\nmatrices (more generally, arrays)\n- multi-dimensional generalizations of vectors.\n- are vectors that can be indexed by two or more indices.\nfactors\n- compact ways to handle categorical data.\nlists\n- general form of vector, elements need not be the same type.\n- elements often themselves vectors or lists.\n- convenient way to return results of statistical computations.\ndataframes\n- matrix-like structures, columns can be of different types.\n- often ‘data matrices’ with one row per observational unit but with (possibly) both numerical and categorical variables.\n\nfunctions\n- are themselves objects in R which can be stored in the project’s workspace.\n- provide a simple and convenient way to extend R."
   },
   {
     "objectID": "labs/lab-01.html#dataframes",
     "href": "labs/lab-01.html#dataframes",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Dataframes",
-    "text": "Dataframes\nThere are lots of data set examples in R.\ne.g. record times for 35 Scottish hill races\n\n\n> library(MASS)\n> head(hills,n=3) # shows first few lines. Also tail()\n             dist climb   time\nGreenmantle   2.5   650 16.083\nCarnethy      6.0  2500 48.350\nCraig Dunain  6.0   900 33.650\n> names(hills)  # get the names of the data frame\n[1] \"dist\"  \"climb\" \"time\" \n\nCreating dataframes \n\n> fish <- c(\"cod\",\"haddock\",\"dogfish\",\"pollock\")\n> length <- c(34,23,75,18)\n> age <- c(6,3,17,2)\n> fish.data <- data.frame(fish=fish,length=length,age=age)\n> head(fish.data)\n     fish length age\n1     cod     34   6\n2 haddock     23   3\n3 dogfish     75  17\n4 pollock     18   2"
+    "text": "Dataframes\nThere are lots of data set examples in R.\ne.g. record times for 35 Scottish hill races\n\n\n> library(MASS)\n> head(hills,n=3) # shows first few lines. Also tail()\n             dist climb   time\nGreenmantle   2.5   650 16.083\nCarnethy      6.0  2500 48.350\nCraig Dunain  6.0   900 33.650\n> names(hills)  # get the names of the data frame\n[1] \"dist\"  \"climb\" \"time\" \n\n\nCreating dataframes\n\n> fish <- c(\"cod\",\"haddock\",\"dogfish\",\"pollock\")\n> length <- c(34,23,75,18)\n> age <- c(6,3,17,2)\n> fish.data <- data.frame(fish=fish,length=length,age=age)\n> head(fish.data)\n     fish length age\n1     cod     34   6\n2 haddock     23   3\n3 dogfish     75  17\n4 pollock     18   2"
   },
   {
     "objectID": "labs/lab-01.html#extracting-information-from-data-frames",
     "href": "labs/lab-01.html#extracting-information-from-data-frames",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Extracting information from data frames",
-    "text": "Extracting information from data frames\nUse the $ to extract vectors from a data frame\n\n> hills$dist\n [1]  2.5  6.0  6.0  7.5  8.0  8.0 16.0  6.0  5.0  6.0 28.0  5.0  9.5  6.0  4.5\n[16] 10.0 14.0  3.0  4.5  5.5  3.0  3.5  6.0  2.0  3.0  4.0  6.0  5.0  6.5  5.0\n[31] 10.0  6.0 18.0  4.5 20.0\n\nYou can also specify the row index, column index, or both object[row,column]\n\n> # extract the element in row 1, column 2\n> hills[1,2]\n[1] 650\n> hills$climb[1]\n[1] 650\n> # extract the first row\n> hills[1,]\n            dist climb   time\nGreenmantle  2.5   650 16.083\n\n\n\n> # extract all of column 2\n> hills[,2]   # also hills[,\"climb\"]\n [1]  650 2500  900  800 3070 2866 7500  800  800  650 2100 2000 2200  500 1500\n[16] 3000 2200  350 1000  600  300 1500 2200  900  600 2000  800  950 1750  500\n[31] 4400  600 5200  850 5000\n> # exclude column 1, but retain the other columns (1st 3 rows)\n> hills[1:3,-1]  \n             climb   time\nGreenmantle    650 16.083\nCarnethy      2500 48.350\nCraig Dunain   900 33.650\n> # extract rows 4 and 7\n> hills[c(4,7),]\n             dist climb    time\nBen Rha       7.5   800  45.600\nBens of Jura 16.0  7500 204.617\n> # extract the rows that are specified by the object x\n> x <- c(4,7,nrow(hills))\n> hills[x,]\n             dist climb    time\nBen Rha       7.5   800  45.600\nBens of Jura 16.0  7500 204.617\nMoffat Chase 20.0  5000 159.833"
+    "text": "Extracting information from data frames\nUse the $ to extract vectors from a data frame\n\n> hills$dist\n [1]  2.5  6.0  6.0  7.5  8.0  8.0 16.0  6.0  5.0  6.0 28.0  5.0  9.5  6.0  4.5\n[16] 10.0 14.0  3.0  4.5  5.5  3.0  3.5  6.0  2.0  3.0  4.0  6.0  5.0  6.5  5.0\n[31] 10.0  6.0 18.0  4.5 20.0\n\nYou can also specify the row index, column index, or both object[row,column]\n\n> # extract the element in row 1, column 2\n> hills[1,2]\n[1] 650\n> hills$climb[1]\n[1] 650\n> # extract the first row\n> hills[1,]\n            dist climb   time\nGreenmantle  2.5   650 16.083"
   },
   {
     "objectID": "labs/lab-01.html#extracting-information-from-data-frames-2",
     "href": "labs/lab-01.html#extracting-information-from-data-frames-2",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Extracting information from data frames (2)",
-    "text": "Extracting information from data frames (2)\nThe ‘tidyverse’ is a popular set of R packages for interacting with data and performing statistical analyses.\nData frames are commonly used in a structure called a ‘tibble’\n\n> #install.packages('tidyverse')\n> library(tidyverse)\n\n\n\n\n\n> hills_tbl <- as_tibble(hills)\n> hills_tbl\n# A tibble: 35 × 3\n    dist climb  time\n   <dbl> <int> <dbl>\n 1   2.5   650  16.1\n 2   6    2500  48.4\n 3   6     900  33.6\n 4   7.5   800  45.6\n 5   8    3070  62.3\n 6   8    2866  73.2\n 7  16    7500 205. \n 8   6     800  36.4\n 9   5     800  29.8\n10   6     650  39.8\n# … with 25 more rows\n\n\nExtract variables using the select verb function in the dplyr package\n\n> dplyr::select(hills,dist)\n                 dist\nGreenmantle       2.5\nCarnethy          6.0\nCraig Dunain      6.0\nBen Rha           7.5\nBen Lomond        8.0\nGoatfell          8.0\nBens of Jura     16.0\nCairnpapple       6.0\nScolty            5.0\nTraprain          6.0\nLairig Ghru      28.0\nDollar            5.0\nLomonds           9.5\nCairn Table       6.0\nEildon Two        4.5\nCairngorm        10.0\nSeven Hills      14.0\nKnock Hill        3.0\nBlack Hill        4.5\nCreag Beag        5.5\nKildcon Hill      3.0\nMeall Ant-Suidhe  3.5\nHalf Ben Nevis    6.0\nCow Hill          2.0\nN Berwick Law     3.0\nCreag Dubh        4.0\nBurnswark         6.0\nLargo Law         5.0\nCriffel           6.5\nAcmony            5.0\nBen Nevis        10.0\nKnockfarrel       6.0\nTwo Breweries    18.0\nCockleroi         4.5\nMoffat Chase     20.0\n\n\nCreate a new variable of the race names\n\n>   hills_tbl <- mutate(hills_tbl,race=rownames(hills))\n>   hills_tbl <- dplyr::select(hills_tbl,race,everything())\n>   hills_tbl\n# A tibble: 35 × 4\n   race          dist climb  time\n   <chr>        <dbl> <int> <dbl>\n 1 Greenmantle    2.5   650  16.1\n 2 Carnethy       6    2500  48.4\n 3 Craig Dunain   6     900  33.6\n 4 Ben Rha        7.5   800  45.6\n 5 Ben Lomond     8    3070  62.3\n 6 Goatfell       8    2866  73.2\n 7 Bens of Jura  16    7500 205. \n 8 Cairnpapple    6     800  36.4\n 9 Scolty         5     800  29.8\n10 Traprain       6     650  39.8\n# … with 25 more rows"
+    "text": "Extracting information from data frames (2)\nData frames are commonly used in a structure called a ‘tibble’, from the tidyverse.\n\n> #install.packages('tidyverse')\n> library(tidyverse)\n\n\n> hills_tbl <- as_tibble(hills)\n> hills_tbl\n# A tibble: 35 × 3\n    dist climb  time\n   <dbl> <int> <dbl>\n 1   2.5   650  16.1\n 2   6    2500  48.4\n 3   6     900  33.6\n 4   7.5   800  45.6\n 5   8    3070  62.3\n 6   8    2866  73.2\n 7  16    7500 205. \n 8   6     800  36.4\n 9   5     800  29.8\n10   6     650  39.8\n# … with 25 more rows"
   },
   {
     "objectID": "labs/lab-01.html#quickly-visualize-the-dataset",
     "href": "labs/lab-01.html#quickly-visualize-the-dataset",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Quickly visualize the dataset",
-    "text": "Quickly visualize the dataset\n\nlibrary(ggplot2)\nggplot(data = hills_tbl, mapping = aes(x=dist,y=time)) +\n  geom_point(aes(size = climb), alpha = 1/3) +\n  xlab(\"Distance (miles)\") +\n  ylab(\"Record Time (mins)\") +\n  xlim(0,30) + ylim(0,225)"
+    "text": "Quickly visualize the dataset\n\n\n\n\n\n\n\n\n\n\n\n\n\n> library(ggplot2)\n> ggplot(data = hills_tbl, mapping = aes(x=dist,y=time)) +\n+   geom_point(aes(size = climb), alpha = 1/3) +\n+   xlab(\"Distance (miles)\") +\n+   ylab(\"Record Time (mins)\") +\n+   xlim(0,30) + ylim(0,225)"
   },
   {
     "objectID": "labs/lab-01.html#extracting-elements-logically",
     "href": "labs/lab-01.html#extracting-elements-logically",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Extracting elements logically",
     "text": "Extracting elements logically\n\n> fish <- c(\"cod\",\"haddock\",\"dogfish\",\"pollock\")\n> length <- c(34,23,75,18)\n> age <- c(6,3,17,2)\n> fish_data <- tibble(fish=fish,length=length,age=age)\n> fish_data$age   # a vector\n[1]  6  3 17  2\n> fish_data$age > 5  # a logical vector\n[1]  TRUE FALSE  TRUE FALSE\n> filter(fish_data, age>5) #avoids having to create a logical vector\n# A tibble: 2 × 3\n  fish    length   age\n  <chr>    <dbl> <dbl>\n1 cod         34     6\n2 dogfish     75    17\n> # combining conditions\n> filter(fish_data, age > 5, fish == \"dogfish\")\n# A tibble: 1 × 3\n  fish    length   age\n  <chr>    <dbl> <dbl>\n1 dogfish     75    17\n> filter(fish_data, length < 25 | length >= 50)\n# A tibble: 3 × 3\n  fish    length   age\n  <chr>    <dbl> <dbl>\n1 haddock     23     3\n2 dogfish     75    17\n3 pollock     18     2"
   },
   {
     "objectID": "labs/lab-01.html#using-the-pipe",
     "href": "labs/lab-01.html#using-the-pipe",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Using the Pipe",
     "text": "Using the Pipe\nCombine verb operations with the pipe operator (|>) e.g.\n\n> fish_data |>\n+   mutate(weight = (length/100)^3) |>\n+   filter(age > 5)\n# A tibble: 2 × 4\n  fish    length   age weight\n  <chr>    <dbl> <dbl>  <dbl>\n1 cod         34     6 0.0393\n2 dogfish     75    17 0.422 \n\nThe pipe passes the result from one function call to the next.\nCan be read as “and then”.\n(also the older tidyverse pipe: %>% )"
   },
   {
     "objectID": "labs/lab-01.html#summarizing-data",
     "href": "labs/lab-01.html#summarizing-data",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Summarizing Data",
     "text": "Summarizing Data\nAfter selecting data we might like to perform analyses on it.\nWe can use group_by() to recognize structure in the data.\nThen apply functions to variables using summarize()\nRecall gapminder data, find the average life expectancy in 2007 for each continent\n\n> #install.packages('gapminder')\n> library(gapminder)\n> gapminder |> \n+   filter(year == 2007) |> \n+   group_by(continent) |>\n+   summarize(avg_lifeExp = mean(lifeExp))\n# A tibble: 5 × 2\n  continent avg_lifeExp\n  <fct>           <dbl>\n1 Africa           54.8\n2 Americas         73.6\n3 Asia             70.7\n4 Europe           77.6\n5 Oceania          80.7"
   },
   {
     "objectID": "labs/lab-01.html#tips-and-tricks",
     "href": "labs/lab-01.html#tips-and-tricks",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Tips and Tricks",
-    "text": "Tips and Tricks\nComments\nUse comments within R code to document the purpose of your code. Anything on a line after a # is ignored by R. RStudio uses a different color to help readability.\nSAVE your scripts(!), not workspaces. Use meaningful variable names. Adopt a coding style and use consistently.\n(e.g. https://google.github.io/styleguide/Rguide.xml)\nThe str() function can be incredibly helpful when querying objects.\n\n> str(hills)\n'data.frame':   35 obs. of  3 variables:\n $ dist : num  2.5 6 6 7.5 8 8 16 6 5 6 ...\n $ climb: int  650 2500 900 800 3070 2866 7500 800 800 650 ...\n $ time : num  16.1 48.4 33.6 45.6 62.3 ...\n\nMake use of help() documentation.\nThere are almost always multiple ways of getting the same result.\nWe’ll mostly use low level functions to help you understand how R works.\nSome advanced functions are cleaner and do things more quickly."
+    "text": "Tips and Tricks\nComments\nUse comments within R code to document the purpose of your code. Anything on a line after a # is ignored by R. RStudio uses a different color to help readability.\nSAVE your scripts(!), not workspaces. Use meaningful variable names. Adopt a coding style and use consistently.\n(e.g. https://google.github.io/styleguide/Rguide.xml)\nThe str() function can be incredibly helpful when querying objects.\nMake use of help() documentation.\nThere are almost always multiple ways of getting the same result.\nWe’ll mostly use low level functions to help you understand how R works.\nSome advanced functions are cleaner and do things more quickly."
   },
   {
     "objectID": "labs/lab-01.html#lab-exercise-44-data-frames-using-hills",
     "href": "labs/lab-01.html#lab-exercise-44-data-frames-using-hills",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Lab exercise 4/4 (data frames using hills)",
-    "text": "Lab exercise 4/4 (data frames using hills)\n\nDisplay the first 5 rows of the hills dataframe.\n\nFind the fastest time.\n\nDisplay the hill races (and distance, climbs, and times) with the 3 fastest times.\n\nExtract and display the record time for Cairngorm.\n\nFind how many hill races have a climb greater than the mean.\n\nDisplay the names of the hill races that have a climb greater than the mean.\n\nDisplay the names and times of the races that are at least 10 miles long and have a climb greater than 4000 feet.\n\nFind the positions (indices) of hills that either have a climb greater than 5000 feet or have a record time less than 20 minutes.\n\nFind the standard deviation of the record times for all races except for the highest climb, the Bens of Jura.\n\nDisplay the range (minimum and maximum) of the average speed for the races.\n\nFind the race that had the fastest average speed.\n\nBONUS Find the mean of the record times for races whose names start with letters A through K."
+    "text": "Lab exercise 4/4 (data frames using hills)\n\nDisplay the first 5 rows of the hills dataframe.\n\nFind the fastest time.\n\nDisplay the hill races (and distance, climbs, and times) with the 3 fastest times.\n\nExtract and display the record time for Cairngorm.\n\nFind how many hill races have a climb greater than the mean.\n\nDisplay the names of the hill races that have a climb greater than the mean.\n\nDisplay the names and times of the races that are at least 10 miles long and have a climb greater than 4000 feet.\n\nFind the standard deviation of the record times for all races except for the highest climb, the Bens of Jura.\n\nDisplay the range (minimum and maximum) of the average speed for the races.\n\nFind the race that had the fastest average speed.\n\nBONUS Find the mean of the record times for races whose names start with letters A through K."
   },
   {
     "objectID": "labs/lab-01.html#next-time",
     "href": "labs/lab-01.html#next-time",
-    "title": "Biological Stats II : Lab 1",
+    "title": "Biological Stats 2: Lab 1",
     "section": "Next time…",
-    "text": "Next time…\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Vizualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling"
+    "text": "Next time…\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Vizualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   },
   {
-    "objectID": "labs/lab-exercise-01.html#r-laboratory-exercise-1",
-    "href": "labs/lab-exercise-01.html#r-laboratory-exercise-1",
-    "title": "MAR 536 - Spring 2023",
-    "section": "R Laboratory Exercise 1",
-    "text": "R Laboratory Exercise 1\nJanuary 18, 2023\nInstructor: Gavin Fay, gfay@umassd.edu\nCreate and open a new project in R Studio. (name it ‘biostats2_lab1’ or something similar)\n(RStudio cloud project: https://rstudio.cloud/spaces/47288/project/856390)\nOpen a new R script. Save it. (name it lastname_lab1.R or something similar)\nAt the top of the script, add comments with your name and lab 1. (comments are text preceded by a “#”)\nWork in pairs or individually. Submit your R script to Amanda before lab next week.\n\nWrite code that evaluates the following when run. \\[7 + 5(4+3)\\] \\[e^{-5(0.2+0.15)}\\] \\[\\frac{\\sqrt{1+2(3+2)}}{\\ln(3^2+2)}\\]\nCreate vectors using seq(), rep(), and mathematical operators. Only use c() when absolutely necessary. hint Remember you can get help on a function by typing ?functionname\n\n\nPositive integers from 1 to 99\nOdd integers between 1 and 99\nThe numbers 1,1,1, 2,2,2, 3,3,3\nThe numbers -5,-4,-3,-5,-4,-3,-5,-4,-3\nThe fractions 1, 1/2, 1/3, 1/4, …, 1/10\nThe cubes 1, 8, 27, 64, 125, 216\n\n\nComplete the following using the vector y:\n\n\\[y = c(3,2,15,-1,22,1,9,17,5)\\]\n\n\nDisplay the first and last values.\nFind the last value for a vector of any length.\nDisplay the values that are greater than the mean of y.\nDisplay the positions (indices) of the values greater than the mean.\nAre all the values positive?\nAre any of the values equal to the mean?\nAre any of the values equal to the median?\n\n\nThe dataframe ‘hills’ contains record times for Scottish hill races.\n(hills is in the MASS package. To load, type library(MASS))\n\n\nDisplay the first 5 rows of the hills dataframe.\nFind the fastest time.\nDisplay the hill races (and distance, climbs, and times) with the 3 fastest times.\nExtract and display the record time for Cairngorm.\nFind how many hill races have a climb greater than the mean.\nDisplay the names of the hill races that have a climb greater than the mean.\nDisplay the names and times of the races that are at least 10 miles long and have a climb greater than 4000 feet.\nFind the positions (indices) of hills that either have a climb greater than 5000 feet or have a record time less than 20 minutes.\n\nFind the standard deviation of the record times for all races except for the highest climb, the Bens of Jura.\nDisplay the range (minimum and maximum) of the average speed for the races.\nFind the race that had the fastest average speed.\nbonus Find the mean of the record times for races whose names start with letters A through K."
+    "objectID": "labs/lab-01.html#reproducibility-checklist",
+    "href": "labs/lab-01.html#reproducibility-checklist",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "Reproducibility checklist",
+    "text": "Reproducibility checklist\nWhat does it mean for a data analysis to be “reproducible”?\n\nNear-term goals:\n\nAre the tables and figures reproducible from the code and data?\nDoes the code actually do what you think it does?\nIn addition to what was done, is it clear why it was done?\n\nLong-term goals:\n\nCan the code be used for other data?\nCan you extend the code to do other things?"
+  },
+  {
+    "objectID": "labs/lab-01.html#toolkit-for-reproducibility",
+    "href": "labs/lab-01.html#toolkit-for-reproducibility",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "Toolkit for reproducibility",
+    "text": "Toolkit for reproducibility\n\nScriptability \\(\\rightarrow\\) R\nLiterate programming (code, narrative, output in one place) \\(\\rightarrow\\) R Markdown\nVersion control \\(\\rightarrow\\) Git / GitHub"
+  },
+  {
+    "objectID": "labs/lab-01.html#r-and-rstudio-1",
+    "href": "labs/lab-01.html#r-and-rstudio-1",
+    "title": "Biological Stats II : Lab 1",
+    "section": "R and RStudio",
+    "text": "R and RStudio\n\n\n\n\n\n\n\n\nR is an open-source statistical programming language\nR is also an environment for statistical computing and graphics\nIt’s easily extensible with packages\n\n\n\n\n\n\n\n\nRStudio is a convenient interface for R called an IDE (integrated development environment), e.g. “I write R code in the RStudio IDE”\nRStudio is not a requirement for programming with R, but it’s very commonly used by R programmers and data scientists"
+  },
+  {
+    "objectID": "labs/lab-01.html#r-packages",
+    "href": "labs/lab-01.html#r-packages",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "R packages",
+    "text": "R packages\n\nPackages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data 1\nAs of September 2020, there are over 16,000 R packages available on CRAN (the Comprehensive R Archive Network)2\nWe’re going to work with a small (but important) subset of these!\n\nWickham and Bryan, R PackagesCRAN contributed packages"
+  },
+  {
+    "objectID": "labs/lab-01.html#tour-r-and-rstudio",
+    "href": "labs/lab-01.html#tour-r-and-rstudio",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "Tour: R and RStudio",
+    "text": "Tour: R and RStudio"
+  },
+  {
+    "objectID": "labs/lab-01.html#a-short-list-for-now-of-r-essentials",
+    "href": "labs/lab-01.html#a-short-list-for-now-of-r-essentials",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "A short list (for now) of R essentials",
+    "text": "A short list (for now) of R essentials\n\nFunctions are (most often) verbs, followed by what they will be applied to in parentheses:\n\n\ndo_this(to_this)\ndo_that(to_this, to_that, with_those)\n\n\n\nPackages are installed with the install.packages function and loaded with the library function, once per session:\n\n\ninstall.packages(\"package_name\")\nlibrary(package_name)"
+  },
+  {
+    "objectID": "labs/lab-01.html#tidyverse",
+    "href": "labs/lab-01.html#tidyverse",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "tidyverse",
+    "text": "tidyverse\n\n\n\n\n\n\n\n\ntidyverse.org\n\nThe tidyverse is an opinionated collection of R packages designed for data science\nAll packages share an underlying philosophy and a common grammar"
+  },
+  {
+    "objectID": "labs/lab-01.html#rmarkdown",
+    "href": "labs/lab-01.html#rmarkdown",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "rmarkdown",
+    "text": "rmarkdown\n\n\nrmarkdown.rstudio.com\n\nrmarkdown and the various packages that support it enable R users to write their code and prose in reproducible computational documents\nWe will generally refer to R Markdown documents (with .Rmd extension), e.g. “Do this in your R Markdown document” and rarely discuss loading the rmarkdown package"
+  },
+  {
+    "objectID": "labs/lab-01.html#r-markdown-1",
+    "href": "labs/lab-01.html#r-markdown-1",
+    "title": "Biological Stats II : Lab 1",
+    "section": "R Markdown",
+    "text": "R Markdown\n\nFully reproducible reports – each time you knit the analysis is ran from the beginning\nSimple markdown syntax for text\nCode goes in chunks, defined by three backticks, narrative goes outside of chunks"
+  },
+  {
+    "objectID": "labs/lab-01.html#tour-r-markdown",
+    "href": "labs/lab-01.html#tour-r-markdown",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "Tour: R Markdown",
+    "text": "Tour: R Markdown"
+  },
+  {
+    "objectID": "labs/lab-01.html#r-markdown-help",
+    "href": "labs/lab-01.html#r-markdown-help",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "R Markdown help",
+    "text": "R Markdown help\n\n\nR Markdown Cheat Sheet\nHelp -> Cheatsheets\n\n\n\n\n\n\n\nMarkdown Quick Reference\nHelp -> Markdown Quick Reference"
   },
   {
     "objectID": "LICENSE.html#creative-commons-attribution-sharealike-4.0-international-public-license",
@@ -383,5 +453,19 @@
     "title": "Syllabus",
     "section": "Important dates",
     "text": "Important dates\n\nJanuary 17: Classes begin\nJanuary 24: Drop/add ends\nMarch 6-10: Spring break, no classes are held\n\nClick here for the full UMass Dartmouth academic calendar."
+  },
+  {
+    "objectID": "labs/lab-01.html#r-markdown",
+    "href": "labs/lab-01.html#r-markdown",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "R Markdown",
+    "text": "R Markdown\n\nFully reproducible reports – each time you knit the analysis is ran from the beginning\nSimple markdown syntax for text\nCode goes in chunks, defined by three backticks, narrative goes outside of chunks"
+  },
+  {
+    "objectID": "labs/lab-01.html#r-and-rstudio",
+    "href": "labs/lab-01.html#r-and-rstudio",
+    "title": "Biological Stats 2: Lab 1",
+    "section": "R and RStudio",
+    "text": "R and RStudio\n\n\n\n\n\n\n\n\nR is an open-source statistical programming language\nR is also an environment for statistical computing and graphics\nIt’s easily extensible with packages\n\n\n\n\n\n\n\n\nRStudio is a convenient interface for R called an IDE (integrated development environment), e.g. “I write R code in the RStudio IDE”\nRStudio is not a requirement for programming with R, but it’s very commonly used by R programmers and data scientists"
   }
 ]
