@@ -169,9 +169,8 @@ knitr::include_graphics("img/RStudio-Logo-Flat.png")
 An alternative:
 
 -   web browser interface
-    <https://rstudio.cloud/spaces/47288/project/856390>
+    <https://posit.cloud/content/5243518>
 
-GF needs to update with 2023 link!
 
 ------------------------------------------------------------------------
 
