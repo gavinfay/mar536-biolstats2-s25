@@ -5,7 +5,7 @@ tbl-colwidths: [5,10,30,5,5,5,5,5,5,5]
 
 ## Course Syllabus
 
-[**Click here**](documents/MAR536_BiolStats2_syllabus_SPR2023_20230115.pdf "PDF of syllabus") **to download a PDF copy of the syllabus.**
+[**Click here**](documents/MAR536_BiolStats2_syllabus_SPR2023_20230117.pdf "PDF of syllabus") **to download a PDF copy of the syllabus.**
 
 ## Course Schedule
 
