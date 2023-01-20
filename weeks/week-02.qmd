@@ -1,0 +1,31 @@
+---
+title: "Week 2"
+subtitle: "Looking at data & regression"
+editor: visual
+---
+
+## Prepare
+
+📖 Read remaining parts of Chapters 1-4 of Zuur (Tue)
+
+📖 Read Chapter 5 of Zuur (Thu)
+
+## Participate
+
+🖥️ Lecture 3 - Data exploration, checking
+
+⌨️ [Lab 2 - Data Visualization](../labs/lab-02.html) (just the [exercise](../labs/lab-exercise-02.pdf))
+
+🖥️ [Lecture 4 - Regression review](../lectures/lec-04.pdf)
+
+## Practice
+
+Your [project topic ideas](../project-description.html) are due on Thursday Jan 26.
+
+Lab 2 exercise is due before lab on Wednesday Feb 1.
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/ "Course schedule") ⏎
+:::

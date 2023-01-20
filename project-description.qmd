@@ -1,0 +1,15 @@
+---
+title: "Project description"
+---
+
+Students complete a term project as part of the course. Projects will constitute an advanced statistical analysis of data relevant to the student's graduate research topic, including a detailed report and oral presentation. The project is worth 55% of the course grade.
+
+Students are encouraged to discuss their project ideas with Gavin to identify scope. Note that the project does not have to be related to your graduate research, but many students in previous semesters have found that this is beneficial in developing the basis for their thesis (or a particular chapter). Gavin also has a list of potential student project ideas. Regardless, try to view the project as an analysis that is potentially publishable.
+
+Deliverables include:
+
+1.  1-2 sentence **project topic idea** due Jan 26 (1% of course grade).
+2.  Brief (1-2 page) **project** **description** including a statement of the problem, proposed statistical method, and supplemental reference(s) is due Feb 09 (4% of course grade).
+3.  **Data exploration report** containing data summaries and visualizations of the dataset to be used in the project, including observations of implications of data structure for the analyses to be conducted. Due Feb 28. (10% of course grade).
+4.  Student **project presentation** with chapter assignment or supplemental reading on the statistical method used in the project. A 10-minute lecture on the method, and demonstration of the method using the project data set. Presentations will be graded based on the instructors' evaluation of accuracy, clarity, and comprehensiveness. Feedback from other students will also be considered in evaluation of presentations (20% of course grade).
+5.  **Project report** (due Apr 25). A written description of the methods and results of the project in the form of a draft scientific manuscript (Introduction, Methods, Results, Discussion). (20% of course grade).

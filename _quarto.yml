@@ -19,7 +19,7 @@ website:
 
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2022, Mine Çetinkaya-Rundel"
+    left: "&copy; Copyright 2023, Gavin Fay. Website structure & design gratefully inspired/made easy by Mine Çetinkaya-Rundel"
     background: "#D9E3E4"
 
   sidebar:
@@ -58,18 +58,18 @@ website:
 #            text: Access
 #          - href: computing-troubleshooting.qmd
 #            text: Troubleshooting
-#      - section: "Project"
-#        contents:
-#          - href: project-description.qmd
-#            text: Description
+      - section: "Projects"
+        contents:
+          - href: project-description.qmd
+            text: Description
 #          - href: project-tips-resources.qmd
 #            text: Tips + resources
       - section: "Weekly materials"
         contents:
           - href: weeks/week-01.qmd
             text: "Week 1"
-#          - href: weeks/week-2.qmd
-#            text: "Week 2"
+          - href: weeks/week-2.qmd
+            text: "Week 2"
 #          - href: weeks/week-3.qmd
 #            text: "Week 3"
 #          - href: weeks/week-4.qmd
