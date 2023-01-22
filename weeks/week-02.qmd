@@ -12,7 +12,7 @@ editor: visual
 
 ## Participate
 
-🖥️ Lecture 3 - Data exploration, checking
+🖥️ [Lecture 3 - Data exploration, checking](lectures/lec-03.html)
 
 ⌨️ [Lab 2 - Data Visualization](../labs/lab-02.html) (just the [exercise](../labs/lab-exercise-02.pdf))
 

@@ -81,7 +81,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td><p>Tue, Jan 24</p></td>
 <td><p>Data exploration, checking</p></td>
 <td style="text-align: center;"><p><a href="/weeks/week-02.html#prepare" aria-label="Week 1 summary"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="/lectures/lec-03.pdf" aria-label="Lab 1 slides" title="Lab slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><a href="/lectures/lec-03.html" aria-label="Lab 1 slides" title="Lab slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>

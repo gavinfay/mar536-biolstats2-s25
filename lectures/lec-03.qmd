@@ -1,0 +1,1268 @@
+---
+title: 'Biological Stats 2: Lecture 3'
+author: "Dr. Gavin Fay"
+date: "01/24/2023"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+logo: "../images/logo.png"
+format: 
+  revealjs: 
+    theme: slides.scss
+    multiplex: true
+    transition: fade
+    slide-number: true
+editor: source
+execute:
+  freeze: auto
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+#| include: false
+library(tidyverse)
+library(skimr)
+library(Tmisc)
+library(magick)
+library(palmerpenguins)
+library(openintro)
+library(GGally)
+loans_full_schema <- loans_full_schema %>%
+  mutate(grade = factor(grade, ordered = TRUE))
+loans <- loans_full_schema
+```
+
+## **Data exploration, checking**
+
+**Acknowledgements: Mine Çetinkaya-Rundel, Amanda Hart, Sara Stoudt**
+
+## Chapter 4. Data Exploration
+
+1.  What's in a data set?
+2.  Summarizing & visualizing data
+3.  Outliers, transformations, standardizations
+4.  Final thoughts
+
+# What is in a dataset?
+
+## Dataset terminology {.small}
+
+-   Each row is an **observation**
+-   Each column is a **variable**
+
+```{r message=FALSE, echo = TRUE}
+starwars
+```
+
+## Luke Skywalker
+
+![](img/luke-skywalker.png)
+
+## What's in the Star Wars data?
+
+Take a `glimpse` at the data:
+
+```{r echo = TRUE}
+glimpse(starwars)
+```
+
+------------------------------------------------------------------------
+
+How many rows and columns does this dataset have? {.question}
+
+```{r echo=TRUE}
+nrow(starwars) # number of rows
+ncol(starwars) # number of columns
+dim(starwars)  # dimensions (row column)
+```
+
+# Exploratory data analysis
+
+## What is EDA?
+
+-   Exploratory data analysis (EDA) is an approach to analysing data sets to summarize its main characteristics
+-   Often, this is visual -- this is what we'll focus on first
+-   But we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis
+
+
+## Mass vs. height {.small}
+
+How would you describe the relationship between mass and height of Starwars characters?
+What other variables would help us understand data points that don't follow the overall trend?
+Who is the not so tall but chonky character?
+
+```{r fig.width = 8, warning = FALSE, echo=FALSE, out.width = "50%"}
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
+  geom_point() +
+  labs(title = "Mass vs. height of Starwars characters",
+       x = "Height (cm)", y = "Weight (kg)") +
+  geom_point(data = starwars %>% filter(name == "Jabba Desilijic Tiure"), size = 5, pch = 1, color = "pink", stroke = 3)
+```
+
+------------------------------------------------------------------------
+
+## Jabba!
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE, out.width = "80%"}
+jabba <- image_read("img/jabba.png")
+
+fig <- image_graph(width = 1600, height = 900, res = 200)
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
+  geom_point() +
+  labs(title = "Mass vs. height of Starwars characters",
+       x = "Height (cm)", y = "Weight (kg)") +
+  geom_point(data = starwars %>% filter(name == "Jabba Desilijic Tiure"), size = 5, pch = 1, color = "pink", stroke = 3)
+dev.off()
+
+out <- fig %>% image_composite(jabba, offset = "+1000+30")
+
+image_write(out, "img/jabbaplot.png", format = "png")
+knitr::include_graphics("img/jabbaplot.png")
+```
+
+## Basic questions {.small}
+
+-   Where are the data centered?
+
+-   How are they spread? Are they symmetric, skewed, multimodal?
+
+-   Are there outliers?
+
+-   How are the data distributed?
+
+-   Are there relationships among variables? Are relationships linear? Which analyses should be applied?
+
+-   Are transformations needed?
+
+-   Was the sampling effort approximately the same for each observation or variable?
+
+**Expecting \>20% of your research time (often more) exploring your data makes analysis easier and more efficient.**
+
+## Always plot your data! {.small}
+
+-   Visualizing your data is key to performing statistical analyses.
+
+-   'Standard' summaries of data may not reveal patterns.
+
+-   You will often create two types of figures:
+
+    -   Those that help you
+
+    -   Those that help your audience.
+
+
+**Extra Credit:**
+
+*The 'datasaurus' is lurking somewhere in this course. Find it and email Gavin with its location and identifying analysis.*
+
+
+<!-- # Data visualization -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+## Data visualization
+
+> *"The simple graph has brought more information to the data analyst's mind than any other device." --- John Tukey*
+
+-   Data visualization is the creation and study of the visual representation of data
+-   Many tools for visualizing data -- R is one of them
+-   Many approaches/systems within R for making data visualizations -- **ggplot2** is one of them, and that's what we're going to use.
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ## ggplot2 $\in$ tidyverse -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r echo=FALSE, out.width="80%"} -->
+<!-- knitr::include_graphics("img/ggplot2-part-of-tidyverse.png") -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+<!-- -   **ggplot2** is tidyverse's data visualization package -->
+<!-- -   `gg` in "ggplot2" stands for Grammar of Graphics -->
+<!-- -   Inspired by the book **Grammar of Graphics** by Leland Wilkinson -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ## Grammar of Graphics -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- A grammar of graphics is a tool that enables us to concisely describe the components of a graphic -->
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r echo=FALSE, out.width="100%"} -->
+<!-- knitr::include_graphics("img/grammar-of-graphics.png") -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- [^1] Source: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-grammar-of-graphics.html) -->
+
+<!-- [^1]: NB: sometimes called 'normalizing', but does not mean making your data normally distributed. GF prefers 'standardizing' or 'scaling' but you will see normalizing **a lot**. -->
+
+<!-- ## Mass vs. height -->
+
+<!-- ```{r mass-height, fig.width = 8, out.width = "50%"} -->
+<!-- ggplot(data = starwars, mapping = aes(x = height, y = mass)) + -->
+<!--   geom_point() + -->
+<!--   labs(title = "Mass vs. height of Starwars characters", -->
+<!--        x = "Height (cm)", y = "Weight (kg)") -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- -   What are the functions doing the plotting? -->
+<!-- -   What is the dataset being plotted? -->
+<!-- -   Which variables map to which features (aesthetics) of the plot? -->
+<!-- -   What does the warning mean?\[\^+\] -->
+
+<!-- ```{r ref.label="mass-height", fig.show = "hide"} -->
+<!-- ``` -->
+
+<!-- \[\^+\]Suppressing warning to subsequent slides to save space -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ## Hello ggplot2! -->
+
+<!-- -   `ggplot()` is the main function in ggplot2 -->
+<!-- -   Plots are constructed in layers -->
+<!-- -   Structure of the code for plots can be summarized as -->
+
+<!-- ```{r eval = FALSE, echo=TRUE} -->
+<!-- ggplot(data = [dataset], -->
+<!--        mapping = aes(x = [x-variable], y = [y-variable])) + -->
+<!--    geom_xxx() + -->
+<!--    other options -->
+<!-- ``` -->
+
+<!-- -   The ggplot2 package comes with the tidyverse -->
+
+<!-- -   For help with ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/) -->
+
+
+# Why do we visualize?
+
+## Anscombe's quartet
+
+```{r quartet-for-show, eval = FALSE, echo = FALSE}
+library(Tmisc)
+quartet
+```
+
+::: columns
+::: {.column width="50%"}
+```{r quartet-view1, echo = FALSE}
+quartet[1:22,]
+```
+:::
+
+::: {.column width="50%"}
+```{r quartet-view2, echo = FALSE}
+quartet[23:44,]
+```
+:::
+:::
+
+## Summarising Anscombe's quartet
+
+```{r quartet-summary, echo = TRUE}
+quartet %>%
+  group_by(set) %>%
+  summarise(
+    mean_x = mean(x),
+    mean_y = mean(y),
+    sd_x = sd(x),
+    sd_y = sd(y),
+    r = cor(x, y)
+  )
+```
+
+## Visualizing Anscombe's quartet
+
+```{r quartet-plot, echo = FALSE, out.width = "80%", fig.asp = 0.5}
+ggplot(quartet, aes(x = x, y = y)) +
+  geom_point() +
+  facet_wrap(~ set, ncol = 4)
+```
+
+
+<!-- # ggplot2 `r emo::ji("heart")` `r emo::ji("penguin")` -->
+
+
+<!-- ## ggplot2 $\in$ tidyverse -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r echo=FALSE, out.width="80%"} -->
+<!-- knitr::include_graphics("img/ggplot2-part-of-tidyverse.png") -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+<!-- -   **ggplot2** is tidyverse's data visualization package -->
+<!-- -   Structure of the code for plots can be summarized as -->
+
+<!-- ```{r eval = FALSE, echo=TRUE} -->
+<!-- ggplot(data = [dataset], -->
+<!--        mapping = aes(x = [x-variable], -->
+<!--                      y = [y-variable])) + -->
+<!--    geom_xxx() + -->
+<!--    other options -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+
+## Data: Palmer Penguins {.small}
+
+Measurements for penguin species, on islands in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
+[Horst et al. 2022. R Journal](https://journal.r-project.org/articles/RJ-2022-020/)
+
+::: columns
+::: {.column width="30%"}
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/penguins.png")
+```
+:::
+
+::: {.column width="70%"}
+```{r}
+library(palmerpenguins)
+glimpse(penguins)
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+::: {.panel-tabset}
+
+#### Plot
+
+```{r ref.label = "penguins", echo = FALSE, warning = FALSE}
+```
+
+#### Code
+```{r penguins, fig.show = "hide"}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm, y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       colour = "Species")
+```
+:::
+
+## Faceting (small multiples)
+
+-   Smaller plots that display different subsets of the data
+-   Useful for exploring conditional relationships and large data
+
+------------------------------------------------------------------------
+
+```{r facet, echo = TRUE, warning = FALSE}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
+  geom_point() +
+  facet_grid(species ~ island) #<<
+```
+
+------------------------------------------------------------------------
+
+## Various ways to facet
+
+How you facet and organize plots can strengthen (& weaken) the storytelling.
+
+Think about the comparisons you are trying to make or message your plot is intending to convey and choose visualizations that help understanding.
+
+Likely you will want to try different views, particularly when exploring the data initially.
+
+------------------------------------------------------------------------
+
+```{r warning = FALSE}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
+  geom_point() +
+  facet_grid(species ~ sex) #<<
+```
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ```{r warning = FALSE} -->
+<!-- ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + -->
+<!--   geom_point() + -->
+<!--   facet_grid(sex ~ species) #<< -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ```{r warning = FALSE, fig.asp = 0.5} -->
+<!-- ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + -->
+<!--   geom_point() + -->
+<!--   facet_wrap(~ species) #<< -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ```{r warning = FALSE} -->
+<!-- ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + -->
+<!--   geom_point() + -->
+<!--   facet_wrap(~ species, ncol = 2) #<< -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+## Facet and color
+
+::: {.panel-tabset}
+
+### Plot
+```{r ref.label = "facet-color-legend", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+
+### Code
+```{r facet-color-legend, fig.show = "hide", warning = FALSE, echo =TRUE}
+ggplot(
+  penguins,
+  aes(x = bill_depth_mm,
+      y = bill_length_mm,
+      color = species)) + #<<
+  geom_point() +
+  facet_grid(island ~ year) +
+  scale_color_viridis_d() #<<
+```
+:::
+
+------------------------------------------------------------------------
+
+## Number of variables involved
+
+-   Univariate data analysis - distribution of single variable
+-   Bivariate data analysis - relationship between two variables
+-   Multivariate data analysis - relationship between many variables at once, often focusing on the relationship between two while conditioning for others
+
+
+## Types of variables
+
+-   **Numerical variables** can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.
+-   If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
+
+
+## Group exercise
+
+With your group's plot, discuss and answer the following questions:
+
+-  What type of graph is it?
+-  What is being plotted? 
+-  How would you describe the distribution or trend of the data? 
+-  What question is the plot trying to answer? 
+-  Do you think the plot is successful in answering that question? Why or why not?
+
+
+## Data: Lending Club
+
+::: columns
+::: {.column width="70%"}
+-   Thousands of loans made through the Lending Club, which is a platform that allows individuals to lend to other individuals
+
+-   Not all loans are created equal -- ease of getting a loan depends on (apparent) ability to pay back the loan
+
+-   Data includes loans *made*, these are not loan applications
+:::
+
+::: {.column width="30%"}
+```{r echo=FALSE, out.width = "100%"}
+knitr::include_graphics("img/lending-club.png")
+```
+:::
+:::
+
+------------------------------------------------------------------------
+
+## Take a peek at data
+
+```{r output.lines=18, echo = TRUE}
+library(openintro)
+glimpse(loans_full_schema)
+```
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ## Selected variables -->
+
+<!-- ```{r, echo = TRUE} -->
+<!-- loans <- loans_full_schema %>% -->
+<!--   select(loan_amount, interest_rate, term, grade, -->
+<!--          state, annual_income, homeownership, debt_to_income) -->
+<!-- glimpse(loans) -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ## Selected variables {.small} -->
+
+<!-- | variable         | description                                                                                                            | -->
+<!-- |----------------------------------------|--------------------------------| -->
+<!-- | `loan_amount`    | Amount of the loan received, in US dollars                                                                             | -->
+<!-- | `interest_rate`  | Interest rate on the loan, in an annual percentage                                                                     | -->
+<!-- | `term`           | The length of the loan, which is always set as a whole number of months                                                | -->
+<!-- | `grade`          | Loan grade, which takes a values A through G and represents the quality of the loan and its likelihood of being repaid | -->
+<!-- | `state`          | US state where the borrower resides                                                                                    | -->
+<!-- | `annual_income`  | Borrower's annual income, including any second income, in US dollars                                                   | -->
+<!-- | `homeownership`  | Indicates whether the person owns, owns but has a mortgage, or rents                                                   | -->
+<!-- | `debt_to_income` | Debt-to-income ratio                                                                                                   | -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+## Variable types {.small}
+
+| variable         | type                     |
+|------------------|--------------------------|
+| `loan_amount`    | numerical, continuous    |
+| `interest_rate`  | numerical, continuous    |
+| `term`           | numerical, discrete      |
+| `grade`          | categorical, ordinal     |
+| `state`          | categorical, not ordinal |
+| `annual_income`  | numerical, continuous    |
+| `homeownership`  | categorical, not ordinal |
+| `debt_to_income` | numerical, continuous    |
+
+# Visualizing numerical data
+
+------------------------------------------------------------------------
+
+## Describing shapes of numerical distributions {.small}
+
+-   shape:
+    -   skewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)
+    -   modality: unimodal, bimodal, multimodal, uniform
+-   center: mean (`mean`), median (`median`), mode (not always useful)
+-   spread: range (`range`), standard deviation (`sd`), inter-quartile range (`IQR`)
+-   unusual observations
+
+------------------------------------------------------------------------
+
+## Histogram
+
+```{r message = TRUE, out.width = "50%", echo = TRUE}
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram()
+```
+
+------------------------------------------------------------------------
+
+## Histograms and binwidth
+
+binwidth = 1000
+
+```{r out.width = "50%"}
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 1000)
+```
+
+## Histograms and binwidth
+
+binwidth = 5000
+
+```{r out.width = "50%"}
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 5000)
+```
+
+## Histograms and binwidth
+
+binwidth = 20000
+
+```{r out.width = "50%"}
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 20000)
+```
+
+------------------------------------------------------------------------
+
+## Customizing histograms
+
+Fill with a categorical variable
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r ref.label = "hist-fill", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+
+### Code
+```{r hist-fill, warning = FALSE, fig.show='hide'}
+ggplot(loans, aes(x = loan_amount,
+                  fill = homeownership)) +
+  geom_histogram(binwidth = 5000,
+                 alpha = 0.5) +
+  labs(
+    x = "Loan amount ($)",
+    y = "Frequency",
+    title = "Amounts of Lending Club loans"
+  )
+```
+:::
+
+------------------------------------------------------------------------
+
+## Facet with a categorical variable
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r ref.label = "hist-facet", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+
+### Code
+
+```{r hist-facet, echo=FALSE, warning = FALSE, fig.show='hide'}
+ggplot(loans, aes(x = loan_amount, fill = homeownership)) +
+  geom_histogram(binwidth = 5000) +
+  labs(
+    x = "Loan amount ($)",
+    y = "Frequency",
+    title = "Amounts of Lending Club loans"
+  ) +
+  facet_wrap(~ homeownership, nrow = 3)
+```
+:::
+
+------------------------------------------------------------------------
+
+<!-- ## Density plot -->
+
+<!-- ```{r} -->
+<!-- ggplot(loans, aes(x = loan_amount)) + -->
+<!--   geom_density() + -->
+<!--   labs( -->
+<!--     x = "Loan amount ($)", -->
+<!--     y = "Density", -->
+<!--     title = "Amounts of Lending Club loans" -->
+<!--   ) -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ## Density plots and adjusting bandwidth -->
+
+<!-- bandwidth = 0.5 -->
+
+<!-- ```{r echo = FALSE, warning = FALSE, message = FALSE} -->
+<!-- ggplot(loans, aes(x = loan_amount)) + -->
+<!--   geom_density(adjust = 0.5) + -->
+<!--   labs( -->
+<!--     x = "Loan amount ($)", -->
+<!--     y = "Density", -->
+<!--     title = "Amounts of Lending Club loans" -->
+<!--   ) -->
+<!-- ``` -->
+
+<!-- ## Density plots and adjusting bandwidth -->
+
+<!-- bandwidth = 1 -->
+
+<!-- ```{r echo = FALSE, warning = FALSE, message = FALSE} -->
+<!-- ggplot(loans, aes(x = loan_amount)) + -->
+<!--   geom_density(adjust = 1) + -->
+<!--   labs( -->
+<!--     x = "Loan amount ($)", -->
+<!--     y = "Density", -->
+<!--     title = "Amounts of Lending Club loans" -->
+<!--   ) -->
+<!-- ``` -->
+
+<!-- ## Density plots and adjusting bandwidth -->
+
+<!-- bandwidth = 2 -->
+
+<!-- ```{r echo = FALSE, warning = FALSE, message = FALSE} -->
+<!-- ggplot(loans, aes(x = loan_amount)) + -->
+<!--   geom_density(adjust = 2) + -->
+<!--   labs( -->
+<!--     x = "Loan amount ($)", -->
+<!--     y = "Density", -->
+<!--     title = "Amounts of Lending Club loans" -->
+<!--   ) -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ## Adding a categorical variable -->
+
+<!-- ::: panel-tabset -->
+<!-- ### Plot -->
+
+<!-- ```{r ref.label = "density-cat", echo = FALSE, warning = FALSE} -->
+<!-- ``` -->
+
+<!-- ### Code -->
+
+<!-- ```{r density-cat, fig.show = 'hide', warning = FALSE, echo =FALSE} -->
+<!-- ggplot(loans, aes(x = loan_amount, -->
+<!--                   fill = homeownership)) + -->
+<!--   geom_density(adjust = 2, -->
+<!--                alpha = 0.5) + -->
+<!--   labs( -->
+<!--     x = "Loan amount ($)", -->
+<!--     y = "Density", -->
+<!--     title = "Amounts of Lending Club loans", -->
+<!--     fill = "Homeownership" -->
+<!--   ) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+## Box plot
+
+```{r}
+ggplot(loans, aes(x = interest_rate)) +
+  geom_boxplot()
+```
+
+------------------------------------------------------------------------
+
+## Box plot and outliers
+
+```{r}
+ggplot(loans, aes(x = annual_income)) +
+  geom_boxplot()
+```
+
+------------------------------------------------------------------------
+
+## Adding a categorical variable
+
+::: panel-tabset
+### Plot
+```{r ref.label = "box-cat", echo = FALSE, warning = FALSE}
+```
+### Code
+```{r box-cat, fig.show = "hide", warning = FALSE, echo = TRUE}
+ggplot(loans, aes(x = interest_rate,
+                  y = grade)) + #<<
+  geom_boxplot() +
+  labs(
+    x = "Interest rate (%)",
+    y = "Grade",
+    title = "Interest rates of Lending Club loans",
+    subtitle = "by grade of loan" #<<
+  )
+```
+:::
+
+
+# Relationships between numerical variables
+
+## Scatterplot
+
+```{r warning = FALSE}
+ggplot(loans, aes(x = debt_to_income, y = interest_rate)) +
+  geom_point()
+```
+
+<!-- --- -->
+
+<!-- ## Hex plot -->
+
+<!-- ```{r warning = FALSE, echo = TRUE} -->
+<!-- ggplot(loans, aes(x = debt_to_income, y = interest_rate)) + -->
+<!--   geom_hex() -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+## Hex plot
+
+```{r warning = FALSE, echo = TRUE}
+ggplot(loans %>% filter(debt_to_income < 100),
+       aes(x = debt_to_income, y = interest_rate)) +
+  geom_hex()
+```
+
+## Contour plot
+
+```{r warning = FALSE, echo = TRUE}
+v <- ggplot(faithfuld, aes(waiting, eruptions, z = density))
+v + geom_contour()
+```
+
+
+# Visualising categorical data
+
+## Bar plot
+
+```{r echo=TRUE}
+ggplot(loans, aes(x = homeownership)) +
+  geom_bar()
+```
+
+------------------------------------------------------------------------
+
+## Segmented bar plot
+
+```{r echo=TRUE}
+ggplot(loans, aes(x = homeownership,
+                  fill = grade)) + #<<
+  geom_bar()
+```
+
+------------------------------------------------------------------------
+
+## Segmented bar plot
+
+```{r echo=TRUE}
+ggplot(loans, aes(x = homeownership, fill = grade)) +
+  geom_bar(position = "fill") #<<
+```
+
+------------------------------------------------------------------------
+
+Which bar plot is a more useful representation for visualizing the relationship between homeownership and grade?
+
+::: columns
+::: {.column width="50%"}
+```{r echo=FALSE, out.width = "100%"}
+ggplot(loans, aes(x = homeownership, fill = grade)) +
+  geom_bar()
+```
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE, out.width = "100%"}
+ggplot(loans, aes(x = homeownership, fill = grade)) +
+  geom_bar(position = "fill")
+```
+:::
+:::
+
+## Customizing bar plots
+
+::: columns
+::: {.column width="40%"}
+```{r bar-custom, fig.show = "asis", warning = FALSE, echo = FALSE}
+ggplot(loans, aes(y = homeownership, #<<
+                  fill = grade)) +
+  geom_bar(position = "fill") +
+  labs( #<<
+    x = "Proportion", #<<
+    y = "Homeownership", #<<
+    fill = "Grade", #<<
+    title = "Grades of Lending Club loans", #<<
+    subtitle = "and homeownership of lendee" #<<
+  ) #<<
+```
+:::
+  
+::: {.column width="60%"}
+```{r bar-custom4, fig.show = "asis", warning = FALSE, echo = FALSE}
+ggplot(loans, aes(y = fct_rev(grade))) + #, #y = homeownership, #<<
+                  #fill = grade)) +
+  geom_bar() +
+  facet_wrap(~homeownership) +
+  #facet_grid(grade~homeownership) +
+  labs( #<<
+    x = "Number of loans", #<<
+    y = "Grade", #<<
+    #fill = "Grade", #<<
+    title = "Grades of Lending Club loans", #<<
+    subtitle = "and homeownership of lendee" #<<
+  ) + #<<
+  scale_fill_viridis_d()
+```
+:::
+:::
+
+
+## Customizing bar plots
+
+::: columns
+::: {.column width="40%"}
+```{r ref.label = "bar-custom", echo = FALSE, warning = FALSE}
+```
+:::
+  
+::: {.column width="60%"}
+```{r bar-custom2, fig.show = "asis", warning = FALSE, echo = FALSE}
+ggplot(loans |> group_by(homeownership, grade) |> count() |>
+         ungroup() |> group_by(homeownership) |>
+         mutate(count = n/sum(n, na.rm=TRUE))
+         , aes(x = count, y = fct_rev(grade))) + #, #y = homeownership, #<<
+                  #fill = grade)) +
+  geom_col() +
+  facet_wrap(~homeownership) +
+  #facet_grid(grade~homeownership) +
+  labs( #<<
+    x = "Proportion", #<<
+    y = "Grade", #<<
+    #fill = "Grade", #<<
+    title = "Grades of Lending Club loans", #<<
+    subtitle = "and homeownership of lendee" #<<
+  ) + #<<
+  scale_fill_viridis_d()
+```
+:::
+:::
+
+## Customizing bar plots
+
+::: columns
+::: {.column width="40%"}
+```{r ref.label = "bar-custom", echo = FALSE, warning = FALSE}
+```
+:::
+  
+::: {.column width="60%"}
+```{r bar-custom3, fig.show = "asis", warning = FALSE, echo = FALSE}
+ggplot(loans |> group_by(homeownership, grade) |> count() |>
+         ungroup() |> group_by(homeownership) |>
+         mutate(count = n/sum(n, na.rm=TRUE))
+         , aes(x = count, y = fct_rev(grade), #) + #, #y = homeownership, #<<
+                  fill = homeownership)) +
+  geom_col(position="dodge") +
+  #facet_wrap(~homeownership) +
+  #facet_grid(grade~homeownership) +
+  labs( #<<
+    x = "Proportion", #<<
+    y = "Grade", #<<
+    #fill = "Grade", #<<
+    title = "Grades of Lending Club loans", #<<
+    subtitle = "and homeownership of lendee" #<<
+  ) + #<<
+  scale_fill_viridis_d()
+```
+:::
+:::
+
+## Relationships between numerical and categorical variables
+
+Already talked about...
+
+-   Colouring and faceting histograms and density plots
+-   Side-by-side box plots
+
+
+## Violin plots
+
+```{r warning = FALSE, echo = TRUE}
+ggplot(loans, aes(x = homeownership, y = loan_amount)) +
+  geom_violin()
+```
+
+------------------------------------------------------------------------
+
+## Ridge plots
+
+```{r warning = FALSE, echo = TRUE}
+library(ggridges)
+ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) +
+  geom_density_ridges(alpha = 0.5)
+```
+
+------------------------------------------------------------------------
+
+## Raincloud plots
+
+::: {.panel-tabset}
+### Plot
+```{r ref.label = "rainclouds", echo=FALSE}
+```
+
+### Code
+```{r rainclouds, fig.show='hide', warning = FALSE, echo = TRUE}
+library(ggdist)
+library(gghalves)
+ggplot(penguins, aes(species, bill_length_mm)) +
+  ggdist::stat_halfeye(adjust = .5, width = .3, .width = 0, justification = -.3, point_colour = NA) +
+  geom_boxplot(width = .1, outlier.shape = NA) +
+  gghalves::geom_half_point(side = "l", range_scale = .4, alpha = .5) +
+  coord_flip()
+```
+:::
+
+------------------------------------------------------------------------
+
+## QQ-plots
+
+Determines if data conform to a theoretical distribution.
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+ggplot(penguins, aes(sample = body_mass_g)) +
+  stat_qq() +
+  stat_qq_line() +
+  labs(x = "Theoretical Quantiles",
+       y = "Sample Quantiles",
+       title = "QQ-plot for penguin body mass (g)")
+```
+
+<!-- ## Pair plots -->
+
+<!-- ::: columns -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- - Scatterplot for each pair of variables. -->
+
+<!-- - Measures of correlation -->
+
+<!--   - Surface temperature -->
+
+<!--   - Bottom temperature -->
+
+<!--   - Surface salinity -->
+
+<!--   - Bottom salinity -->
+
+<!--   - Chlorophyll -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- [](figs/pairplot1.png) -->
+
+<!-- ::: -->
+
+<!-- ::: -->
+
+<!-- ## Pair plots -->
+
+<!-- ::: columns -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!--   - Surface temperature -->
+
+<!--   - Bottom temperature -->
+
+<!--   - Surface salinity -->
+
+<!--   - Bottom salinity -->
+
+<!--   - Chlorophyll -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+
+<!-- [](figs/pairplot2.png) -->
+
+<!-- ::: -->
+
+<!-- ::: -->
+
+## Pair plots
+
+-   Scatterplot for each pair of variables.
+-   Measures of correlation
+
+```{r warning=FALSE, message=FALSE}
+ggpairs(penguins, columns=3:6)
+```
+
+## Über Pair plot
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+ggpairs(penguins)
+```
+
+## Visualizing spatial data
+
+Maps are extremely useful (and intuitive) ways of exploring spatial relationships among variables in our data.
+
+::: columns
+::: {.column width="50%"}
+![](img/thrush.png)
+:::
+::: {.column width="50%"}
+![](img/calpop.png)
+__([Eric Anderson](https://eriqande.github.io/rep-res-eeb-2017/))__
+:::
+:::
+
+
+## Transformation
+
+-   Outliers, non-normality, heteroscedasticity and nonlinearity are the most common reasons for transformation.
+-   Removing outliers is an option (with sensitivity analysis)
+-   All response and explanatory variables can be transformed differently.
+-   Choice of transformation depends on analytical design:
+    -   GLS, GLM, GAM Poisson can handle outliers
+    -   GAM and iterative least squares can handle nonlinearity
+
+## Nonlinearity
+
+-   If scatterplot indicates nonlinear patterns, consider transforming one or both variables.
+-   Many possible transformations, with lots of guidance on how to proceed with these.
+-   *GF advice:* Consider the theoretical basis for transformations and think about appropriate methods before trying to 'force' linearity to apply cookbooks.
+
+## Standardizations
+
+-   If variables for comparison are on different scales, conversion to a common scale may be an option.
+-   Some analyses (e.g., correlation, PCA) are self- standardized.
+
+. . .
+
+-   Centering (standard 'location'):
+
+-   Scaling[^2] (standard 'spread'):
+
+[^2]: NB: sometimes called 'normalizing', but does not mean making your data normally distributed. GF prefers 'standardizing' or 'scaling' but you will see normalizing **a lot**.
+
+## Standardizations
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+ggplot(penguins, aes(x = flipper_length_mm, y=body_mass_g)) +
+  geom_point() +
+  facet_grid(.~island)
+```
+
+## Standardizations
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+penguins %>%
+group_by(island) %>%
+mutate(center_mass = body_mass_g-mean(body_mass_g, na.rm = TRUE)) %>%
+#mutate(center_mass = bill_length_mm-mean(bill_length_mm, na.rm = TRUE)) %>%
+ggplot(aes(x = flipper_length_mm, y=center_mass)) +
+  geom_point() +
+  facet_wrap(~island) +
+  labs(y = "centered body mass")
+```
+
+## Standardizations
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+penguins %>%
+group_by(island) %>%
+mutate(scale_mass = (body_mass_g-mean(body_mass_g, na.rm = TRUE))/sd(body_mass_g, na.rm = TRUE)) %>%
+#mutate(center_mass = bill_depth_mm-mean(bill_depth_mm, na.rm = TRUE)) %>%
+ggplot(aes(x = flipper_length_mm, y=scale_mass)) +
+  geom_point() +
+  facet_wrap(~island) +
+  labs(y = "scaled + centered body mass")
+```
+
+## Exploring relationships
+
+*'Even if you don't see it, it might still be there.'*
+
+Plot your data as many ways as you can, particularly with respect to other variables in the dataset.
+
+-   This may change your understanding of patterns in the data
+
+-   [Simpson's paradox](https://www.youtube.com/watch?v=nGqzoqXZch0)
+
+## Simpson's paradox
+
+-   Simpson's paradox illustrates the effect that omission of an explanatory variable can have on the measure of association between another explanatory variable and a response variable
+    
+-   The inclusion of a third variable in the analysis can change the apparent relationship between the other two variables
+
+## Simpson's paradox
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm, y = bill_length_mm)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       #subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)") +
+  theme_minimal() #,
+       #colour = "Species")
+```
+
+## Simpson's paradox
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm, y = bill_length_mm)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       #subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)") + #,
+       #colour = "Species") +
+  geom_smooth(method = "lm",se = FALSE, color = "darkgray") +
+  theme_minimal()
+```
+
+## Simpson's paradox
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm, y = bill_length_mm,
+                     group = species, color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       colour = "Species") +
+  #geom_smooth(method = "lm",se = FALSE, color = "darkgray") +
+  theme_minimal()
+```
+
+## Simpson's paradox
+
+```{r echo = FALSE, warning = FALSE, message = FALSE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm, y = bill_length_mm,
+                     group = species, color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       colour = "Species") +
+  geom_smooth(method = "lm",se = FALSE) +
+  theme_minimal()
+```
+
+
+## Summary
+
+Take a peep at your data!
+
+Plot the data, then plot it a different way, and again...
+
+. . .
+
+Reasons for data transformation:
+
+-  Reduce effect of outliers
+
+-  Improve linearity between variables 
+
+-  Make error structure closer to normal
+
+-  Stabilize relationship between mean and variance
+
+
+## Summary
+
+General approach:
+
+-  Apply all explorations to raw data 
+
+-  If explanatory data have outliers, then transform 
+
+-  Apply analytical technique and explore residuals 
+
+-  If residuals have outliers, heterogeneity or patterns, then transform 
+
+- Choose the best transformation by trial & error, automatic selection or rules of thumb (e.g., sqrt for counts, arcsin for proportions, log for multiplicative relationships)
+
+## Supplemental Reading
+
+[**Introduction to Modern Statistics Chap 4-6**](https://openintro-ims.netlify.app/index.html)
+
+[**R for Data Science, Chap 3**](https://r4ds.had.co.nz/data-visualisation.html)
+
+[**Communicating with Data, Chap 3-4**](https://global.oup.com/academic/product/communicating-with-data-9780198862758?cc=us&lang=en&)
