@@ -354,7 +354,7 @@
     "href": "weeks/week-02.html#participate",
     "title": "Week 2",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 3 - Data exploration, checking\n⌨️ Lab 2 - Data Visualization (just the exercise)\n🖥️ Lecture 4 - Regression review"
+    "text": "Participate\n🖥️ Lecture 3 - Data exploration, checking\n\nPlot description practice (Acknowledgements: S. Stoudt)\n\n⌨️ Lab 2 - Data Visualization (just the exercise)\n🖥️ Lecture 4 - Regression review"
   },
   {
     "objectID": "weeks/week-02.html#practice",
@@ -795,7 +795,7 @@
     "href": "lectures/lec-03.html#group-exercise",
     "title": "Biological Stats 2: Lecture 3",
     "section": "Group exercise",
-    "text": "Group exercise\nWith your group’s plot, discuss and answer the following questions:\n\nWhat type of graph is it?\nWhat is being plotted?\nHow would you describe the distribution or trend of the data?\nWhat question is the plot trying to answer?\nDo you think the plot is successful in answering that question? Why or why not?"
+    "text": "Group exercise\nPlot Description Practice\nWith your group’s plot, discuss and answer the following questions:\n\nWhat type of graph is it?\nWhat is being plotted?\nHow would you describe the distribution or trend of the data?\nWhat question is the plot trying to answer?\nDo you think the plot is successful in answering that question? Why or why not?"
   },
   {
     "objectID": "lectures/lec-03.html#data-lending-club",
