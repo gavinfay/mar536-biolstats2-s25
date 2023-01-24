@@ -456,6 +456,8 @@ ggplot(
 
 ## Group exercise
 
+[Plot Description Practice](https://docs.google.com/presentation/d/1AJPZuNBhbxAXbOvNYvAp-Kk8VVv4nddPTINrlcxsjkg/edit?usp=sharing)
+
 With your group's plot, discuss and answer the following questions:
 
 -  What type of graph is it?
