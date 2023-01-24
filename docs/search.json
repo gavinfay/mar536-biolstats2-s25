@@ -1188,5 +1188,467 @@
     "title": "Syllabus",
     "section": "Important dates",
     "text": "Important dates\n\nJanuary 17: Classes begin\nJanuary 24: Drop/add ends\nMarch 6-10: Spring break, no classes are held\n\nClick here for the full UMass Dartmouth academic calendar."
+  },
+  {
+    "objectID": "junk.html#data-exploration-checking",
+    "href": "junk.html#data-exploration-checking",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Data exploration, checking",
+    "text": "Data exploration, checking\nAcknowledgements: Mine Çetinkaya-Rundel, Amanda Hart, Sara Stoudt"
+  },
+  {
+    "objectID": "junk.html#chapter-4.-data-exploration",
+    "href": "junk.html#chapter-4.-data-exploration",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Chapter 4. Data Exploration",
+    "text": "Chapter 4. Data Exploration\n\nWhat’s in a data set?\nSummarizing & visualizing data\nOutliers, transformations, standardizations\nFinal thoughts"
+  },
+  {
+    "objectID": "junk.html#dataset-terminology",
+    "href": "junk.html#dataset-terminology",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Dataset terminology",
+    "text": "Dataset terminology\n\nEach row is an observation\nEach column is a variable\n\n\nstarwars\n\n# A tibble: 87 × 14\n   name     height  mass hair_color skin_color eye_color birth_year sex   gender\n   <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> \n 1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…\n 2 C-3PO       167    75 <NA>       gold       yellow         112   none  mascu…\n 3 R2-D2        96    32 <NA>       white, bl… red             33   none  mascu…\n 4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…\n 5 Leia Or…    150    49 brown      light      brown           19   fema… femin…\n 6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…\n 7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…\n 8 R5-D4        97    32 <NA>       white, red red             NA   none  mascu…\n 9 Biggs D…    183    84 black      light      brown           24   male  mascu…\n10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…\n# … with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,\n#   films <list>, vehicles <list>, starships <list>"
+  },
+  {
+    "objectID": "junk.html#luke-skywalker",
+    "href": "junk.html#luke-skywalker",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Luke Skywalker",
+    "text": "Luke Skywalker"
+  },
+  {
+    "objectID": "junk.html#whats-in-the-star-wars-data",
+    "href": "junk.html#whats-in-the-star-wars-data",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "What’s in the Star Wars data?",
+    "text": "What’s in the Star Wars data?\nTake a glimpse at the data:\n\nglimpse(starwars)\n\nRows: 87\nColumns: 14\n$ name       <chr> \"Luke Skywalker\", \"C-3PO\", \"R2-D2\", \"Darth Vader\", \"Leia Or…\n$ height     <int> 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2…\n$ mass       <dbl> 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.…\n$ hair_color <chr> \"blond\", NA, NA, \"none\", \"brown\", \"brown, grey\", \"brown\", N…\n$ skin_color <chr> \"fair\", \"gold\", \"white, blue\", \"white\", \"light\", \"light\", \"…\n$ eye_color  <chr> \"blue\", \"yellow\", \"red\", \"yellow\", \"brown\", \"blue\", \"blue\",…\n$ birth_year <dbl> 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, …\n$ sex        <chr> \"male\", \"none\", \"none\", \"male\", \"female\", \"male\", \"female\",…\n$ gender     <chr> \"masculine\", \"masculine\", \"masculine\", \"masculine\", \"femini…\n$ homeworld  <chr> \"Tatooine\", \"Tatooine\", \"Naboo\", \"Tatooine\", \"Alderaan\", \"T…\n$ species    <chr> \"Human\", \"Droid\", \"Droid\", \"Human\", \"Human\", \"Human\", \"Huma…\n$ films      <list> <\"The Empire Strikes Back\", \"Revenge of the Sith\", \"Return…\n$ vehicles   <list> <\"Snowspeeder\", \"Imperial Speeder Bike\">, <>, <>, <>, \"Imp…\n$ starships  <list> <\"X-wing\", \"Imperial shuttle\">, <>, <>, \"TIE Advanced x1\",…"
+  },
+  {
+    "objectID": "junk.html#what-is-eda",
+    "href": "junk.html#what-is-eda",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "What is EDA?",
+    "text": "What is EDA?\n\nExploratory data analysis (EDA) is an approach to analysing data sets to summarize its main characteristics\nOften, this is visual – this is what we’ll focus on first\nBut we might also calculate summary statistics and perform data wrangling/manipulation/transformation at (or before) this stage of the analysis"
+  },
+  {
+    "objectID": "junk.html#mass-vs.-height",
+    "href": "junk.html#mass-vs.-height",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Mass vs. height",
+    "text": "Mass vs. height\nHow would you describe the relationship between mass and height of Starwars characters? What other variables would help us understand data points that don’t follow the overall trend? Who is the not so tall but chonky character?"
+  },
+  {
+    "objectID": "junk.html#jabba",
+    "href": "junk.html#jabba",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Jabba!",
+    "text": "Jabba!\n\n\nquartz_off_screen \n                2"
+  },
+  {
+    "objectID": "junk.html#basic-questions",
+    "href": "junk.html#basic-questions",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Basic questions",
+    "text": "Basic questions\n\nWhere are the data centered?\nHow are they spread? Are they symmetric, skewed, multimodal?\nAre there outliers?\nHow are the data distributed?\nAre there relationships among variables? Are relationships linear? Which analyses should be applied?\nAre transformations needed?\nWas the sampling effort approximately the same for each observation or variable?\n\nExpecting >20% of your research time (often more) exploring your data makes analysis easier and more efficient."
+  },
+  {
+    "objectID": "junk.html#always-plot-your-data",
+    "href": "junk.html#always-plot-your-data",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Always plot your data!",
+    "text": "Always plot your data!\n\nVisualizing your data is key to performing statistical analyses.\n‘Standard’ summaries of data may not reveal patterns.\nYou will often create two types of figures:\n\nThose that help you\nThose that help your audience.\n\n\nExtra Credit:\nThe ‘datasaurus’ is lurking somewhere in this course. Find it and email Gavin with its location and identifying analysis."
+  },
+  {
+    "objectID": "junk.html#data-visualization",
+    "href": "junk.html#data-visualization",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Data visualization",
+    "text": "Data visualization\n\n“The simple graph has brought more information to the data analyst’s mind than any other device.” — John Tukey\n\n\nData visualization is the creation and study of the visual representation of data\nMany tools for visualizing data – R is one of them\nMany approaches/systems within R for making data visualizations – ggplot2 is one of them, and that’s what we’re going to use."
+  },
+  {
+    "objectID": "junk.html#anscombes-quartet",
+    "href": "junk.html#anscombes-quartet",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Anscombe’s quartet",
+    "text": "Anscombe’s quartet\n\n\n\n\n\n\n\n   set  x     y\n1    I 10  8.04\n2    I  8  6.95\n3    I 13  7.58\n4    I  9  8.81\n5    I 11  8.33\n6    I 14  9.96\n7    I  6  7.24\n8    I  4  4.26\n9    I 12 10.84\n10   I  7  4.82\n11   I  5  5.68\n12  II 10  9.14\n13  II  8  8.14\n14  II 13  8.74\n15  II  9  8.77\n16  II 11  9.26\n17  II 14  8.10\n18  II  6  6.13\n19  II  4  3.10\n20  II 12  9.13\n21  II  7  7.26\n22  II  5  4.74\n\n\n\n\n\n   set  x     y\n23 III 10  7.46\n24 III  8  6.77\n25 III 13 12.74\n26 III  9  7.11\n27 III 11  7.81\n28 III 14  8.84\n29 III  6  6.08\n30 III  4  5.39\n31 III 12  8.15\n32 III  7  6.42\n33 III  5  5.73\n34  IV  8  6.58\n35  IV  8  5.76\n36  IV  8  7.71\n37  IV  8  8.84\n38  IV  8  8.47\n39  IV  8  7.04\n40  IV  8  5.25\n41  IV 19 12.50\n42  IV  8  5.56\n43  IV  8  7.91\n44  IV  8  6.89"
+  },
+  {
+    "objectID": "junk.html#summarising-anscombes-quartet",
+    "href": "junk.html#summarising-anscombes-quartet",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Summarising Anscombe’s quartet",
+    "text": "Summarising Anscombe’s quartet\n\nquartet %>%\n  group_by(set) %>%\n  summarise(\n    mean_x = mean(x),\n    mean_y = mean(y),\n    sd_x = sd(x),\n    sd_y = sd(y),\n    r = cor(x, y)\n  )\n\n# A tibble: 4 × 6\n  set   mean_x mean_y  sd_x  sd_y     r\n  <fct>  <dbl>  <dbl> <dbl> <dbl> <dbl>\n1 I          9   7.50  3.32  2.03 0.816\n2 II         9   7.50  3.32  2.03 0.816\n3 III        9   7.5   3.32  2.03 0.816\n4 IV         9   7.50  3.32  2.03 0.817"
+  },
+  {
+    "objectID": "junk.html#visualizing-anscombes-quartet",
+    "href": "junk.html#visualizing-anscombes-quartet",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Visualizing Anscombe’s quartet",
+    "text": "Visualizing Anscombe’s quartet"
+  },
+  {
+    "objectID": "junk.html#data-palmer-penguins",
+    "href": "junk.html#data-palmer-penguins",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Data: Palmer Penguins",
+    "text": "Data: Palmer Penguins\nMeasurements for penguin species, on islands in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex. Horst et al. 2022. R Journal\n\n\n\n\n\n\n\n\n\nlibrary(palmerpenguins)\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               <fct> male, female, female, NA, female, male, female, male…\n$ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…"
+  },
+  {
+    "objectID": "junk.html#faceting-small-multiples",
+    "href": "junk.html#faceting-small-multiples",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Faceting (small multiples)",
+    "text": "Faceting (small multiples)\n\nSmaller plots that display different subsets of the data\nUseful for exploring conditional relationships and large data"
+  },
+  {
+    "objectID": "junk.html#various-ways-to-facet",
+    "href": "junk.html#various-ways-to-facet",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Various ways to facet",
+    "text": "Various ways to facet\nHow you facet and organize plots can strengthen (& weaken) the storytelling.\nThink about the comparisons you are trying to make or message your plot is intending to convey and choose visualizations that help understanding.\nLikely you will want to try different views, particularly when exploring the data initially."
+  },
+  {
+    "objectID": "junk.html#facet-and-color",
+    "href": "junk.html#facet-and-color",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Facet and color",
+    "text": "Facet and color\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(\n  penguins,\n  aes(x = bill_depth_mm,\n      y = bill_length_mm,\n      color = species)) + #<<\n  geom_point() +\n  facet_grid(island ~ year) +\n  scale_color_viridis_d() #<<"
+  },
+  {
+    "objectID": "junk.html#number-of-variables-involved",
+    "href": "junk.html#number-of-variables-involved",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Number of variables involved",
+    "text": "Number of variables involved\n\nUnivariate data analysis - distribution of single variable\nBivariate data analysis - relationship between two variables\nMultivariate data analysis - relationship between many variables at once, often focusing on the relationship between two while conditioning for others"
+  },
+  {
+    "objectID": "junk.html#types-of-variables",
+    "href": "junk.html#types-of-variables",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Types of variables",
+    "text": "Types of variables\n\nNumerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering."
+  },
+  {
+    "objectID": "junk.html#group-exercise",
+    "href": "junk.html#group-exercise",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Group exercise",
+    "text": "Group exercise\nPlot Description Practice\nWith your group’s plot, discuss and answer the following questions:\n\nWhat type of graph is it?\nWhat is being plotted?\nHow would you describe the distribution or trend of the data?\nWhat question is the plot trying to answer?\nDo you think the plot is successful in answering that question? Why or why not?"
+  },
+  {
+    "objectID": "junk.html#data-lending-club",
+    "href": "junk.html#data-lending-club",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Data: Lending Club",
+    "text": "Data: Lending Club\n\n\n\nThousands of loans made through the Lending Club, which is a platform that allows individuals to lend to other individuals\nNot all loans are created equal – ease of getting a loan depends on (apparent) ability to pay back the loan\nData includes loans made, these are not loan applications"
+  },
+  {
+    "objectID": "junk.html#take-a-peek-at-data",
+    "href": "junk.html#take-a-peek-at-data",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Take a peek at data",
+    "text": "Take a peek at data\n\nlibrary(openintro)\nglimpse(loans_full_schema)\n\nRows: 10,000\nColumns: 55\n$ emp_title                        <chr> \"global config engineer \", \"warehouse…\n$ emp_length                       <dbl> 3, 10, 3, 1, 10, NA, 10, 10, 10, 3, 1…\n$ state                            <fct> NJ, HI, WI, PA, CA, KY, MI, AZ, NV, I…\n$ homeownership                    <fct> MORTGAGE, RENT, RENT, RENT, RENT, OWN…\n$ annual_income                    <dbl> 90000, 40000, 40000, 30000, 35000, 34…\n$ verified_income                  <fct> Verified, Not Verified, Source Verifi…\n$ debt_to_income                   <dbl> 18.01, 5.04, 21.15, 10.16, 57.96, 6.4…\n$ annual_income_joint              <dbl> NA, NA, NA, NA, 57000, NA, 155000, NA…\n$ verification_income_joint        <fct> , , , , Verified, , Not Verified, , ,…\n$ debt_to_income_joint             <dbl> NA, NA, NA, NA, 37.66, NA, 13.12, NA,…\n$ delinq_2y                        <int> 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0…\n$ months_since_last_delinq         <int> 38, NA, 28, NA, NA, 3, NA, 19, 18, NA…\n$ earliest_credit_line             <dbl> 2001, 1996, 2006, 2007, 2008, 1990, 2…\n$ inquiries_last_12m               <int> 6, 1, 4, 0, 7, 6, 1, 1, 3, 0, 4, 4, 8…\n$ total_credit_lines               <int> 28, 30, 31, 4, 22, 32, 12, 30, 35, 9,…\n$ open_credit_lines                <int> 10, 14, 10, 4, 16, 12, 10, 15, 21, 6,…\n$ total_credit_limit               <int> 70795, 28800, 24193, 25400, 69839, 42…\n$ total_credit_utilized            <int> 38767, 4321, 16000, 4997, 52722, 3898…\n$ num_collections_last_12m         <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ num_historical_failed_to_pay     <int> 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0…\n$ months_since_90d_late            <int> 38, NA, 28, NA, NA, 60, NA, 71, 18, N…\n$ current_accounts_delinq          <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ total_collection_amount_ever     <int> 1250, 0, 432, 0, 0, 0, 0, 0, 0, 0, 0,…\n$ current_installment_accounts     <int> 2, 0, 1, 1, 1, 0, 2, 2, 6, 1, 2, 1, 2…\n$ accounts_opened_24m              <int> 5, 11, 13, 1, 6, 2, 1, 4, 10, 5, 6, 7…\n$ months_since_last_credit_inquiry <int> 5, 8, 7, 15, 4, 5, 9, 7, 4, 17, 3, 4,…\n$ num_satisfactory_accounts        <int> 10, 14, 10, 4, 16, 12, 10, 15, 21, 6,…\n$ num_accounts_120d_past_due       <int> 0, 0, 0, 0, 0, 0, 0, NA, 0, 0, 0, 0, …\n$ num_accounts_30d_past_due        <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ num_active_debit_accounts        <int> 2, 3, 3, 2, 10, 1, 3, 5, 11, 3, 2, 2,…\n$ total_debit_limit                <int> 11100, 16500, 4300, 19400, 32700, 272…\n$ num_total_cc_accounts            <int> 14, 24, 14, 3, 20, 27, 8, 16, 19, 7, …\n$ num_open_cc_accounts             <int> 8, 14, 8, 3, 15, 12, 7, 12, 14, 5, 8,…\n$ num_cc_carrying_balance          <int> 6, 4, 6, 2, 13, 5, 6, 10, 14, 3, 5, 3…\n$ num_mort_accounts                <int> 1, 0, 0, 0, 0, 3, 2, 7, 2, 0, 2, 3, 3…\n$ account_never_delinq_percent     <dbl> 92.9, 100.0, 93.5, 100.0, 100.0, 78.1…\n$ tax_liens                        <int> 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0…\n$ public_record_bankrupt           <int> 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0…\n$ loan_purpose                     <fct> moving, debt_consolidation, other, de…\n$ application_type                 <fct> individual, individual, individual, i…\n$ loan_amount                      <int> 28000, 5000, 2000, 21600, 23000, 5000…\n$ term                             <dbl> 60, 36, 36, 36, 36, 36, 60, 60, 36, 3…\n$ interest_rate                    <dbl> 14.07, 12.61, 17.09, 6.72, 14.07, 6.7…\n$ installment                      <dbl> 652.53, 167.54, 71.40, 664.19, 786.87…\n$ grade                            <ord> C, C, D, A, C, A, C, B, C, A, C, B, C…\n$ sub_grade                        <fct> C3, C1, D1, A3, C3, A3, C2, B5, C2, A…\n$ issue_month                      <fct> Mar-2018, Feb-2018, Feb-2018, Jan-201…\n$ loan_status                      <fct> Current, Current, Current, Current, C…\n$ initial_listing_status           <fct> whole, whole, fractional, whole, whol…\n$ disbursement_method              <fct> Cash, Cash, Cash, Cash, Cash, Cash, C…\n$ balance                          <dbl> 27015.86, 4651.37, 1824.63, 18853.26,…\n$ paid_total                       <dbl> 1999.330, 499.120, 281.800, 3312.890,…\n$ paid_principal                   <dbl> 984.14, 348.63, 175.37, 2746.74, 1569…\n$ paid_interest                    <dbl> 1015.19, 150.49, 106.43, 566.15, 754.…\n$ paid_late_fees                   <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…"
+  },
+  {
+    "objectID": "junk.html#variable-types",
+    "href": "junk.html#variable-types",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Variable types",
+    "text": "Variable types\n\n\n\nvariable\ntype\n\n\n\n\nloan_amount\nnumerical, continuous\n\n\ninterest_rate\nnumerical, continuous\n\n\nterm\nnumerical, discrete\n\n\ngrade\ncategorical, ordinal\n\n\nstate\ncategorical, not ordinal\n\n\nannual_income\nnumerical, continuous\n\n\nhomeownership\ncategorical, not ordinal\n\n\ndebt_to_income\nnumerical, continuous"
+  },
+  {
+    "objectID": "junk.html#describing-shapes-of-numerical-distributions",
+    "href": "junk.html#describing-shapes-of-numerical-distributions",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Describing shapes of numerical distributions",
+    "text": "Describing shapes of numerical distributions\n\nshape:\n\nskewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)\nmodality: unimodal, bimodal, multimodal, uniform\n\ncenter: mean (mean), median (median), mode (not always useful)\nspread: range (range), standard deviation (sd), inter-quartile range (IQR)\nunusual observations"
+  },
+  {
+    "objectID": "junk.html#histogram",
+    "href": "junk.html#histogram",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Histogram",
+    "text": "Histogram\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
+  },
+  {
+    "objectID": "junk.html#histograms-and-binwidth",
+    "href": "junk.html#histograms-and-binwidth",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Histograms and binwidth",
+    "text": "Histograms and binwidth\nbinwidth = 1000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 1000)"
+  },
+  {
+    "objectID": "junk.html#histograms-and-binwidth-1",
+    "href": "junk.html#histograms-and-binwidth-1",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Histograms and binwidth",
+    "text": "Histograms and binwidth\nbinwidth = 5000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 5000)"
+  },
+  {
+    "objectID": "junk.html#histograms-and-binwidth-2",
+    "href": "junk.html#histograms-and-binwidth-2",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Histograms and binwidth",
+    "text": "Histograms and binwidth\nbinwidth = 20000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 20000)"
+  },
+  {
+    "objectID": "junk.html#customizing-histograms",
+    "href": "junk.html#customizing-histograms",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Customizing histograms",
+    "text": "Customizing histograms\nFill with a categorical variable\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = loan_amount,\n                  fill = homeownership)) +\n  geom_histogram(binwidth = 5000,\n                 alpha = 0.5) +\n  labs(\n    x = \"Loan amount ($)\",\n    y = \"Frequency\",\n    title = \"Amounts of Lending Club loans\"\n  )"
+  },
+  {
+    "objectID": "junk.html#facet-with-a-categorical-variable",
+    "href": "junk.html#facet-with-a-categorical-variable",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Facet with a categorical variable",
+    "text": "Facet with a categorical variable\n\nPlotCode"
+  },
+  {
+    "objectID": "junk.html#box-plot",
+    "href": "junk.html#box-plot",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Box plot",
+    "text": "Box plot\n\nggplot(loans, aes(x = interest_rate)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "junk.html#box-plot-and-outliers",
+    "href": "junk.html#box-plot-and-outliers",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Box plot and outliers",
+    "text": "Box plot and outliers\n\nggplot(loans, aes(x = annual_income)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "junk.html#adding-a-categorical-variable",
+    "href": "junk.html#adding-a-categorical-variable",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Adding a categorical variable",
+    "text": "Adding a categorical variable\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = interest_rate,\n                  y = grade)) + #<<\n  geom_boxplot() +\n  labs(\n    x = \"Interest rate (%)\",\n    y = \"Grade\",\n    title = \"Interest rates of Lending Club loans\",\n    subtitle = \"by grade of loan\" #<<\n  )"
+  },
+  {
+    "objectID": "junk.html#scatterplot",
+    "href": "junk.html#scatterplot",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Scatterplot",
+    "text": "Scatterplot\n\nggplot(loans, aes(x = debt_to_income, y = interest_rate)) +\n  geom_point()"
+  },
+  {
+    "objectID": "junk.html#hex-plot",
+    "href": "junk.html#hex-plot",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Hex plot",
+    "text": "Hex plot\n\nggplot(loans %>% filter(debt_to_income < 100),\n       aes(x = debt_to_income, y = interest_rate)) +\n  geom_hex()"
+  },
+  {
+    "objectID": "junk.html#contour-plot",
+    "href": "junk.html#contour-plot",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Contour plot",
+    "text": "Contour plot\n\nv <- ggplot(faithfuld, aes(waiting, eruptions, z = density))\nv + geom_contour()"
+  },
+  {
+    "objectID": "junk.html#bar-plot",
+    "href": "junk.html#bar-plot",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Bar plot",
+    "text": "Bar plot\n\nggplot(loans, aes(x = homeownership)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "junk.html#segmented-bar-plot",
+    "href": "junk.html#segmented-bar-plot",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Segmented bar plot",
+    "text": "Segmented bar plot\n\nggplot(loans, aes(x = homeownership,\n                  fill = grade)) + #<<\n  geom_bar()"
+  },
+  {
+    "objectID": "junk.html#segmented-bar-plot-1",
+    "href": "junk.html#segmented-bar-plot-1",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Segmented bar plot",
+    "text": "Segmented bar plot\n\nggplot(loans, aes(x = homeownership, fill = grade)) +\n  geom_bar(position = \"fill\") #<<"
+  },
+  {
+    "objectID": "junk.html#customizing-bar-plots",
+    "href": "junk.html#customizing-bar-plots",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Customizing bar plots",
+    "text": "Customizing bar plots"
+  },
+  {
+    "objectID": "junk.html#customizing-bar-plots-1",
+    "href": "junk.html#customizing-bar-plots-1",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Customizing bar plots",
+    "text": "Customizing bar plots"
+  },
+  {
+    "objectID": "junk.html#customizing-bar-plots-2",
+    "href": "junk.html#customizing-bar-plots-2",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Customizing bar plots",
+    "text": "Customizing bar plots"
+  },
+  {
+    "objectID": "junk.html#relationships-between-numerical-and-categorical-variables",
+    "href": "junk.html#relationships-between-numerical-and-categorical-variables",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Relationships between numerical and categorical variables",
+    "text": "Relationships between numerical and categorical variables\nAlready talked about…\n\nColouring and faceting histograms and density plots\nSide-by-side box plots"
+  },
+  {
+    "objectID": "junk.html#violin-plots",
+    "href": "junk.html#violin-plots",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Violin plots",
+    "text": "Violin plots\n\nggplot(loans, aes(x = homeownership, y = loan_amount)) +\n  geom_violin()"
+  },
+  {
+    "objectID": "junk.html#ridge-plots",
+    "href": "junk.html#ridge-plots",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Ridge plots",
+    "text": "Ridge plots\n\nlibrary(ggridges)\nggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) +\n  geom_density_ridges(alpha = 0.5)"
+  },
+  {
+    "objectID": "junk.html#raincloud-plots",
+    "href": "junk.html#raincloud-plots",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Raincloud plots",
+    "text": "Raincloud plots\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nlibrary(ggdist)\nlibrary(gghalves)\nggplot(penguins, aes(species, bill_length_mm)) +\n  ggdist::stat_halfeye(adjust = .5, width = .3, .width = 0, justification = -.3, point_colour = NA) +\n  geom_boxplot(width = .1, outlier.shape = NA) +\n  gghalves::geom_half_point(side = \"l\", range_scale = .4, alpha = .5) +\n  coord_flip()"
+  },
+  {
+    "objectID": "junk.html#qq-plots",
+    "href": "junk.html#qq-plots",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "QQ-plots",
+    "text": "QQ-plots\nDetermines if data conform to a theoretical distribution."
+  },
+  {
+    "objectID": "junk.html#pair-plots",
+    "href": "junk.html#pair-plots",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Pair plots",
+    "text": "Pair plots\n\nScatterplot for each pair of variables.\nMeasures of correlation\n\n\nggpairs(penguins, columns=3:6)"
+  },
+  {
+    "objectID": "junk.html#über-pair-plot",
+    "href": "junk.html#über-pair-plot",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Über Pair plot",
+    "text": "Über Pair plot"
+  },
+  {
+    "objectID": "junk.html#visualizing-spatial-data",
+    "href": "junk.html#visualizing-spatial-data",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Visualizing spatial data",
+    "text": "Visualizing spatial data\nMaps are extremely useful (and intuitive) ways of exploring spatial relationships among variables in our data.\n\n\n\n\n (Eric Anderson)"
+  },
+  {
+    "objectID": "junk.html#transformation",
+    "href": "junk.html#transformation",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Transformation",
+    "text": "Transformation\n\nOutliers, non-normality, heteroscedasticity and nonlinearity are the most common reasons for transformation.\nRemoving outliers is an option (with sensitivity analysis)\nAll response and explanatory variables can be transformed differently.\nChoice of transformation depends on analytical design:\n\nGLS, GLM, GAM Poisson can handle outliers\nGAM and iterative least squares can handle nonlinearity"
+  },
+  {
+    "objectID": "junk.html#nonlinearity",
+    "href": "junk.html#nonlinearity",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Nonlinearity",
+    "text": "Nonlinearity\n\nIf scatterplot indicates nonlinear patterns, consider transforming one or both variables.\nMany possible transformations, with lots of guidance on how to proceed with these.\nGF advice: Consider the theoretical basis for transformations and think about appropriate methods before trying to ‘force’ linearity to apply cookbooks."
+  },
+  {
+    "objectID": "junk.html#standardizations",
+    "href": "junk.html#standardizations",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Standardizations",
+    "text": "Standardizations\n\nIf variables for comparison are on different scales, conversion to a common scale may be an option.\nSome analyses (e.g., correlation, PCA) are self- standardized.\n\n\n\nCentering (standard ‘location’):\nScaling1 (standard ‘spread’):\n\n\nNB: sometimes called ‘normalizing’, but does not mean making your data normally distributed. GF prefers ‘standardizing’ or ‘scaling’ but you will see normalizing a lot."
+  },
+  {
+    "objectID": "junk.html#standardizations-1",
+    "href": "junk.html#standardizations-1",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Standardizations",
+    "text": "Standardizations"
+  },
+  {
+    "objectID": "junk.html#standardizations-2",
+    "href": "junk.html#standardizations-2",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Standardizations",
+    "text": "Standardizations"
+  },
+  {
+    "objectID": "junk.html#standardizations-3",
+    "href": "junk.html#standardizations-3",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Standardizations",
+    "text": "Standardizations"
+  },
+  {
+    "objectID": "junk.html#exploring-relationships",
+    "href": "junk.html#exploring-relationships",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Exploring relationships",
+    "text": "Exploring relationships\n‘Even if you don’t see it, it might still be there.’\nPlot your data as many ways as you can, particularly with respect to other variables in the dataset.\n\nThis may change your understanding of patterns in the data\nSimpson’s paradox"
+  },
+  {
+    "objectID": "junk.html#simpsons-paradox",
+    "href": "junk.html#simpsons-paradox",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Simpson’s paradox",
+    "text": "Simpson’s paradox\n\nSimpson’s paradox illustrates the effect that omission of an explanatory variable can have on the measure of association between another explanatory variable and a response variable\nThe inclusion of a third variable in the analysis can change the apparent relationship between the other two variables"
+  },
+  {
+    "objectID": "junk.html#simpsons-paradox-1",
+    "href": "junk.html#simpsons-paradox-1",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Simpson’s paradox",
+    "text": "Simpson’s paradox"
+  },
+  {
+    "objectID": "junk.html#simpsons-paradox-2",
+    "href": "junk.html#simpsons-paradox-2",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Simpson’s paradox",
+    "text": "Simpson’s paradox"
+  },
+  {
+    "objectID": "junk.html#simpsons-paradox-3",
+    "href": "junk.html#simpsons-paradox-3",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Simpson’s paradox",
+    "text": "Simpson’s paradox"
+  },
+  {
+    "objectID": "junk.html#simpsons-paradox-4",
+    "href": "junk.html#simpsons-paradox-4",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Simpson’s paradox",
+    "text": "Simpson’s paradox"
+  },
+  {
+    "objectID": "junk.html#summary",
+    "href": "junk.html#summary",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Summary",
+    "text": "Summary\nTake a peep at your data!\nPlot the data, then plot it a different way, and again…\n\nReasons for data transformation:\n\nReduce effect of outliers\nImprove linearity between variables\nMake error structure closer to normal\nStabilize relationship between mean and variance"
+  },
+  {
+    "objectID": "junk.html#summary-1",
+    "href": "junk.html#summary-1",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Summary",
+    "text": "Summary\nGeneral approach:\n\nApply all explorations to raw data\nIf explanatory data have outliers, then transform\nApply analytical technique and explore residuals\nIf residuals have outliers, heterogeneity or patterns, then transform\nChoose the best transformation by trial & error, automatic selection or rules of thumb (e.g., sqrt for counts, arcsin for proportions, log for multiplicative relationships)"
+  },
+  {
+    "objectID": "junk.html#supplemental-reading",
+    "href": "junk.html#supplemental-reading",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Supplemental Reading",
+    "text": "Supplemental Reading\nIntroduction to Modern Statistics Chap 4-6\nR for Data Science, Chap 3\nCommunicating with Data, Chap 3-4\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   }
 ]
