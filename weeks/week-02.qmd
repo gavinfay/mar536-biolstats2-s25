@@ -18,6 +18,8 @@ editor: visual
 
 ⌨️ [Lab 2 - Data Visualization](../labs/lab-02.html) (just the [exercise](../labs/lab-exercise-02.pdf))
 
+-   [lake Laengelmavesi fish data](https://github.com/gavinfay/mar536-biolstats2-s23/tree/main/data/Laengelmavesi2.xlsx)
+
 🖥️ [Lecture 4 - Regression review](../lectures/lec-04.pdf)
 
 ## Practice

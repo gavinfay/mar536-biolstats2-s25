@@ -1,0 +1,978 @@
+---
+title: "MAR 536: Lab 2"
+subtitle: "Dr. Gavin Fay"
+date: "01/25/2023"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+logo: "../images/logo.png"
+format: 
+  revealjs: 
+    theme: slides.scss
+    multiplex: true
+    transition: fade
+    slide-number: true
+editor: source
+execute:
+  freeze: auto
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+#| include: false
+library(MASS)
+library(tidyverse)
+library(skimr)
+library(Tmisc)
+library(magick)
+library(palmerpenguins)
+library(openintro)
+library(GGally)
+loans_full_schema <- loans_full_schema %>%
+  mutate(grade = factor(grade, ordered = TRUE))
+loans <- loans_full_schema
+```
+
+## Lab schedule
+
+1/18: Introduction to R and R Studio, working with data\
+**1/25: Intro to Visualization**\
+2/01: Probability, linear modeling\
+2/08: Data wrangling, model summaries\
+2/15: Iteration\
+2/22: Creating functions, debugging\
+3/01: Simulation, Resampling\
+3/15: Flex: more modeling (brms, glmmTMB)\
+3/29: Spatial data or tidymodeling
+
+**Acknowledgements: Mine Çetinkaya-Rundel, Amanda Hart**
+
+## Today
+Datasets
+
+-- hills (Review from last week)
+-- lake Laengelmavesi dataset 
+-- gapminder 
+-- loans
+-- palmer penguins
+
+Topics
+
+-- Review, more data structures
+-- Plotting in R
+
+## Review, data types
+
+```{r prompt=TRUE,comment='',collapse=TRUE, echo = TRUE}
+hills$climb ##print a vector
+select(hills, climb)
+```
+
+## Review, data exploration {.small}
+```{r prompt=TRUE,comment='',collapse=TRUE, echo = TRUE}
+# Short data summaries
+mean(hills$time)
+# Look at format
+tail(hills) # last 6 rows
+# General summary good for a quick look at large data sets
+summary(hills)
+```
+
+# Review, data exploration {.small}
+```{r prompt=TRUE,comment='',collapse=TRUE, echo=TRUE}
+# subset data frames
+# races with distance>=10 miles, >4000 ft
+rownames_to_column(hills, var = "race") %>% 
+  filter(dist >= 10, climb > 4000)
+# mean of a vector
+mutate(hills, speed = dist/time) %>% 
+  summarize(avg_speed = mean(speed))
+```
+
+
+## Missing values (NA). {.smaller}
+
+```{r prompt=TRUE,comment='',collapse=TRUE,results='hide',R.options=weights <- c(25,34,75,NA,21,32,NA)}
+weights <- c(25,34,75,NA,21,32,NA)
+```
+Many functions do not handle missing values by default.  
+```{r prompt=TRUE,comment='',collapse=TRUE,R.options=weights <- c(25,34,75,NA,21,32,NA)}
+mean(weights)
+mean(weights,na.rm=TRUE)
+```
+Omit missing values.
+```{r prompt=TRUE,comment='',collapse=TRUE,R.options=weights <- c(25,34,75,NA,21,32,NA)}
+na.omit(weights)
+drop_na(penguins)
+```
+
+`drop_na()` removes rows with any missing values. This is not (often) what we want to do.
+The `naniar` package contains functions for treatment of missing values.
+
+
+## Categorical variables {.small}
+ Factors are vectors with discrete values assigned to each element.   
+ 
+ Can specify a categorical variable as a factor using `factor()`.
+ 
+```{r prompt=TRUE,comment='',collapse=TRUE}
+ substrate <- c("cobble","mud","sand")
+ is.factor(substrate)
+ substrate.fac <- factor(substrate)
+ substrate.fac
+ is.factor(substrate.fac)
+```
+
+## Numbers to factors {.small}
+Categorical variables are often coded numerically.
+
+```{r prompt=TRUE,comment='',collapse=TRUE, echo=TRUE}
+ substrate <- c(1,1,2,2,3,2,1,3)
+ substrate.fac <- factor(substrate,
+                  labels=c("cobble","mud","sand"))
+ substrate.fac
+```
+
+To find the levels of a factor:
+```{r prompt=TRUE,comment='',collapse=TRUE,R.options=substrate.fac<-factor(c("cobble","mud","sand")), echo=TRUE}
+levels(substrate.fac)
+```
+
+`droplevels(myfactor)` will remove unused levels. 
+
+The `forcats` package is a great way of dealing with categorical variables. We'll cover examples of its usage during the course.
+
+
+## Reading in data {.small}
+
+So far we have either typed in data values, or used built-in datasets.  
+Lots of functions to read data from files, including:  
+
+1. `scan()`
+- flexible, reads data into a vector.
+- very fast, good for large or messy data.  
+
+2. `read.table`, `read.csv`
+- easy to use, reads data into a data frame.  
+
+3. `read_excel`, `read_csv` (in tidyverse)
+- `library(readxl)` has many functions for reading from MS Excel spreadsheets 
+
+
+## Using `read_excel()`
+
+Read data from Finnish lake Laengelmavesi
+
+Save `Laengelmavesi2.xlsx` to your computer.  
+Either to your project directory or create a directory called 'data'.  
+
+```{r prompt=TRUE,comment='',collapse=TRUE}
+library(readxl)
+fish_data <- read_excel(
+             path = "../data/Laengelmavesi2.xlsx",
+                   sheet = "data", na = "NA")
+# fish_data <- read_csv(file="../data/Laengelmavesi2.csv",
+#                   header=TRUE,sep=",")
+# R will look for the file in the working directory.
+# Provide the directory path to the file if it is elsewhere
+```
+
+---
+
+```{r prompt=TRUE,comment='',collapse=TRUE}
+fish_data
+```
+
+## Lab exercise 1/3  (Laengelmavesi + penguins) {.smaller}
+
+Read in the data in the 'data' sheet of `Laengelmavesi2.xlsx` and:  
+
+1. Display the number of observations for each species of fish. 
+(_hint: the function `count()` will tell you how many rows_)    
+2. Find the overall mean lengths, weights, and heights of fish in the data.  
+3. Find the range of the lengths of Perch.  
+4. Calculate the mean length for each species.  
+5. _bonus_ With the Pike data, create a new factor for small and large based on the weights.   
+6. Use the `ggpairs()` function in `library(GGally)` to create a pairs plot for the palmer penguins data. What are five things you learn about the data and the penguins from this view of the data? 
+
+
+# Data visualization
+
+<!-- ## Plotting in R -->
+<!--  # Recommended reading   -->
+<!--  -An introduction to R (Venables et al.), Chapter 12     -->
+<!--  <http://cran.r-project.org/doc/manuals/R-intro.pdf>   -->
+
+<!--  -`R` graphics 2nd Edition (Paul Murrell, 2011)   -->
+<!--  Chapters 1 and 2   -->
+<!--  Pdf of the 1st edition here:   -->
+<!--  <https://www.stat.auckland.ac.nz/~paul/RGraphics/rgraphics.html>   -->
+<!--  `R` code available for all plots in 2nd edition:   -->
+<!--  <https://www.stat.auckland.ac.nz/~paul/RG2e/>   -->
+
+  
+## Base graphics: plot()
+
+ `plot()` is the generic function for plotting `R` objects.  
+
+ - `plot()` is an overloaded function.  
+ - what it returns depends on the type of objects that are given to it.  
+ - there are versions of `plot` that provide useful outputs for many `R` functions.  
+ - e.g. `plot.lm()` is a version that plots typical diagnostics from a linear model object. (but you still just type `plot(myobject)`).  
+
+
+## Plots are like onions...they have layers {.small}
+
+::: columns
+::: {.column width="50%"}
+Both base `R` and `ggplot` use a layers approach to plotting.
+
+- Plot type
+- Points
+- Lines
+- Colors
+- Labels
+- Styles
+- etc.
+:::
+
+::: {.column width="50%"}
+![](img/onions.png)
+:::
+:::
+
+## ggplot2 $\in$ tidyverse
+
+::: columns
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("img/ggplot2-part-of-tidyverse.png")
+```
+:::
+
+::: {.column width="50%"}
+-   **ggplot2** is tidyverse's data visualization package
+-   `gg` in "ggplot2" stands for Grammar of Graphics
+-   Inspired by the book **Grammar of Graphics** by Leland Wilkinson
+:::
+:::
+
+## Grammar of Graphics
+
+A grammar of graphics is a tool that enables us to concisely describe the components of a graphic
+
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/grammar-of-graphics.png")
+```
+
+
+<!-- [^1] Source: [BloggoType](http://bloggotype.blogspot.com/2016/08/holiday-notes2-grammar-of-graphics.html) -->
+
+<!-- [^1]: NB: sometimes called 'normalizing', but does not mean making your data normally distributed. GF prefers 'standardizing' or 'scaling' but you will see normalizing **a lot**. -->
+
+<!-- ## Mass vs. height -->
+
+<!-- ```{r mass-height, fig.width = 8, out.width = "50%"} -->
+<!-- ggplot(data = starwars, mapping = aes(x = height, y = mass)) + -->
+<!--   geom_point() + -->
+<!--   labs(title = "Mass vs. height of Starwars characters", -->
+<!--        x = "Height (cm)", y = "Weight (kg)") -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- -   What are the functions doing the plotting? -->
+<!-- -   What is the dataset being plotted? -->
+<!-- -   Which variables map to which features (aesthetics) of the plot? -->
+<!-- -   What does the warning mean?\[\^+\] -->
+
+<!-- ```{r ref.label="mass-height", fig.show = "hide"} -->
+<!-- ``` -->
+
+<!-- \[\^+\]Suppressing warning to subsequent slides to save space -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+## Hello ggplot2!
+
+-   `ggplot()` is the main function in ggplot2
+-   Plots are constructed in layers
+-   Structure of the code for plots can be summarized as
+
+```{r eval = FALSE, echo=TRUE}
+ggplot(data = [dataset],
+       mapping = aes(x = [x-variable], y = [y-variable])) +
+   geom_xxx() +
+   other options
+```
+
+-   The ggplot2 package comes with the tidyverse
+
+-   For help with ggplot2, see [ggplot2.tidyverse.org](http://ggplot2.tidyverse.org/)
+
+## Palmer Penguins
+
+::: {.panel-tabset}
+
+#### Plot
+
+```{r ref.label = "penguins", echo = FALSE, warning = FALSE}
+```
+
+#### Code
+```{r penguins, fig.show = "hide", `code-line-numbers`="|1-3|4|5:8|9", echo=TRUE}
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm, y = bill_length_mm,
+                     colour = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       colour = "Species") +
+  scale_color_viridis_d()
+```
+By default `R` uses variable names as axis labels.
+Use `labs()` to add text & captions, etc.
+:::
+
+## `ggplot` layers {.smaller}
+**To begin**
+
+-- All ggplots begin with a call to ggplot()
+
+**Data**
+
+-- data frame containing variables for plot
+
+**Aesthetics**
+
+-- specify how data variables relate to graph properties
+-- e.g. what goes on x & y axis, etc.
+-- mapping argument passed to ggplot() via `aes()`
+
+**Geometry**
+
+-- a call to a geometry (geom_) determines plot type
+-- may require additional geometry-specific aesthetics
+
+**Other options**
+
+-- summary statistics
+-- adjust overall appearance (color, size, shape...)
+-- add labels, captions, theme, etc.
+-- faceting & coordinate system
+
+
+<!-- ## `ggplot2` -->
+
+<!-- ![https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf](figs/ggplot2_cheatsheet.png) -->
+
+<!-- # ggplot2 `r emo::ji("heart")` `r emo::ji("penguin")` -->
+
+
+<!-- ## Titles, captions & axis labels   -->
+
+<!-- By default `R` uses variable names as axis labels.   -->
+<!-- Use `labs()` to add text & captions, etc.   -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,fig.show='hide',echo = TRUE} -->
+<!-- ggplot(data = fish_data, mapping = aes(x= length,  -->
+<!--                                        y = weight)) +  -->
+<!--   geom_point() + -->
+<!--   labs(title = "Laengelmavesi fish", -->
+<!--          subtitle = "MAR 536 Biological Statistics II, Lab 2", -->
+<!--          x = "Length (cm)", -->
+<!--          y = "Weight (g)", -->
+<!--          caption = "\nplot created by \n@gavin_fay") -->
+<!-- ```  -->
+
+<!-- --- -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,echo=FALSE} -->
+<!-- ggplot(data = fish_data, mapping = aes(x= length,  -->
+<!--                                        y = weight)) +  -->
+<!--   geom_point() + -->
+<!--   labs(title = "Laengelmavesi fish", -->
+<!--          subtitle = "MAR 536 Biological Statistics II, Lab 2", -->
+<!--          x = "Length (cm)", -->
+<!--          y = "Weight (g)", -->
+<!--          caption = "\nplot created by \n@gavin_fay") -->
+<!-- ```  -->
+
+
+## Axis limits {.small}
+`R` chooses x and y limits just larger than the range of the data.  
+To change the default x and y values use `xlim` and `ylim`.  
+ 
+```{r prompt=TRUE,comment='',collapse=TRUE,fig.show="hide", `code-line-numbers`="|4:5"}
+ggplot(data = fish_data, mapping = aes(x= length, 
+                                       y = weight)) + 
+  geom_point() +
+  xlim(0, 50) +
+  ylim(0, 800) +
+  labs(title = "Laengelmavesi fish",
+         subtitle = "MAR 536 Biological Statistics II, Lab 2",
+         x = "Length (cm)",
+         y = "Weight (g)",
+         caption = "\nplot created by \n@gavin_fay")
+``` 
+
+----
+
+```{r prompt=TRUE,comment='',collapse=TRUE,echo = FALSE,out.width="80%"}
+ggplot(data = fish_data, mapping = aes(x= length, 
+                                       y = weight)) + 
+  geom_point() +
+  xlim(0, 50) +
+  ylim(0, 800) +
+  labs(title = "Laengelmavesi fish",
+         subtitle = "MAR 536 Biological Statistics II, Lab 2",
+         x = "Length (cm)",
+         y = "Weight (g)",
+         caption = "\nplot created by \n@gavin_fay")
+``` 
+
+## Colors {.small}
+
+Colors of points, lines, text etc. can all be specified.  
+If you want to map color to a variable then this should be done in the `aes()`.  
+
+Colors can be specified as numbers, text string, or hex codes
+`col=1` or `col="red"`
+
+```{r prompt=TRUE,comment='',collapse=TRUE,fig.height=3,fig.show='hide', echo=TRUE, `code-line-numbers`="|3"}
+ggplot(data = fish_data, mapping = aes(x= length,
+                                       y = weight)) + 
+  geom_point(col = "blue") + # Change point color to blue
+  xlim(0, 50) +
+  ylim(0, 800) +
+  labs(title = "Laengelmavesi fish",
+         subtitle = "MAR 536 Biological Statistics II, Lab 2",
+         x = "Length (cm)",
+         y = "Weight (g)",
+         caption = "\nplot created by \n@gavin_fay")
+``` 
+ 
+----
+
+```{r prompt=TRUE,comment='',collapse=TRUE,out.width="80%", echo = FALSE}
+ggplot(data = fish_data, mapping = aes(x= length, 
+                                       y = weight)) + 
+  geom_point(col = "blue") +
+  xlim(0, 50) +
+  ylim(0, 800) +
+  labs(title = "Laengelmavesi fish",
+         subtitle = "MAR 536 Biological Statistics II, Lab 2",
+         x = "Length (cm)",
+         y = "Weight (g)",
+         caption = "\nplot created by \n@gavin_fay")
+``` 
+
+## Map color to a variable
+
+```{r prompt=TRUE,comment='',collapse=TRUE,out.width="80%",  fig.show='hide', echo=TRUE, `code-line-numbers`="|4"}
+ggplot(data = fish_data, 
+       mapping = aes(x= length,
+                     y = weight, 
+                     col = species)) + # Color by species
+  geom_point() +
+  xlim(0, 50) +
+  ylim(0, 800) +
+  labs(title = "Laengelmavesi fish",
+         subtitle = "MAR 536 Biological Statistics II, Lab 2",
+         x = "Length (cm)",
+         y = "Weight (g)",
+         caption = "\nplot created by \n@gavin_fay")
+``` 
+ 
+----
+
+```{r prompt=TRUE,comment='',collapse=TRUE, out.width="80%", echo = FALSE}
+ggplot(data = fish_data, mapping = aes(x= length, 
+                        y = weight, col = species)) + 
+  geom_point() +
+  xlim(0, 50) +
+  ylim(0, 800) +
+  labs(title = "Laengelmavesi fish",
+         subtitle = "MAR 536 Biological Statistics II, Lab 2",
+         x = "Length (cm)",
+         y = "Weight (g)",
+         caption = "\nplot created by \n@gavin_fay")
+``` 
+
+## Points {.small}
+Use the `shape` and `size` aesthetics to adjust point type and size
+```{r pointvar, prompt=TRUE,comment='',collapse=TRUE,fig.show='hide', echo=TRUE,`code-line-numbers`="|4,6"}
+ggplot(data = fish_data, 
+       mapping = aes(x= length, 
+                     y = weight, 
+                     col = species, 
+                     size = height)) + # Set point size proportional to body height
+  geom_point(shape = 8) + # Change point type
+  xlim(0, 50) +
+  ylim(0, 800) +
+  labs(title = "Laengelmavesi fish",
+         subtitle = "MAR 536 Biological Statistics II, Lab 2",
+         x = "Length (cm)",
+         y = "Weight (g)",
+         caption = "\nplot created by \n@gavin_fay")
+``` 
+ 
+----
+
+```{r ref.label="pointvar", echo=FALSE}
+``` 
+
+
+## Faceting (small multiples) {.small}
+
+-   Smaller plots that display different subsets of the data
+-   Useful for exploring conditional relationships and large data
+
+`facet_grid([rows],[cols])`
+
+`facet_wrap(~[var])`
+
+------------------------------------------------------------------------
+
+```{r facet, echo = TRUE, warning = FALSE,`code-line-numbers`="|3"}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
+  geom_point() +
+  facet_grid(species ~ island)
+```
+
+------------------------------------------------------------------------
+
+```{r warning = FALSE, `code-line-numbers`="|3"}
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
+  geom_point() +
+  facet_wrap(~species) 
+```
+
+
+<!-- ## Facet and color -->
+
+<!-- ::: {.panel-tabset} -->
+
+<!-- ### Plot -->
+<!-- ```{r ref.label = "facet-color-legend", echo = FALSE, warning = FALSE, out.width = "100%"} -->
+<!-- ``` -->
+
+<!-- ### Code -->
+<!-- ```{r facet-color-legend, fig.show = "hide", warning = FALSE, echo =TRUE} -->
+<!-- ggplot( -->
+<!--   penguins, -->
+<!--   aes(x = bill_depth_mm, -->
+<!--       y = bill_length_mm, -->
+<!--       color = species)) + -->
+<!--   geom_point() + -->
+<!--   facet_grid(species ~ sex) + -->
+<!--   scale_color_viridis_d() -->
+<!-- ``` -->
+<!-- ::: -->
+
+## Lab exercise 2/3 {.small}
+
+```{r prompt=TRUE,comment='',collapse=TRUE,echo=FALSE,out.width="80%"}
+library(gapminder)
+gapdata <- gapminder %>% 
+  filter(year >= 1990 & year <= 2007) %>% 
+  group_by(continent)
+ggplot(gapdata, aes(x = gdpPercap/1000,
+                    y = lifeExp,
+                    size = pop/1000000,
+                    color = continent)) +
+  geom_point(alpha = 0.5) +
+  labs(title = "Life Expectancy varies with GDP",
+         subtitle = "1990 - 2007",
+          x = "GDP per capita ($1000s)",
+          y = "Life expectancy (yrs)",
+         caption = "Plot created by 'your name here'",
+       fill = "Population (m)",
+       color = "Continent") +
+  theme_minimal() 
+  #scale_color_gradient() +
+  #facet_wrap(~continent)
+
+```
+
+1. Use the `gapminder` data to replicate as close as possible this graph. (Try out different 'themes' with `+ theme_XXXX()`)  
+2. _bonus_ plot time series of life expectancy by continent and country. (You can use `geom_line()` to link points)
+
+
+## Data: Lending Club
+
+::: columns
+::: {.column width="70%"}
+-   Thousands of loans made through the Lending Club, which is a platform that allows individuals to lend to other individuals
+
+-   Not all loans are created equal -- ease of getting a loan depends on (apparent) ability to pay back the loan
+
+-   Data includes loans *made*, these are not loan applications
+:::
+
+::: {.column width="30%"}
+```{r echo=FALSE, out.width = "100%"}
+knitr::include_graphics("img/lending-club.png")
+```
+:::
+:::
+
+## Selected variables
+
+```{r, echo = TRUE}
+loans <- loans_full_schema %>%
+  select(loan_amount, interest_rate, term, grade,
+         state, annual_income, homeownership, debt_to_income)
+glimpse(loans)
+```
+
+
+<!-- ## Selected variables {.small} -->
+
+<!-- | variable         | description                                                                                                            | -->
+<!-- |----------------------------------------|--------------------------------| -->
+<!-- | `loan_amount`    | Amount of the loan received, in US dollars                                                                             | -->
+<!-- | `interest_rate`  | Interest rate on the loan, in an annual percentage                                                                     | -->
+<!-- | `term`           | The length of the loan, which is always set as a whole number of months                                                | -->
+<!-- | `grade`          | Loan grade, which takes a values A through G and represents the quality of the loan and its likelihood of being repaid | -->
+<!-- | `state`          | US state where the borrower resides                                                                                    | -->
+<!-- | `annual_income`  | Borrower's annual income, including any second income, in US dollars                                                   | -->
+<!-- | `homeownership`  | Indicates whether the person owns, owns but has a mortgage, or rents                                                   | -->
+<!-- | `debt_to_income` | Debt-to-income ratio                                                                                                   | -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+## Variable types {.small}
+
+| variable         | type                     |
+|------------------|--------------------------|
+| `loan_amount`    | numerical, continuous    |
+| `interest_rate`  | numerical, continuous    |
+| `term`           | numerical, discrete      |
+| `grade`          | categorical, ordinal     |
+| `state`          | categorical, not ordinal |
+| `annual_income`  | numerical, continuous    |
+| `homeownership`  | categorical, not ordinal |
+| `debt_to_income` | numerical, continuous    |
+
+
+
+## Histograms
+
+`geom_histogram()`
+
+```{r message = TRUE, out.width = "50%", echo = TRUE}
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram()
+```
+
+------------------------------------------------------------------------
+
+## Histograms and binwidth
+
+binwidth = 2000
+
+```{r out.width = "50%", echo = TRUE}
+ggplot(loans, aes(x = loan_amount)) +
+  geom_histogram(binwidth = 2000)
+```
+
+
+## Customizing histograms
+
+Fill with a categorical variable
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r ref.label = "hist-fill", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+
+### Code
+```{r hist-fill, warning = FALSE, fig.show='hide'}
+ggplot(loans, aes(x = loan_amount,
+                  fill = homeownership)) +
+  geom_histogram(binwidth = 5000,
+                 alpha = 0.5) +
+  labs(
+    x = "Loan amount ($)",
+    y = "Frequency",
+    title = "Amounts of Lending Club loans"
+  )
+```
+:::
+
+
+## Box plots
+
+Use `geom_boxplot()`.
+
+```{r echo = TRUE}
+ggplot(loans, aes(x = interest_rate)) +
+  geom_boxplot()
+```
+
+## Adding a categorical variable
+
+::: panel-tabset
+### Plot
+```{r ref.label = "box-cat", echo = FALSE, warning = FALSE}
+```
+### Code
+```{r box-cat, fig.show = "hide", warning = FALSE, echo = TRUE}
+ggplot(loans, aes(x = interest_rate,
+                  y = grade)) +
+  geom_boxplot() +
+  labs(
+    x = "Interest rate (%)",
+    y = "Grade",
+    title = "Interest rates of Lending Club loans",
+    subtitle = "by grade of loan"
+  )
+```
+:::
+
+
+
+<!-- ## Hex plot -->
+
+<!-- ```{r warning = FALSE, echo = TRUE} -->
+<!-- ggplot(loans %>% filter(debt_to_income < 100), -->
+<!--        aes(x = debt_to_income, y = interest_rate)) + -->
+<!--   geom_hex() -->
+<!-- ``` -->
+
+
+<!-- ## QQ-plots -->
+
+<!-- Determines if data conform to a theoretical distribution. -->
+
+<!-- ```{r echo = FALSE, warning = FALSE, message = FALSE} -->
+<!-- ggplot(penguins, aes(sample = body_mass_g)) + -->
+<!--   stat_qq() + -->
+<!--   stat_qq_line() + -->
+<!--   labs(x = "Theoretical Quantiles", -->
+<!--        y = "Sample Quantiles", -->
+<!--        title = "QQ-plot for penguin body mass (g)") -->
+<!-- ``` -->
+
+
+## Bar plot
+
+```{r prompt=TRUE,comment='',collapse=TRUE,results='hide',fig.height=4,fig.width=4, echo = TRUE}
+# Read data from csv file using tidyverse
+fish <- read_csv(file="../data/Laengelmavesi.csv")
+```
+
+```{r fishwts, prompt=TRUE,comment='',collapse=TRUE,fig.show='hide', echo=TRUE}
+ggplot(fish, aes(x = fct_reorder(species,weight), 
+                 y = weight)) +
+  geom_col(fill="steelblue") +
+  labs(x = "species")
+```
+The call to `fct_reorder()` will reorder the species according to a different vector, here the weight.  
+
+----
+
+```{r ref.label="fishwts"}
+```
+
+
+------------------------------------------------------------------------
+
+## Segmented bar plot
+
+```{r echo=TRUE}
+ggplot(loans, aes(x = homeownership,
+                  fill = grade)) + 
+  geom_bar()
+```
+
+------------------------------------------------------------------------
+
+## Segmented bar plot
+
+```{r echo=TRUE}
+ggplot(loans, aes(x = homeownership, fill = grade)) +
+  geom_bar(position = "fill") 
+```
+
+------------------------------------------------------------------------
+
+Which bar plot is a more useful representation for visualizing the relationship between homeownership and grade?
+
+::: columns
+::: {.column width="50%"}
+```{r echo=FALSE, out.width = "100%"}
+ggplot(loans, aes(x = homeownership, fill = grade)) +
+  geom_bar()
+```
+:::
+
+::: {.column width="50%"}
+```{r echo=FALSE, out.width = "100%"}
+ggplot(loans, aes(x = homeownership, fill = grade)) +
+  geom_bar(position = "fill")
+```
+:::
+:::
+
+<!-- ## Customizing bar plots -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="40%"} -->
+```{r bar-custom, fig.show = "hide", warning = FALSE, echo = FALSE}
+ggplot(loans, aes(y = homeownership, #<<
+                  fill = grade)) +
+  geom_bar(position = "fill") +
+  labs( #<<
+    x = "Proportion", #<<
+    y = "Homeownership", #<<
+    fill = "Grade", #<<
+    title = "Grades of Lending Club loans", #<<
+    subtitle = "and homeownership of lendee" #<<
+  ) #<<
+```
+<!-- ::: -->
+
+<!-- ::: {.column width="60%"} -->
+<!-- ```{r bar-custom4, fig.show = "asis", warning = FALSE, echo = FALSE} -->
+<!-- ggplot(loans, aes(y = fct_rev(grade))) + #, #y = homeownership, #<< -->
+<!--                   #fill = grade)) + -->
+<!--   geom_bar() + -->
+<!--   facet_wrap(~homeownership) + -->
+<!--   #facet_grid(grade~homeownership) + -->
+<!--   labs( #<< -->
+<!--     x = "Number of loans", #<< -->
+<!--     y = "Grade", #<< -->
+<!--     #fill = "Grade", #<< -->
+<!--     title = "Grades of Lending Club loans", #<< -->
+<!--     subtitle = "and homeownership of lendee" #<< -->
+<!--   ) + #<< -->
+<!--   scale_fill_viridis_d() -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+
+<!-- ## Customizing bar plots -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="40%"} -->
+<!-- ```{r ref.label = "bar-custom", echo = FALSE, warning = FALSE} -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: {.column width="60%"} -->
+<!-- ```{r bar-custom2, fig.show = "asis", warning = FALSE, echo = FALSE} -->
+<!-- ggplot(loans |> group_by(homeownership, grade) |> count() |> -->
+<!--          ungroup() |> group_by(homeownership) |> -->
+<!--          mutate(count = n/sum(n, na.rm=TRUE)) -->
+<!--          , aes(x = count, y = fct_rev(grade))) + #, #y = homeownership, #<< -->
+<!--                   #fill = grade)) + -->
+<!--   geom_col() + -->
+<!--   facet_wrap(~homeownership) + -->
+<!--   #facet_grid(grade~homeownership) + -->
+<!--   labs( #<< -->
+<!--     x = "Proportion", #<< -->
+<!--     y = "Grade", #<< -->
+<!--     #fill = "Grade", #<< -->
+<!--     title = "Grades of Lending Club loans", #<< -->
+<!--     subtitle = "and homeownership of lendee" #<< -->
+<!--   ) + #<< -->
+<!--   scale_fill_viridis_d() -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+## Customizing bar plots
+
+::: columns
+::: {.column width="40%"}
+```{r ref.label = "bar-custom", echo = FALSE, warning = FALSE}
+```
+:::
+
+::: {.column width="60%"}
+```{r bar-custom3, fig.show = "asis", warning = FALSE, echo = FALSE}
+ggplot(loans |> group_by(homeownership, grade) |> count() |>
+         ungroup() |> group_by(homeownership) |>
+         mutate(count = n/sum(n, na.rm=TRUE))
+         , aes(x = count, y = fct_rev(grade), #) + #, #y = homeownership, #<<
+                  fill = homeownership)) +
+  geom_col(position="dodge") +
+  #facet_wrap(~homeownership) +
+  #facet_grid(grade~homeownership) +
+  labs( #<<
+    x = "Proportion", #<<
+    y = "Grade", #<<
+    #fill = "Grade", #<<
+    title = "Grades of Lending Club loans", #<<
+    subtitle = "and homeownership of lendee" #<<
+  ) + #<<
+  scale_fill_viridis_d()
+```
+:::
+:::
+
+
+<!-- ## Violin plots -->
+
+<!-- ```{r warning = FALSE, echo = TRUE} -->
+<!-- ggplot(loans, aes(x = homeownership, y = loan_amount)) + -->
+<!--   geom_violin() -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ## Ridge plots -->
+
+<!-- ```{r warning = FALSE, echo = TRUE} -->
+<!-- library(ggridges) -->
+<!-- ggplot(loans, aes(x = loan_amount, y = grade, fill = grade, color = grade)) + -->
+<!--   geom_density_ridges(alpha = 0.5) -->
+<!-- ``` -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ## Raincloud plots -->
+
+<!-- ::: {.panel-tabset} -->
+<!-- ### Plot -->
+<!-- ```{r ref.label = "rainclouds", echo=FALSE} -->
+<!-- ``` -->
+
+<!-- ### Code -->
+<!-- ```{r rainclouds, fig.show='hide', warning = FALSE, echo = TRUE} -->
+<!-- library(ggdist) -->
+<!-- library(gghalves) -->
+<!-- ggplot(penguins, aes(species, bill_length_mm)) + -->
+<!--   ggdist::stat_halfeye(adjust = .5, width = .3, .width = 0, justification = -.3, point_colour = NA) + -->
+<!--   geom_boxplot(width = .1, outlier.shape = NA) + -->
+<!--   gghalves::geom_half_point(side = "l", range_scale = .4, alpha = .5) + -->
+<!--   coord_flip() -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ------------------------------------------------------------------------ -->
+
+<!-- ## Contour plot -->
+
+<!-- ```{r warning = FALSE, echo = TRUE} -->
+<!-- v <- ggplot(faithfuld, aes(waiting, eruptions, z = density)) -->
+<!-- v + geom_contour() -->
+<!-- ``` -->
+
+
+## Lab exercise 3/3  (Laengelmavesi revisited) {.smaller}
+
+Use the data in `Laengelmavesi2.xlsx` to create the following graphs. Make sure to add axis labels and plot titles.    
+
+1. Create boxplots and histograms of the length distributions for each species.  
+2. Plot all the weights vs the lengths. Include enough information that the data for each species can be identified.  
+3. Plot the mean weight of each species as a function of the mean length, with the species names and mean heights also indicated on the plot.  
+4. Create one plot of the heights as a function of the lengths. Add a line separating fish with height greater than 20cm.  
+5. _bonus_ Add to your plot from step (2) the mean weight and length  for each species.
