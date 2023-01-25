@@ -12,18 +12,18 @@ tbl-colwidths: [5,10,30,5,5,5,5,5,5,5]
 This page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, with all changes documented here.
 
 ::: column-screen-inset-right
-<table style="width:99%;">
+<table style="width:89%;">
 <colgroup>
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -44,8 +44,8 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"><p><a href="/weeks/week-01.html">1</a></p></td>
 <td><p>Tue, Jan 17</p></td>
 <td><p>Introduction</p></td>
-<td style="text-align: center;"><p><a href="/weeks/week-01.html#prepare" aria-label="Week 1 summary"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="/lectures/lec-01.pptx" aria-label="Lab 0 slides" title="Lab slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><a href="/weeks/week-01.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="/lectures/lec-01.pptx" title="Lab slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -59,7 +59,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><p><a href="labs/lab-exercise-01.pdf"><span class="emoji" data-emoji="clipboard">📋</span></a></p></td>
-<td style="text-align: center;"><p><a href="/labs/lab-01.html" aria-label="Lab 0 instructions" title="Lab instructions"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
+<td style="text-align: center;"><p><a href="/labs/lab-01.html" title="Lab instructions"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -68,8 +68,8 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td><p>Thu, Jan 19</p></td>
 <td><p>Probability review</p></td>
-<td style="text-align: center;"><p><a href="/weeks/week-01.html#prepare" aria-label="Week 1 summary"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="/lectures/lec-02.pdf" aria-label="Lecture 1 slides" title="Lecture slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><a href="/weeks/week-01.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="/lectures/lec-02.pdf" title="Lecture slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -80,8 +80,8 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"><p><a href="/weeks/week-02.html">2</a></p></td>
 <td><p>Tue, Jan 24</p></td>
 <td><p>Data exploration, checking</p></td>
-<td style="text-align: center;"><p><a href="/weeks/week-02.html#prepare" aria-label="Week 1 summary"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="/lectures/lec-03.html" aria-label="Lab 1 slides" title="Lab slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><a href="/weeks/week-02.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="/lectures/lec-03.html" title="Lab slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -106,8 +106,8 @@ This page will contain an outline of the topics, content, and assignments for th
 <td><p>Lab 2 - Visualizing data</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><p><a href="labs/lab-exercise-01.pdf"><span class="emoji" data-emoji="clipboard">📋</span></a></p></td>
-<td style="text-align: center;"><p><a href="/labs/lab-02.html" aria-label="Lab 0 instructions" title="Lab instructions"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
+<td style="text-align: center;"><p><a href="labs/lab-exercise-02.pdf"><span class="emoji" data-emoji="clipboard">📋</span></a></p></td>
+<td style="text-align: center;"><p><a href="/labs/lab-02.html" title="Lab instructions"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -116,8 +116,8 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td><p>Thu, Jan 26</p></td>
 <td><p>Linear regression review</p></td>
-<td style="text-align: center;"><p><a href="/weeks/week-02.html#prepare" aria-label="Week 2 summary"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="/slides/lec-03.html" aria-label="Lecture 3 slides" title="Lecture slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><a href="/weeks/week-02.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="/slides/lec-03.html" title="Lecture slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -168,7 +168,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><p><a href="labs/lab-exercise-01.pdf"><span class="emoji" data-emoji="clipboard">📋</span></a></p></td>
-<td style="text-align: center;"><p><a href="/labs/lab-02.html" aria-label="Lab 0 instructions" title="Lab instructions"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
+<td style="text-align: center;"><p><a href="/labs/lab-02.html" title="Lab instructions"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -194,5 +194,5 @@ knitr::knit_exit()
 ```
 
 |      |      |       | Prepare | Slides | AE  |                                                    Labs                                                    | HW  | Exam | Project |
-|-----|-----|-----|:---:|:---:|:---:|:---------------------------:|:---:|:---:|:---:|
+|-------|-------|-------|:-----:|:-----:|:-----:|:-------------:|:-----:|:-----:|:-----:|
 | Week | Date | Topic |   📖    |   🖥️   | 📋  | [💻](https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786) | ✍️  |  ✅  |   📂    |

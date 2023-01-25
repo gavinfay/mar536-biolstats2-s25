@@ -11,7 +11,7 @@
     "href": "labs/lab-02.html#today",
     "title": "MAR 536: Lab 2",
     "section": "Today",
-    "text": "Today\nDatasets\n– hills (Review from last week) – lake Laengelmavesi dataset – gapminder – loans – palmer penguins\nTopics\n– Review, more data structures – Plotting in R"
+    "text": "Today\nDatasets\n\nhills (Review from last week)\nlake Laengelmavesi dataset\ngapminder\nloans\npalmer penguins\n\nTopics\n\nReview, more data structures\nPlotting in R"
   },
   {
     "objectID": "labs/lab-02.html#review-data-types",
@@ -572,6 +572,34 @@
     "title": "Biological Stats 2: Lab 1",
     "section": "Next time…",
     "text": "Next time…\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Vizualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
+  },
+  {
+    "objectID": "labs/lab-exercise-02.html#r-laboratory-exercise-2",
+    "href": "labs/lab-exercise-02.html#r-laboratory-exercise-2",
+    "title": "MAR 536 - Spring 2023",
+    "section": "R Laboratory Exercise 2",
+    "text": "R Laboratory Exercise 2\nJanuary 25, 2023\nOpen a new R markdown file. Save it. (name it lastname_lab2.Rmd or something similar)\nAt the top of the script, add comments with your name and lab 2. Work in pairs or individually. Submit your Rmd and any other files via myCourses before lab next week."
+  },
+  {
+    "objectID": "labs/lab-exercise-02.html#lab-exercise-13-laengelmavesi-penguins",
+    "href": "labs/lab-exercise-02.html#lab-exercise-13-laengelmavesi-penguins",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 1/3 (Laengelmavesi + penguins)",
+    "text": "Lab exercise 1/3 (Laengelmavesi + penguins)\nRead in the data in the ‘data’ sheet of Laengelmavesi2.xlsx and:\n\nDisplay the number of observations for each species of fish. (hint: the function count() will tell you how many rows)\n\nFind the overall mean lengths, weights, and heights of fish in the data.\n\nFind the range of the lengths of Perch.\n\nCalculate the mean length for each species.\n\nbonus With the Pike data, create a new factor for small and large based on the weights.\n\nUse the ggpairs() function in library(GGally) to create a pairs plot for the palmer penguins data. What are five things you learn about the data and the penguins from this view of the data?"
+  },
+  {
+    "objectID": "labs/lab-exercise-02.html#lab-exercise-23-gapminder-data",
+    "href": "labs/lab-exercise-02.html#lab-exercise-23-gapminder-data",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 2/3: Gapminder data",
+    "text": "Lab exercise 2/3: Gapminder data\n\nUse the gapminder data to replicate as close as possible this graph. (Try out different ‘themes’ with + theme_XXXX())\n\n\n\n\n\n\n\nbonus plot time series of life expectancy by continent and country. (You can use geom_line() to link points)"
+  },
+  {
+    "objectID": "labs/lab-exercise-02.html#lab-exercise-33-laengelmavesi-revisited",
+    "href": "labs/lab-exercise-02.html#lab-exercise-33-laengelmavesi-revisited",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 3/3 (Laengelmavesi revisited)",
+    "text": "Lab exercise 3/3 (Laengelmavesi revisited)\nUse the data in Laengelmavesi2.xlsx to create the following graphs. Make sure to add axis labels and plot titles.\n\nCreate boxplots and histograms of the length distributions for each species.\n\nPlot all the weights vs the lengths. Include enough information that the data for each species can be identified.\n\nPlot the mean weight of each species as a function of the mean length, with the species names and mean heights also indicated on the plot.\n\nCreate one plot of the heights as a function of the lengths. Add a line separating fish with height greater than 20cm.\n\nbonus Add to your plot from step (2) the mean weight and length for each species."
   },
   {
     "objectID": "LICENSE.html#creative-commons-attribution-sharealike-4.0-international-public-license",

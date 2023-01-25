@@ -49,18 +49,19 @@ loans <- loans_full_schema
 **Acknowledgements: Mine Çetinkaya-Rundel, Amanda Hart**
 
 ## Today
+
 Datasets
 
--- hills (Review from last week)
--- lake Laengelmavesi dataset 
--- gapminder 
--- loans
--- palmer penguins
+-  hills (Review from last week)
+-  lake Laengelmavesi dataset 
+-  gapminder 
+-  loans
+-  palmer penguins
 
 Topics
 
--- Review, more data structures
--- Plotting in R
+-  Review, more data structures
+-  Plotting in R
 
 ## Review, data types
 
