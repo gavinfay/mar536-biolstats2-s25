@@ -21,12 +21,10 @@ execute:
   #slidy_presentation: default
 ---
 
-
 ```{r}
 #| include: false
 library(countdown)
 ```
-
 
 ## Lab schedule
 
@@ -42,13 +40,13 @@ library(countdown)
 
 ## Format for lab component
 
-- Description/overview of concepts by instructor
-- Live coding. Interactive, follow along yourselves
-- Lab exercises to practice material
-- Assignment each week is to finish the exercises
-- Extra credit: #TidyTuesday
-- Community support\
-*"Try stuff and see what happens"*
+-   Description/overview of concepts by instructor
+-   Live coding. Interactive, follow along yourselves
+-   Lab exercises to practice material
+-   Assignment each week is to finish the exercises
+-   Extra credit: #TidyTuesday
+-   Community support\
+    *"Try stuff and see what happens"*
 
 ## 
 
@@ -57,7 +55,6 @@ library(countdown)
 ## 
 
 ![](figs/datascience_workflow.png)
-
 
 ## Why R? {.small}
 
@@ -108,10 +105,9 @@ There are many (many) R books out there. Good for reference. e.g.\
 - Modern Applied Statistics with S, 20002 (Venables and Ripley)\
 - Introductory Statistics with R, 2002 (Dalgaard)
 
-
 ## Reproducibility checklist
 
-_What does it mean for a data analysis to be "reproducible"?_
+*What does it mean for a data analysis to be "reproducible"?*
 
 . . .
 
@@ -134,53 +130,48 @@ Long-term goals:
 -   Literate programming (code, narrative, output in one place) $\rightarrow$ R Markdown
 -   Version control $\rightarrow$ Git / GitHub
 
-
 ## R and RStudio {.small}
 
-:::: {.columns}
-
+::: columns
 ::: {.column width="50%"}
-
 ```{r echo=FALSE, out.width="25%"}
 knitr::include_graphics("img/r-logo.png")
 ```
 
 -   R is an open-source statistical **programming language**
 -   R is also an environment for statistical computing and graphics
--   It's easily extensible with *packages* 
-
+-   It's easily extensible with *packages*
 :::
 
 ::: {.column width="50%"}
-
 ```{r echo=FALSE, out.width="50%"}
 knitr::include_graphics("img/RStudio-Logo-Flat.png")
 ```
 
 -   RStudio is a convenient interface for R called an **IDE** (integrated development environment), e.g. *"I write R code in the RStudio IDE"*
 -   RStudio is not a requirement for programming with R, but it's very commonly used by R programmers and data scientists
-
 :::
-::::
-
+:::
 
 ## Using R today: RStudio Cloud
 
 An alternative:
 
--   web browser interface
-    <https://posit.cloud/content/5243518>
-
+-   web browser interface <https://posit.cloud/content/5243518>
 
 ------------------------------------------------------------------------
 
 ## R packages {.small}
 
--   **Packages** are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data ^[Wickham and Bryan, [R Packages](https://r-pkgs.org/)]
+-   **Packages** are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data [^1]
 
--   As of September 2020, there are over 16,000 R packages available on **CRAN** (the Comprehensive R Archive Network)^[[CRAN contributed packages](https://cran.r-project.org/web/packages/)]
+-   As of September 2020, there are over 16,000 R packages available on **CRAN** (the Comprehensive R Archive Network)[^2]
 
 -   We're going to work with a small (but important) subset of these!
+
+[^1]: Wickham and Bryan, [R Packages](https://r-pkgs.org/)
+
+[^2]: [CRAN contributed packages](https://cran.r-project.org/web/packages/)
 
 ------------------------------------------------------------------------
 
@@ -201,7 +192,7 @@ do_this(to_this)
 do_that(to_this, to_that, with_those)
 ```
 
-. . . 
+. . .
 
 -   Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
 
@@ -214,32 +205,26 @@ library(package_name)
 
 ## tidyverse
 
-:::: {.columns}
-
+::: columns
 ::: {.column width="50%"}
-
 ```{r echo=FALSE, out.width="99%"}
 knitr::include_graphics("img/tidyverse.png")
 ```
-
 :::
 
 ::: {.column width="50%"}
-
 [tidyverse.org](https://www.tidyverse.org/)
 
 -   The **tidyverse** is an opinionated collection of R packages designed for data science
 -   All packages share an underlying philosophy and a common grammar
-
 :::
-::::
+:::
 
 ------------------------------------------------------------------------
 
 ## Getting started
 
-Enter instructions at R console command line prompt (`>`):
-e.g. type
+Enter instructions at R console command line prompt (`>`): e.g. type
 
 ```{r,results='hide',prompt=TRUE,strip.white=TRUE, echo=TRUE}
 2 + 2
@@ -263,8 +248,7 @@ x <- 3
 2*x
 ```
 
-The `<-` means 'assign'. i.e. 'assign a value of 3 to the variable x'.
-`<-` is preferable to using `=`
+The `<-` means 'assign'. i.e. 'assign a value of 3 to the variable x'. `<-` is preferable to using `=`
 
 ## Scripts and RStudio {.small}
 
@@ -295,24 +279,20 @@ Or...
 
 ## rmarkdown {.small}
 
-:::: {.columns}
-
+::: columns
 ::: {.column width="70%"}
-
 [rmarkdown.rstudio.com](https://rmarkdown.rstudio.com/)
 
 -   **rmarkdown** and the various packages that support it enable R users to write their code and prose in reproducible computational documents
--   We will generally refer to R Markdown documents (with `.Rmd` extension), e.g. *"Do this in your R Markdown document"* and rarely discuss loading the rmarkdown package 
-
+-   We will generally refer to R Markdown documents (with `.Rmd` extension), e.g. *"Do this in your R Markdown document"* and rarely discuss loading the rmarkdown package
 :::
 
 ::: {.column width="30%"}
-
 ```{r echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/rmarkdown.png")
 ```
 :::
-::::
+:::
 
 ------------------------------------------------------------------------
 
@@ -378,8 +358,7 @@ Read function documentation and explore behavior by running examples!
 
 ## R Markdown help
 
-:::: {.columns}
-
+::: columns
 ::: {.column width="50%"}
 R Markdown Cheat Sheet\
 `Help -> Cheatsheets`\
@@ -397,7 +376,7 @@ Markdown Quick Reference\
 knitr::include_graphics("img/md-cheatsheet.png")
 ```
 :::
-::::
+:::
 
 ## Projects in RStudio {.small}
 
@@ -628,9 +607,9 @@ head(hills,n=3) # shows first few lines. Also tail()
 names(hills)  # get the names of the data frame
 ```
 
-. . . 
+. . .
 
-Creating dataframes 
+Creating dataframes
 
 ```{r prompt=TRUE,echo=TRUE, comment='',collapse=TRUE}
 fish <- c("cod","haddock","dogfish","pollock")
@@ -658,7 +637,6 @@ hills$climb[1]
 hills[1,]
 ```
 
-
 ------------------------------------------------------------------------
 
 ```{r prompt=TRUE,comment='',echo =TRUE, collapse=TRUE,R.options=library(MASS)}
@@ -682,12 +660,10 @@ Data frames are commonly used in a structure called a 'tibble', from the tidyver
 library(tidyverse)
 ```
 
-
 ```{r prompt=TRUE,echo=TRUE, comment='',collapse=TRUE}
 hills_tbl <- as_tibble(hills)
 hills_tbl
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -696,7 +672,6 @@ Extract variables using the `select` verb function in the `dplyr` package
 ```{r prompt=TRUE,comment='',echo=TRUE, collapse=TRUE,R.options=library(MASS)}
 dplyr::select(hills,dist)
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -713,17 +688,27 @@ Create a new variable of the race names
 <!-- :::: {.columns} -->
 
 <!-- ::: {.column width="50%"} -->
+
 <!-- ```{r, prompt=TRUE,comment='',echo=TRUE,eval=FALSE, collapse=TRUE,R.options=library(MASS)} -->
+
 <!-- library(ggplot2) -->
+
 <!-- ggplot(data = hills_tbl, mapping = aes(x=dist,y=time)) + -->
+
 <!--   geom_point(aes(size = climb), alpha = 1/3) + -->
+
 <!--   xlab("Distance (miles)") + -->
+
 <!--   ylab("Record Time (mins)") + -->
+
 <!--   xlim(0,30) + ylim(0,225) -->
+
 <!-- ``` -->
+
 <!-- ::: -->
 
 <!-- ::: {.column width="50%"} -->
+
 ```{r, prompt=TRUE,comment='',echo=TRUE,eval=TRUE, collapse=TRUE,R.options=library(MASS)}
 library(ggplot2)
 ggplot(data = hills_tbl, mapping = aes(x=dist,y=time)) +
@@ -732,7 +717,9 @@ ggplot(data = hills_tbl, mapping = aes(x=dist,y=time)) +
   ylab("Record Time (mins)") +
   xlim(0,30) + ylim(0,225)
 ```
+
 <!-- ::: -->
+
 <!-- :::: -->
 
 ## Extracting elements logically {.small}
@@ -763,7 +750,6 @@ fish_data |>
 The pipe passes the result from one function call to the next.\
 Can be read as "and then".\
 (also the older tidyverse pipe: %\>% )\
-
 
 ## Summarizing Data {.small}
 
@@ -807,7 +793,7 @@ Some advanced functions are cleaner and do things more quickly.\
 6.  Display the names of the hill races that have a climb greater than the mean.\
 7.  Display the names and times of the races that are at least 10 miles long and have a climb greater than 4000 feet.\
 8.  Find the standard deviation of the record times for all races except for the highest climb, the Bens of Jura.\
-9. Display the range (minimum and maximum) of the average speed for the races.\
+9.  Display the range (minimum and maximum) of the average speed for the races.\
 10. Find the race that had the fastest average speed.\
 11. **BONUS** Find the mean of the record times for races whose names start with letters A through K.
 
@@ -822,7 +808,3 @@ Some advanced functions are cleaner and do things more quickly.\
 3/01: Simulation, Resampling\
 3/15: Flex: more modeling (brms, glmmTMB)\
 3/29: Spatial data or tidymodeling
-
-
-
-

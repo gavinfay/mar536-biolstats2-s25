@@ -1,5 +1,257 @@
 [
   {
+    "objectID": "labs/lab-02.html#lab-schedule",
+    "href": "labs/lab-02.html#lab-schedule",
+    "title": "MAR 536: Lab 2",
+    "section": "Lab schedule",
+    "text": "Lab schedule\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling\nAcknowledgements: Mine Çetinkaya-Rundel, Amanda Hart"
+  },
+  {
+    "objectID": "labs/lab-02.html#today",
+    "href": "labs/lab-02.html#today",
+    "title": "MAR 536: Lab 2",
+    "section": "Today",
+    "text": "Today\nDatasets\n– hills (Review from last week) – lake Laengelmavesi dataset – gapminder – loans – palmer penguins\nTopics\n– Review, more data structures – Plotting in R"
+  },
+  {
+    "objectID": "labs/lab-02.html#review-data-types",
+    "href": "labs/lab-02.html#review-data-types",
+    "title": "MAR 536: Lab 2",
+    "section": "Review, data types",
+    "text": "Review, data types\n\nhills$climb ##print a vector\n [1]  650 2500  900  800 3070 2866 7500  800  800  650 2100 2000 2200  500 1500\n[16] 3000 2200  350 1000  600  300 1500 2200  900  600 2000  800  950 1750  500\n[31] 4400  600 5200  850 5000\nselect(hills, climb)\n                 climb\nGreenmantle        650\nCarnethy          2500\nCraig Dunain       900\nBen Rha            800\nBen Lomond        3070\nGoatfell          2866\nBens of Jura      7500\nCairnpapple        800\nScolty             800\nTraprain           650\nLairig Ghru       2100\nDollar            2000\nLomonds           2200\nCairn Table        500\nEildon Two        1500\nCairngorm         3000\nSeven Hills       2200\nKnock Hill         350\nBlack Hill        1000\nCreag Beag         600\nKildcon Hill       300\nMeall Ant-Suidhe  1500\nHalf Ben Nevis    2200\nCow Hill           900\nN Berwick Law      600\nCreag Dubh        2000\nBurnswark          800\nLargo Law          950\nCriffel           1750\nAcmony             500\nBen Nevis         4400\nKnockfarrel        600\nTwo Breweries     5200\nCockleroi          850\nMoffat Chase      5000"
+  },
+  {
+    "objectID": "labs/lab-02.html#review-data-exploration",
+    "href": "labs/lab-02.html#review-data-exploration",
+    "title": "MAR 536: Lab 2",
+    "section": "Review, data exploration",
+    "text": "Review, data exploration\n\n# Short data summaries\nmean(hills$time)\n[1] 57.87571\n# Look at format\ntail(hills) # last 6 rows\n              dist climb    time\nAcmony         5.0   500  20.950\nBen Nevis     10.0  4400  85.583\nKnockfarrel    6.0   600  32.383\nTwo Breweries 18.0  5200 170.250\nCockleroi      4.5   850  28.100\nMoffat Chase  20.0  5000 159.833\n# General summary good for a quick look at large data sets\nsummary(hills)\n      dist            climb           time       \n Min.   : 2.000   Min.   : 300   Min.   : 15.95  \n 1st Qu.: 4.500   1st Qu.: 725   1st Qu.: 28.00  \n Median : 6.000   Median :1000   Median : 39.75  \n Mean   : 7.529   Mean   :1815   Mean   : 57.88  \n 3rd Qu.: 8.000   3rd Qu.:2200   3rd Qu.: 68.62  \n Max.   :28.000   Max.   :7500   Max.   :204.62"
+  },
+  {
+    "objectID": "labs/lab-02.html#missing-values-na.",
+    "href": "labs/lab-02.html#missing-values-na.",
+    "title": "MAR 536: Lab 2",
+    "section": "Missing values (NA).",
+    "text": "Missing values (NA).\n\nweights <- c(25,34,75,NA,21,32,NA)\n\nMany functions do not handle missing values by default.\n\nmean(weights)\n[1] NA\nmean(weights,na.rm=TRUE)\n[1] 37.4\n\nOmit missing values.\n\nna.omit(weights)\n[1] 25 34 75 21 32\nattr(,\"na.action\")\n[1] 4 7\nattr(,\"class\")\n[1] \"omit\"\ndrop_na(penguins)\n# A tibble: 333 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   <fct>   <fct>              <dbl>         <dbl>             <int>       <int>\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           36.7          19.3               193        3450\n 5 Adelie  Torgersen           39.3          20.6               190        3650\n 6 Adelie  Torgersen           38.9          17.8               181        3625\n 7 Adelie  Torgersen           39.2          19.6               195        4675\n 8 Adelie  Torgersen           41.1          17.6               182        3200\n 9 Adelie  Torgersen           38.6          21.2               191        3800\n10 Adelie  Torgersen           34.6          21.1               198        4400\n# … with 323 more rows, and 2 more variables: sex <fct>, year <int>\n\ndrop_na() removes rows with any missing values. This is not (often) what we want to do. The naniar package contains functions for treatment of missing values."
+  },
+  {
+    "objectID": "labs/lab-02.html#categorical-variables",
+    "href": "labs/lab-02.html#categorical-variables",
+    "title": "MAR 536: Lab 2",
+    "section": "Categorical variables",
+    "text": "Categorical variables\nFactors are vectors with discrete values assigned to each element.\nCan specify a categorical variable as a factor using factor().\n\n substrate <- c(\"cobble\",\"mud\",\"sand\")\n is.factor(substrate)\n[1] FALSE\n substrate.fac <- factor(substrate)\n substrate.fac\n[1] cobble mud    sand  \nLevels: cobble mud sand\n is.factor(substrate.fac)\n[1] TRUE"
+  },
+  {
+    "objectID": "labs/lab-02.html#numbers-to-factors",
+    "href": "labs/lab-02.html#numbers-to-factors",
+    "title": "MAR 536: Lab 2",
+    "section": "Numbers to factors",
+    "text": "Numbers to factors\nCategorical variables are often coded numerically.\n\n substrate <- c(1,1,2,2,3,2,1,3)\n substrate.fac <- factor(substrate,\n                  labels=c(\"cobble\",\"mud\",\"sand\"))\n substrate.fac\n[1] cobble cobble mud    mud    sand   mud    cobble sand  \nLevels: cobble mud sand\n\nTo find the levels of a factor:\n\nlevels(substrate.fac)\n[1] \"cobble\" \"mud\"    \"sand\"  \n\ndroplevels(myfactor) will remove unused levels.\nThe forcats package is a great way of dealing with categorical variables. We’ll cover examples of its usage during the course."
+  },
+  {
+    "objectID": "labs/lab-02.html#reading-in-data",
+    "href": "labs/lab-02.html#reading-in-data",
+    "title": "MAR 536: Lab 2",
+    "section": "Reading in data",
+    "text": "Reading in data\nSo far we have either typed in data values, or used built-in datasets.\nLots of functions to read data from files, including:\n\nscan()\n\n\nflexible, reads data into a vector.\nvery fast, good for large or messy data.\n\n\nread.table, read.csv\n\n\neasy to use, reads data into a data frame.\n\n\nread_excel, read_csv (in tidyverse)\n\n\nlibrary(readxl) has many functions for reading from MS Excel spreadsheets"
+  },
+  {
+    "objectID": "labs/lab-02.html#using-read_excel",
+    "href": "labs/lab-02.html#using-read_excel",
+    "title": "MAR 536: Lab 2",
+    "section": "Using read_excel()",
+    "text": "Using read_excel()\nRead data from Finnish lake Laengelmavesi\nSave Laengelmavesi2.xlsx to your computer.\nEither to your project directory or create a directory called ‘data’.\n\nlibrary(readxl)\nfish_data <- read_excel(\n             path = \"../data/Laengelmavesi2.xlsx\",\n                   sheet = \"data\", na = \"NA\")\n# fish_data <- read_csv(file=\"../data/Laengelmavesi2.csv\",\n#                   header=TRUE,sep=\",\")\n# R will look for the file in the working directory.\n# Provide the directory path to the file if it is elsewhere"
+  },
+  {
+    "objectID": "labs/lab-02.html#lab-exercise-13-laengelmavesi-penguins",
+    "href": "labs/lab-02.html#lab-exercise-13-laengelmavesi-penguins",
+    "title": "MAR 536: Lab 2",
+    "section": "Lab exercise 1/3 (Laengelmavesi + penguins)",
+    "text": "Lab exercise 1/3 (Laengelmavesi + penguins)\nRead in the data in the ‘data’ sheet of Laengelmavesi2.xlsx and:\n\nDisplay the number of observations for each species of fish. (hint: the function count() will tell you how many rows)\n\nFind the overall mean lengths, weights, and heights of fish in the data.\n\nFind the range of the lengths of Perch.\n\nCalculate the mean length for each species.\n\nbonus With the Pike data, create a new factor for small and large based on the weights.\n\nUse the ggpairs() function in library(GGally) to create a pairs plot for the palmer penguins data. What are five things you learn about the data and the penguins from this view of the data?"
+  },
+  {
+    "objectID": "labs/lab-02.html#base-graphics-plot",
+    "href": "labs/lab-02.html#base-graphics-plot",
+    "title": "MAR 536: Lab 2",
+    "section": "Base graphics: plot()",
+    "text": "Base graphics: plot()\nplot() is the generic function for plotting R objects.\n\nplot() is an overloaded function.\n\nwhat it returns depends on the type of objects that are given to it.\n\nthere are versions of plot that provide useful outputs for many R functions.\n\ne.g. plot.lm() is a version that plots typical diagnostics from a linear model object. (but you still just type plot(myobject))."
+  },
+  {
+    "objectID": "labs/lab-02.html#plots-are-like-onionsthey-have-layers",
+    "href": "labs/lab-02.html#plots-are-like-onionsthey-have-layers",
+    "title": "MAR 536: Lab 2",
+    "section": "Plots are like onions…they have layers",
+    "text": "Plots are like onions…they have layers\n\n\nBoth base R and ggplot use a layers approach to plotting.\n\nPlot type\nPoints\nLines\nColors\nLabels\nStyles\netc."
+  },
+  {
+    "objectID": "labs/lab-02.html#ggplot2-in-tidyverse",
+    "href": "labs/lab-02.html#ggplot2-in-tidyverse",
+    "title": "MAR 536: Lab 2",
+    "section": "ggplot2 \\(\\in\\) tidyverse",
+    "text": "ggplot2 \\(\\in\\) tidyverse\n\n\n\n\n\n\n\n\n\nggplot2 is tidyverse’s data visualization package\ngg in “ggplot2” stands for Grammar of Graphics\nInspired by the book Grammar of Graphics by Leland Wilkinson"
+  },
+  {
+    "objectID": "labs/lab-02.html#grammar-of-graphics",
+    "href": "labs/lab-02.html#grammar-of-graphics",
+    "title": "MAR 536: Lab 2",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\nA grammar of graphics is a tool that enables us to concisely describe the components of a graphic"
+  },
+  {
+    "objectID": "labs/lab-02.html#hello-ggplot2",
+    "href": "labs/lab-02.html#hello-ggplot2",
+    "title": "MAR 536: Lab 2",
+    "section": "Hello ggplot2!",
+    "text": "Hello ggplot2!\n\nggplot() is the main function in ggplot2\nPlots are constructed in layers\nStructure of the code for plots can be summarized as\n\n\nggplot(data = [dataset],\n       mapping = aes(x = [x-variable], y = [y-variable])) +\n   geom_xxx() +\n   other options\n\n\nThe ggplot2 package comes with the tidyverse\nFor help with ggplot2, see ggplot2.tidyverse.org"
+  },
+  {
+    "objectID": "labs/lab-02.html#palmer-penguins",
+    "href": "labs/lab-02.html#palmer-penguins",
+    "title": "MAR 536: Lab 2",
+    "section": "Palmer Penguins",
+    "text": "Palmer Penguins\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       colour = \"Species\") +\n  scale_color_viridis_d()\n\nBy default R uses variable names as axis labels. Use labs() to add text & captions, etc."
+  },
+  {
+    "objectID": "labs/lab-02.html#ggplot-layers",
+    "href": "labs/lab-02.html#ggplot-layers",
+    "title": "MAR 536: Lab 2",
+    "section": "ggplot layers",
+    "text": "ggplot layers\nTo begin\n– All ggplots begin with a call to ggplot()\nData\n– data frame containing variables for plot\nAesthetics\n– specify how data variables relate to graph properties – e.g. what goes on x & y axis, etc. – mapping argument passed to ggplot() via aes()\nGeometry\n– a call to a geometry (geom_) determines plot type – may require additional geometry-specific aesthetics\nOther options\n– summary statistics – adjust overall appearance (color, size, shape…) – add labels, captions, theme, etc. – faceting & coordinate system"
+  },
+  {
+    "objectID": "labs/lab-02.html#axis-limits",
+    "href": "labs/lab-02.html#axis-limits",
+    "title": "MAR 536: Lab 2",
+    "section": "Axis limits",
+    "text": "Axis limits\nR chooses x and y limits just larger than the range of the data.\nTo change the default x and y values use xlim and ylim.\n\nggplot(data = fish_data, mapping = aes(x= length, \n                                       y = weight)) + \n  geom_point() +\n  xlim(0, 50) +\n  ylim(0, 800) +\n  labs(title = \"Laengelmavesi fish\",\n         subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n         x = \"Length (cm)\",\n         y = \"Weight (g)\",\n         caption = \"\\nplot created by \\n@gavin_fay\")"
+  },
+  {
+    "objectID": "labs/lab-02.html#colors",
+    "href": "labs/lab-02.html#colors",
+    "title": "MAR 536: Lab 2",
+    "section": "Colors",
+    "text": "Colors\nColors of points, lines, text etc. can all be specified.\nIf you want to map color to a variable then this should be done in the aes().\nColors can be specified as numbers, text string, or hex codes col=1 or col=\"red\"\n\nggplot(data = fish_data, mapping = aes(x= length,\n                                       y = weight)) + \n  geom_point(col = \"blue\") + # Change point color to blue\n  xlim(0, 50) +\n  ylim(0, 800) +\n  labs(title = \"Laengelmavesi fish\",\n         subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n         x = \"Length (cm)\",\n         y = \"Weight (g)\",\n         caption = \"\\nplot created by \\n@gavin_fay\")"
+  },
+  {
+    "objectID": "labs/lab-02.html#map-color-to-a-variable",
+    "href": "labs/lab-02.html#map-color-to-a-variable",
+    "title": "MAR 536: Lab 2",
+    "section": "Map color to a variable",
+    "text": "Map color to a variable\n\nggplot(data = fish_data, \n       mapping = aes(x= length,\n                     y = weight, \n                     col = species)) + # Color by species\n  geom_point() +\n  xlim(0, 50) +\n  ylim(0, 800) +\n  labs(title = \"Laengelmavesi fish\",\n         subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n         x = \"Length (cm)\",\n         y = \"Weight (g)\",\n         caption = \"\\nplot created by \\n@gavin_fay\")"
+  },
+  {
+    "objectID": "labs/lab-02.html#points",
+    "href": "labs/lab-02.html#points",
+    "title": "MAR 536: Lab 2",
+    "section": "Points",
+    "text": "Points\nUse the shape and size aesthetics to adjust point type and size ::: {.cell}\nggplot(data = fish_data, \n       mapping = aes(x= length, \n                     y = weight, \n                     col = species, \n                     size = height)) + # Set point size proportional to body height\n  geom_point(shape = 8) + # Change point type\n  xlim(0, 50) +\n  ylim(0, 800) +\n  labs(title = \"Laengelmavesi fish\",\n         subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n         x = \"Length (cm)\",\n         y = \"Weight (g)\",\n         caption = \"\\nplot created by \\n@gavin_fay\")\n:::"
+  },
+  {
+    "objectID": "labs/lab-02.html#faceting-small-multiples",
+    "href": "labs/lab-02.html#faceting-small-multiples",
+    "title": "MAR 536: Lab 2",
+    "section": "Faceting (small multiples)",
+    "text": "Faceting (small multiples)\n\nSmaller plots that display different subsets of the data\nUseful for exploring conditional relationships and large data\n\nfacet_grid([rows],[cols])\nfacet_wrap(~[var])"
+  },
+  {
+    "objectID": "labs/lab-02.html#lab-exercise-23",
+    "href": "labs/lab-02.html#lab-exercise-23",
+    "title": "MAR 536: Lab 2",
+    "section": "Lab exercise 2/3",
+    "text": "Lab exercise 2/3\n\n\nUse the gapminder data to replicate as close as possible this graph. (Try out different ‘themes’ with + theme_XXXX())\n\nbonus plot time series of life expectancy by continent and country. (You can use geom_line() to link points)"
+  },
+  {
+    "objectID": "labs/lab-02.html#data-lending-club",
+    "href": "labs/lab-02.html#data-lending-club",
+    "title": "MAR 536: Lab 2",
+    "section": "Data: Lending Club",
+    "text": "Data: Lending Club\n\n\n\nThousands of loans made through the Lending Club, which is a platform that allows individuals to lend to other individuals\nNot all loans are created equal – ease of getting a loan depends on (apparent) ability to pay back the loan\nData includes loans made, these are not loan applications"
+  },
+  {
+    "objectID": "labs/lab-02.html#selected-variables",
+    "href": "labs/lab-02.html#selected-variables",
+    "title": "MAR 536: Lab 2",
+    "section": "Selected variables",
+    "text": "Selected variables\n\nloans <- loans_full_schema %>%\n  select(loan_amount, interest_rate, term, grade,\n         state, annual_income, homeownership, debt_to_income)\nglimpse(loans)\n\nRows: 10,000\nColumns: 8\n$ loan_amount    <int> 28000, 5000, 2000, 21600, 23000, 5000, 24000, 20000, 20…\n$ interest_rate  <dbl> 14.07, 12.61, 17.09, 6.72, 14.07, 6.72, 13.59, 11.99, 1…\n$ term           <dbl> 60, 36, 36, 36, 36, 36, 60, 60, 36, 36, 60, 60, 36, 60,…\n$ grade          <ord> C, C, D, A, C, A, C, B, C, A, C, B, C, B, D, D, D, F, E…\n$ state          <fct> NJ, HI, WI, PA, CA, KY, MI, AZ, NV, IL, IL, FL, SC, CO,…\n$ annual_income  <dbl> 90000, 40000, 40000, 30000, 35000, 34000, 35000, 110000…\n$ homeownership  <fct> MORTGAGE, RENT, RENT, RENT, RENT, OWN, MORTGAGE, MORTGA…\n$ debt_to_income <dbl> 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.19, 3…"
+  },
+  {
+    "objectID": "labs/lab-02.html#variable-types",
+    "href": "labs/lab-02.html#variable-types",
+    "title": "MAR 536: Lab 2",
+    "section": "Variable types",
+    "text": "Variable types\n\n\n\nvariable\ntype\n\n\n\n\nloan_amount\nnumerical, continuous\n\n\ninterest_rate\nnumerical, continuous\n\n\nterm\nnumerical, discrete\n\n\ngrade\ncategorical, ordinal\n\n\nstate\ncategorical, not ordinal\n\n\nannual_income\nnumerical, continuous\n\n\nhomeownership\ncategorical, not ordinal\n\n\ndebt_to_income\nnumerical, continuous"
+  },
+  {
+    "objectID": "labs/lab-02.html#histograms",
+    "href": "labs/lab-02.html#histograms",
+    "title": "MAR 536: Lab 2",
+    "section": "Histograms",
+    "text": "Histograms\ngeom_histogram()\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
+  },
+  {
+    "objectID": "labs/lab-02.html#histograms-and-binwidth",
+    "href": "labs/lab-02.html#histograms-and-binwidth",
+    "title": "MAR 536: Lab 2",
+    "section": "Histograms and binwidth",
+    "text": "Histograms and binwidth\nbinwidth = 2000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 2000)"
+  },
+  {
+    "objectID": "labs/lab-02.html#customizing-histograms",
+    "href": "labs/lab-02.html#customizing-histograms",
+    "title": "MAR 536: Lab 2",
+    "section": "Customizing histograms",
+    "text": "Customizing histograms\nFill with a categorical variable\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = loan_amount,\n                  fill = homeownership)) +\n  geom_histogram(binwidth = 5000,\n                 alpha = 0.5) +\n  labs(\n    x = \"Loan amount ($)\",\n    y = \"Frequency\",\n    title = \"Amounts of Lending Club loans\"\n  )"
+  },
+  {
+    "objectID": "labs/lab-02.html#box-plots",
+    "href": "labs/lab-02.html#box-plots",
+    "title": "MAR 536: Lab 2",
+    "section": "Box plots",
+    "text": "Box plots\nUse geom_boxplot().\n\nggplot(loans, aes(x = interest_rate)) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "labs/lab-02.html#adding-a-categorical-variable",
+    "href": "labs/lab-02.html#adding-a-categorical-variable",
+    "title": "MAR 536: Lab 2",
+    "section": "Adding a categorical variable",
+    "text": "Adding a categorical variable\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(loans, aes(x = interest_rate,\n                  y = grade)) +\n  geom_boxplot() +\n  labs(\n    x = \"Interest rate (%)\",\n    y = \"Grade\",\n    title = \"Interest rates of Lending Club loans\",\n    subtitle = \"by grade of loan\"\n  )"
+  },
+  {
+    "objectID": "labs/lab-02.html#bar-plot",
+    "href": "labs/lab-02.html#bar-plot",
+    "title": "MAR 536: Lab 2",
+    "section": "Bar plot",
+    "text": "Bar plot\n\n# Read data from csv file using tidyverse\nfish <- read_csv(file=\"../data/Laengelmavesi.csv\")\n\n\nggplot(fish, aes(x = fct_reorder(species,weight), \n                 y = weight)) +\n  geom_col(fill=\"steelblue\") +\n  labs(x = \"species\")\n\nThe call to fct_reorder() will reorder the species according to a different vector, here the weight."
+  },
+  {
+    "objectID": "labs/lab-02.html#segmented-bar-plot",
+    "href": "labs/lab-02.html#segmented-bar-plot",
+    "title": "MAR 536: Lab 2",
+    "section": "Segmented bar plot",
+    "text": "Segmented bar plot\n\nggplot(loans, aes(x = homeownership,\n                  fill = grade)) + \n  geom_bar()"
+  },
+  {
+    "objectID": "labs/lab-02.html#segmented-bar-plot-1",
+    "href": "labs/lab-02.html#segmented-bar-plot-1",
+    "title": "MAR 536: Lab 2",
+    "section": "Segmented bar plot",
+    "text": "Segmented bar plot\n\nggplot(loans, aes(x = homeownership, fill = grade)) +\n  geom_bar(position = \"fill\")"
+  },
+  {
+    "objectID": "labs/lab-02.html#customizing-bar-plots",
+    "href": "labs/lab-02.html#customizing-bar-plots",
+    "title": "MAR 536: Lab 2",
+    "section": "Customizing bar plots",
+    "text": "Customizing bar plots"
+  },
+  {
+    "objectID": "labs/lab-02.html#lab-exercise-33-laengelmavesi-revisited",
+    "href": "labs/lab-02.html#lab-exercise-33-laengelmavesi-revisited",
+    "title": "MAR 536: Lab 2",
+    "section": "Lab exercise 3/3 (Laengelmavesi revisited)",
+    "text": "Lab exercise 3/3 (Laengelmavesi revisited)\nUse the data in Laengelmavesi2.xlsx to create the following graphs. Make sure to add axis labels and plot titles.\n\nCreate boxplots and histograms of the length distributions for each species.\n\nPlot all the weights vs the lengths. Include enough information that the data for each species can be identified.\n\nPlot the mean weight of each species as a function of the mean length, with the species names and mean heights also indicated on the plot.\n\nCreate one plot of the heights as a function of the lengths. Add a line separating fish with height greater than 20cm.\n\nbonus Add to your plot from step (2) the mean weight and length for each species.\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
+  },
+  {
     "objectID": "labs/lab-01.html#lab-schedule",
     "href": "labs/lab-01.html#lab-schedule",
     "title": "Biological Stats 2: Lab 1",
@@ -322,20 +574,6 @@
     "text": "Next time…\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Vizualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   },
   {
-    "objectID": "labs/lab-02-temp.html#data-exploration-checking",
-    "href": "labs/lab-02-temp.html#data-exploration-checking",
-    "title": "Biological Stats 2: Lecture 3",
-    "section": "Data exploration, checking",
-    "text": "Data exploration, checking\nAcknowledgements: Mine Çetinkaya-Rundel, Amanda Hart"
-  },
-  {
-    "objectID": "labs/lab-02-temp.html#chapter-4.-data-exploration",
-    "href": "labs/lab-02-temp.html#chapter-4.-data-exploration",
-    "title": "Biological Stats 2: Lecture 3",
-    "section": "Chapter 4. Data Exploration",
-    "text": "Chapter 4. Data Exploration\n\nWhat’s in a data set?\nSummarizing & visualizing data\nOutliers, transformations, standardizations\nFinal thoughts"
-  },
-  {
     "objectID": "LICENSE.html#creative-commons-attribution-sharealike-4.0-international-public-license",
     "href": "LICENSE.html#creative-commons-attribution-sharealike-4.0-international-public-license",
     "title": "MAR 536 - Spring 2023",
@@ -354,7 +592,7 @@
     "href": "weeks/week-02.html#participate",
     "title": "Week 2",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 3 - Data exploration, checking\n\nPlot description practice (Acknowledgements: S. Stoudt)\n\n⌨️ Lab 2 - Data Visualization (just the exercise)\n🖥️ Lecture 4 - Regression review"
+    "text": "Participate\n🖥️ Lecture 3 - Data exploration, checking\n\nPlot description practice (Acknowledgements: S. Stoudt)\n\n⌨️ Lab 2 - Data Visualization (just the exercise)\n\nlake Laengelmavesi fish data\n\n🖥️ Lecture 4 - Regression review"
   },
   {
     "objectID": "weeks/week-02.html#practice",
@@ -756,6 +994,13 @@
     "text": "Data: Palmer Penguins\nMeasurements for penguin species, on islands in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex. Horst et al. 2022. R Journal\n\n\n\n\n\n\n\n\n\nlibrary(palmerpenguins)\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               <fct> male, female, female, NA, female, male, female, male…\n$ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…"
   },
   {
+    "objectID": "lectures/lec-03.html#palmer-penguins",
+    "href": "lectures/lec-03.html#palmer-penguins",
+    "title": "Biological Stats 2: Lecture 3",
+    "section": "Palmer Penguins",
+    "text": "Palmer Penguins\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     colour = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       colour = \"Species\") +\n  scale_color_viridis_d()"
+  },
+  {
     "objectID": "lectures/lec-03.html#faceting-small-multiples",
     "href": "lectures/lec-03.html#faceting-small-multiples",
     "title": "Biological Stats 2: Lecture 3",
@@ -991,7 +1236,7 @@
     "href": "lectures/lec-03.html#pair-plots",
     "title": "Biological Stats 2: Lecture 3",
     "section": "Pair plots",
-    "text": "Pair plots\n\nScatterplot for each pair of variables.\nMeasures of correlation\n\n\nggpairs(penguins, columns=3:6)"
+    "text": "Pair plots\n\nScatterplot for each pair of variables.\nMeasures of correlation\n\n\nlibrary(GGally)\nggpairs(penguins, columns=3:6)"
   },
   {
     "objectID": "lectures/lec-03.html#über-pair-plot",
