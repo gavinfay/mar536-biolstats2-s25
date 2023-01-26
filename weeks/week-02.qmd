@@ -22,6 +22,8 @@ editor: visual
 
 🖥️ [Lecture 4 - Regression review](../lectures/lec-04.pdf)
 
+-   NB: class canceled - watch the lecture recording. Link in your email.
+
 ## Practice
 
 Your [project topic ideas](../project-description.html) are due on Thursday Jan 26.
