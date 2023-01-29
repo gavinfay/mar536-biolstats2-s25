@@ -574,6 +574,272 @@
     "text": "Next time…\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Vizualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   },
   {
+    "objectID": "labs/lab-03.html",
+    "href": "labs/lab-03.html",
+    "title": "Bio Stats II : Lab 3",
+    "section": "",
+    "text": "1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n1/31: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling"
+  },
+  {
+    "objectID": "labs/lab-03.html#review",
+    "href": "labs/lab-03.html#review",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Review",
+    "text": "Review\n\n\n\n\n\n\n\nsuppressPackageStartupMessages(library(tidyverse))\nlibrary(gapminder)\ngapdata <- gapminder %>% \n  filter(year >= 1990 & year <= 2007) %>% \n  group_by(continent)\nggplot(gapdata, aes(x = gdpPercap/1000,\n                    y = lifeExp,\n                    size = pop/1000000,\n                    color = continent)) +\n  geom_point(alpha = 0.5) +\n  ylim(20,100) +\n  labs(title = \"Life Expectancy varies with GDP\",\n         subtitle = \"1990 - 2007\",\n          x = \"GDP per capita ($1000s)\",\n          y = \"Life expectancy (yrs)\",\n         caption = \"Plot created by @gavin_fay\",\n       size = \"Population (M)\",\n       color = \"Continent\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "labs/lab-03.html#recommended-reading",
+    "href": "labs/lab-03.html#recommended-reading",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Recommended reading",
+    "text": "Recommended reading\nAn introduction to R (Venables et al.)\n– http://cran.r-project.org/doc/manuals/R-intro.pdf - Today’s material: Chapters 8, 11."
+  },
+  {
+    "objectID": "labs/lab-03.html#probability-distributions-in-r",
+    "href": "labs/lab-03.html#probability-distributions-in-r",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Probability distributions in R",
+    "text": "Probability distributions in R\nR includes a set of probability distributions that can be used to simulate and model data.\nIf the function for the probability model is named xxx\n\npxxx: the cumulative distribution \\(P(X \\leq x)\\)\n\ndxxx: the probability distribution/density function \\(f(x)\\)\n\nqxxx: the quantile \\(q\\), the smallest \\(x\\) such that \\(P(X \\leq x) > q\\)\n\nrxxx: generate a random variable from the model xxx"
+  },
+  {
+    "objectID": "labs/lab-03.html#probability-distributions-in-r-1",
+    "href": "labs/lab-03.html#probability-distributions-in-r-1",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Probability distributions in R",
+    "text": "Probability distributions in R"
+  },
+  {
+    "objectID": "labs/lab-03.html#standard-normal-distribution",
+    "href": "labs/lab-03.html#standard-normal-distribution",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Standard normal distribution",
+    "text": "Standard normal distribution\n(\\(\\mu=0\\), \\(\\sigma^2=1\\))"
+  },
+  {
+    "objectID": "labs/lab-03.html#functions-for-normal-distribution",
+    "href": "labs/lab-03.html#functions-for-normal-distribution",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Functions for normal distribution",
+    "text": "Functions for normal distribution\nValues of \\(x\\) for different quantiles\nqnorm(p, mean=0, sd=1, lower.tail=TRUE, log.p=FALSE)\n\nquants <- qnorm(c(0.01,0.025,0.05,0.95,0.975,0.99)) \nround(quants,2) \n[1] -2.33 -1.96 -1.64  1.64  1.96  2.33\n\n\\(P(X \\leq x)\\)\npnorm(q, mean=0, sd=1, lower.tail=TRUE, log.p=FALSE)\n\npnorm(quants) \n[1] 0.010 0.025 0.050 0.950 0.975 0.990"
+  },
+  {
+    "objectID": "labs/lab-03.html#functions-for-normal-distribution-1",
+    "href": "labs/lab-03.html#functions-for-normal-distribution-1",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Functions for normal distribution",
+    "text": "Functions for normal distribution\nDensity (probability ‘mass’ per unit value of \\(x\\))\n\ndnorm(quants, mean = 0, sd = 1)\n[1] 0.02665214 0.05844507 0.10313564 0.10313564 0.05844507 0.02665214\n\nGenerating standard normal random variables\n\nrnorm(n=10, mean = 0, sd = 1)\n [1]  1.60304871  0.65171969  0.53207400 -0.07341058  2.20832788  0.72566657\n [7]  1.90116169 -2.20532868 -0.61104539  1.57547122"
+  },
+  {
+    "objectID": "labs/lab-03.html#generating-random-numbers",
+    "href": "labs/lab-03.html#generating-random-numbers",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Generating random numbers",
+    "text": "Generating random numbers\nOften a good idea to use set.seed() and save the script detailing which number was used.\nThis ensures you can exactly repeat your results.\n\nset.seed(42) \nrnorm(3) \n[1]  1.3709584 -0.5646982  0.3631284\nrnorm(3) \n[1]  0.6328626  0.4042683 -0.1061245\nset.seed(42) \nrnorm(3) \n[1]  1.3709584 -0.5646982  0.3631284\nrnorm(3) \n[1]  0.6328626  0.4042683 -0.1061245"
+  },
+  {
+    "objectID": "labs/lab-03.html#the-sample-function",
+    "href": "labs/lab-03.html#the-sample-function",
+    "title": "Bio Stats II : Lab 3",
+    "section": "The sample() function",
+    "text": "The sample() function\nTo generate random numbers from discrete sets of values:\n- With or without replacement\n- Equal or weighted probability\nExtremely useful function that underlies many modern statistical techniques:\n- Resampling\n- Bootstrapping\n- Markov-chain Monte-Carlo (MCMC)\ne.g. Roll 10 dice\n\nsample(1:6, size = 10, replace = TRUE)\n [1] 4 1 5 6 4 2 2 3 1 1\n\nPick 3 species of bear\n\nbears <- c(\"American Black\", \"Asian Black\", \"Brown\", \n           \"Panda\", \"Polar\", \"Sloth\", \"Spectacled\", \"Sun\")\nsample(bears, size = 3, replace = FALSE)\n[1] \"Brown\" \"Panda\" \"Polar\""
+  },
+  {
+    "objectID": "labs/lab-03.html#lab-exercise-13",
+    "href": "labs/lab-03.html#lab-exercise-13",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Lab Exercise 1/3",
+    "text": "Lab Exercise 1/3\n\nGenerate 1,000 random normal numbers with mean 24 and standard deviation 10. Find the proportion of those random numbers that are \\(\\geq2\\) standard deviations from the sample mean.\n\nFlip a (fair) coin six times.\n\nFind the probability of getting six heads on those six flips (i.e. \\(P(X=6)\\) given \\(n=6\\)).\n\nHow much more likely is it to get three heads than six?\n\nFor a standard normal random variable, find the number \\(x\\) such that \\(P(-x \\leq X \\leq x) = 0.24\\).\n\nThe mean rate of arrival of alewives at a weir is 3.5 per hour. Plot the probability distribution function for the number of alewife arrivals in an hour.\n\nFind the 95% confidence interval for the number of alewives arriving per day."
+  },
+  {
+    "objectID": "labs/lab-03.html#linear-models-in-r",
+    "href": "labs/lab-03.html#linear-models-in-r",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Linear models in R",
+    "text": "Linear models in R\nRecall linear regression model:\n\\[y_i = \\displaystyle\\sum_{j=0}^{p}\\beta_j x_{ij} + \\varepsilon_i \\text{ ,    } \\varepsilon_i \\sim N(0,\\sigma^2) \\text{ ,    } i=1,\\dots,n\\]\nIn matrix form: \\(y = X\\beta + \\varepsilon\\)\nModel formulae in R, \\(y \\sim x\\), try ?formula"
+  },
+  {
+    "objectID": "labs/lab-03.html#linear-models-lm",
+    "href": "labs/lab-03.html#linear-models-lm",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Linear models, lm()",
+    "text": "Linear models, lm()\nThe basic function for fitting ordinary multiple models is lm()\nfitted.model <- lm(formula, data = data.frame)\ne.g. species richness on beaches (Zuur Chapters 5 & 27)\n\nRIKZ <- read_table(file = \"../data/RIKZ.txt\")\nRIKZ <- RIKZ |>\n  mutate(Richness = rowSums(RIKZ[,2:76]>0)) |>\n  select(Richness, 77:89)\nRIKZ_lm1 <- lm(Richness ~ NAP, data = RIKZ)"
+  },
+  {
+    "objectID": "labs/lab-03.html#extracting-model-information",
+    "href": "labs/lab-03.html#extracting-model-information",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Extracting model information",
+    "text": "Extracting model information\nThe value of lm() is a fitted model object.\n- a list of results of class lm.\nInformation about the fitted model can be extracted, displayed, plotted, using some generic functions, inlcuding:\n\nanova(object1,object2) Compares a submodel with an outer model and produces an analysis of variance table\ncoef(object) Extract the regression coefficient\n\ndeviance(object) Residual sum of squares\n\nformula(object) Extract the model formula\n\nplot(object) Produce four plots, showing residuals, fitted values and some diagnostics\n\npredict(object, newdata=data.frame) Model predictions on new data\n\nresiduals(object) or resid(object) Extract the matrix of residuals\n\nstep(object) forward or backward model selection using AIC\n\nsummary(object) Print a comprehensive summary of the results\n\nvcov(object) Return variance-covariance matrix of main parameters"
+  },
+  {
+    "objectID": "labs/lab-03.html#summary-objects",
+    "href": "labs/lab-03.html#summary-objects",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Summary objects",
+    "text": "Summary objects\nsummary(lm1)\n\n\nCall:\nlm(formula = Richness ~ NAP, data = RIKZ)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-5.0675 -2.7607 -0.8029  1.3534 13.8723 \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)   6.6857     0.6578  10.164 5.25e-13 ***\nNAP          -2.8669     0.6307  -4.545 4.42e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.16 on 43 degrees of freedom\nMultiple R-squared:  0.3245,    Adjusted R-squared:  0.3088 \nF-statistic: 20.66 on 1 and 43 DF,  p-value: 4.418e-05"
+  },
+  {
+    "objectID": "labs/lab-03.html#broom-helper-functions",
+    "href": "labs/lab-03.html#broom-helper-functions",
+    "title": "Bio Stats II : Lab 3",
+    "section": "broom helper functions",
+    "text": "broom helper functions\nbroom::tidy()\n\nlibrary(broom)\ntidy(RIKZ_lm1, conf.int = TRUE)\n# A tibble: 2 × 7\n  term        estimate std.error statistic  p.value conf.low conf.high\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>    <dbl>     <dbl>\n1 (Intercept)     6.69     0.658     10.2  5.25e-13     5.36      8.01\n2 NAP            -2.87     0.631     -4.55 4.42e- 5    -4.14     -1.59\n\nbroom::glance()\n\nglance(RIKZ_lm1)\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic   p.value    df logLik   AIC   BIC\n      <dbl>         <dbl> <dbl>     <dbl>     <dbl> <dbl>  <dbl> <dbl> <dbl>\n1     0.325         0.309  4.16      20.7 0.0000442     1  -127.  260.  265.\n# … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>"
+  },
+  {
+    "objectID": "labs/lab-03.html#modelsummary",
+    "href": "labs/lab-03.html#modelsummary",
+    "title": "Bio Stats II : Lab 3",
+    "section": "{modelsummary}",
+    "text": "{modelsummary}\nThe {modelsummary} package provides a wealth of options for creating publication-quality summary tables from fitted model objects, with bindings for most of the types of models we are using in this class.\nThere are lots of options….\n\nlibrary(modelsummary)\nmodelsummary(list(lm1 = RIKZ_lm1), \n             statistic = \"conf.int\",\n             stars = TRUE)"
+  },
+  {
+    "objectID": "labs/lab-03.html#are-model-assumptions-met",
+    "href": "labs/lab-03.html#are-model-assumptions-met",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Are model assumptions met?",
+    "text": "Are model assumptions met?\nIn the MASS library there are many functions.\nAre samples independent? (Sample design.)\nResiduals normally distributed?\n- Histograms, qq-plots: qqplot() and qqline()\n- Kolmogorov-Smirnov normality test: ks.test()\n- Shapiro-Wilk normality test: shapiro.test()\nSimilar variance among samples?\n- Boxplots\n- Bartlett’s test for equal variance: bartlett.test()\n- Fligner-Killeen test for equal variance: fligner.test()"
+  },
+  {
+    "objectID": "labs/lab-03.html#checking-assumptions",
+    "href": "labs/lab-03.html#checking-assumptions",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Checking assumptions",
+    "text": "Checking assumptions\nModel assumptions can be evaluated by plotting the model object.\n\nplot(RIKZ_lm1)\n# OR\nlibrary(gglm)\ngglm(RIKZ_lm1)\n\n\n\ngglm(RIKZ_lm1)"
+  },
+  {
+    "objectID": "labs/lab-03.html#extracting-model-fit-residuals",
+    "href": "labs/lab-03.html#extracting-model-fit-residuals",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Extracting model fit & residuals",
+    "text": "Extracting model fit & residuals\nbroom::augment()\n\nRIKZ_lm1_aug <- augment(RIKZ_lm1, se_fit = )\nglimpse(RIKZ_lm1_aug)\nRows: 45\nColumns: 8\n$ Richness   <dbl> 11, 10, 13, 11, 10, 8, 9, 8, 19, 17, 6, 1, 4, 3, 3, 1, 3, 3…\n$ NAP        <dbl> 0.045, -1.036, -1.336, 0.616, -0.684, 1.190, 0.820, 0.635, …\n$ .fitted    <dbl> 6.556653, 9.655722, 10.515778, 4.919680, 8.646589, 3.274107…\n$ .resid     <dbl> 4.4433465, 0.3442783, 2.4842223, 6.0803197, 1.3534106, 4.72…\n$ .hat       <dbl> 0.02432839, 0.06623475, 0.08738853, 0.02387714, 0.04669014,…\n$ .sigma     <dbl> 4.151533, 4.208801, 4.189991, 4.100641, 4.203722, 4.142941,…\n$ .cooksd    <dbl> 0.0145788938, 0.0002601525, 0.0187094818, 0.0267685231, 0.0…\n$ .std.resid <dbl> 1.08136537, 0.08564557, 0.62511744, 1.47940908, 0.33321661,…"
+  },
+  {
+    "objectID": "labs/lab-03.html#extracting-model-fit-residuals-1",
+    "href": "labs/lab-03.html#extracting-model-fit-residuals-1",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Extracting model fit & residuals",
+    "text": "Extracting model fit & residuals\n\nRIKZ_lm1_aug <- augment(RIKZ_lm1, \n                        se_fit = TRUE)\nglimpse(RIKZ_lm1_aug)\nRows: 45\nColumns: 9\n$ Richness   <dbl> 11, 10, 13, 11, 10, 8, 9, 8, 19, 17, 6, 1, 4, 3, 3, 1, 3, 3…\n$ NAP        <dbl> 0.045, -1.036, -1.336, 0.616, -0.684, 1.190, 0.820, 0.635, …\n$ .fitted    <dbl> 6.556653, 9.655722, 10.515778, 4.919680, 8.646589, 3.274107…\n$ .se.fit    <dbl> 0.6488474, 1.0706040, 1.2297395, 0.6428018, 0.8988733, 0.81…\n$ .resid     <dbl> 4.4433465, 0.3442783, 2.4842223, 6.0803197, 1.3534106, 4.72…\n$ .hat       <dbl> 0.02432839, 0.06623475, 0.08738853, 0.02387714, 0.04669014,…\n$ .sigma     <dbl> 4.151533, 4.208801, 4.189991, 4.100641, 4.203722, 4.142941,…\n$ .cooksd    <dbl> 0.0145788938, 0.0002601525, 0.0187094818, 0.0267685231, 0.0…\n$ .std.resid <dbl> 1.08136537, 0.08564557, 0.62511744, 1.47940908, 0.33321661,…"
+  },
+  {
+    "objectID": "labs/lab-03.html#extracting-model-fit-residuals-2",
+    "href": "labs/lab-03.html#extracting-model-fit-residuals-2",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Extracting model fit & residuals",
+    "text": "Extracting model fit & residuals\n\nRIKZ_lm1_aug <- augment(RIKZ_lm1, \n                        interval = \"confidence\")\nglimpse(RIKZ_lm1_aug)\nRows: 45\nColumns: 10\n$ Richness   <dbl> 11, 10, 13, 11, 10, 8, 9, 8, 19, 17, 6, 1, 4, 3, 3, 1, 3, 3…\n$ NAP        <dbl> 0.045, -1.036, -1.336, 0.616, -0.684, 1.190, 0.820, 0.635, …\n$ .fitted    <dbl> 6.556653, 9.655722, 10.515778, 4.919680, 8.646589, 3.274107…\n$ .lower     <dbl> 5.24812804, 7.49664302, 8.03577164, 3.62334705, 6.83383871,…\n$ .upper     <dbl> 7.865179, 11.814800, 12.995784, 6.216014, 10.459340, 4.9208…\n$ .resid     <dbl> 4.4433465, 0.3442783, 2.4842223, 6.0803197, 1.3534106, 4.72…\n$ .hat       <dbl> 0.02432839, 0.06623475, 0.08738853, 0.02387714, 0.04669014,…\n$ .sigma     <dbl> 4.151533, 4.208801, 4.189991, 4.100641, 4.203722, 4.142941,…\n$ .cooksd    <dbl> 0.0145788938, 0.0002601525, 0.0187094818, 0.0267685231, 0.0…\n$ .std.resid <dbl> 1.08136537, 0.08564557, 0.62511744, 1.47940908, 0.33321661,…"
+  },
+  {
+    "objectID": "labs/lab-03.html#extracting-model-fit-residuals-3",
+    "href": "labs/lab-03.html#extracting-model-fit-residuals-3",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Extracting model fit & residuals",
+    "text": "Extracting model fit & residuals\n\nRIKZ_lm1_aug |>\n  janitor::clean_names() |>\n  ggplot() +\n  aes(x = nap, y = fitted) +\n  geom_line() + \n  geom_point(aes(x = nap, y= richness))"
+  },
+  {
+    "objectID": "labs/lab-03.html#fitting-models-directly-on-plots",
+    "href": "labs/lab-03.html#fitting-models-directly-on-plots",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Fitting models directly on plots",
+    "text": "Fitting models directly on plots\n\nggplot(RIKZ, aes(x = NAP, y = Richness)) +\n  geom_point() + \n  geom_smooth(method = \"lm\")\n`geom_smooth()` using formula 'y ~ x'"
+  },
+  {
+    "objectID": "labs/lab-03.html#building-and-comparing-models",
+    "href": "labs/lab-03.html#building-and-comparing-models",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Building and Comparing models",
+    "text": "Building and Comparing models\n\nlibrary(moderndive)\nggplot(RIKZ) +\n  aes(x = NAP, y = Richness, color = factor(week)) +\n  geom_point() + \n  labs(x = \"NAP\", y = \"Species Richness\", \n       color = \"Week\") +\n  geom_parallel_slopes(se = TRUE)"
+  },
+  {
+    "objectID": "labs/lab-03.html#building-and-comparing-models-1",
+    "href": "labs/lab-03.html#building-and-comparing-models-1",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Building and Comparing models",
+    "text": "Building and Comparing models\nAn alternative model for the RIKZ species richness is:\n\nRIKZ_lm2 <- lm(Richness ~ NAP + factor(week), data = RIKZ)\n#Can also create this model using the `update()` function:  \nRIKZ_lm2 <- update(RIKZ_lm1, .~. + factor(week))\n\nCompare models with AIC() and via anova()\n\nanova(RIKZ_lm1, RIKZ_lm2)\nAnalysis of Variance Table\n\nModel 1: Richness ~ NAP\nModel 2: Richness ~ NAP + factor(week)\n  Res.Df    RSS Df Sum of Sq      F    Pr(>F)    \n1     43 744.12                                  \n2     40 357.00  3    387.11 14.458 1.581e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
+  },
+  {
+    "objectID": "labs/lab-03.html#lab-exercise-23",
+    "href": "labs/lab-03.html#lab-exercise-23",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Lab exercise 2/3",
+    "text": "Lab exercise 2/3\n\nExtract the residuals from the RIKZ_lm2 model\n\nAre the linear regression assumptions met? Explain your reasoning\n\nSummarize the results of the model. What are the parameter estimates telling you about species richness on these beaches?"
+  },
+  {
+    "objectID": "labs/lab-03.html#model-predictions-for-new-data",
+    "href": "labs/lab-03.html#model-predictions-for-new-data",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Model predictions for new data",
+    "text": "Model predictions for new data\nBoth augment() and the predict() function can be used to obtain predictions from a fitted model object to a new data frame.\nThis can be useful when:\n- a subset of the data was reserved from the fitting process (‘test data’)\n- you want to obtain model predictions at values other than the data\n(for example when plotting fitted values)\n\nnewdata <- RIKZ |>\n  slice(1:10) |>\n  mutate(NAP = NAP + 1)\nnew_predictions <- augment(RIKZ_lm1, newdata = newdata)"
+  },
+  {
+    "objectID": "labs/lab-03.html#more-on-interrogating-model-results",
+    "href": "labs/lab-03.html#more-on-interrogating-model-results",
+    "title": "Bio Stats II : Lab 3",
+    "section": "More on interrogating model results",
+    "text": "More on interrogating model results\nYou can also interrogate model objects directly. Type names(object) to get a list of the components of object.\n\nnames(RIKZ_lm1)\n [1] \"coefficients\"  \"residuals\"     \"effects\"       \"rank\"         \n [5] \"fitted.values\" \"assign\"        \"qr\"            \"df.residual\"  \n [9] \"xlevels\"       \"call\"          \"terms\"         \"model\"        \n\nstr() can also be used."
+  },
+  {
+    "objectID": "labs/lab-03.html#more-on-interrogating-model-results-1",
+    "href": "labs/lab-03.html#more-on-interrogating-model-results-1",
+    "title": "Bio Stats II : Lab 3",
+    "section": "More on interrogating model results",
+    "text": "More on interrogating model results\nNote that summary(object) is also a list, and components can be extracted from here too.\n\nnames(summary(RIKZ_lm1))\n [1] \"call\"          \"terms\"         \"residuals\"     \"coefficients\" \n [5] \"aliased\"       \"sigma\"         \"df\"            \"r.squared\"    \n [9] \"adj.r.squared\" \"fstatistic\"    \"cov.unscaled\" \nstr(summary(RIKZ_lm1))\nList of 11\n $ call         : language lm(formula = Richness ~ NAP, data = RIKZ)\n $ terms        :Classes 'terms', 'formula'  language Richness ~ NAP\n  .. ..- attr(*, \"variables\")= language list(Richness, NAP)\n  .. ..- attr(*, \"factors\")= int [1:2, 1] 0 1\n  .. .. ..- attr(*, \"dimnames\")=List of 2\n  .. .. .. ..$ : chr [1:2] \"Richness\" \"NAP\"\n  .. .. .. ..$ : chr \"NAP\"\n  .. ..- attr(*, \"term.labels\")= chr \"NAP\"\n  .. ..- attr(*, \"order\")= int 1\n  .. ..- attr(*, \"intercept\")= int 1\n  .. ..- attr(*, \"response\")= int 1\n  .. ..- attr(*, \".Environment\")=<environment: R_GlobalEnv> \n  .. ..- attr(*, \"predvars\")= language list(Richness, NAP)\n  .. ..- attr(*, \"dataClasses\")= Named chr [1:2] \"numeric\" \"numeric\"\n  .. .. ..- attr(*, \"names\")= chr [1:2] \"Richness\" \"NAP\"\n $ residuals    : Named num [1:45] 4.443 0.344 2.484 6.08 1.353 ...\n  ..- attr(*, \"names\")= chr [1:45] \"1\" \"2\" \"3\" \"4\" ...\n $ coefficients : num [1:2, 1:4] 6.686 -2.867 0.658 0.631 10.164 ...\n  ..- attr(*, \"dimnames\")=List of 2\n  .. ..$ : chr [1:2] \"(Intercept)\" \"NAP\"\n  .. ..$ : chr [1:4] \"Estimate\" \"Std. Error\" \"t value\" \"Pr(>|t|)\"\n $ aliased      : Named logi [1:2] FALSE FALSE\n  ..- attr(*, \"names\")= chr [1:2] \"(Intercept)\" \"NAP\"\n $ sigma        : num 4.16\n $ df           : int [1:3] 2 43 2\n $ r.squared    : num 0.325\n $ adj.r.squared: num 0.309\n $ fstatistic   : Named num [1:3] 20.7 1 43\n  ..- attr(*, \"names\")= chr [1:3] \"value\" \"numdf\" \"dendf\"\n $ cov.unscaled : num [1:2, 1:2] 0.025 -0.00799 -0.00799 0.02299\n  ..- attr(*, \"dimnames\")=List of 2\n  .. ..$ : chr [1:2] \"(Intercept)\" \"NAP\"\n  .. ..$ : chr [1:2] \"(Intercept)\" \"NAP\"\n - attr(*, \"class\")= chr \"summary.lm\""
+  },
+  {
+    "objectID": "labs/lab-03.html#centering-covariates",
+    "href": "labs/lab-03.html#centering-covariates",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Centering covariates",
+    "text": "Centering covariates\nWhen dealing with numeric covariates, it often makes sense to center these variables before performing a regression.\n- i.e. subtract the mean from each covariate.\nThis helps to make our parameters more meaningful.\n- they now correspond to the average case in the data, rather than some extrapolated value.\n- this is particularly useful for intercept parameters."
+  },
+  {
+    "objectID": "labs/lab-03.html#fitting-multiple-models-simultaneously",
+    "href": "labs/lab-03.html#fitting-multiple-models-simultaneously",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Fitting multiple models simultaneously",
+    "text": "Fitting multiple models simultaneously\nWe may be interested in fitting many (many) models.\nR has functionality to do this efficiently.\n\nlibrary(broom)\nggplot(gapminder, aes(x=year, y=lifeExp, group = country)) +\n  geom_line() + \n  facet_wrap(~continent)"
+  },
+  {
+    "objectID": "labs/lab-03.html#fitting-multiple-models-simultaneously-1",
+    "href": "labs/lab-03.html#fitting-multiple-models-simultaneously-1",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Fitting multiple models simultaneously",
+    "text": "Fitting multiple models simultaneously\n\ngapminder_models <- gapminder |>\n  group_by(country) |> \n  nest() |> \n  mutate(model = map(data, ~lm(lifeExp~year, data = .x))) |> \n  mutate(coefs = map(model, tidy, conf.int = TRUE)) |> \n  unnest(coefs)\n\n\n\nggplot(gapminder_models, aes(x = estimate, group = term)) +\n  geom_histogram(fill=\"black\",col=\"white\") +\n  facet_wrap(~term, scales= \"free\")\n\n\n\n\n\n\nslopes <- filter(gapminder_models, term == \"year\") %>% \n      arrange(desc(estimate))\ncontinents <- select(gapminder, country, continent) |>\n  distinct() \nslopes <- slopes |> left_join(continents)\nJoining, by = \"country\"\nggplot(slopes, aes(x = fct_reorder(country, estimate), y = estimate, group = term, col = continent)) +\n  #geom_histogram(fill=\"black\",col=\"white\") +\n  geom_point(alpha=0.5) +\n  geom_errorbar(aes(ymin=conf.low, ymax=conf.high), width=.05) +\n  coord_flip() +\n  labs(y = \"slope\", \n       x = \"Country\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "labs/lab-03.html#lab-exercise-33",
+    "href": "labs/lab-03.html#lab-exercise-33",
+    "title": "Bio Stats II : Lab 3",
+    "section": "Lab exercise 3/3",
+    "text": "Lab exercise 3/3\n\n\n\nFit a linear regression using 2007 gapminder data of the form lm(gdpPercap ~ continent, where gdpPercap is the new outcome variable y. Get information about the best-fitting line from the regression table. How do the regression results match up with those of an analysis of life expectancy by continent?\n\nExtract the model coefficients and their 95 percent confidence intervals.\n\nPlot the residuals vs the fitted values and comment on their distribution and patterns.\n\nIdentify the five countries with the five most negative residuals? What do these negative residuals say about their life expectancy relative to their continents life expectancy?\n\nRepeat this process, but identify the five countries with the five most positive residuals. What do these positive residuals say about their life expectancy relative to their continents life expectancy?"
+  },
+  {
+    "objectID": "labs/lab-exercise-03.html#r-laboratory-exercise-2",
+    "href": "labs/lab-exercise-03.html#r-laboratory-exercise-2",
+    "title": "MAR 536 - Spring 2023",
+    "section": "R Laboratory Exercise 2",
+    "text": "R Laboratory Exercise 2\nJanuary 25, 2023\nOpen a new R markdown file. Save it. (name it lastname_lab2.Rmd or something similar)\nAt the top of the script, add comments with your name and lab 2. Work in pairs or individually. Submit your Rmd and any other files via myCourses before lab next week."
+  },
+  {
+    "objectID": "labs/lab-exercise-03.html#lab-exercise-13-laengelmavesi-penguins",
+    "href": "labs/lab-exercise-03.html#lab-exercise-13-laengelmavesi-penguins",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 1/3 (Laengelmavesi + penguins)",
+    "text": "Lab exercise 1/3 (Laengelmavesi + penguins)\nRead in the data in the ‘data’ sheet of Laengelmavesi2.xlsx and:\n\nDisplay the number of observations for each species of fish. (hint: the function count() will tell you how many rows)\n\nFind the overall mean lengths, weights, and heights of fish in the data.\n\nFind the range of the lengths of Perch.\n\nCalculate the mean length for each species.\n\nbonus With the Pike data, create a new factor for small and large based on the weights.\n\nUse the ggpairs() function in library(GGally) to create a pairs plot for the palmer penguins data. What are five things you learn about the data and the penguins from this view of the data?"
+  },
+  {
+    "objectID": "labs/lab-exercise-03.html#lab-exercise-23-gapminder-data",
+    "href": "labs/lab-exercise-03.html#lab-exercise-23-gapminder-data",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 2/3: Gapminder data",
+    "text": "Lab exercise 2/3: Gapminder data\n\nUse the gapminder data to replicate as close as possible this graph. (Try out different ‘themes’ with + theme_XXXX())\n\n\n\n\n\n\n\nbonus plot time series of life expectancy by continent and country. (You can use geom_line() to link points)"
+  },
+  {
+    "objectID": "labs/lab-exercise-03.html#lab-exercise-33-laengelmavesi-revisited",
+    "href": "labs/lab-exercise-03.html#lab-exercise-33-laengelmavesi-revisited",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 3/3 (Laengelmavesi revisited)",
+    "text": "Lab exercise 3/3 (Laengelmavesi revisited)\nUse the data in Laengelmavesi2.xlsx to create the following graphs. Make sure to add axis labels and plot titles.\n\nCreate boxplots and histograms of the length distributions for each species.\n\nPlot all the weights vs the lengths. Include enough information that the data for each species can be identified.\n\nPlot the mean weight of each species as a function of the mean length, with the species names and mean heights also indicated on the plot.\n\nCreate one plot of the heights as a function of the lengths. Add a line separating fish with height greater than 20cm.\n\nbonus Add to your plot from step (2) the mean weight and length for each species."
+  },
+  {
     "objectID": "labs/lab-exercise-02.html#r-laboratory-exercise-2",
     "href": "labs/lab-exercise-02.html#r-laboratory-exercise-2",
     "title": "MAR 536 - Spring 2023",
@@ -630,6 +896,27 @@
     "text": "Practice\nYour project topic ideas are due on Thursday Jan 26.\nLab 2 exercise is due before lab on Wednesday Feb 1.\n\n\nBack to course schedule ⏎"
   },
   {
+    "objectID": "weeks/week-03.html",
+    "href": "weeks/week-03.html",
+    "title": "Week 3",
+    "section": "",
+    "text": "📖 Read Chapters 8 & 11 of “An introduction to R (Venables et al.)” (Tue)\n📖 Read Chapter 7 of Hilborn & Mangel 1997 (Thu)"
+  },
+  {
+    "objectID": "weeks/week-03.html#participate",
+    "href": "weeks/week-03.html#participate",
+    "title": "Week 3",
+    "section": "Participate",
+    "text": "Participate\n⌨️ Lab 3 - Probability & Linear Modeling in R (just the exercise)\n\nspecies richness on beaches data (RIKZ.txt, Zuur Chapter 5, 27)\n\n🖥️ Tutorial - data exploration & catch rate model selection for cod (L McGinnis)\n🖥️ Lecture 5 - Likelihood"
+  },
+  {
+    "objectID": "weeks/week-03.html#practice",
+    "href": "weeks/week-03.html#practice",
+    "title": "Week 3",
+    "section": "Practice",
+    "text": "Practice\nLab 3 exercise is due before lab on Wednesday Feb 8.\n\n\nBack to course schedule ⏎"
+  },
+  {
     "objectID": "weeks/week-01.html",
     "href": "weeks/week-01.html",
     "title": "Week 1",
@@ -662,7 +949,7 @@
     "href": "index.html#course-schedule",
     "title": "MAR 536: Biological Statistics II",
     "section": "Course Schedule",
-    "text": "Course Schedule\nThis page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, with all changes documented here.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\n\n\n\n\nDate\n\n\n\n\nTopic\n\n\n\n\nPrepare\n\n\n\n\nSlides\n\n\n\n\nAE\n\n\n\n\nLab\n\n\n\n\nHW\n\n\n\n\nExam\n\n\n\n\nProject\n\n\n\n\n\n\n\n\n1\n\n\n\n\nTue, Jan 17\n\n\n\n\nIntroduction\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 18\n\n\n\n\nLab 1 -Intro to R/RStudio\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 19\n\n\n\n\nProbability review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n\n\nTue, Jan 24\n\n\n\n\nData exploration, checking\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 25\n\n\n\n\nDue: Lab 1\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 25\n\n\n\n\nLab 2 - Visualizing data\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 26\n\n\n\n\nLinear regression review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 26\n\n\n\n\nDue: Project topic\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n3\n\n\n\n\nTue, Jan 31\n\n\n\n\nLikelihood\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Feb 01\n\n\n\n\nDue: Lab 2\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed,\n\n\nFeb 01\n\n\n\n\nLab 3 - Probability & linear modeling\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 02\n\n\n\n\nGLMs\n\n\n\n\n📖\n\n\n\n\n🖥️"
+    "text": "Course Schedule\nThis page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, with all changes documented here.\n\n\n\n\n\n\n\nWeek\n\n\n\n\nDate\n\n\n\n\nTopic\n\n\n\n\nPrepare\n\n\n\n\nSlides\n\n\n\n\nAE\n\n\n\n\nLab\n\n\n\n\nHW\n\n\n\n\nExam\n\n\n\n\nProject\n\n\n\n\n\n\n\n\n1\n\n\n\n\nTue, Jan 17\n\n\n\n\nIntroduction\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 18\n\n\n\n\nLab 1 -Intro to R/RStudio\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 19\n\n\n\n\nProbability review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n\n\nTue, Jan 24\n\n\n\n\nData exploration, checking\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 25\n\n\n\n\nDue: Lab 1\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 25\n\n\n\n\nLab 2 - Visualizing data\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 26\n\n\n\n\nLinear regression review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 26\n\n\n\n\nDue: Project topic\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n3\n\n\n\n\nTue, Jan 31\n\n\n\n\nLab 3 - Probability & linear modeling\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Feb 01\n\n\n\n\nDue: Lab 2\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed,\n\n\nFeb 01\n\n\n\n\nLinear modeling application\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 02\n\n\n\n\nLikelihood\n\n\n\n\n📖\n\n\n\n\n🖥️"
   },
   {
     "objectID": "about.html",

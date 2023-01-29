@@ -375,7 +375,7 @@ gglm(RIKZ_lm1)
 
 ------------------------------------------------------------------------
 
-```{r prompt=TRUE,comment='',echo=TRUE,collapse=TRUE}
+```{r prompt=TRUE,comment='',echo=TRUE,collapse=TRUE,R.options=library(gglm)}
 gglm(RIKZ_lm1)
 ```
 
@@ -461,7 +461,7 @@ ggplot(RIKZ) +
 ```
 An alternative model for the RIKZ species richness is:
 
-```{r prompt=TRUE,comment='',collapse=TRUE,eval=FALSE}
+```{r prompt=TRUE,comment='',collapse=TRUE}
 RIKZ_lm2 <- lm(Richness ~ NAP + factor(week), data = RIKZ)
 #Can also create this model using the `update()` function:  
 RIKZ_lm2 <- update(RIKZ_lm1, .~. + factor(week))

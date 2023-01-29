@@ -8,7 +8,7 @@ editor: visual
 
 📖 Read Chapters 8 & 11 of "[An introduction to R (Venables et al.)](http://cran.r-project.org/doc/manuals/R-intro.pdf)" (Tue)
 
-📖 Read Chapter 7 of Hilborn & Mangel 1997 (Thu)
+📖 Read [Chapter 7 of Hilborn & Mangel 1997](documents/Hilborn_Mangel_1997_Chapter7.pdf) (Thu)
 
 ## Participate
 
