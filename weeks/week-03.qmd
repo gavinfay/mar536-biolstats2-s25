@@ -1,0 +1,31 @@
+---
+title: "Week 3"
+subtitle: "Linear model selection, Likelihood"
+editor: visual
+---
+
+## Prepare
+
+📖 Read Chapters 8 & 11 of "[An introduction to R (Venables et al.)](http://cran.r-project.org/doc/manuals/R-intro.pdf)" (Tue)
+
+📖 Read Chapter 7 of Hilborn & Mangel 1997 (Thu)
+
+## Participate
+
+⌨️ [Lab 3 - Probability & Linear Modeling in R](../labs/lab-03.pdf) (just the [exercise](../labs/lab-exercise-03.pdf))
+
+-   [species richness on beaches data (RIKZ.txt, Zuur Chapter 5, 27)](https://github.com/gavinfay/mar536-biolstats2-s23/tree/main/data/RIKZ.txt)
+
+🖥️ Tutorial - data exploration & catch rate model selection for cod (L McGinnis)
+
+🖥️ [Lecture 5 - Likelihood](../lectures/lec-05.pdf)
+
+## Practice
+
+Lab 3 exercise is due before lab on Wednesday Feb 8.
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/ "Course schedule") ⏎
+:::
