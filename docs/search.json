@@ -581,13 +581,6 @@
     "text": "1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n1/31: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling"
   },
   {
-    "objectID": "labs/lab-03.html#review",
-    "href": "labs/lab-03.html#review",
-    "title": "Bio Stats II : Lab 3",
-    "section": "Review",
-    "text": "Review\n\n\n\n\n\n\n\nsuppressPackageStartupMessages(library(tidyverse))\nlibrary(gapminder)\ngapdata <- gapminder %>% \n  filter(year >= 1990 & year <= 2007) %>% \n  group_by(continent)\nggplot(gapdata, aes(x = gdpPercap/1000,\n                    y = lifeExp,\n                    size = pop/1000000,\n                    color = continent)) +\n  geom_point(alpha = 0.5) +\n  ylim(20,100) +\n  labs(title = \"Life Expectancy varies with GDP\",\n         subtitle = \"1990 - 2007\",\n          x = \"GDP per capita ($1000s)\",\n          y = \"Life expectancy (yrs)\",\n         caption = \"Plot created by @gavin_fay\",\n       size = \"Population (M)\",\n       color = \"Continent\") +\n  theme_minimal()"
-  },
-  {
     "objectID": "labs/lab-03.html#recommended-reading",
     "href": "labs/lab-03.html#recommended-reading",
     "title": "Bio Stats II : Lab 3",
@@ -627,7 +620,7 @@
     "href": "labs/lab-03.html#functions-for-normal-distribution-1",
     "title": "Bio Stats II : Lab 3",
     "section": "Functions for normal distribution",
-    "text": "Functions for normal distribution\nDensity (probability ‘mass’ per unit value of \\(x\\))\n\ndnorm(quants, mean = 0, sd = 1)\n[1] 0.02665214 0.05844507 0.10313564 0.10313564 0.05844507 0.02665214\n\nGenerating standard normal random variables\n\nrnorm(n=10, mean = 0, sd = 1)\n [1]  1.60304871  0.65171969  0.53207400 -0.07341058  2.20832788  0.72566657\n [7]  1.90116169 -2.20532868 -0.61104539  1.57547122"
+    "text": "Functions for normal distribution\nDensity (probability ‘mass’ per unit value of \\(x\\))\n\ndnorm(quants, mean = 0, sd = 1)\n[1] 0.02665214 0.05844507 0.10313564 0.10313564 0.05844507 0.02665214\n\nGenerating standard normal random variables\n\nrnorm(n=10, mean = 0, sd = 1)\n [1] -0.6117713  0.1564874 -1.2640406 -0.7059636 -0.3142670 -0.1862943\n [7]  0.1838467  2.1651635  0.9719611 -0.3910794"
   },
   {
     "objectID": "labs/lab-03.html#generating-random-numbers",
