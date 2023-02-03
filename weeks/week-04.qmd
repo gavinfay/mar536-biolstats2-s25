@@ -1,0 +1,27 @@
+---
+title: "Week 3"
+subtitle: "Linear model selection, Likelihood"
+editor: visual
+---
+
+## Prepare
+
+📖 Read Chapters 6.1 (Tue) & 6.2 (Thu) of Zuur et al. 2007.
+
+## Participate
+
+🖥️ [Lecture 6 - Generalized Linear Models](../lectures/lec-06.pdf)
+
+⌨️ [Lab 4 - Data wrangling & model summaries](../labs/lab-04.pdf) (just the [exercise](../labs/lab-exercise-04.pdf))
+
+🖥️ [Lecture 7 - GLMs II (logistic regression)](../lectures/lec-07.pdf)
+
+## Practice
+
+Lab 4 exercise is due before lab on Wednesday Feb 15.
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/ "Course schedule") ⏎
+:::

@@ -22,69 +22,74 @@ subtitle: 'Acknowledgements: Punt & Branch Labs (U Washington)'
 3/15: Flex: more modeling (brms, glmmTMB)\
 3/29: Spatial data or tidymodeling
 
-## Review
-
-```{=tex}
-\begingroup
-\fontsize{10}{11}\selectfont
-```
-```{r prompt=TRUE,comment='',collapse=TRUE,echo=FALSE,out.width="80%"}
+<!-- ## Review -->
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 suppressPackageStartupMessages(library(tidyverse))
 library(gapminder)
-gapdata <- gapminder %>% 
-  filter(year >= 1990 & year <= 2007) %>% 
-  group_by(continent)
-ggplot(gapdata, aes(x = gdpPercap/1000,
-                    y = lifeExp,
-                    size = pop/1000000,
-                    color = continent)) +
-  geom_point(alpha = 0.5) +
-  ylim(20,100) +
-  labs(title = "Life Expectancy varies with GDP",
-         subtitle = "1990 - 2007",
-          x = "GDP per capita ($1000s)",
-          y = "Life expectancy (yrs)",
-         caption = "Plot created by @gavin_fay",
-       size = "Population (M)",
-       color = "Continent") +
-  theme_minimal() 
 ```
 
-```{=tex}
-\endgroup
-```
+<!-- ```{=tex} -->
+<!-- \begingroup -->
+<!-- \fontsize{10}{11}\selectfont -->
+<!-- ``` -->
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,echo=FALSE,out.width="80%"} -->
+<!-- suppressPackageStartupMessages(library(tidyverse)) -->
+<!-- library(gapminder) -->
+<!-- gapdata <- gapminder %>%  -->
+<!--   filter(year >= 1990 & year <= 2007) %>%  -->
+<!--   group_by(continent) -->
+<!-- ggplot(gapdata, aes(x = gdpPercap/1000, -->
+<!--                     y = lifeExp, -->
+<!--                     size = pop/1000000, -->
+<!--                     color = continent)) + -->
+<!--   geom_point(alpha = 0.5) + -->
+<!--   ylim(20,100) + -->
+<!--   labs(title = "Life Expectancy varies with GDP", -->
+<!--          subtitle = "1990 - 2007", -->
+<!--           x = "GDP per capita ($1000s)", -->
+<!--           y = "Life expectancy (yrs)", -->
+<!--          caption = "Plot created by @gavin_fay", -->
+<!--        size = "Population (M)", -->
+<!--        color = "Continent") + -->
+<!--   theme_minimal()  -->
+<!-- ``` -->
 
-------------------------------------------------------------------------
+<!-- ```{=tex} -->
+<!-- \endgroup -->
+<!-- ``` -->
 
-```{=tex}
-\begingroup
-\fontsize{10}{11}\selectfont
-```
-```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE,results='hide', fig.show='hide', out.width="80%"}
-suppressPackageStartupMessages(library(tidyverse))
-library(gapminder)
-gapdata <- gapminder %>% 
-  filter(year >= 1990 & year <= 2007) %>% 
-  group_by(continent)
-ggplot(gapdata, aes(x = gdpPercap/1000,
-                    y = lifeExp,
-                    size = pop/1000000,
-                    color = continent)) +
-  geom_point(alpha = 0.5) +
-  ylim(20,100) +
-  labs(title = "Life Expectancy varies with GDP",
-         subtitle = "1990 - 2007",
-          x = "GDP per capita ($1000s)",
-          y = "Life expectancy (yrs)",
-         caption = "Plot created by @gavin_fay",
-       size = "Population (M)",
-       color = "Continent") +
-  theme_minimal() 
-```
+<!-- ------------------------------------------------------------------------ -->
 
-```{=tex}
-\endgroup
-```
+<!-- ```{=tex} -->
+<!-- \begingroup -->
+<!-- \fontsize{10}{11}\selectfont -->
+<!-- ``` -->
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE,results='hide', fig.show='hide', out.width="80%"} -->
+<!-- suppressPackageStartupMessages(library(tidyverse)) -->
+<!-- library(gapminder) -->
+<!-- gapdata <- gapminder %>%  -->
+<!--   filter(year >= 1990 & year <= 2007) %>%  -->
+<!--   group_by(continent) -->
+<!-- ggplot(gapdata, aes(x = gdpPercap/1000, -->
+<!--                     y = lifeExp, -->
+<!--                     size = pop/1000000, -->
+<!--                     color = continent)) + -->
+<!--   geom_point(alpha = 0.5) + -->
+<!--   ylim(20,100) + -->
+<!--   labs(title = "Life Expectancy varies with GDP", -->
+<!--          subtitle = "1990 - 2007", -->
+<!--           x = "GDP per capita ($1000s)", -->
+<!--           y = "Life expectancy (yrs)", -->
+<!--          caption = "Plot created by @gavin_fay", -->
+<!--        size = "Population (M)", -->
+<!--        color = "Continent") + -->
+<!--   theme_minimal()  -->
+<!-- ``` -->
+
+<!-- ```{=tex} -->
+<!-- \endgroup -->
+<!-- ``` -->
+
 ## Recommended reading
 
 An introduction to R (Venables et al.)\
@@ -220,10 +225,15 @@ g.  Find the 95% confidence interval for the number of alewives arriving per day
 <!-- ## Basic statistical tests in `R` -->
 
 <!-- LOTS of built-in functions to perform classical statistical tests. e.g.,\ -->
+
 <!-- - Correlation `cor.test()`\ -->
+
 <!-- - Chi-squared `chisq.test()`\ -->
+
 <!-- - t-test `t.test()`\ -->
+
 <!-- - F-test `var.test()`\ -->
+
 <!-- - Analysis of Variance `anova()` -->
 
 <!-- ![](figs/Mr-T3.png) -->
@@ -297,14 +307,12 @@ summary(RIKZ_lm1)
 ```{=tex}
 \endgroup
 ```
-
 ## broom helper functions
 
 ```{=tex}
 \begingroup
 \fontsize{10}{11}\selectfont
 ```
-
 `broom::tidy()`
 
 ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE}
@@ -321,7 +329,6 @@ glance(RIKZ_lm1)
 ```{=tex}
 \endgroup
 ```
-
 ## {modelsummary}
 
 The `{modelsummary}` package provides a wealth of options for creating publication-quality summary tables from fitted model objects, with bindings for most of the types of models we are using in this class.
@@ -339,12 +346,10 @@ modelsummary(list(lm1 = RIKZ_lm1),
 
 ------------------------------------------------------------------------
 
-![](figs/RIKZ_lm1.png)
-<!-- ```{r echo = FALSE}
+![](figs/RIKZ_lm1.png) <!-- ```{r echo = FALSE}
 library(modelsummary)
 modelsummary(list(lm1 = RIKZ_lm1), statistic = "conf.int", stars = TRUE)
 ``` -->
-
 
 ## Are model assumptions met?
 
@@ -395,6 +400,7 @@ RIKZ_lm1_aug <- augment(RIKZ_lm1,
                         se_fit = TRUE)
 glimpse(RIKZ_lm1_aug)
 ```
+
 ## Extracting model fit & residuals
 
 ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE}
@@ -409,7 +415,6 @@ glimpse(RIKZ_lm1_aug)
 \begingroup
 \fontsize{10}{11}\selectfont
 ```
-
 ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE,out.width="80%"}
 RIKZ_lm1_aug |>
   janitor::clean_names() |>
@@ -422,7 +427,6 @@ RIKZ_lm1_aug |>
 ```{=tex}
 \endgroup
 ```
-
 ## Fitting models directly on plots
 
 ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE,out.width="80%"}
@@ -438,7 +442,6 @@ ggplot(RIKZ, aes(x = NAP, y = Richness)) +
 \begingroup
 \fontsize{10}{11}\selectfont
 ```
-
 ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE,out.width="80%"}
 library(moderndive)
 ggplot(RIKZ) +
@@ -452,7 +455,6 @@ ggplot(RIKZ) +
 ```{=tex}
 \endgroup
 ```
-
 ## Building and Comparing models
 
 ```{=tex}
@@ -492,10 +494,7 @@ anova(RIKZ_lm1, RIKZ_lm2)
 
 1.  Extract the residuals from the RIKZ_lm2 model\
 2.  Are the linear regression assumptions met? Explain your reasoning\
-3.  Summarize the results of the model. What are the parameter estimates telling you about species richness on these beaches?
-<!-- 4.  Compute the AIC for the two RIKZ models using the `AIC()` function\ -->
-<!-- 5.  Use the logLik() function to extract both the log-likelihood and number of parameters and then compute the AIC for the two RIKZ models from the equation $AIC = -2*\ln(likelihood) + 2p$\ -->
-<!-- 7.  Compute AICc for both models $\left(AICc = -2*\ln(likelihood) + 2p*\frac{n}{n-p-1}\right)$ -->
+3.  Summarize the results of the model. What are the parameter estimates telling you about species richness on these beaches? <!-- 4.  Compute the AIC for the two RIKZ models using the `AIC()` function\ --> <!-- 5.  Use the logLik() function to extract both the log-likelihood and number of parameters and then compute the AIC for the two RIKZ models from the equation $AIC = -2*\ln(likelihood) + 2p$\ --> <!-- 7.  Compute AICc for both models $\left(AICc = -2*\ln(likelihood) + 2p*\frac{n}{n-p-1}\right)$ -->
 
 ## Model predictions for new data
 
@@ -656,10 +655,17 @@ ggplot(slopes, aes(x = fct_reorder(country, estimate), y = estimate, group = ter
 <!-- 6.  **BONUS** Researchers at University Texas Austin were interested in what factors explain differences in instructor teaching evaluation scores? They collected instructor and course information on 463 courses. A full description of the study can be found at `openintro.org`. The `evals` data set in the `moderndive` package contains these data. We are interested in how instructor age and (binary) gender affect ratings. \[NB: at the time of this study gender was recorded as a binary variable, female and male\]. -->
 
 <!-- ```{=html} -->
+
 <!-- <!-- -->
+
 <!-- ``` -->
+
 <!-- a.  Visualize these data and comment on any patterns or trends you observe. -->
+
 <!-- b.  Create a version of the data set containing only the scores, instructor age, and gender variables. -->
+
 <!-- c.  Fit linear models to these data that model teaching evaluation score as a function of combinations of instructor age and gender (i.e. fit four alternative models). -->
+
 <!-- d.  Visualize and report model results, and diagnostics. -->
-<!-- e.  Compare the evidence for the different models, and interpret the findings from the 'best' model. <!-- \endgroup --> 
+
+<!-- e.  Compare the evidence for the different models, and interpret the findings from the 'best' model. <!-- \endgroup -->
