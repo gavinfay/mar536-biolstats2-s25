@@ -5,11 +5,12 @@ tbl-colwidths: [5,10,30,5,5,5,5,5,5,5]
 
 ## Course Syllabus
 
-[**Click here**](documents/MAR536_BiolStats2_syllabus_SPR2023_20230117.pdf "PDF of syllabus") **to download a PDF copy of the syllabus.**
+[**Click here**](documents/MAR536_BiolStats2_syllabus_SPR2023_20230204.pdf "PDF of syllabus") **to download a PDF copy of the syllabus. \
+*(****last updated 2023-02-04)*
 
 ## Course Schedule
 
-This page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses, with all changes documented here.
+This page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses.
 
 ::: column-screen-inset-right
 <table>
