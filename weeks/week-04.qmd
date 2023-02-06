@@ -10,7 +10,9 @@ editor: visual
 
 ## Participate
 
-🖥️ [Lecture 6 - Generalized Linear Models](../lectures/lec-06.pdf)
+🖥️ [Lecture 6 - Generalized Linear Models](../lectures/lec-06.pptx)
+
+-   [lecture 6b - R code](lectures/lec-06b.pdf)
 
 ⌨️ [Lab 4 - Data wrangling & model summaries](../labs/lab-04.pdf) (just the [exercise](../labs/lab-exercise-04.pdf))
 

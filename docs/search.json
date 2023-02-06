@@ -879,7 +879,7 @@
     "href": "weeks/week-04.html#participate",
     "title": "Week 3",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 6 - Generalized Linear Models\n⌨️ Lab 4 - Data wrangling & model summaries (just the exercise)\n🖥️ Lecture 7 - GLMs II (logistic regression)"
+    "text": "Participate\n🖥️ Lecture 6 - Generalized Linear Models\n\nlecture 6b - R code\n\n⌨️ Lab 4 - Data wrangling & model summaries (just the exercise)\n🖥️ Lecture 7 - GLMs II (logistic regression)"
   },
   {
     "objectID": "weeks/week-04.html#practice",
@@ -963,7 +963,7 @@
     "href": "index.html#course-schedule",
     "title": "MAR 536: Biological Statistics II",
     "section": "Course Schedule",
-    "text": "Course Schedule\nThis page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses.\n\n\n\n\n\n\n\nWeek\n\n\n\n\nDate\n\n\n\n\nTopic\n\n\n\n\nPrepare\n\n\n\n\nSlides\n\n\n\n\nAE\n\n\n\n\nLab\n\n\n\n\nHW\n\n\n\n\nExam\n\n\n\n\nProject\n\n\n\n\n\n\n\n\n1\n\n\n\n\nTue, Jan 17\n\n\n\n\nIntroduction\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 18\n\n\n\n\nLab 1 -Intro to R/RStudio\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 19\n\n\n\n\nProbability review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n\n\nTue, Jan 24\n\n\n\n\nData exploration, checking\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 25\n\n\n\n\nDue: Lab 1\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 25\n\n\n\n\nLab 2 - Visualizing data\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 26\n\n\n\n\nLinear regression review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 26\n\n\n\n\nDue: Project topic\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n3\n\n\n\n\nTue, Jan 31\n\n\n\n\nLab 3 - Probability & linear modeling\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Feb 01\n\n\n\n\nDue: Lab 2\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed,\n\n\nFeb 01\n\n\n\n\nLinear modeling application\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 02\n\n\n\n\nLikelihood\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n\n\nTue, Feb 07\n\n\n\n\nGeneralized Linear Models\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Feb 08\n\n\n\n\nDue: Lab 3\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed,\n\n\nFeb 08\n\n\n\n\nLab 4 - Data wrangling & model summaries\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 09\n\n\n\n\nGLMs II (logistic regression)\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 09\n\n\n\n\nDue: Project description\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂"
+    "text": "Course Schedule\nThis page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses.\n\n\n\n\n\n\n\nWeek\n\n\n\n\nDate\n\n\n\n\nTopic\n\n\n\n\nPrepare\n\n\n\n\nSlides\n\n\n\n\nAE\n\n\n\n\nLab\n\n\n\n\nHW\n\n\n\n\nExam\n\n\n\n\nProject\n\n\n\n\n\n\n\n\n1\n\n\n\n\nTue, Jan 17\n\n\n\n\nIntroduction\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 18\n\n\n\n\nLab 1 -Intro to R/RStudio\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 19\n\n\n\n\nProbability review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n\n\nTue, Jan 24\n\n\n\n\nData exploration, checking\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 25\n\n\n\n\nDue: Lab 1\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 25\n\n\n\n\nLab 2 - Visualizing data\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 26\n\n\n\n\nLinear regression review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 26\n\n\n\n\nDue: Project topic\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n3\n\n\n\n\nTue, Jan 31\n\n\n\n\nLab 3 - Probability & linear modeling\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Feb 01\n\n\n\n\nDue: Lab 2\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed,\n\n\nFeb 01\n\n\n\n\nLinear modeling application\n\n\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 02\n\n\n\n\nLikelihood\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n\n\nTue, Feb 07\n\n\n\n\nGeneralized Linear Models\n\n\n\n\n📖\n\n\n\n\n🖥️ 💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Feb 08\n\n\n\n\nDue: Lab 3\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed,\n\n\nFeb 08\n\n\n\n\nLab 4 - Data wrangling & model summaries\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 09\n\n\n\n\nGLMs II (logistic regression)\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 09\n\n\n\n\nDue: Project description\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂"
   },
   {
     "objectID": "about.html",
@@ -1874,6 +1874,104 @@
     "title": "Biological Stats 2: Lecture 3",
     "section": "Supplemental Reading",
     "text": "Supplemental Reading\nIntroduction to Modern Statistics Chap 4-6\nR for Data Science, Chap 3\nCommunicating with Data, Chap 3-4\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
+  },
+  {
+    "objectID": "lectures/lec-06b.html",
+    "href": "lectures/lec-06b.html",
+    "title": "poisson glm in R",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──\n\n\n✔ ggplot2 3.3.6      ✔ purrr   0.3.4 \n✔ tibble  3.1.8      ✔ dplyr   1.0.10\n✔ tidyr   1.2.0      ✔ stringr 1.4.0 \n✔ readr   2.1.2      ✔ forcats 0.5.1 \n\n\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\n\nlibrary(broom)"
+  },
+  {
+    "objectID": "lectures/lec-06b.html#setup-1",
+    "href": "lectures/lec-06b.html#setup-1",
+    "title": "poisson glm in R",
+    "section": "setup",
+    "text": "setup\n\n#first read in the data & create richness variable\nRIKZ <- read_table(file = \"../data/RIKZ.txt\")\n\n\n── Column specification ────────────────────────────────────────────────────────\ncols(\n  .default = col_double()\n)\nℹ Use `spec()` for the full column specifications.\n\nRIKZ <- RIKZ |> \n  mutate(Richness = rowSums(RIKZ[,2:76]>0)) |>\n  select(Richness, 77:89)"
+  },
+  {
+    "objectID": "lectures/lec-06b.html#generalized-linear-modeling",
+    "href": "lectures/lec-06b.html#generalized-linear-modeling",
+    "title": "poisson glm in R",
+    "section": "Generalized linear modeling",
+    "text": "Generalized linear modeling\nRecall from lecture: \\[\\eta = \\beta_1 x_1 + \\beta_2 x_2 + \\dots + \\beta_p x_p\\] \\[f_Y(y;\\mu,\\varphi) = \\exp\\left[\\frac{A}{\\varphi}{y\\lambda(\\mu)-\\gamma(\\lambda(\\mu))}+\\tau(y,\\varphi)\\right]\\] \\[\\mu = m(\\eta) \\text{,    } \\eta = m^{-1}(\\mu)=l(\\mu)\\]\nThe combination of a response distribution, a link function and other information needed to carry out the modeling exercise is called the family of the generalized linear model."
+  },
+  {
+    "objectID": "lectures/lec-06b.html#the-glm-function",
+    "href": "lectures/lec-06b.html#the-glm-function",
+    "title": "poisson glm in R",
+    "section": "The glm() function",
+    "text": "The glm() function\nThe R function to fit a generalized linear model is glm() which uses the form:\nfitted.model <- glm(formula, family=family.generator, data=data.frame)\nOnly new piece is the call to ‘family.generator’\nAlthough complex, its use is fairly simple.\nWhere there is a choice of link, link can be supplied with the family name as a parameter.\nSimple (inefficient) use: The following are equivalent.\n\nRIKZ_lm1 <- lm(Richness ~ NAP, data = RIKZ)\nRIKZ_glm1 <- glm(Richness ~ NAP, family = gaussian, \n                 data = RIKZ)\n\nMost of the extraction functions that can be applied to lm() can also be used with glm()."
+  },
+  {
+    "objectID": "lectures/lec-06b.html#the-glm-function-1",
+    "href": "lectures/lec-06b.html#the-glm-function-1",
+    "title": "poisson glm in R",
+    "section": "The glm() function",
+    "text": "The glm() function\n\ntidy(RIKZ_lm1)\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)     6.69     0.658     10.2  5.25e-13\n2 NAP            -2.87     0.631     -4.55 4.42e- 5\ntidy(RIKZ_glm1)\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)     6.69     0.658     10.2  5.25e-13\n2 NAP            -2.87     0.631     -4.55 4.42e- 5"
+  },
+  {
+    "objectID": "lectures/lec-06b.html#poisson-regression",
+    "href": "lectures/lec-06b.html#poisson-regression",
+    "title": "poisson glm in R",
+    "section": "Poisson regression",
+    "text": "Poisson regression\n\\[P(X=x) = \\frac{e^{-\\mu} \\mu^x}{x!} \\text{,   } \\mu_i = e^{\\alpha+\\beta_1 x_{1,i} + \\dots + \\beta_j x_{j,i}}\\]"
+  },
+  {
+    "objectID": "lectures/lec-06b.html#rikz-example",
+    "href": "lectures/lec-06b.html#rikz-example",
+    "title": "poisson glm in R",
+    "section": "RIKZ example",
+    "text": "RIKZ example\n\n#fit the poisson regression model\nRIKZ_poisson <- glm(Richness ~ NAP, data = RIKZ, \n                    family = poisson)\n\nNote that the default link for the poisson is log so we don’t have to specify here (see ?family)."
+  },
+  {
+    "objectID": "lectures/lec-06b.html#summaryrikz_poisson",
+    "href": "lectures/lec-06b.html#summaryrikz_poisson",
+    "title": "poisson glm in R",
+    "section": "summary(RIKZ_poisson)",
+    "text": "summary(RIKZ_poisson)\n\n\nCall:\nglm(formula = Richness ~ NAP, family = poisson, data = RIKZ)\n\nDeviance Residuals: \n    Min       1Q   Median       3Q      Max  \n-2.2029  -1.2432  -0.9199   0.3943   4.3256  \n\nCoefficients:\n            Estimate Std. Error z value Pr(>|z|)    \n(Intercept)  1.79100    0.06329  28.297  < 2e-16 ***\nNAP         -0.55597    0.07163  -7.762 8.39e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for poisson family taken to be 1)\n\n    Null deviance: 179.75  on 44  degrees of freedom\nResidual deviance: 113.18  on 43  degrees of freedom\nAIC: 259.18\n\nNumber of Fisher Scoring iterations: 5"
+  },
+  {
+    "objectID": "lectures/lec-06b.html#broomaugment",
+    "href": "lectures/lec-06b.html#broomaugment",
+    "title": "poisson glm in R",
+    "section": "broom::augment()",
+    "text": "broom::augment()\nAs with lm(), the augment() function can be used to obtain the predictions from a fitted model object, and for a new data frame.\n\nnewobject <- augment(oldobject, newdata, \n                     type.predict = c(\"link\",\"response\",\"terms\"),\n                     se_fit = TRUE)\n\nNote: default for type.predict is on the scale of the linear predictors. Set to \"response\" to obtain predictions on the scale of the response variable."
+  },
+  {
+    "objectID": "lectures/lec-06b.html#observed-and-fitted-values-for-poisson-rikz",
+    "href": "lectures/lec-06b.html#observed-and-fitted-values-for-poisson-rikz",
+    "title": "poisson glm in R",
+    "section": "Observed and fitted values for Poisson RIKZ",
+    "text": "Observed and fitted values for Poisson RIKZ\n\n#create new values for beach height\nnew_data <- tibble(NAP = seq(-1.5,2.5,length.out=100))\n#predict values for response based on new salinity\nRIKZ_pois_pred <- augment(RIKZ_poisson,\n                    newdata = new_data, \n                    type.predict = \"response\",\n                    se_fit = \"TRUE\")\n#plot\nggplot(RIKZ, aes(x=NAP, y= Richness)) +\n         geom_point() +\n         geom_line(data = RIKZ_pois_pred,\n                   aes(x=NAP, y = .fitted),\n                   col = \"blue\") +\n         labs(y = \"Richness\", x = \"NAP\") +\n         ylim(0,25) + xlim(-1.5,2.5)"
+  },
+  {
+    "objectID": "lectures/lec-06b.html#fitting-the-glm-in-the-ggplot-call",
+    "href": "lectures/lec-06b.html#fitting-the-glm-in-the-ggplot-call",
+    "title": "poisson glm in R",
+    "section": "fitting the GLM in the ggplot call",
+    "text": "fitting the GLM in the ggplot call\n\nggplot(RIKZ,aes(NAP,Richness)) +\n  geom_point() +\n  geom_smooth(method = \"glm\", \n    method.args = list(family = poisson), se = TRUE)            \n`geom_smooth()` using formula 'y ~ x'"
+  },
+  {
+    "objectID": "lectures/lec-06b.html#quasi-poisson",
+    "href": "lectures/lec-06b.html#quasi-poisson",
+    "title": "poisson glm in R",
+    "section": "Quasi-Poisson",
+    "text": "Quasi-Poisson\n\nRIKZ_quasip_1 <- glm(Richness ~ NAP, \n                     family = quasipoisson,\n                     data = RIKZ)\nsummary(RIKZ_quasip_1)\n\nCall:\nglm(formula = Richness ~ NAP, family = quasipoisson, data = RIKZ)\n\nDeviance Residuals: \n    Min       1Q   Median       3Q      Max  \n-2.2029  -1.2432  -0.9199   0.3943   4.3256  \n\nCoefficients:\n            Estimate Std. Error t value Pr(>|t|)    \n(Intercept)   1.7910     0.1104  16.218  < 2e-16 ***\nNAP          -0.5560     0.1250  -4.448 6.02e-05 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for quasipoisson family taken to be 3.044178)\n\n    Null deviance: 179.75  on 44  degrees of freedom\nResidual deviance: 113.18  on 43  degrees of freedom\nAIC: NA\n\nNumber of Fisher Scoring iterations: 5"
+  },
+  {
+    "objectID": "lectures/lec-06b.html#full-poisson-model",
+    "href": "lectures/lec-06b.html#full-poisson-model",
+    "title": "poisson glm in R",
+    "section": "Full Poisson Model",
+    "text": "Full Poisson Model\n\nRIKZ_pois_full <- glm(Richness ~ NAP + factor(week) +\n                      factor(exposure),\n                      data = RIKZ,\n                      family = poisson)\nsummary(RIKZ_pois_full)\n\nCall:\nglm(formula = Richness ~ NAP + factor(week) + factor(exposure), \n    family = poisson, data = RIKZ)\n\nDeviance Residuals: \n    Min       1Q   Median       3Q      Max  \n-2.8946  -0.4821  -0.2555   0.3425   2.6203  \n\nCoefficients:\n                   Estimate Std. Error z value Pr(>|z|)    \n(Intercept)         2.53136    0.12866  19.675   <2e-16 ***\nNAP                -0.48950    0.07449  -6.571    5e-11 ***\nfactor(week)2      -0.75723    0.35132  -2.155   0.0311 *  \nfactor(week)3      -0.50717    0.21148  -2.398   0.0165 *  \nfactor(week)4       0.12361    0.22617   0.547   0.5847    \nfactor(exposure)10 -0.42602    0.19022  -2.240   0.0251 *  \nfactor(exposure)11 -0.65481    0.33446  -1.958   0.0503 .  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for poisson family taken to be 1)\n\n    Null deviance: 179.75  on 44  degrees of freedom\nResidual deviance:  47.80  on 38  degrees of freedom\nAIC: 203.8\n\nNumber of Fisher Scoring iterations: 5"
+  },
+  {
+    "objectID": "lectures/lec-06b.html#drop-exposure",
+    "href": "lectures/lec-06b.html#drop-exposure",
+    "title": "poisson glm in R",
+    "section": "Drop Exposure?",
+    "text": "Drop Exposure?\n\ndrop1(RIKZ_pois_full, test = \"Chisq\")\nSingle term deletions\n\nModel:\nRichness ~ NAP + factor(week) + factor(exposure)\n                 Df Deviance    AIC    LRT  Pr(>Chi)    \n<none>                47.800 203.80                     \nNAP               1   93.460 247.46 45.660 1.407e-11 ***\nfactor(week)      3   58.372 208.37 10.572   0.01428 *  \nfactor(exposure)  2   53.466 205.46  5.666   0.05885 .  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1"
   },
   {
     "objectID": "project-description.html",
