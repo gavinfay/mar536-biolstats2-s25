@@ -182,3 +182,4 @@ summary(RIKZ_pois_full)
 ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE}
 drop1(RIKZ_pois_full, test = "Chisq")
 ```
+

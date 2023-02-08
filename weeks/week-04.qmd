@@ -14,7 +14,9 @@ editor: visual
 
 -   [lecture 6b - R code](lectures/lec-06b.pdf)
 
-⌨️ [Lab 4 - Data wrangling & model summaries](../labs/lab-04.pdf) (just the [exercise](../labs/lab-exercise-04.pdf))
+⌨️ [Lab 4 - Data wrangling & model summaries](../labs/lab-04.html) (just the exercise)
+
+-   [lab4-data](../data/lab-4data.zip)
 
 🖥️ [Lecture 7 - GLMs II (logistic regression)](../lectures/lec-07.pdf)
 

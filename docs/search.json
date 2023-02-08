@@ -2049,5 +2049,726 @@
     "title": "Syllabus",
     "section": "Important dates",
     "text": "Important dates\n\nJanuary 17: Classes begin\nJanuary 24: Drop/add ends\nMarch 6-10: Spring break, no classes are held\n\nClick here for the full UMass Dartmouth academic calendar."
+  },
+  {
+    "objectID": "labs/lab-04.html#lab-schedule",
+    "href": "labs/lab-04.html#lab-schedule",
+    "title": "MAR 536: Lab 4",
+    "section": "Lab schedule",
+    "text": "Lab schedule\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Simulation, Resampling\n2/22: Iteration\n3/01: Creating functions, debugging\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling\nAcknowledgements: Mine Çetinkaya-Rundel, Allison Horst"
+  },
+  {
+    "objectID": "labs/lab-04.html#today",
+    "href": "labs/lab-04.html#today",
+    "title": "MAR 536: Lab 4",
+    "section": "Today",
+    "text": "Today\nTopics\n\nPoisson GLM\nProgramming Practices\nData wrangling"
+  },
+  {
+    "objectID": "labs/lab-04.html#setup",
+    "href": "labs/lab-04.html#setup",
+    "title": "MAR 536: Lab 4",
+    "section": "setup",
+    "text": "setup\n\nlibrary(tidyverse)\nlibrary(broom)\n\n\n#first read in the data (richness already created)\nRIKZ <- readRDS(\"../data/RIKZ.rds\")"
+  },
+  {
+    "objectID": "labs/lab-04.html#generalized-linear-modeling",
+    "href": "labs/lab-04.html#generalized-linear-modeling",
+    "title": "MAR 536: Lab 4",
+    "section": "Generalized linear modeling",
+    "text": "Generalized linear modeling\nAll GLMs have the following three characteristics:\n\nA probability distribution describing a generative model for the outcome variable.\n\n\n\nA linear model:\n\\[\\eta = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_k X_k\\]\n\n\n\n\nA link function that relates the linear model to the parameter of the outcome distribution."
+  },
+  {
+    "objectID": "labs/lab-04.html#the-glm-function",
+    "href": "labs/lab-04.html#the-glm-function",
+    "title": "MAR 536: Lab 4",
+    "section": "The glm() function",
+    "text": "The glm() function\nThe R function to fit a generalized linear model is glm() which uses the form:\nfitted.model <- glm(formula, family=family.generator, data=data.frame)\nOnly new piece is the call to ‘family.generator’\nAlthough complex, its use is fairly simple.\nWhere there is a choice of link, link can be supplied with the family name as a parameter.\nSimple (inefficient) use: The following are equivalent.\n\n> RIKZ_lm1 <- lm(Richness ~ NAP, data = RIKZ)\n> RIKZ_glm1 <- glm(Richness ~ NAP, family = gaussian, \n+                  data = RIKZ)\n\nMost of the extraction functions that can be applied to lm() can also be used with glm()."
+  },
+  {
+    "objectID": "labs/lab-04.html#the-glm-function-1",
+    "href": "labs/lab-04.html#the-glm-function-1",
+    "title": "MAR 536: Lab 4",
+    "section": "The glm() function",
+    "text": "The glm() function\n\n> tidy(RIKZ_lm1)\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)     6.69     0.658     10.2  5.25e-13\n2 NAP            -2.87     0.631     -4.55 4.42e- 5\n> tidy(RIKZ_glm1)\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)     6.69     0.658     10.2  5.25e-13\n2 NAP            -2.87     0.631     -4.55 4.42e- 5"
+  },
+  {
+    "objectID": "labs/lab-04.html#poisson-regression",
+    "href": "labs/lab-04.html#poisson-regression",
+    "title": "MAR 536: Lab 4",
+    "section": "Poisson regression",
+    "text": "Poisson regression\n\\[P(X=x) = \\frac{e^{-\\mu} \\mu^x}{x!} \\text{,   } \\mu_i = e^{\\alpha+\\beta_1 x_{1,i} + \\dots + \\beta_j x_{j,i}}\\]"
+  },
+  {
+    "objectID": "labs/lab-04.html#rikz-example",
+    "href": "labs/lab-04.html#rikz-example",
+    "title": "MAR 536: Lab 4",
+    "section": "RIKZ example",
+    "text": "RIKZ example\n\n> #fit the poisson regression model\n> RIKZ_poisson <- glm(Richness ~ NAP, data = RIKZ, \n+                     family = poisson)\n\nNote that the default link for the poisson is log so we don’t have to specify here (see ?family)."
+  },
+  {
+    "objectID": "labs/lab-04.html#summaryrikz_poisson",
+    "href": "labs/lab-04.html#summaryrikz_poisson",
+    "title": "MAR 536: Lab 4",
+    "section": "summary(RIKZ_poisson)",
+    "text": "summary(RIKZ_poisson)\n\n\nCall:\nglm(formula = Richness ~ NAP, family = poisson, data = RIKZ)\n\nDeviance Residuals: \n    Min       1Q   Median       3Q      Max  \n-2.2029  -1.2432  -0.9199   0.3943   4.3256  \n\nCoefficients:\n            Estimate Std. Error z value Pr(>|z|)    \n(Intercept)  1.79100    0.06329  28.297  < 2e-16 ***\nNAP         -0.55597    0.07163  -7.762 8.39e-15 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for poisson family taken to be 1)\n\n    Null deviance: 179.75  on 44  degrees of freedom\nResidual deviance: 113.18  on 43  degrees of freedom\nAIC: 259.18\n\nNumber of Fisher Scoring iterations: 5"
+  },
+  {
+    "objectID": "labs/lab-04.html#broomaugment",
+    "href": "labs/lab-04.html#broomaugment",
+    "title": "MAR 536: Lab 4",
+    "section": "broom::augment()",
+    "text": "broom::augment()\nAs with lm(), the augment() function can be used to obtain the predictions from a fitted model object, and for a new data frame.\n\n> newobject <- augment(oldobject, newdata, \n+                      type.predict = c(\"link\",\"response\",\"terms\"),\n+                      se_fit = TRUE)\n\nNote: default for type.predict is on the scale of the linear predictors. Set to \"response\" to obtain predictions on the scale of the response variable.\n\naugment(RIKZ_poisson, se_fit = TRUE)\n\n# A tibble: 45 × 9\n   Richness    NAP .fitted .se.fit .resid .std.resid   .hat .sigma .cooksd\n      <dbl>  <dbl>   <dbl>   <dbl>  <dbl>      <dbl>  <dbl>  <dbl>   <dbl>\n 1       11  0.045    1.77  0.0639  1.90       1.92  0.0239   1.61 0.0569 \n 2       10 -1.04     2.37  0.0896 -0.206     -0.215 0.0856   1.64 0.00213\n 3       13 -1.34     2.53  0.106   0.112      0.121 0.142    1.64 0.00122\n 4       11  0.616    1.45  0.0827  2.72       2.76  0.0291   1.59 0.165  \n 5       10 -0.684    2.17  0.0737  0.406      0.416 0.0476   1.64 0.00453\n 6        8  1.19     1.13  0.114   2.32       2.37  0.0401   1.60 0.170  \n 7        9  0.82     1.34  0.0929  2.26       2.30  0.0328   1.60 0.125  \n 8        8  0.635    1.44  0.0836  1.64       1.66  0.0294   1.62 0.0532 \n 9       19  0.061    1.76  0.0641  4.33       4.38  0.0238   1.50 0.376  \n10       17 -1.33     2.53  0.106   1.18       1.27  0.141    1.63 0.148  \n# … with 35 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#observed-and-fitted-values-for-poisson-rikz",
+    "href": "labs/lab-04.html#observed-and-fitted-values-for-poisson-rikz",
+    "title": "MAR 536: Lab 4",
+    "section": "Observed and fitted values for Poisson RIKZ",
+    "text": "Observed and fitted values for Poisson RIKZ\n\n#create new values for beach height\nnew_data <- tibble(NAP = seq(-1.5,2.5,length.out=100))\n#predict values for response based on new salinity\nRIKZ_pois_pred <- augment(RIKZ_poisson,\n                    newdata = new_data, \n                    type.predict = \"response\",\n                    se_fit = \"TRUE\")\nRIKZ_pois_pred\n# A tibble: 100 × 3\n     NAP .fitted .se.fit\n   <dbl>   <dbl>   <dbl>\n 1 -1.5     13.8    1.60\n 2 -1.46    13.5    1.53\n 3 -1.42    13.2    1.46\n 4 -1.38    12.9    1.40\n 5 -1.34    12.6    1.34\n 6 -1.30    12.3    1.28\n 7 -1.26    12.1    1.23\n 8 -1.22    11.8    1.17\n 9 -1.18    11.5    1.12\n10 -1.14    11.3    1.07\n# … with 90 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#fitting-the-glm-in-the-ggplot-call",
+    "href": "labs/lab-04.html#fitting-the-glm-in-the-ggplot-call",
+    "title": "MAR 536: Lab 4",
+    "section": "fitting the GLM in the ggplot call",
+    "text": "fitting the GLM in the ggplot call\n\n> ggplot(RIKZ,aes(NAP,Richness)) +\n+   geom_point() +\n+   geom_smooth(method = \"glm\", \n+     method.args = list(family = poisson), se = TRUE)"
+  },
+  {
+    "objectID": "labs/lab-04.html#lab-exercise-1n-rikz-poisson-glms",
+    "href": "labs/lab-04.html#lab-exercise-1n-rikz-poisson-glms",
+    "title": "MAR 536: Lab 4",
+    "section": "Lab Exercise 1/n: RIKZ Poisson GLMs",
+    "text": "Lab Exercise 1/n: RIKZ Poisson GLMs\n\nFit a poisson model to RIKZ species richness that includes NAP, and exposure and week as categorical variables (factor).\nExtract the model coefficients and their 95% confidence intervals.\n\nPlot the deviance residuals versus the linear predictor.\n\nCompare the results of this model with a model for RIKZ species richness that only included NAP as a covariate using deviance and AIC.\nBONUS Show how AIC changes when each linear predictor term is dropped from the model, and show the results of chi-square tests that compare these reduced models to the original model. (hint see the help for ?add1).\nBONUS BONUS Fit a model for species richness that also includes salinity, temperature, and grain size, and perform backwards selection using AIC to obtain a ‘best’ model. How do the results compare to the other models? What is the appropriate set of variables to use?"
+  },
+  {
+    "objectID": "labs/lab-04.html#segue-packages-in-r",
+    "href": "labs/lab-04.html#segue-packages-in-r",
+    "title": "MAR 536: Lab 4",
+    "section": "Segue: Packages in R",
+    "text": "Segue: Packages in R\nInstalling packages:\ninstall.packages(\"packagename\")\nIf in doubt, use the source:\ninstall.packages(\"packagename\", type=\"source\")\nInstalling packages from github:\nremotes::install_github(\"repositoryname\")\nLoading (attaching) packages into the workspace:\nlibrary(packagename)\nSome people use require() instead of library().\nDon’t do this!\nrequire() is basically try(library())\nOften description of a package and how to use its functions is in the form of a vignette.\nvignette() lists available vignettes.\nvignette(packagename) views the vignette for packagename."
+  },
+  {
+    "objectID": "labs/lab-04.html#programming-practices-i",
+    "href": "labs/lab-04.html#programming-practices-i",
+    "title": "MAR 536: Lab 4",
+    "section": "Programming practices I",
+    "text": "Programming practices I\nUse projects (RStudio)\nWrite scripts (or markdown files)\nInclude whitespace in code\n- blank lines, spaces in functions\nUse an editor with syntax highlighting\nUse a style guide\nIndent code\nUse meaningful object names"
+  },
+  {
+    "objectID": "labs/lab-04.html#programming-practices-ii",
+    "href": "labs/lab-04.html#programming-practices-ii",
+    "title": "MAR 536: Lab 4",
+    "section": "Programming practices II",
+    "text": "Programming practices II\nTest code\n- Write smallest possible amount (e.g. 1 line).\n- Knit early and often.\n- Try simple examples that you know the answer to.\n- Always assume that there will be an error somewhere.\nView results / objects (e.g. with print()).\nPlot results - are they what you expect?\nBe careful when copying sections of code and changing a variable name (it’s super common to forget to change all occurrences).\n- hint: use your text editor’s “Find: Replace all” functionality."
+  },
+  {
+    "objectID": "labs/lab-04.html#commenting",
+    "href": "labs/lab-04.html#commenting",
+    "title": "MAR 536: Lab 4",
+    "section": "Commenting",
+    "text": "Commenting\nR ignores everything on a line that follows a #\nComment at the top of your script.\n- What the script does, your name, email, date started.\nComment before each function or section of code - What is the purpose of that section of code, what does it do?\n- Comment the ‘why’ not the ‘what’\nComment throughout:\n- whenever an unusual function is used\n- whenever the code is hard to understand\n- whenever an algorithm is particularly useful"
+  },
+  {
+    "objectID": "labs/lab-04.html#commenting-out-code",
+    "href": "labs/lab-04.html#commenting-out-code",
+    "title": "MAR 536: Lab 4",
+    "section": "Commenting out code",
+    "text": "Commenting out code\nWhen you make modifications to your R code:\n- Copy the code that works then comment it out by prefixing it with #.\n- Change the new copy of the code.\nIf you need to revert to the old code, just remove the # before each line (“uncomment”).\nctrl+shift+C (CMD+shift+C) is a shortcut in Rstudio to comment/uncomment large blocks of code.\nIn .Rmd files, you can comment out blocks of the file using\n\n  <!---\n  Lines of text and code you want to not be included\n  --->\n\n(note the block comment shortcut works here too!)"
+  },
+  {
+    "objectID": "labs/lab-04.html#pivot_-functions",
+    "href": "labs/lab-04.html#pivot_-functions",
+    "title": "MAR 536: Lab 4",
+    "section": "pivot_*() functions",
+    "text": "pivot_*() functions\npivot_longer() pivot_wider()"
+  },
+  {
+    "objectID": "labs/lab-04.html#steller-sea-lions",
+    "href": "labs/lab-04.html#steller-sea-lions",
+    "title": "MAR 536: Lab 4",
+    "section": "Steller sea lions",
+    "text": "Steller sea lions\nWe have data on Steller sea lion pup counts over time at a bunch of rookeries in Alaska.\n\nThe number of data points for each rookery is not the same.\nWe want to investigate the annual trend in counts for each rookery."
+  },
+  {
+    "objectID": "labs/lab-04.html#pivot_longer",
+    "href": "labs/lab-04.html#pivot_longer",
+    "title": "MAR 536: Lab 4",
+    "section": "pivot_longer()",
+    "text": "pivot_longer()\n\n\n\ndata (as usual)\ncols: columns to pivot into longer format\nnames_to: name of the column where column names of pivoted variables go (character string)\nvalues_to: name of the column where data in pivoted variables go (character string)\n\n\n\npivot_longer(\n  data, \n  cols, \n  names_to = \"name\", #<<\n  values_to = \"value\"\n  )"
+  },
+  {
+    "objectID": "labs/lab-04.html#lab-exercise-2n---sslpupcounts.csv",
+    "href": "labs/lab-04.html#lab-exercise-2n---sslpupcounts.csv",
+    "title": "MAR 536: Lab 4",
+    "section": "Lab exercise 2/n - SSLpupcounts.csv",
+    "text": "Lab exercise 2/n - SSLpupcounts.csv\n\nConvert the data from wide format to long format.\n\nPrint the top 10 rows of the new long format data.\n\nBONUS Convert back to wide format from long format.\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "labs/lab-04.html#look-at-change-in-pup-counts-over-time",
+    "href": "labs/lab-04.html#look-at-change-in-pup-counts-over-time",
+    "title": "MAR 536: Lab 4",
+    "section": "Look at change in pup counts over time",
+    "text": "Look at change in pup counts over time\n\n\n\nssl_models <- ssl_long |>\n  group_by(sitename) |>\n  filter(count > 0,\n         year >= 2000) |>\n  mutate(year2 = as.numeric(year)-2000,\n         log_count = log(count)) |>\n  nest() |>   #<<\n  I()\nssl_models\n\n–\n\n\n# A tibble: 53 × 2\n# Groups:   sitename [53]\n   sitename             data             \n   <chr>                <list>           \n 1 ADAK/LAKE POINT      <tibble [7 × 4]> \n 2 ADUGAK               <tibble [8 × 4]> \n 3 AGATTU/CAPE SABAK    <tibble [10 × 4]>\n 4 AGATTU/GILLON POINT  <tibble [8 × 4]> \n 5 AKUN/BILLINGS HEAD   <tibble [7 × 4]> \n 6 AKUTAN/CAPE MORGAN   <tibble [8 × 4]> \n 7 AMCHITKA/COLUMN ROCK <tibble [5 × 4]> \n 8 ATKINS               <tibble [9 × 4]> \n 9 ATTU/CAPE WRANGELL   <tibble [8 × 4]> \n10 AYUGADAK             <tibble [7 × 4]> \n# … with 43 more rows\n\n\n\n\nssl_models contains a row for each rookery, the data variable contains the dataset for each rookery."
+  },
+  {
+    "objectID": "labs/lab-04.html#glm-with-the-ssl-data",
+    "href": "labs/lab-04.html#glm-with-the-ssl-data",
+    "title": "MAR 536: Lab 4",
+    "section": "GLM with the SSL data?",
+    "text": "GLM with the SSL data?"
+  },
+  {
+    "objectID": "labs/lab-04.html#merging-data-frames",
+    "href": "labs/lab-04.html#merging-data-frames",
+    "title": "MAR 536: Lab 4",
+    "section": "Merging data frames",
+    "text": "Merging data frames\nOften we have many tables of data, and need to merge data frames based on some common information shared between them (relational data).\ne.g. package nycflights13 includes a dataframe flights that contains airline codes, but the full names for the airlines are contained in a separate table airlines.\n\n>    #library(tidyverse)\n>    #library(nycflights13)"
+  },
+  {
+    "objectID": "labs/lab-04.html#locating-data-using-grep",
+    "href": "labs/lab-04.html#locating-data-using-grep",
+    "title": "MAR 536: Lab 4",
+    "section": "Locating data using grep()",
+    "text": "Locating data using grep()\ngrep() is one of the most useful functions for unix users.\nIt does pattern matching.\n\n> pick <- grep(\"w\",newdata$species)\n> pick\n[1] 1 2 3 7\n\nreturns the elements of newdata$species containing the letter “w”."
+  },
+  {
+    "objectID": "labs/lab-04.html#locating-data-using-grep-1",
+    "href": "labs/lab-04.html#locating-data-using-grep-1",
+    "title": "MAR 536: Lab 4",
+    "section": "Locating data using grep()",
+    "text": "Locating data using grep()\ngsub() is a convenient wrapper to grep() that can be used to perform string substitution.\ne.g. capitalize all the ’a’s in the species names.\n\n> new_names <- gsub(\"a\", newdata$species, replacement=\"A\")\n> new_names\n [1] \"wombAt\" \"wombAt\" \"wombAt\" \"quoll\"  \"quoll\"  \"quoll\"  \"wombAt\" \"quoll\" \n [9] \"devil\"  \"devil\""
+  },
+  {
+    "objectID": "labs/lab-04.html#recall-our-grammar-of-data-wrangling",
+    "href": "labs/lab-04.html#recall-our-grammar-of-data-wrangling",
+    "title": "MAR 536: Lab 4",
+    "section": "Recall our grammar of data wrangling…",
+    "text": "Recall our grammar of data wrangling…\n… based on the concepts of functions as verbs that manipulate data frames\n{dplyr} verbs\n\nselect: pick columns by name\narrange: reorder rows\nslice: pick rows using index(es)\nfilter: pick rows matching criteria\ndistinct: filter for unique rows\nmutate: add new variables\nsummarise: reduce variables to values\ngroup_by: for grouped operations\n… (many more)"
+  },
+  {
+    "objectID": "labs/lab-04.html#rules-of-dplyr-functions",
+    "href": "labs/lab-04.html#rules-of-dplyr-functions",
+    "title": "MAR 536: Lab 4",
+    "section": "Rules of dplyr functions",
+    "text": "Rules of dplyr functions\n\nFirst argument is always a data frame\nSubsequent arguments say what to do with that data frame\nAlways return a data frame\nDon’t modify in place"
+  },
+  {
+    "objectID": "labs/lab-04.html#data-hotel-bookings",
+    "href": "labs/lab-04.html#data-hotel-bookings",
+    "title": "MAR 536: Lab 4",
+    "section": "Data: Hotel bookings",
+    "text": "Data: Hotel bookings\n\nData from two hotels: one resort and one city hotel\nObservations: Each row represents a hotel booking\nGoal for original data collection: Development of prediction models to classify a hotel booking’s likelihood to be cancelled (Antonia et al., 2019)\n\n\nhotels <- read_csv(\"../data/hotels.csv\")\n\n.footnote[ Source: TidyTuesday]"
+  },
+  {
+    "objectID": "labs/lab-04.html#select-multiple-columns",
+    "href": "labs/lab-04.html#select-multiple-columns",
+    "title": "MAR 536: Lab 4",
+    "section": "Select multiple columns",
+    "text": "Select multiple columns\nView only the hotel type and lead_time:\n\n\n\nselect(hotels, hotel, lead_time)\n\n# A tibble: 119,390 × 2\n   hotel        lead_time\n   <chr>            <dbl>\n 1 Resort Hotel       342\n 2 Resort Hotel       737\n 3 Resort Hotel         7\n 4 Resort Hotel        13\n 5 Resort Hotel        14\n 6 Resort Hotel        14\n 7 Resort Hotel         0\n 8 Resort Hotel         9\n 9 Resort Hotel        85\n10 Resort Hotel        75\n# … with 119,380 more rows\n\n\n\n{.question} What if we wanted to select these columns, and then arrange the data in descending order of lead time?"
+  },
+  {
+    "objectID": "labs/lab-04.html#data-wrangling-step-by-step",
+    "href": "labs/lab-04.html#data-wrangling-step-by-step",
+    "title": "MAR 536: Lab 4",
+    "section": "Data wrangling, step-by-step",
+    "text": "Data wrangling, step-by-step\n\n\n\nselect(hotels, hotel, lead_time)\n\n# A tibble: 119,390 × 2\n   hotel        lead_time\n   <chr>            <dbl>\n 1 Resort Hotel       342\n 2 Resort Hotel       737\n 3 Resort Hotel         7\n 4 Resort Hotel        13\n 5 Resort Hotel        14\n 6 Resort Hotel        14\n 7 Resort Hotel         0\n 8 Resort Hotel         9\n 9 Resort Hotel        85\n10 Resort Hotel        75\n# … with 119,380 more rows\n\n\n\nSelect, then arrange:\n\nhotels |>\n  select(hotel, lead_time) |>\n  arrange(desc(lead_time))\n\n# A tibble: 119,390 × 2\n   hotel        lead_time\n   <chr>            <dbl>\n 1 Resort Hotel       737\n 2 Resort Hotel       709\n 3 City Hotel         629\n 4 City Hotel         629\n 5 City Hotel         629\n 6 City Hotel         629\n 7 City Hotel         629\n 8 City Hotel         629\n 9 City Hotel         629\n10 City Hotel         629\n# … with 119,380 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#select-to-keep-variables",
+    "href": "labs/lab-04.html#select-to-keep-variables",
+    "title": "MAR 536: Lab 4",
+    "section": "select to keep variables",
+    "text": "select to keep variables\n\nhotels |>\n  select(hotel, lead_time) \n\n# A tibble: 119,390 × 2\n   hotel        lead_time\n   <chr>            <dbl>\n 1 Resort Hotel       342\n 2 Resort Hotel       737\n 3 Resort Hotel         7\n 4 Resort Hotel        13\n 5 Resort Hotel        14\n 6 Resort Hotel        14\n 7 Resort Hotel         0\n 8 Resort Hotel         9\n 9 Resort Hotel        85\n10 Resort Hotel        75\n# … with 119,380 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#select-to-exclude-variables",
+    "href": "labs/lab-04.html#select-to-exclude-variables",
+    "title": "MAR 536: Lab 4",
+    "section": "select to exclude variables",
+    "text": "select to exclude variables\n\nhotels |>\n  select(-agent) \n\n# A tibble: 119,390 × 31\n   hotel        is_canceled lead_time arrival_date_year arrival_date_month\n   <chr>              <dbl>     <dbl>             <dbl> <chr>             \n 1 Resort Hotel           0       342              2015 July              \n 2 Resort Hotel           0       737              2015 July              \n 3 Resort Hotel           0         7              2015 July              \n 4 Resort Hotel           0        13              2015 July              \n 5 Resort Hotel           0        14              2015 July              \n 6 Resort Hotel           0        14              2015 July              \n 7 Resort Hotel           0         0              2015 July              \n 8 Resort Hotel           0         9              2015 July              \n 9 Resort Hotel           1        85              2015 July              \n10 Resort Hotel           1        75              2015 July              \n# … with 119,380 more rows, and 26 more variables:\n#   arrival_date_week_number <dbl>, arrival_date_day_of_month <dbl>,\n#   stays_in_weekend_nights <dbl>, stays_in_week_nights <dbl>, adults <dbl>,\n#   children <dbl>, babies <dbl>, meal <chr>, country <chr>,\n#   market_segment <chr>, distribution_channel <chr>, is_repeated_guest <dbl>,\n#   previous_cancellations <dbl>, previous_bookings_not_canceled <dbl>,\n#   reserved_room_type <chr>, assigned_room_type <chr>, …"
+  },
+  {
+    "objectID": "labs/lab-04.html#select-a-range-of-variables",
+    "href": "labs/lab-04.html#select-a-range-of-variables",
+    "title": "MAR 536: Lab 4",
+    "section": "select a range of variables",
+    "text": "select a range of variables\n\nhotels |>\n  select(hotel:arrival_date_month)\n\n# A tibble: 119,390 × 5\n   hotel        is_canceled lead_time arrival_date_year arrival_date_month\n   <chr>              <dbl>     <dbl>             <dbl> <chr>             \n 1 Resort Hotel           0       342              2015 July              \n 2 Resort Hotel           0       737              2015 July              \n 3 Resort Hotel           0         7              2015 July              \n 4 Resort Hotel           0        13              2015 July              \n 5 Resort Hotel           0        14              2015 July              \n 6 Resort Hotel           0        14              2015 July              \n 7 Resort Hotel           0         0              2015 July              \n 8 Resort Hotel           0         9              2015 July              \n 9 Resort Hotel           1        85              2015 July              \n10 Resort Hotel           1        75              2015 July              \n# … with 119,380 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#select-variables-with-certain-characteristics",
+    "href": "labs/lab-04.html#select-variables-with-certain-characteristics",
+    "title": "MAR 536: Lab 4",
+    "section": "select variables with certain characteristics",
+    "text": "select variables with certain characteristics\n\nhotels |>\n  select(starts_with(\"arrival\"))\n\n# A tibble: 119,390 × 4\n   arrival_date_year arrival_date_month arrival_date_week_numb… arrival_date_da…\n               <dbl> <chr>                                <dbl>            <dbl>\n 1              2015 July                                    27                1\n 2              2015 July                                    27                1\n 3              2015 July                                    27                1\n 4              2015 July                                    27                1\n 5              2015 July                                    27                1\n 6              2015 July                                    27                1\n 7              2015 July                                    27                1\n 8              2015 July                                    27                1\n 9              2015 July                                    27                1\n10              2015 July                                    27                1\n# … with 119,380 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#select-variables-with-certain-characteristics-1",
+    "href": "labs/lab-04.html#select-variables-with-certain-characteristics-1",
+    "title": "MAR 536: Lab 4",
+    "section": "select variables with certain characteristics",
+    "text": "select variables with certain characteristics\n\nhotels |>\n  select(ends_with(\"type\"))\n\n# A tibble: 119,390 × 4\n   reserved_room_type assigned_room_type deposit_type customer_type\n   <chr>              <chr>              <chr>        <chr>        \n 1 C                  C                  No Deposit   Transient    \n 2 C                  C                  No Deposit   Transient    \n 3 A                  C                  No Deposit   Transient    \n 4 A                  A                  No Deposit   Transient    \n 5 A                  A                  No Deposit   Transient    \n 6 A                  A                  No Deposit   Transient    \n 7 C                  C                  No Deposit   Transient    \n 8 C                  C                  No Deposit   Transient    \n 9 A                  A                  No Deposit   Transient    \n10 D                  D                  No Deposit   Transient    \n# … with 119,380 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#select-helpers",
+    "href": "labs/lab-04.html#select-helpers",
+    "title": "MAR 536: Lab 4",
+    "section": "Select helpers",
+    "text": "Select helpers\n\nstarts_with(): Starts with a prefix\nends_with(): Ends with a suffix\ncontains(): Contains a literal string\nnum_range(): Matches a numerical range like x01, x02, x03\none_of(): Matches variable names in a character vector\neverything(): Matches all variables\nlast_col(): Select last variable, possibly with an offset\nmatches(): Matches a regular expression (a sequence of symbols/characters expressing a string/pattern to be searched for within text)"
+  },
+  {
+    "objectID": "labs/lab-04.html#arrange-in-ascending-descending-order",
+    "href": "labs/lab-04.html#arrange-in-ascending-descending-order",
+    "title": "MAR 536: Lab 4",
+    "section": "arrange in ascending / descending order",
+    "text": "arrange in ascending / descending order\n\n\n\nhotels |>\n  select(adults, children, babies) |>\n  arrange(babies) #<<\n\n# A tibble: 119,390 × 3\n   adults children babies\n    <dbl>    <dbl>  <dbl>\n 1      2        0      0\n 2      2        0      0\n 3      1        0      0\n 4      1        0      0\n 5      2        0      0\n 6      2        0      0\n 7      2        0      0\n 8      2        0      0\n 9      2        0      0\n10      2        0      0\n# … with 119,380 more rows\n\n\n\n\nhotels |>\n  select(adults, children, babies) |>\n  arrange(desc(babies)) #<<\n\n# A tibble: 119,390 × 3\n   adults children babies\n    <dbl>    <dbl>  <dbl>\n 1      2        0     10\n 2      1        0      9\n 3      2        0      2\n 4      2        0      2\n 5      2        0      2\n 6      2        0      2\n 7      2        0      2\n 8      2        0      2\n 9      2        0      2\n10      2        0      2\n# … with 119,380 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#slice-for-certain-row-numbers",
+    "href": "labs/lab-04.html#slice-for-certain-row-numbers",
+    "title": "MAR 536: Lab 4",
+    "section": "slice for certain row numbers",
+    "text": "slice for certain row numbers\n\n# first five\nhotels |>\n  slice(1:5) #<<\n\n# A tibble: 5 × 32\n  hotel is_canceled lead_time arrival_date_ye… arrival_date_mo… arrival_date_we…\n  <chr>       <dbl>     <dbl>            <dbl> <chr>                       <dbl>\n1 Reso…           0       342             2015 July                           27\n2 Reso…           0       737             2015 July                           27\n3 Reso…           0         7             2015 July                           27\n4 Reso…           0        13             2015 July                           27\n5 Reso…           0        14             2015 July                           27\n# … with 26 more variables: arrival_date_day_of_month <dbl>,\n#   stays_in_weekend_nights <dbl>, stays_in_week_nights <dbl>, adults <dbl>,\n#   children <dbl>, babies <dbl>, meal <chr>, country <chr>,\n#   market_segment <chr>, distribution_channel <chr>, is_repeated_guest <dbl>,\n#   previous_cancellations <dbl>, previous_bookings_not_canceled <dbl>,\n#   reserved_room_type <chr>, assigned_room_type <chr>, booking_changes <dbl>,\n#   deposit_type <chr>, agent <chr>, company <chr>, …"
+  },
+  {
+    "objectID": "labs/lab-04.html#filter-to-select-a-subset-of-rows",
+    "href": "labs/lab-04.html#filter-to-select-a-subset-of-rows",
+    "title": "MAR 536: Lab 4",
+    "section": "filter to select a subset of rows",
+    "text": "filter to select a subset of rows\n\n# bookings in City Hotels\nhotels |>\n  filter(hotel == \"City Hotel\")\n\n# A tibble: 79,330 × 32\n   hotel      is_canceled lead_time arrival_date_year arrival_date_month\n   <chr>            <dbl>     <dbl>             <dbl> <chr>             \n 1 City Hotel           0         6              2015 July              \n 2 City Hotel           1        88              2015 July              \n 3 City Hotel           1        65              2015 July              \n 4 City Hotel           1        92              2015 July              \n 5 City Hotel           1       100              2015 July              \n 6 City Hotel           1        79              2015 July              \n 7 City Hotel           0         3              2015 July              \n 8 City Hotel           1        63              2015 July              \n 9 City Hotel           1        62              2015 July              \n10 City Hotel           1        62              2015 July              \n# … with 79,320 more rows, and 27 more variables:\n#   arrival_date_week_number <dbl>, arrival_date_day_of_month <dbl>,\n#   stays_in_weekend_nights <dbl>, stays_in_week_nights <dbl>, adults <dbl>,\n#   children <dbl>, babies <dbl>, meal <chr>, country <chr>,\n#   market_segment <chr>, distribution_channel <chr>, is_repeated_guest <dbl>,\n#   previous_cancellations <dbl>, previous_bookings_not_canceled <dbl>,\n#   reserved_room_type <chr>, assigned_room_type <chr>, …"
+  },
+  {
+    "objectID": "labs/lab-04.html#filter-for-many-conditions-at-once",
+    "href": "labs/lab-04.html#filter-for-many-conditions-at-once",
+    "title": "MAR 536: Lab 4",
+    "section": "filter for many conditions at once",
+    "text": "filter for many conditions at once\n\nhotels |>\n  filter( \n    adults == 0,    \n    children >= 1   \n    ) |> \n  select(adults, babies, children)\n\n# A tibble: 223 × 3\n   adults babies children\n    <dbl>  <dbl>    <dbl>\n 1      0      0        3\n 2      0      0        2\n 3      0      0        2\n 4      0      0        2\n 5      0      0        2\n 6      0      0        3\n 7      0      1        2\n 8      0      0        2\n 9      0      0        2\n10      0      0        2\n# … with 213 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#filter-for-more-complex-conditions",
+    "href": "labs/lab-04.html#filter-for-more-complex-conditions",
+    "title": "MAR 536: Lab 4",
+    "section": "filter for more complex conditions",
+    "text": "filter for more complex conditions\n\n# bookings with no adults and some children or babies in the room\nhotels |>\n  filter( \n    adults == 0,     \n    children >= 1 | babies >= 1     # | means or  \n    ) |>\n  select(adults, babies, children)\n\n# A tibble: 223 × 3\n   adults babies children\n    <dbl>  <dbl>    <dbl>\n 1      0      0        3\n 2      0      0        2\n 3      0      0        2\n 4      0      0        2\n 5      0      0        2\n 6      0      0        3\n 7      0      1        2\n 8      0      0        2\n 9      0      0        2\n10      0      0        2\n# … with 213 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#logical-operators-in-r",
+    "href": "labs/lab-04.html#logical-operators-in-r",
+    "title": "MAR 536: Lab 4",
+    "section": "Logical operators in R",
+    "text": "Logical operators in R\n\noperator | definition || operator | definition ————|——————————||————–|—————- < | less than ||x | y | x OR y <= | less than or equal to ||is.na(x) | test if x is NA > | greater than ||!is.na(x) | test if x is not NA >= | greater than or equal to ||x %in% y | test if x is in y == | exactly equal to ||!(x %in% y) | test if x is not in y != | not equal to ||!x | not x x & y | x AND y || |"
+  },
+  {
+    "objectID": "labs/lab-04.html#distinct-to-filter-for-unique-rows",
+    "href": "labs/lab-04.html#distinct-to-filter-for-unique-rows",
+    "title": "MAR 536: Lab 4",
+    "section": "distinct to filter for unique rows",
+    "text": "distinct to filter for unique rows\n… and arrange to order alphabetically\n\n\n\nhotels |> \n  distinct(market_segment) |> \n  arrange(market_segment)\n\n# A tibble: 8 × 1\n  market_segment\n  <chr>         \n1 Aviation      \n2 Complementary \n3 Corporate     \n4 Direct        \n5 Groups        \n6 Offline TA/TO \n7 Online TA     \n8 Undefined     \n\n\n\n\nhotels |> \n  distinct(hotel, market_segment) |> #<<\n  arrange(hotel, market_segment)\n\n# A tibble: 14 × 2\n   hotel        market_segment\n   <chr>        <chr>         \n 1 City Hotel   Aviation      \n 2 City Hotel   Complementary \n 3 City Hotel   Corporate     \n 4 City Hotel   Direct        \n 5 City Hotel   Groups        \n 6 City Hotel   Offline TA/TO \n 7 City Hotel   Online TA     \n 8 City Hotel   Undefined     \n 9 Resort Hotel Complementary \n10 Resort Hotel Corporate     \n11 Resort Hotel Direct        \n12 Resort Hotel Groups        \n13 Resort Hotel Offline TA/TO \n14 Resort Hotel Online TA"
+  },
+  {
+    "objectID": "labs/lab-04.html#count-to-create-frequency-tables",
+    "href": "labs/lab-04.html#count-to-create-frequency-tables",
+    "title": "MAR 536: Lab 4",
+    "section": "count to create frequency tables",
+    "text": "count to create frequency tables\n\n\n\n# alphabetical order by default\nhotels |>\n  count(market_segment) #<<\n\n# A tibble: 8 × 2\n  market_segment     n\n  <chr>          <int>\n1 Aviation         237\n2 Complementary    743\n3 Corporate       5295\n4 Direct         12606\n5 Groups         19811\n6 Offline TA/TO  24219\n7 Online TA      56477\n8 Undefined          2\n\n\n\n.pull-right[\n\n# descending frequency order\nhotels |>\n  count(market_segment, sort = TRUE) #<<\n\n# A tibble: 8 × 2\n  market_segment     n\n  <chr>          <int>\n1 Online TA      56477\n2 Offline TA/TO  24219\n3 Groups         19811\n4 Direct         12606\n5 Corporate       5295\n6 Complementary    743\n7 Aviation         237\n8 Undefined          2"
+  },
+  {
+    "objectID": "labs/lab-04.html#count-and-arrange",
+    "href": "labs/lab-04.html#count-and-arrange",
+    "title": "MAR 536: Lab 4",
+    "section": "count and arrange",
+    "text": "count and arrange\n\n\n\n# ascending frequency order\nhotels |>\n  count(market_segment) |>\n  arrange(n) #<<\n\n# A tibble: 8 × 2\n  market_segment     n\n  <chr>          <int>\n1 Undefined          2\n2 Aviation         237\n3 Complementary    743\n4 Corporate       5295\n5 Direct         12606\n6 Groups         19811\n7 Offline TA/TO  24219\n8 Online TA      56477\n\n\n\n.pull-right[\n\n# descending frequency order\n# just like adding sort = TRUE\nhotels |>\n  count(market_segment) |>\n  arrange(desc(n)) #<<\n\n# A tibble: 8 × 2\n  market_segment     n\n  <chr>          <int>\n1 Online TA      56477\n2 Offline TA/TO  24219\n3 Groups         19811\n4 Direct         12606\n5 Corporate       5295\n6 Complementary    743\n7 Aviation         237\n8 Undefined          2"
+  },
+  {
+    "objectID": "labs/lab-04.html#count-for-multiple-variables",
+    "href": "labs/lab-04.html#count-for-multiple-variables",
+    "title": "MAR 536: Lab 4",
+    "section": "count for multiple variables",
+    "text": "count for multiple variables\n\nhotels |>\n  count(hotel, market_segment) #<<\n\n# A tibble: 14 × 3\n   hotel        market_segment     n\n   <chr>        <chr>          <int>\n 1 City Hotel   Aviation         237\n 2 City Hotel   Complementary    542\n 3 City Hotel   Corporate       2986\n 4 City Hotel   Direct          6093\n 5 City Hotel   Groups         13975\n 6 City Hotel   Offline TA/TO  16747\n 7 City Hotel   Online TA      38748\n 8 City Hotel   Undefined          2\n 9 Resort Hotel Complementary    201\n10 Resort Hotel Corporate       2309\n11 Resort Hotel Direct          6513\n12 Resort Hotel Groups          5836\n13 Resort Hotel Offline TA/TO   7472\n14 Resort Hotel Online TA      17729"
+  },
+  {
+    "objectID": "labs/lab-04.html#order-matters-when-you-count",
+    "href": "labs/lab-04.html#order-matters-when-you-count",
+    "title": "MAR 536: Lab 4",
+    "section": "order matters when you count",
+    "text": "order matters when you count\n\n\n\n# hotel type first\nhotels |>\n  count(hotel, market_segment) #<<\n\n# A tibble: 14 × 3\n   hotel        market_segment     n\n   <chr>        <chr>          <int>\n 1 City Hotel   Aviation         237\n 2 City Hotel   Complementary    542\n 3 City Hotel   Corporate       2986\n 4 City Hotel   Direct          6093\n 5 City Hotel   Groups         13975\n 6 City Hotel   Offline TA/TO  16747\n 7 City Hotel   Online TA      38748\n 8 City Hotel   Undefined          2\n 9 Resort Hotel Complementary    201\n10 Resort Hotel Corporate       2309\n11 Resort Hotel Direct          6513\n12 Resort Hotel Groups          5836\n13 Resort Hotel Offline TA/TO   7472\n14 Resort Hotel Online TA      17729\n\n\n\n\n# market segment first\nhotels |>\n  count(market_segment, hotel) #<<\n\n# A tibble: 14 × 3\n   market_segment hotel            n\n   <chr>          <chr>        <int>\n 1 Aviation       City Hotel     237\n 2 Complementary  City Hotel     542\n 3 Complementary  Resort Hotel   201\n 4 Corporate      City Hotel    2986\n 5 Corporate      Resort Hotel  2309\n 6 Direct         City Hotel    6093\n 7 Direct         Resort Hotel  6513\n 8 Groups         City Hotel   13975\n 9 Groups         Resort Hotel  5836\n10 Offline TA/TO  City Hotel   16747\n11 Offline TA/TO  Resort Hotel  7472\n12 Online TA      City Hotel   38748\n13 Online TA      Resort Hotel 17729\n14 Undefined      City Hotel       2"
+  },
+  {
+    "objectID": "labs/lab-04.html#mutate-to-add-a-new-variable",
+    "href": "labs/lab-04.html#mutate-to-add-a-new-variable",
+    "title": "MAR 536: Lab 4",
+    "section": "mutate to add a new variable",
+    "text": "mutate to add a new variable\n\nhotels |>\n  mutate(little_ones = children + babies) |> #<<\n  select(children, babies, little_ones) |>\n  arrange(desc(little_ones))\n\n# A tibble: 119,390 × 3\n   children babies little_ones\n      <dbl>  <dbl>       <dbl>\n 1       10      0          10\n 2        0     10          10\n 3        0      9           9\n 4        2      1           3\n 5        2      1           3\n 6        2      1           3\n 7        3      0           3\n 8        2      1           3\n 9        2      1           3\n10        3      0           3\n# … with 119,380 more rows\n\n\n— {.small}\n{.question} What is happening in the following chunk?\n\nhotels |>\n  mutate(little_ones = children + babies) |>\n  count(hotel, little_ones) |>\n  mutate(prop = n / sum(n))\n\n# A tibble: 12 × 4\n   hotel        little_ones     n       prop\n   <chr>              <dbl> <int>      <dbl>\n 1 City Hotel             0 73923 0.619     \n 2 City Hotel             1  3263 0.0273    \n 3 City Hotel             2  2056 0.0172    \n 4 City Hotel             3    82 0.000687  \n 5 City Hotel             9     1 0.00000838\n 6 City Hotel            10     1 0.00000838\n 7 City Hotel            NA     4 0.0000335 \n 8 Resort Hotel           0 36131 0.303     \n 9 Resort Hotel           1  2183 0.0183    \n10 Resort Hotel           2  1716 0.0144    \n11 Resort Hotel           3    29 0.000243  \n12 Resort Hotel          10     1 0.00000838"
+  },
+  {
+    "objectID": "labs/lab-04.html#summarise-for-summary-stats",
+    "href": "labs/lab-04.html#summarise-for-summary-stats",
+    "title": "MAR 536: Lab 4",
+    "section": "summarise for summary stats",
+    "text": "summarise for summary stats\n\n# mean average daily rate for all bookings\nhotels |>\n  summarise(mean_adr = mean(adr)) #<<\n\n# A tibble: 1 × 1\n  mean_adr\n     <dbl>\n1     102.\n\n\nsummarise() changes the data frame entirely, it collapses rows down to a single summary statistic, and removes all columns that are irrelevant to the calculation."
+  },
+  {
+    "objectID": "labs/lab-04.html#group_by-for-grouped-operations",
+    "href": "labs/lab-04.html#group_by-for-grouped-operations",
+    "title": "MAR 536: Lab 4",
+    "section": "group_by for grouped operations",
+    "text": "group_by for grouped operations\n\n# mean average daily rate for all booking at city and resort hotels\nhotels |>\n  group_by(hotel) |> #<<\n  summarise(mean_adr = mean(adr))\n\n# A tibble: 2 × 2\n  hotel        mean_adr\n  <chr>           <dbl>\n1 City Hotel      105. \n2 Resort Hotel     95.0"
+  },
+  {
+    "objectID": "labs/lab-04.html#calculating-frequencies",
+    "href": "labs/lab-04.html#calculating-frequencies",
+    "title": "MAR 536: Lab 4",
+    "section": "Calculating frequencies",
+    "text": "Calculating frequencies\nThe following two give the same result, so count is simply short for group_by then determine frequencies\n\n\n\nhotels |>\n  group_by(hotel) |>\n  summarise(n = n())\n\n# A tibble: 2 × 2\n  hotel            n\n  <chr>        <int>\n1 City Hotel   79330\n2 Resort Hotel 40060\n\n\n\n\nhotels |>\n  count(hotel)\n\n# A tibble: 2 × 2\n  hotel            n\n  <chr>        <int>\n1 City Hotel   79330\n2 Resort Hotel 40060"
+  },
+  {
+    "objectID": "labs/lab-04.html#multiple-summary-statistics",
+    "href": "labs/lab-04.html#multiple-summary-statistics",
+    "title": "MAR 536: Lab 4",
+    "section": "Multiple summary statistics",
+    "text": "Multiple summary statistics\nsummarise can be used for multiple summary statistics as well\n\nhotels |>\n  summarise(\n    min_adr = min(adr),\n    mean_adr = mean(adr),\n    median_adr = median(adr),\n    max_adr = max(adr)\n    )\n\n# A tibble: 1 × 4\n  min_adr mean_adr median_adr max_adr\n    <dbl>    <dbl>      <dbl>   <dbl>\n1   -6.38     102.       94.6    5400"
+  },
+  {
+    "objectID": "labs/lab-04.html#dplyracross",
+    "href": "labs/lab-04.html#dplyracross",
+    "title": "MAR 536: Lab 4",
+    "section": "dplyr::across()",
+    "text": "dplyr::across()\nFrom tidyverse.org, dplyr::across() “makes it easy to apply the same transformation to multiple columns.”\n\nThe across() function is especially useful within summarize() to efficiently create summary tables with one or more functions applied to multiple variables (columns).\nCreate a summary table of mean values for all penguin size measurements ending in “mm” (bill depth, bill length, flipper length), by species."
+  },
+  {
+    "objectID": "labs/lab-04.html#dplyracross-1",
+    "href": "labs/lab-04.html#dplyracross-1",
+    "title": "MAR 536: Lab 4",
+    "section": "dplyr::across()",
+    "text": "dplyr::across()\nAs a reminder, here’s a sample from the penguins data (5 observations / 344 total).\n\npenguins[c(3,31,199,220,304),] |>\n  kable() |>\n  kable_styling(full_width=F)\n\n\n\n \n  \n    species \n    island \n    bill_length_mm \n    bill_depth_mm \n    flipper_length_mm \n    body_mass_g \n    sex \n    year \n  \n \n\n  \n    Adelie \n    Torgersen \n    40.3 \n    18.0 \n    195 \n    3250 \n    female \n    2007 \n  \n  \n    Adelie \n    Dream \n    39.5 \n    16.7 \n    178 \n    3250 \n    female \n    2007 \n  \n  \n    Gentoo \n    Biscoe \n    45.5 \n    13.9 \n    210 \n    4200 \n    female \n    2008 \n  \n  \n    Gentoo \n    Biscoe \n    49.5 \n    16.2 \n    229 \n    5800 \n    male \n    2008 \n  \n  \n    Chinstrap \n    Dream \n    49.5 \n    19.0 \n    200 \n    3800 \n    male \n    2008"
+  },
+  {
+    "objectID": "labs/lab-04.html#approach-1-using-group_by-summarize",
+    "href": "labs/lab-04.html#approach-1-using-group_by-summarize",
+    "title": "MAR 536: Lab 4",
+    "section": "Approach 1: Using group_by() |> summarize()",
+    "text": "Approach 1: Using group_by() |> summarize()\n\npenguins |>\n  group_by(species) |>\n  summarize(bill_length_mean = mean(bill_length_mm, na.rm = TRUE),\n            bill_depth_mean = mean(bill_depth_mm, na.rm = TRUE),\n            flipper_length_mean = mean(flipper_length_mm, na.rm = TRUE))"
+  },
+  {
+    "objectID": "labs/lab-04.html#approach-2-using-across-within-summarize",
+    "href": "labs/lab-04.html#approach-2-using-across-within-summarize",
+    "title": "MAR 536: Lab 4",
+    "section": "Approach 2: Using across() within summarize()",
+    "text": "Approach 2: Using across() within summarize()\n\npenguins |>\n  group_by(species) |>\n  summarize(across(ends_with(\"mm\"), mean, na.rm = TRUE))\n\n# A tibble: 3 × 4\n  species   bill_length_mm bill_depth_mm flipper_length_mm\n  <fct>              <dbl>         <dbl>             <dbl>\n1 Adelie              38.8          18.3              190.\n2 Chinstrap           48.8          18.4              196.\n3 Gentoo              47.5          15.0              217.\n\n\nThe output is the same - but the second way (using across()) is much more efficient - and becomes even more useful as the number of columns you want to transform increases!\nThe across() function also happily accepts most helper functions introduced for select(), including: starts_with(), ends_with(), contains(), as well as to specify classes (e.g. is.numeric, is.character, etc.). Follow along with the examples & exercises below to learn more!"
+  },
+  {
+    "objectID": "labs/lab-04.html#lab-exercise-nn",
+    "href": "labs/lab-04.html#lab-exercise-nn",
+    "title": "MAR 536: Lab 4",
+    "section": "Lab exercise n/N",
+    "text": "Lab exercise n/N\nStarting with penguins, use across() within group_by() and summarize() to make a summary table containing the minimum values for bill length and body mass, grouped by penguin species.\n\npenguins |>\n  group_by(species) |>\n  summarize(across(c(bill_length_mm, body_mass_g), min, na.rm = TRUE))\n\n# A tibble: 3 × 3\n  species   bill_length_mm body_mass_g\n  <fct>              <dbl>       <int>\n1 Adelie              32.1        2850\n2 Chinstrap           40.9        2700\n3 Gentoo              40.9        3950\n\n\nStarting with penguins, use across() within group_by() and summarize() to make a summary table containing the maximum value within any column starting with “bill”, grouped by year.\n\npenguins |>\n  group_by(year) |>\n  summarize(across(starts_with(\"bill\"), max, na.rm = TRUE))\n\n# A tibble: 3 × 3\n   year bill_length_mm bill_depth_mm\n  <int>          <dbl>         <dbl>\n1  2007           59.6          21.5\n2  2008           54.3          21.1\n3  2009           55.9          20.7\n\n\nSince what is presented in the table is the maximum value for bill length and depth, we probably want to update the column names. We could do that manually using rename(), or we can add the .names = argument within across() as shown in the examples below."
+  },
+  {
+    "objectID": "labs/lab-04.html#example-4",
+    "href": "labs/lab-04.html#example-4",
+    "title": "MAR 536: Lab 4",
+    "section": "Example 4",
+    "text": "Example 4\nRepeat the example above, but add an argument that will automatically update the column names containing the maximum bill length and depth to start with “max_” followed by the original column name.\n\npenguins |>\n  group_by(year) |>\n  summarise(across(starts_with(\"bill\"), max, na.rm = TRUE, .names = \"max_{.col}\"))\n\n# A tibble: 3 × 3\n   year max_bill_length_mm max_bill_depth_mm\n  <int>              <dbl>             <dbl>\n1  2007               59.6              21.5\n2  2008               54.3              21.1\n3  2009               55.9              20.7"
+  },
+  {
+    "objectID": "labs/lab-04.html#example-5",
+    "href": "labs/lab-04.html#example-5",
+    "title": "MAR 536: Lab 4",
+    "section": " Example 5",
+    "text": "Example 5\nStarting from penguins, create a summary table that finds the mean and standard deviation for all variables containing the string “length”, grouped by penguin species. Update the column names to start with “avg_” or “sd_”, followed by the original column names.\nThere’s quite a bit happening here, so a little breakdown:\n\nWe use contains(\"length\") to indicate we’ll apply the functions to any columns with the word “length” in the name\nWithin list() is where the functions to be applied across columns are given, and where their “names” of “avg” and “stdev” are set\nWe use .names = to define the final column names in the summary table. Here, the name should start with the function “name” specified above (“avg” or “stdev”), then an underscore, then the original column name (that’s what \"{.fn}_{.col}\" will do)\n\n\npenguins |>\n  group_by(species) |>\n  summarize(across(contains(\"length\"),\n                   list(avg = mean, stdev = sd),\n                   na.rm = TRUE,\n                   .names = \"{.fn}_{.col}\"))\n\n# A tibble: 3 × 5\n  species   avg_bill_length_… stdev_bill_leng… avg_flipper_len… stdev_flipper_l…\n  <fct>                 <dbl>            <dbl>            <dbl>            <dbl>\n1 Adelie                 38.8             2.66             190.             6.54\n2 Chinstrap              48.8             3.34             196.             7.13\n3 Gentoo                 47.5             3.08             217.             6.48"
+  },
+  {
+    "objectID": "labs/lab-04.html#dplyrcase_when",
+    "href": "labs/lab-04.html#dplyrcase_when",
+    "title": "MAR 536: Lab 4",
+    "section": "dplyr::case_when()",
+    "text": "dplyr::case_when()\nThe case_when() function is like a really friendly if-else statement. When used within mutate(), it allows you to add a new column containing values dependent on your condition(s)."
+  },
+  {
+    "objectID": "labs/lab-04.html#case_when-examples",
+    "href": "labs/lab-04.html#case_when-examples",
+    "title": "MAR 536: Lab 4",
+    "section": "CASE_WHEN EXAMPLES",
+    "text": "CASE_WHEN EXAMPLES"
+  },
+  {
+    "objectID": "labs/lab-04.html#example-1",
+    "href": "labs/lab-04.html#example-1",
+    "title": "MAR 536: Lab 4",
+    "section": " Example 1",
+    "text": "Example 1\nTo penguins, add a new column size_bin that contains:\n\n“large” if body mass is greater than 4500 g\n“medium” if body mass is greater than 3000 g, and less than or equal to 4500 g\n“small” if body mass is less than or equal to 3000 g\n\n\npenguins |>\n  mutate(size_bin = case_when(\n      body_mass_g > 4500 ~ \"large\",\n      body_mass_g > 3000 & body_mass_g <= 4500 ~ \"medium\",\n      body_mass_g <= 3000 ~ \"small\"\n    )\n  )\n\n# A tibble: 344 × 9\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   <fct>   <fct>              <dbl>         <dbl>             <int>       <int>\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# … with 334 more rows, and 3 more variables: sex <fct>, year <int>,\n#   size_bin <chr>"
+  },
+  {
+    "objectID": "labs/lab-04.html#example-2",
+    "href": "labs/lab-04.html#example-2",
+    "title": "MAR 536: Lab 4",
+    "section": " Example 2",
+    "text": "Example 2\nStarting with penguins:\n\nLimit the columns to species, year, and flipper_length_mm\nRename the year column to study_year\nOnly keep observations for Adelie penguins\nAdd a new column called flipper_rank that contains:\n\n1 if flipper_length_mm is < 200 mm\n2 if flipper_length_mm is >= 200 mm\n0 if flipper_length_mm is anything else (e.g. NA)\n\n\n\npenguins |>\n  select(species, year, flipper_length_mm) |>\n  rename(study_year = year) |>\n  filter(species == \"Adelie\") |>\n  mutate(flipper_rank = case_when(\n    flipper_length_mm < 200 ~ 1,\n    flipper_length_mm >= 200 ~ 2,\n    TRUE ~ 0 # 0 for anything else\n  ))\n\n# A tibble: 152 × 4\n   species study_year flipper_length_mm flipper_rank\n   <fct>        <int>             <int>        <dbl>\n 1 Adelie        2007               181            1\n 2 Adelie        2007               186            1\n 3 Adelie        2007               195            1\n 4 Adelie        2007                NA            0\n 5 Adelie        2007               193            1\n 6 Adelie        2007               190            1\n 7 Adelie        2007               181            1\n 8 Adelie        2007               195            1\n 9 Adelie        2007               193            1\n10 Adelie        2007               190            1\n# … with 142 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#case_when-practice-activities",
+    "href": "labs/lab-04.html#case_when-practice-activities",
+    "title": "MAR 536: Lab 4",
+    "section": "CASE_WHEN PRACTICE ACTIVITIES",
+    "text": "CASE_WHEN PRACTICE ACTIVITIES"
+  },
+  {
+    "objectID": "labs/lab-04.html#practice-activity-1",
+    "href": "labs/lab-04.html#practice-activity-1",
+    "title": "MAR 536: Lab 4",
+    "section": " Practice Activity 1",
+    "text": "Practice Activity 1\nAdd a new column to penguins called study_year that contains:\n\n“Year 1” if the year is 2007\n“Year 2” if the year is 2008\n“Year 3” if the year is 2009\n\n Practice Activity 2\nStarting with penguins, only keep observations for chinstrap penguins, then only keep the flipper_length_mm and body_mass_g variables. Add a new column called fm_ratio that contains the ratio of flipper length to body mass for each penguin. Next, add another column named ratio_bin which contains the word “high” if fm_ratio is greater than or equal to 0.05, “low” if the ratio is less than 0.05, and “no record” if anything else (e.g. NA)."
+  },
+  {
+    "objectID": "labs/lab-04.html#we",
+    "href": "labs/lab-04.html#we",
+    "title": "MAR 536: Lab 4",
+    "section": "We…",
+    "text": "We…\nhave multiple data frames\nwant to bring them together"
+  },
+  {
+    "objectID": "labs/lab-04.html#data-women-in-science",
+    "href": "labs/lab-04.html#data-women-in-science",
+    "title": "MAR 536: Lab 4",
+    "section": "Data: Women in science",
+    "text": "Data: Women in science\nInformation on 10 women in science who changed the world\n\n\n\n\n \n  \n    name \n  \n \n\n  \n    Ada Lovelace \n  \n  \n    Marie Curie \n  \n  \n    Janaki Ammal \n  \n  \n    Chien-Shiung Wu \n  \n  \n    Katherine Johnson \n  \n  \n    Rosalind Franklin \n  \n  \n    Vera Rubin \n  \n  \n    Gladys West \n  \n  \n    Flossie Wong-Staal \n  \n  \n    Jennifer Doudna \n  \n\n\n\n\n\n.footnote[ Source: Discover Magazine]"
+  },
+  {
+    "objectID": "labs/lab-04.html#inputs",
+    "href": "labs/lab-04.html#inputs",
+    "title": "MAR 536: Lab 4",
+    "section": "Inputs",
+    "text": "Inputs\n\nprofessionsdatesworks\n\n\n\nprofessions\n\n# A tibble: 10 × 2\n   name               profession                        \n   <chr>              <chr>                             \n 1 Ada Lovelace       Mathematician                     \n 2 Marie Curie        Physicist and Chemist             \n 3 Janaki Ammal       Botanist                          \n 4 Chien-Shiung Wu    Physicist                         \n 5 Katherine Johnson  Mathematician                     \n 6 Rosalind Franklin  Chemist                           \n 7 Vera Rubin         Astronomer                        \n 8 Gladys West        Mathematician                     \n 9 Flossie Wong-Staal Virologist and Molecular Biologist\n10 Jennifer Doudna    Biochemist                        \n\n\n\n\n\ndates\n\n# A tibble: 8 × 3\n  name               birth_year death_year\n  <chr>                   <dbl>      <dbl>\n1 Janaki Ammal             1897       1984\n2 Chien-Shiung Wu          1912       1997\n3 Katherine Johnson        1918       2020\n4 Rosalind Franklin        1920       1958\n5 Vera Rubin               1928       2016\n6 Gladys West              1930         NA\n7 Flossie Wong-Staal       1947         NA\n8 Jennifer Doudna          1964         NA\n\n\n\n\n\nworks\n\n# A tibble: 9 × 2\n  name               known_for                                                  \n  <chr>              <chr>                                                      \n1 Ada Lovelace       first computer algorithm                                   \n2 Marie Curie        theory of radioactivity,  discovery of elements polonium a…\n3 Janaki Ammal       hybrid species, biodiversity protection                    \n4 Chien-Shiung Wu    confim and refine theory of radioactive beta decy, Wu expe…\n5 Katherine Johnson  calculations of orbital mechanics critical to sending the …\n6 Vera Rubin         existence of dark matter                                   \n7 Gladys West        mathematical modeling of the shape of the Earth which serv…\n8 Flossie Wong-Staal first scientist to clone HIV and create a map of its genes…\n9 Jennifer Doudna    one of the primary developers of CRISPR, a ground-breaking…"
+  },
+  {
+    "objectID": "labs/lab-04.html#desired-output",
+    "href": "labs/lab-04.html#desired-output",
+    "title": "MAR 536: Lab 4",
+    "section": "Desired output",
+    "text": "Desired output\n\n\n# A tibble: 10 × 5\n   name               profession                 birth_year death_year known_for\n   <chr>              <chr>                           <dbl>      <dbl> <chr>    \n 1 Ada Lovelace       Mathematician                      NA         NA first co…\n 2 Marie Curie        Physicist and Chemist              NA         NA theory o…\n 3 Janaki Ammal       Botanist                         1897       1984 hybrid s…\n 4 Chien-Shiung Wu    Physicist                        1912       1997 confim a…\n 5 Katherine Johnson  Mathematician                    1918       2020 calculat…\n 6 Rosalind Franklin  Chemist                          1920       1958 <NA>     \n 7 Vera Rubin         Astronomer                       1928       2016 existenc…\n 8 Gladys West        Mathematician                    1930         NA mathemat…\n 9 Flossie Wong-Staal Virologist and Molecular …       1947         NA first sc…\n10 Jennifer Doudna    Biochemist                       1964         NA one of t…"
+  },
+  {
+    "objectID": "labs/lab-04.html#inputs-reminder",
+    "href": "labs/lab-04.html#inputs-reminder",
+    "title": "MAR 536: Lab 4",
+    "section": "Inputs, reminder",
+    "text": "Inputs, reminder\n\n\n\nnames(professions)\n\n[1] \"name\"       \"profession\"\n\nnames(dates)\n\n[1] \"name\"       \"birth_year\" \"death_year\"\n\nnames(works)\n\n[1] \"name\"      \"known_for\"\n\n\n\n\nnrow(professions)\n\n[1] 10\n\nnrow(dates)\n\n[1] 8\n\nnrow(works)\n\n[1] 9"
+  },
+  {
+    "objectID": "labs/lab-04.html#joining-data-frames-1",
+    "href": "labs/lab-04.html#joining-data-frames-1",
+    "title": "MAR 536: Lab 4",
+    "section": "Joining data frames",
+    "text": "Joining data frames\n\nsomething_join(x, y)\n\n\nleft_join(): all rows from x\nright_join(): all rows from y\nfull_join(): all rows from both x and y\nsemi_join(): all rows from x where there are matching values in y, keeping just columns from x\ninner_join(): all rows from x where there are matching values in y, return all combination of multiple matches in the case of multiple matches\nanti_join(): return all rows from x where there are not matching values in y, never duplicate rows of x\n…"
+  },
+  {
+    "objectID": "labs/lab-04.html#setup-1",
+    "href": "labs/lab-04.html#setup-1",
+    "title": "MAR 536: Lab 4",
+    "section": "Setup",
+    "text": "Setup\nFor the next few slides…\n\n\n\n\n\n\nx\n\n# A tibble: 3 × 2\n     id value_x\n  <dbl> <chr>  \n1     1 x1     \n2     2 x2     \n3     3 x3     \n\n\n\n\n\n\n\ny\n\n# A tibble: 3 × 2\n     id value_y\n  <dbl> <chr>  \n1     1 y1     \n2     2 y2     \n3     4 y4"
+  },
+  {
+    "objectID": "labs/lab-04.html#left_join",
+    "href": "labs/lab-04.html#left_join",
+    "title": "MAR 536: Lab 4",
+    "section": "left_join()",
+    "text": "left_join()\n\n\n\n\n\n\n\n\n\nleft_join(x, y)\n\n# A tibble: 3 × 3\n     id value_x value_y\n  <dbl> <chr>   <chr>  \n1     1 x1      y1     \n2     2 x2      y2     \n3     3 x3      <NA>"
+  },
+  {
+    "objectID": "labs/lab-04.html#left_join-1",
+    "href": "labs/lab-04.html#left_join-1",
+    "title": "MAR 536: Lab 4",
+    "section": "left_join()",
+    "text": "left_join()\n\nprofessions |>\n  left_join(dates) #<<\n\n# A tibble: 10 × 4\n   name               profession                         birth_year death_year\n   <chr>              <chr>                                   <dbl>      <dbl>\n 1 Ada Lovelace       Mathematician                              NA         NA\n 2 Marie Curie        Physicist and Chemist                      NA         NA\n 3 Janaki Ammal       Botanist                                 1897       1984\n 4 Chien-Shiung Wu    Physicist                                1912       1997\n 5 Katherine Johnson  Mathematician                            1918       2020\n 6 Rosalind Franklin  Chemist                                  1920       1958\n 7 Vera Rubin         Astronomer                               1928       2016\n 8 Gladys West        Mathematician                            1930         NA\n 9 Flossie Wong-Staal Virologist and Molecular Biologist       1947         NA\n10 Jennifer Doudna    Biochemist                               1964         NA"
+  },
+  {
+    "objectID": "labs/lab-04.html#right_join",
+    "href": "labs/lab-04.html#right_join",
+    "title": "MAR 536: Lab 4",
+    "section": "right_join()",
+    "text": "right_join()\n\n\n\n\n\n\n\n\n\nright_join(x, y)\n\n# A tibble: 3 × 3\n     id value_x value_y\n  <dbl> <chr>   <chr>  \n1     1 x1      y1     \n2     2 x2      y2     \n3     4 <NA>    y4"
+  },
+  {
+    "objectID": "labs/lab-04.html#right_join-1",
+    "href": "labs/lab-04.html#right_join-1",
+    "title": "MAR 536: Lab 4",
+    "section": "right_join()",
+    "text": "right_join()\n\nprofessions |>\n  right_join(dates) #<<\n\n# A tibble: 8 × 4\n  name               profession                         birth_year death_year\n  <chr>              <chr>                                   <dbl>      <dbl>\n1 Janaki Ammal       Botanist                                 1897       1984\n2 Chien-Shiung Wu    Physicist                                1912       1997\n3 Katherine Johnson  Mathematician                            1918       2020\n4 Rosalind Franklin  Chemist                                  1920       1958\n5 Vera Rubin         Astronomer                               1928       2016\n6 Gladys West        Mathematician                            1930         NA\n7 Flossie Wong-Staal Virologist and Molecular Biologist       1947         NA\n8 Jennifer Doudna    Biochemist                               1964         NA"
+  },
+  {
+    "objectID": "labs/lab-04.html#full_join",
+    "href": "labs/lab-04.html#full_join",
+    "title": "MAR 536: Lab 4",
+    "section": "full_join()",
+    "text": "full_join()\n\n\n\n\n\n\n\n\n\nfull_join(x, y)\n\n# A tibble: 4 × 3\n     id value_x value_y\n  <dbl> <chr>   <chr>  \n1     1 x1      y1     \n2     2 x2      y2     \n3     3 x3      <NA>   \n4     4 <NA>    y4"
+  },
+  {
+    "objectID": "labs/lab-04.html#full_join-1",
+    "href": "labs/lab-04.html#full_join-1",
+    "title": "MAR 536: Lab 4",
+    "section": "full_join()",
+    "text": "full_join()\n\ndates |>\n  full_join(works) #<<\n\n# A tibble: 10 × 4\n   name               birth_year death_year known_for                           \n   <chr>                   <dbl>      <dbl> <chr>                               \n 1 Janaki Ammal             1897       1984 hybrid species, biodiversity protec…\n 2 Chien-Shiung Wu          1912       1997 confim and refine theory of radioac…\n 3 Katherine Johnson        1918       2020 calculations of orbital mechanics c…\n 4 Rosalind Franklin        1920       1958 <NA>                                \n 5 Vera Rubin               1928       2016 existence of dark matter            \n 6 Gladys West              1930         NA mathematical modeling of the shape …\n 7 Flossie Wong-Staal       1947         NA first scientist to clone HIV and cr…\n 8 Jennifer Doudna          1964         NA one of the primary developers of CR…\n 9 Ada Lovelace               NA         NA first computer algorithm            \n10 Marie Curie                NA         NA theory of radioactivity,  discovery…"
+  },
+  {
+    "objectID": "labs/lab-04.html#inner_join",
+    "href": "labs/lab-04.html#inner_join",
+    "title": "MAR 536: Lab 4",
+    "section": "inner_join()",
+    "text": "inner_join()\n\n\n\n\n\n\n\n\n\ninner_join(x, y)\n\n# A tibble: 2 × 3\n     id value_x value_y\n  <dbl> <chr>   <chr>  \n1     1 x1      y1     \n2     2 x2      y2"
+  },
+  {
+    "objectID": "labs/lab-04.html#inner_join-1",
+    "href": "labs/lab-04.html#inner_join-1",
+    "title": "MAR 536: Lab 4",
+    "section": "inner_join()",
+    "text": "inner_join()\n\ndates |>\n  inner_join(works) #<<\n\n# A tibble: 7 × 4\n  name               birth_year death_year known_for                            \n  <chr>                   <dbl>      <dbl> <chr>                                \n1 Janaki Ammal             1897       1984 hybrid species, biodiversity protect…\n2 Chien-Shiung Wu          1912       1997 confim and refine theory of radioact…\n3 Katherine Johnson        1918       2020 calculations of orbital mechanics cr…\n4 Vera Rubin               1928       2016 existence of dark matter             \n5 Gladys West              1930         NA mathematical modeling of the shape o…\n6 Flossie Wong-Staal       1947         NA first scientist to clone HIV and cre…\n7 Jennifer Doudna          1964         NA one of the primary developers of CRI…"
+  },
+  {
+    "objectID": "labs/lab-04.html#putting-it-altogether",
+    "href": "labs/lab-04.html#putting-it-altogether",
+    "title": "MAR 536: Lab 4",
+    "section": "Putting it altogether",
+    "text": "Putting it altogether\n\nprofessions |>\n  left_join(dates) |>\n  left_join(works)\n\n# A tibble: 10 × 5\n   name               profession                 birth_year death_year known_for\n   <chr>              <chr>                           <dbl>      <dbl> <chr>    \n 1 Ada Lovelace       Mathematician                      NA         NA first co…\n 2 Marie Curie        Physicist and Chemist              NA         NA theory o…\n 3 Janaki Ammal       Botanist                         1897       1984 hybrid s…\n 4 Chien-Shiung Wu    Physicist                        1912       1997 confim a…\n 5 Katherine Johnson  Mathematician                    1918       2020 calculat…\n 6 Rosalind Franklin  Chemist                          1920       1958 <NA>     \n 7 Vera Rubin         Astronomer                       1928       2016 existenc…\n 8 Gladys West        Mathematician                    1930         NA mathemat…\n 9 Flossie Wong-Staal Virologist and Molecular …       1947         NA first sc…\n10 Jennifer Doudna    Biochemist                       1964         NA one of t…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–>\n\n–>\n\n–>  –>  –>  –>  –>  –>  –>"
+  },
+  {
+    "objectID": "labs/lab-04.html#a-grammar-of-data-tidying",
+    "href": "labs/lab-04.html#a-grammar-of-data-tidying",
+    "title": "MAR 536: Lab 4",
+    "section": "A grammar of data tidying",
+    "text": "A grammar of data tidying\n::: columns ::: {.column width=“50%”}\n\n\n\n\n\n\n\nThe goal of tidyr is to help you tidy your data via\n\npivoting for going between wide and long data\nsplitting and combining character columns\nnesting and unnesting columns\nclarifying how NAs should be treated\n\n\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
+  },
+  {
+    "objectID": "labs/lab-04.html#not-this",
+    "href": "labs/lab-04.html#not-this",
+    "title": "MAR 536: Lab 4",
+    "section": "Not this…",
+    "text": "Not this…"
+  },
+  {
+    "objectID": "labs/lab-04.html#but-this",
+    "href": "labs/lab-04.html#but-this",
+    "title": "MAR 536: Lab 4",
+    "section": "but this!",
+    "text": "but this!"
+  },
+  {
+    "objectID": "labs/lab-04.html#wider-vs.-longer",
+    "href": "labs/lab-04.html#wider-vs.-longer",
+    "title": "MAR 536: Lab 4",
+    "section": "Wider vs. longer",
+    "text": "Wider vs. longer\n\n\nwider more columns\n\n\n# A tibble: 2 × 4\n  customer_id item_1 item_2       item_3\n        <dbl> <chr>  <chr>        <chr> \n1           1 bread  milk         banana\n2           2 milk   toilet paper <NA>  \n\n\n\nlonger more rows\n\n\n# A tibble: 6 × 3\n  customer_id item_no item        \n        <dbl> <chr>   <chr>       \n1           1 item_1  bread       \n2           1 item_2  milk        \n3           1 item_3  banana      \n4           2 item_1  milk        \n5           2 item_2  toilet paper\n6           2 item_3  <NA>"
+  },
+  {
+    "objectID": "labs/lab-04.html#pivot_longer-1",
+    "href": "labs/lab-04.html#pivot_longer-1",
+    "title": "MAR 536: Lab 4",
+    "section": "pivot_longer()",
+    "text": "pivot_longer()\n\npivot_longer(data, cols, names_to = \"name\", \n             values_to = \"value\")\n\n\nThe first argument is data as usual.\n\nThe second argument, cols, is where you specify which columns to pivot into longer format\n\nThe third argument, names_to, is a string specifying the name of the column to create from the data stored in the column names of data\n\nThe fourth argument, values_to, is a string specifying the name of the column to create from the data stored in cell values"
+  },
+  {
+    "objectID": "labs/lab-04.html#customers-rightarrow-purchases",
+    "href": "labs/lab-04.html#customers-rightarrow-purchases",
+    "title": "MAR 536: Lab 4",
+    "section": "Customers \\(\\rightarrow\\) purchases",
+    "text": "Customers \\(\\rightarrow\\) purchases\n\npurchases <- customers |>\n  pivot_longer( #<<\n    cols = item_1:item_3,  # variables item_1 to item_3 #<<\n    names_to = \"item_no\",  # column names -> new column called item_no #<<\n    values_to = \"item\"     # values in columns -> new column called item #<<\n    ) #<<\n\npurchases\n\n# A tibble: 6 × 3\n  customer_id item_no item        \n        <dbl> <chr>   <chr>       \n1           1 item_1  bread       \n2           1 item_2  milk        \n3           1 item_3  banana      \n4           2 item_1  milk        \n5           2 item_2  toilet paper\n6           2 item_3  <NA>"
+  },
+  {
+    "objectID": "labs/lab-04.html#why-pivot",
+    "href": "labs/lab-04.html#why-pivot",
+    "title": "MAR 536: Lab 4",
+    "section": "Why pivot?",
+    "text": "Why pivot?\nMost likely, because the next step of your analysis needs it\n–\nData is often more easily recorded in wide format"
+  },
+  {
+    "objectID": "labs/lab-04.html#purchases-rightarrow-customers",
+    "href": "labs/lab-04.html#purchases-rightarrow-customers",
+    "title": "MAR 536: Lab 4",
+    "section": "Purchases \\(\\rightarrow\\) customers",
+    "text": "Purchases \\(\\rightarrow\\) customers\n\n\n\ndata (as usual)\nnames_from: which column in the long format contains the what should be column names in the wide format\nvalues_from: which column in the long format contains the what should be values in the new columns in the wide format\n\n\n\npurchases |>\n  pivot_wider( #<<\n    names_from = item_no, #<<\n    values_from = item #<<\n  ) #<<\n\n# A tibble: 2 × 4\n  customer_id item_1 item_2       item_3\n        <dbl> <chr>  <chr>        <chr> \n1           1 bread  milk         banana\n2           2 milk   toilet paper <NA>"
+  },
+  {
+    "objectID": "labs/lab-04.html#lab-exercise-2n---sea-lion-pups",
+    "href": "labs/lab-04.html#lab-exercise-2n---sea-lion-pups",
+    "title": "MAR 536: Lab 4",
+    "section": "Lab exercise 2/n - Sea lion Pups",
+    "text": "Lab exercise 2/n - Sea lion Pups\n\nRead in the data from SSLpupcounts.csv.\nConvert the data from wide format to long format.\n\nPrint the top 10 rows of the new long format data.\n\nBONUS Convert back to wide format from long format.\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "labs/lab-04.html#merging-flights-data",
+    "href": "labs/lab-04.html#merging-flights-data",
+    "title": "MAR 536: Lab 4",
+    "section": "Merging flights data",
+    "text": "Merging flights data\n\n> flights2 <- select(flights,year:day,hour,origin,dest,tailnum,carrier)\n> \n> newflights <- left_join(flights2, airlines, by = \"carrier\")\n> newflights\n# A tibble: 336,776 × 9\n    year month   day  hour origin dest  tailnum carrier name                    \n   <int> <int> <int> <dbl> <chr>  <chr> <chr>   <chr>   <chr>                   \n 1  2013     1     1     5 EWR    IAH   N14228  UA      United Air Lines Inc.   \n 2  2013     1     1     5 LGA    IAH   N24211  UA      United Air Lines Inc.   \n 3  2013     1     1     5 JFK    MIA   N619AA  AA      American Airlines Inc.  \n 4  2013     1     1     5 JFK    BQN   N804JB  B6      JetBlue Airways         \n 5  2013     1     1     6 LGA    ATL   N668DN  DL      Delta Air Lines Inc.    \n 6  2013     1     1     5 EWR    ORD   N39463  UA      United Air Lines Inc.   \n 7  2013     1     1     6 EWR    FLL   N516JB  B6      JetBlue Airways         \n 8  2013     1     1     6 LGA    IAD   N829AS  EV      ExpressJet Airlines Inc.\n 9  2013     1     1     6 JFK    MCO   N593JB  B6      JetBlue Airways         \n10  2013     1     1     6 LGA    ORD   N3ALAA  AA      American Airlines Inc.  \n# … with 336,766 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#merging-dataframes-aussie-mammals",
+    "href": "labs/lab-04.html#merging-dataframes-aussie-mammals",
+    "title": "MAR 536: Lab 4",
+    "section": "Merging dataframes, Aussie Mammals",
+    "text": "Merging dataframes, Aussie Mammals\n\n> yvec <- 1:4; xvec <- sample(1:4,10,replace = TRUE)\n> lookup <- tibble(Code=yvec,\n+                  species=c(\"wombat\",\"devil\",\"wallaby\",\"quoll\"))\n> data <- tibble(code=xvec,\n+                abundance=c(2,4,6,2,1,3,4,7,4,1))\n> head(lookup,2)\n# A tibble: 2 × 2\n   Code species\n  <int> <chr>  \n1     1 wombat \n2     2 devil  \n> head(data,2)\n# A tibble: 2 × 2\n   code abundance\n  <int>     <dbl>\n1     2         2\n2     3         4\n> newdata <- left_join(data, lookup, by = c(\"code\" = \"Code\"))\n> newdata\n# A tibble: 10 × 3\n    code abundance species\n   <int>     <dbl> <chr>  \n 1     2         2 devil  \n 2     3         4 wallaby\n 3     4         6 quoll  \n 4     4         2 quoll  \n 5     2         1 devil  \n 6     3         3 wallaby\n 7     1         4 wombat \n 8     3         7 wallaby\n 9     4         4 quoll  \n10     4         1 quoll"
+  },
+  {
+    "objectID": "labs/lab-04.html#generalized-linear-modeling-1",
+    "href": "labs/lab-04.html#generalized-linear-modeling-1",
+    "title": "MAR 536: Lab 4",
+    "section": "Generalized linear modeling",
+    "text": "Generalized linear modeling\nRecall from lecture: \\[\\eta = \\beta_1 x_1 + \\beta_2 x_2 + \\dots + \\beta_p x_p\\] \\[f_Y(y;\\mu,\\varphi) = \\exp\\left[\\frac{A}{\\varphi}{y\\lambda(\\mu)-\\gamma(\\lambda(\\mu))}+\\tau(y,\\varphi)\\right]\\] \\[\\mu = m(\\eta) \\text{,    } \\eta = m^{-1}(\\mu)=l(\\mu)\\]\nThe combination of a response distribution, a link function and other information needed to carry out the modeling exercise is called the family of the generalized linear model."
+  },
+  {
+    "objectID": "labs/lab-04.html#dplyrcase_when-1",
+    "href": "labs/lab-04.html#dplyrcase_when-1",
+    "title": "MAR 536: Lab 4",
+    "section": "dplyr::case_when()",
+    "text": "dplyr::case_when()\nTo penguins, add a new column size_bin that contains:\n\n“large” if body mass is greater than 4500 g\n“medium” if body mass is greater than 3000 g, and less than or equal to 4500 g\n“small” if body mass is less than or equal to 3000 g\n\n\npenguins |>\n  mutate(size_bin = case_when(\n      body_mass_g > 4500 ~ \"large\",\n      body_mass_g > 3000 & body_mass_g <= 4500 ~ \"medium\",\n      body_mass_g <= 3000 ~ \"small\"\n    )\n  )\n\n# A tibble: 344 × 9\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   <fct>   <fct>              <dbl>         <dbl>             <int>       <int>\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# … with 334 more rows, and 3 more variables: sex <fct>, year <int>,\n#   size_bin <chr>"
+  },
+  {
+    "objectID": "labs/lab-04.html#dplyrcase_when-2",
+    "href": "labs/lab-04.html#dplyrcase_when-2",
+    "title": "MAR 536: Lab 4",
+    "section": "dplyr::case_when()",
+    "text": "dplyr::case_when()\nStarting with penguins:\n\nLimit the columns to species, year, and flipper_length_mm\nRename the year column to study_year\nOnly keep observations for Adelie penguins\nAdd a new column called flipper_rank that contains:\n\n1 if flipper_length_mm is < 200 mm\n2 if flipper_length_mm is >= 200 mm\n0 if flipper_length_mm is anything else (e.g. NA)\n\n\n\npenguins |>\n  select(species, year, flipper_length_mm) |>\n  rename(study_year = year) |>\n  filter(species == \"Adelie\") |>\n  mutate(flipper_rank = case_when(\n    flipper_length_mm < 200 ~ 1,\n    flipper_length_mm >= 200 ~ 2,\n    TRUE ~ 0 # 0 for anything else\n  ))\n\n# A tibble: 152 × 4\n   species study_year flipper_length_mm flipper_rank\n   <fct>        <int>             <int>        <dbl>\n 1 Adelie        2007               181            1\n 2 Adelie        2007               186            1\n 3 Adelie        2007               195            1\n 4 Adelie        2007                NA            0\n 5 Adelie        2007               193            1\n 6 Adelie        2007               190            1\n 7 Adelie        2007               181            1\n 8 Adelie        2007               195            1\n 9 Adelie        2007               193            1\n10 Adelie        2007               190            1\n# … with 142 more rows"
+  },
+  {
+    "objectID": "labs/lab-04.html#exercise-24",
+    "href": "labs/lab-04.html#exercise-24",
+    "title": "MAR 536: Lab 4",
+    "section": "Exercise 2/4",
+    "text": "Exercise 2/4\nAdd a new column to penguins called study_year that contains:\n\n“Year 1” if the year is 2007\n“Year 2” if the year is 2008\n“Year 3” if the year is 2009\n\nStarting with penguins, only keep observations for chinstrap penguins, then only keep the flipper_length_mm and body_mass_g variables. Add a new column called fm_ratio that contains the ratio of flipper length to body mass for each penguin. Next, add another column named ratio_bin which contains the word “high” if fm_ratio is greater than or equal to 0.05, “low” if the ratio is less than 0.05, and “no record” if anything else (e.g. NA)."
+  },
+  {
+    "objectID": "labs/lab-04.html#aussie-mammal-merge",
+    "href": "labs/lab-04.html#aussie-mammal-merge",
+    "title": "MAR 536: Lab 4",
+    "section": "Aussie Mammal Merge",
+    "text": "Aussie Mammal Merge\n\n> yvec <- 1:4; xvec <- sample(1:4,10,replace = TRUE)\n> lookup <- tibble(Code=yvec,\n+                  species=c(\"wombat\",\"devil\",\"wallaby\",\"quoll\"))\n> data <- tibble(code=xvec,\n+                abundance=c(2,4,6,2,1,3,4,7,4,1))\n> head(lookup,2)\n# A tibble: 2 × 2\n   Code species\n  <int> <chr>  \n1     1 wombat \n2     2 devil  \n> head(data,2)\n# A tibble: 2 × 2\n   code abundance\n  <int>     <dbl>\n1     2         2\n2     3         4\n> newdata <- left_join(data, lookup, by = c(\"code\" = \"Code\"))\n> newdata\n# A tibble: 10 × 3\n    code abundance species\n   <int>     <dbl> <chr>  \n 1     2         2 devil  \n 2     3         4 wallaby\n 3     1         6 wombat \n 4     3         2 wallaby\n 5     2         1 devil  \n 6     1         3 wombat \n 7     2         4 devil  \n 8     1         7 wombat \n 9     4         4 quoll  \n10     4         1 quoll"
+  },
+  {
+    "objectID": "labs/lab-04.html#exercise-3n-sea-lion-sites",
+    "href": "labs/lab-04.html#exercise-3n-sea-lion-sites",
+    "title": "MAR 536: Lab 4",
+    "section": "Exercise 3/n Sea lion Sites",
+    "text": "Exercise 3/n Sea lion Sites\n\nsites.csv contains the latitude and longitude of sea lion rookeries.\n\nUse a suitable join function to add the lat/lon information and geographic region to the counts dataset.\n\nSummarize the average annual pups that were counted between 2000-2015 in the Aleutian Islands (west of longitude 160W), the Gulf of Alaska (east of longitude 160W, west of 140W), and Southeast Alaska (South of latiutude 60 degrees N, but not in the Pacific Northwest).\n\nBONUS Look up how to make a map using ggplot() to map the rookery counts in 2015.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–>\n\n–>\n\n–>  –>  –>  –>  –>  –>  –>  –>  –>\n\n–>\n\n–>  –>  –>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–>\n\n–>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–>\n\n–>\n\n–>  –>  –>  –>  –>  –>  –>  –>  –>"
+  },
+  {
+    "objectID": "labs/lab-04.html#lab-exercise-14-rikz-poisson-glms",
+    "href": "labs/lab-04.html#lab-exercise-14-rikz-poisson-glms",
+    "title": "MAR 536: Lab 4",
+    "section": "Lab Exercise 1/4: RIKZ Poisson GLMs",
+    "text": "Lab Exercise 1/4: RIKZ Poisson GLMs\n\nFit a poisson model to RIKZ species richness that includes NAP, and exposure and week as categorical variables (factor).\nExtract the model coefficients and their 95% confidence intervals.\n\nPlot the deviance residuals versus the linear predictor.\n\nCompare the results of this model with a model for RIKZ species richness that only included NAP as a covariate using deviance and AIC.\nBONUS Show how AIC changes when each linear predictor term is dropped from the model, and show the results of chi-square tests that compare these reduced models to the original model. (hint see the help for ?add1).\nBONUS BONUS Fit a model for species richness that also includes salinity, temperature, and grain size, and perform backwards selection using AIC to obtain a ‘best’ model. How do the results compare to the other models? What is the appropriate set of variables to use?"
+  },
+  {
+    "objectID": "labs/lab-04.html#lab-exercise-34---sea-lion-pups",
+    "href": "labs/lab-04.html#lab-exercise-34---sea-lion-pups",
+    "title": "MAR 536: Lab 4",
+    "section": "Lab exercise 3/4 - Sea lion Pups",
+    "text": "Lab exercise 3/4 - Sea lion Pups\n\nRead in the data from SSLpupcounts.csv.\nConvert the data from wide format to long format.\n\nPrint the top 10 rows of the new long format data.\n\nBONUS Convert back to wide format from long format.\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "labs/lab-04.html#exercise-44-sea-lion-rookery-counts",
+    "href": "labs/lab-04.html#exercise-44-sea-lion-rookery-counts",
+    "title": "MAR 536: Lab 4",
+    "section": "Exercise 4/4 Sea lion Rookery Counts",
+    "text": "Exercise 4/4 Sea lion Rookery Counts\n\nSSL_Sites.csv contains the latitude and longitude of sea lion rookeries.\n\nUse a suitable join function to add the lat/lon information and geographic region to the counts dataset.\n\nSummarize the average annual pups that were counted between 2000-2015 in the Aleutian Islands (west of longitude 160W), the Gulf of Alaska (east of longitude 160W, west of 140W), and Southeast Alaska (South of latiutude 60 degrees N, but not in the Pacific Northwest).\n\nBONUS Look up how to make a map using ggplot() to map the rookery counts in 2015.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–>\n\n–>\n\n–>  –>  –>  –>  –>  –>  –>  –>  –>\n\n–>\n\n–>  –>  –>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–>\n\n–>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–>\n\n–>\n\n–>  –>  –>  –>  –>  –>  –>  –>  –>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   }
 ]
