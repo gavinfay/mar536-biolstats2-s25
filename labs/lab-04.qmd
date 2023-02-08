@@ -1,0 +1,1529 @@
+---
+title: "MAR 536: Lab 4"
+subtitle: "Gavin Fay"
+date: "2023-02-08"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+logo: "../images/logo.png"
+format: 
+  revealjs: 
+    theme: slides.scss
+    multiplex: true
+    transition: fade
+    slide-number: true
+editor: source
+execute:
+  freeze: auto
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+#| include: false
+#library(MASS)
+library(tidyverse)
+library(countdown)
+library(broom)
+library(nycflights13)
+library(knitr)
+# library(skimr)
+# library(Tmisc)
+# library(magick)
+library(palmerpenguins)
+library(kableExtra)
+library(fontawesome)
+# library(openintro)
+# library(GGally)
+# loans_full_schema <- loans_full_schema |>
+#   mutate(grade = factor(grade, ordered = TRUE))
+# loans <- loans_full_schema
+```
+
+## Lab schedule
+
+1/18: Introduction to R and R Studio, working with data\
+1/25: Intro to Visualization\
+2/01: Probability, linear modeling\
+**2/08: Data wrangling, model summaries**\
+2/15: Simulation, Resampling\
+2/22: Iteration\
+3/01: Creating functions, debugging\
+3/15: Flex: more modeling (brms, glmmTMB)\
+3/29: Spatial data or tidymodeling
+
+**Acknowledgements: Mine Çetinkaya-Rundel, Allison Horst**
+
+## Today
+
+Topics
+
+-  Poisson GLM
+-  Programming Practices
+-  Data wrangling
+
+## setup
+
+```{r eval=FALSE}
+library(tidyverse)
+library(broom)
+```
+```{r}
+#first read in the data (richness already created)
+RIKZ <- readRDS("../data/RIKZ.rds")
+```
+
+## Generalized linear modeling
+
+All GLMs have the following three characteristics:
+
+1. A probability distribution describing a generative model for the outcome variable. 
+
+. . . 
+
+2. A linear model:  
+$$\eta = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k$$
+
+. . . 
+
+3. A link function that relates the linear model to the parameter of the outcome distribution. 
+  
+
+## Generalized linear modeling
+
+Recall from lecture: $$\eta = \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p$$ $$f_Y(y;\mu,\varphi) = \exp\left[\frac{A}{\varphi}{y\lambda(\mu)-\gamma(\lambda(\mu))}+\tau(y,\varphi)\right]$$ $$\mu = m(\eta) \text{,    } \eta = m^{-1}(\mu)=l(\mu)$$
+
+The combination of a response distribution, a link function and other information needed to carry out the modeling exercise is called the *family* of the generalized linear model.
+
+![](figs/families.png)
+
+## The `glm()` function {.smaller}
+
+The `R` function to fit a generalized linear model is `glm()` which uses the form:\
+`fitted.model <- glm(formula, family=family.generator, data=data.frame)`
+
+Only new piece is the call to 'family.generator'\
+Although complex, its use is fairly simple.\
+Where there is a choice of link, link can be supplied with the family name as a parameter.
+
+Simple (inefficient) use: The following are equivalent.
+
+```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE}
+RIKZ_lm1 <- lm(Richness ~ NAP, data = RIKZ)
+RIKZ_glm1 <- glm(Richness ~ NAP, family = gaussian, 
+                 data = RIKZ)
+```
+
+Most of the extraction functions that can be applied to `lm()` can also be used with `glm()`.
+
+## The `glm()` function {.smaller}
+
+```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE}
+tidy(RIKZ_lm1)
+tidy(RIKZ_glm1)
+```
+
+## Poisson regression
+
+$$P(X=x) = \frac{e^{-\mu} \mu^x}{x!} \text{,   } \mu_i = e^{\alpha+\beta_1 x_{1,i} + \dots + \beta_j x_{j,i}}$$
+
+![](figs/lespoissons.png)
+
+## RIKZ example
+
+```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE}
+#fit the poisson regression model
+RIKZ_poisson <- glm(Richness ~ NAP, data = RIKZ, 
+                    family = poisson)
+```
+
+Note that the default link for the poisson is `log` so we don't have to specify here (see `?family`).
+
+## `summary(RIKZ_poisson)` {.smaller}
+
+```{r prompt=TRUE,comment='',collapse=TRUE,echo=FALSE}
+summary(RIKZ_poisson)
+```
+
+## `broom::augment()` {.small}
+
+As with `lm()`, the `augment()` function can be used to obtain the predictions from a fitted model object, and for a new data frame.
+
+```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE, eval=FALSE}
+newobject <- augment(oldobject, newdata, 
+                     type.predict = c("link","response","terms"),
+                     se_fit = TRUE)
+```
+
+Note: default for `type.predict` is on the scale of the linear predictors. 
+Set to `"response"` to obtain predictions on the scale of the response variable.
+
+```{r}
+augment(RIKZ_poisson, se_fit = TRUE)
+```
+
+## Observed and fitted values for Poisson RIKZ {.smaller}
+
+```{r prompt=FALSE,comment='',collapse=TRUE,echo=TRUE,fig.show='hide'}
+#create new values for beach height
+new_data <- tibble(NAP = seq(-1.5,2.5,length.out=100))
+#predict values for response based on new salinity
+RIKZ_pois_pred <- augment(RIKZ_poisson,
+                    newdata = new_data, 
+                    type.predict = "response",
+                    se_fit = "TRUE")
+RIKZ_pois_pred
+```
+
+
+------------------------------------------------------------------------
+
+```{r prompt=FALSE,comment='',collapse=TRUE}
+#| output-location: slide
+ggplot(RIKZ, aes(x=NAP, y= Richness)) +
+         geom_point() +
+         geom_line(data = RIKZ_pois_pred,
+                   aes(x=NAP, y = .fitted),
+                   col = "blue") +
+         labs(y = "Richness", x = "NAP") +
+         ylim(0,25) + xlim(-1.5,2.5)
+```
+
+## fitting the GLM in the ggplot call {.small}
+
+```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE}
+ggplot(RIKZ,aes(NAP,Richness)) +
+  geom_point() +
+  geom_smooth(method = "glm", 
+    method.args = list(family = poisson), se = TRUE)            
+```
+
+<!-- ## Quasi-Poisson {.small} -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE} -->
+<!-- RIKZ_quasip_1 <- glm(Richness ~ NAP,  -->
+<!--                      family = quasipoisson, -->
+<!--                      data = RIKZ) -->
+<!-- summary(RIKZ_quasip_1) -->
+<!-- ``` -->
+
+<!-- ## Full Poisson Model {.small} -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE} -->
+<!-- RIKZ_pois_full <- glm(Richness ~ NAP + factor(week) + -->
+<!--                       factor(exposure), -->
+<!--                       data = RIKZ, -->
+<!--                       family = poisson) -->
+<!-- summary(RIKZ_pois_full) -->
+<!-- ``` -->
+
+<!-- ## Drop Exposure? {.small} -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE} -->
+<!-- drop1(RIKZ_pois_full, test = "Chisq") -->
+<!-- ``` -->
+## Lab Exercise 1/4: RIKZ Poisson GLMs {.small}  
+
+1. Fit a poisson model to RIKZ species richness that includes NAP, and exposure and week as categorical variables (`factor`).
+2. Extract the model coefficients and their 95% confidence intervals.  
+3. Plot the deviance residuals versus the linear predictor.  
+4. Compare the results of this model with a model for RIKZ species richness that only included NAP as a covariate using deviance and AIC.
+5. **BONUS** Show how AIC changes when each linear predictor term is dropped from the model, and show the results of chi-square tests that compare these reduced models to the original model.  (_hint_ see the help for `?add1`). 
+6. **BONUS BONUS**  Fit a model for species richness that also includes salinity, temperature, and grain size, and perform backwards selection using AIC to obtain a 'best' model.  How do the results compare to the other models?  What is the appropriate set of variables to use?
+
+<!-- ## Segue: Packages in R {.smaller} -->
+
+<!--   Installing packages:   -->
+<!--   `install.packages("packagename")`   -->
+<!--   If in doubt, use the source:   -->
+<!--   `install.packages("packagename", type="source")`   -->
+
+<!--   Installing packages from github:   -->
+<!--   `remotes::install_github("repositoryname")`   -->
+
+<!--   Loading (attaching) packages into the workspace:   -->
+<!--   `library(packagename)`   -->
+
+<!--   Some people use `require()` instead of `library()`.   -->
+<!--   Don't do this!   -->
+<!--   `require()` is basically `try(library())` -->
+
+<!--   Often description of a package and how to use its functions is in the form of a vignette.   -->
+<!--   `vignette()` lists available vignettes.   -->
+<!--   `vignette(packagename)` views the vignette for `packagename`.   -->
+
+
+## dplyr::case_when()
+
+The `case_when()` function is like a really friendly if-else statement. 
+When used within `mutate()`, it allows you to add a new column containing values dependent on your condition(s).
+
+```{r, echo=FALSE, out.width="80%", fig.align = "center"}
+knitr::include_graphics("figs/dplyr_case_when_sm.png")
+```
+
+## dplyr::case_when() {.smaller}
+
+To `penguins`, add a new column `size_bin` that contains:
+
+- "large" if body mass is greater than 4500 g
+- "medium" if body mass is greater than 3000 g, and less than or equal to 4500 g
+- "small" if body mass is less than or equal to 3000 g
+
+```{r, echo = TRUE, warning = FALSE, message = FALSE}
+penguins |>
+  mutate(size_bin = case_when(
+      body_mass_g > 4500 ~ "large",
+      body_mass_g > 3000 & body_mass_g <= 4500 ~ "medium",
+      body_mass_g <= 3000 ~ "small"
+    )
+  ) |>
+  select(species, island, size_bin, everything())
+```
+
+## dplyr::case_when() {.smaller}
+
+Starting with `penguins`:
+
+- Limit the columns to `species`, `year`, and `flipper_length_mm`
+- Rename the `year` column to `study_year`
+- Only keep observations for Adelie penguins
+- Add a new column called `flipper_rank` that contains:
+
+  - 1 if `flipper_length_mm` is < 200 mm
+  - 2 if `flipper_length_mm` is >= 200 mm
+  - 0 if `flipper_length_mm` is anything else (e.g. `NA`)
+
+```{r, echo = TRUE, warning = FALSE, message = FALSE}
+penguins |>
+  select(species, year, flipper_length_mm) |>
+  rename(study_year = year) |>
+  filter(species == "Adelie") |>
+  mutate(flipper_rank = case_when(
+    flipper_length_mm < 200 ~ 1,
+    flipper_length_mm >= 200 ~ 2,
+    TRUE ~ 0 # 0 for anything else
+  ))
+```
+
+## Exercise 2/4 {.small}
+
+Add a new column to `penguins` called `study_year` that contains:
+
+- "Year 1" if the year is 2007
+- "Year 2" if the year is 2008
+- "Year 3" if the year is 2009
+
+Starting with `penguins`, only keep observations for chinstrap penguins, then only keep the `flipper_length_mm` and `body_mass_g` variables. Add a new column called `fm_ratio` that contains the ratio of flipper length to body mass for each penguin. Next, add another column named `ratio_bin` which contains the word "high" if `fm_ratio` is greater than or equal to 0.05, "low" if the ratio is less than 0.05, and "no record" if anything else (e.g. `NA`).
+
+
+
+<!-- ## Programming practices I  {.small}   -->
+
+<!--   Use projects (RStudio)   -->
+
+<!--   Write scripts (or markdown files)   -->
+
+<!--   Include whitespace in code   -->
+<!--    - blank lines, spaces in functions   -->
+
+<!--   Use an editor with syntax highlighting   -->
+
+<!--   Use a style guide   -->
+
+<!--   Indent code   -->
+
+<!--   Use meaningful object names   -->
+
+<!-- ## Programming practices II  {.small} -->
+
+<!--   Test code   -->
+<!--   - Write smallest possible amount (e.g. 1 line).   -->
+<!--   - Knit early and often.   -->
+<!--   - Try simple examples that you know the answer to.   -->
+<!--   - Always assume that there will be an error somewhere.   -->
+
+<!--   View results / objects   (e.g. with `print()`).   -->
+
+<!--   Plot results - are they what you expect?     -->
+
+<!--   Be careful when copying sections of code and changing a variable name (it's super common to forget to change all occurrences).   -->
+<!--   - hint: use your text editor's  "Find: Replace all" functionality.   -->
+
+
+<!-- ## Commenting {.small} -->
+
+<!--   `R` ignores everything on a line that follows a `#`   -->
+
+<!--   Comment at the top of your script.   -->
+<!--   - What the script does, your name, email, date started.   -->
+
+<!--   Comment before each function or section of code  -->
+<!--   - What is the purpose of that section of code, what does it do?   -->
+<!--   - Comment the 'why' not the 'what' -->
+
+<!--   Comment throughout:     -->
+<!--   - whenever an unusual function is used   -->
+<!--   - whenever the code is hard to understand   -->
+<!--   - whenever an algorithm is particularly useful   -->
+
+<!-- ## Commenting out code  {.small} -->
+
+<!--   When you make modifications to your `R` code:   -->
+<!--   - Copy the code that works then comment it out by prefixing it with `#`.   -->
+<!--   - Change the new copy of the code.   -->
+
+<!--   If you need to revert to the old code, just remove the `#` before each line (“uncomment”).   -->
+
+<!--   `ctrl+shift+C` (`CMD+shift+C`) is a shortcut in Rstudio to comment/uncomment large blocks of code.   -->
+
+<!--   In `.Rmd` files, you can comment out blocks of the file using -->
+
+<!-- ```{r, eval=FALSE} -->
+<!--   <!--- -->
+<!--   Lines of text and code you want to not be included -->
+<!--   ---> 
+<!-- ``` -->
+
+<!--   (note the block comment shortcut works here too!) -->
+
+---
+
+```{r echo=FALSE,out.width="80%",fig.align="center"}
+knitr::include_graphics("figs/04_transfoRm/Slide6.png")
+```
+
+---
+
+```{r echo=FALSE,out.width="100%",fig.align="center"}
+knitr::include_graphics("figs/04_transfoRm/Slide5.png")
+```
+
+---
+
+```{r echo=FALSE,out.width="80%",fig.align="center"}
+knitr::include_graphics("figs/04_transfoRm/Slide8.png")
+```
+
+# Pivoting data
+
+## Not this...
+
+```{r echo=FALSE,out.width="70%"}
+include_graphics("img/pivot.gif")
+```
+
+## but this!
+
+```{r echo=FALSE, out.width="45%", out.extra ='style="background-color: #FDF6E3"'}
+include_graphics("img/tidyr-longer-wider.gif")
+```
+
+## Wider vs. longer {.small}
+
+::: columns
+::: {.column width="60%"}
+**wider**
+more columns
+```{r echo=FALSE}
+customers <- read_csv("../data/customers.csv")
+customers
+```
+:::
+
+::: {.column width="40%"}
+**longer**
+more rows
+```{r echo=FALSE}
+customers |>
+  pivot_longer(cols = item_1:item_3, names_to = "item_no", values_to = "item")
+```
+:::
+:::
+
+<!-- ## `pivot_longer()` -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- - `data` (as usual) -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r eval=FALSE} -->
+<!-- pivot_longer( -->
+<!--   data, #<< -->
+<!--   cols,  -->
+<!--   names_to = "name",  -->
+<!--   values_to = "value" -->
+<!--   ) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ## `pivot_longer()` -->
+
+<!-- .pull-left[ -->
+<!-- - `data` (as usual) -->
+<!-- - `cols`: columns to pivot into longer format  -->
+<!-- ] -->
+<!-- .pull-right[ -->
+<!-- ```{r eval=FALSE} -->
+<!-- pivot_longer( -->
+<!--   data,  -->
+<!--   cols, #<< -->
+<!--   names_to = "name",  -->
+<!--   values_to = "value" -->
+<!--   ) -->
+<!-- ``` -->
+<!-- ] -->
+
+<!-- --- -->
+
+## `pivot_longer()` {.small}
+
+::: columns
+::: {.column width="50%"}
+- `data` (as usual)
+- `cols`: columns to pivot into longer format 
+- `names_to`: name of the column where column names of pivoted variables go (character string)
+- `values_to`: name of the column where data in pivoted variables go (character string)
+:::
+::: {.column width="50%"}
+```{r eval=FALSE}
+pivot_longer(
+  data, 
+  cols, 
+  names_to = "name", #<<
+  values_to = "value"
+  )
+```
+:::
+:::
+
+<!-- ## `pivot_longer()` -->
+
+<!-- .pull-left[ -->
+<!-- - `data` (as usual) -->
+<!-- - `cols`: columns to pivot into longer format  -->
+<!-- - `names_to`: name of the column where column names of pivoted variables go (character string) -->
+<!-- - `values_to`: name of the column where data in pivoted variables go (character string) -->
+<!-- ] -->
+<!-- .pull-right[ -->
+<!-- ```{r eval=FALSE} -->
+<!-- pivot_longer( -->
+<!--   data,  -->
+<!--   cols,  -->
+<!--   names_to = "name",  -->
+<!--   values_to = "value" #<< -->
+<!--   ) -->
+<!-- ``` -->
+<!-- ] -->
+
+## Customers $\rightarrow$ purchases
+
+```{r}
+purchases <- customers |>
+  pivot_longer( #<<
+    cols = item_1:item_3,  # variables item_1 to item_3 #<<
+    names_to = "item_no",  # column names -> new column called item_no #<<
+    values_to = "item"     # values in columns -> new column called item #<<
+    ) #<<
+
+purchases
+```
+
+---
+
+
+## Purchases $\rightarrow$ customers {.small}
+
+::: columns
+::: {.column width="50%"}
+- `data` (as usual)
+- `names_from`: which column in the long format contains the what should be column names in the wide format
+- `values_from`: which column in the long format contains the what should be values in the new columns in the wide format
+:::
+::: {.column width="50%"}
+```{r}
+purchases |>
+  pivot_wider( #<<
+    names_from = item_no, #<<
+    values_from = item #<<
+  ) #<<
+```
+:::
+:::
+
+
+## Steller sea lions
+
+We have data on Steller sea lion pup counts over time at a bunch of rookeries in Alaska.  
+
+```{r out.width="60%", retina = 3, echo= FALSE}
+knitr::include_graphics("figs/Slide5.png")
+```
+
+The number of data points for each rookery is not the same.  
+
+We want to investigate the annual trend in counts for each rookery.  
+
+<!-- --- -->
+
+<!-- But before we do so...   -->
+
+<!-- **Question:** If the long data will have a row for each year and rookery combination, and there are 58 rookeries and 42 years of data, how many rows will the data have?   -->
+
+
+<!-- ## `pivot_longer()` -->
+
+<!-- ```{r eval=FALSE} -->
+<!-- pivot_longer(data, cols, names_to = "name",  -->
+<!--              values_to = "value") -->
+<!-- ``` -->
+
+<!-- - The first argument is `data` as usual.   -->
+<!-- - The second argument, `cols`, is where you specify which columns to pivot into longer format   -->
+<!-- - The third argument, `names_to`, is a string specifying the name of the column to create from the data stored in the column names of data   -->
+<!-- - The fourth argument, `values_to`, is a string specifying the name of the column to create from the data stored in cell values   -->
+
+
+
+## Lab exercise 3/4 - Sea lion Pups
+
+- Read in the data from `SSLpupcounts.csv`. 
+- Convert the data from wide format to long format.   
+- Print the top 10 rows of the new long format data.  
+- **BONUS** Convert back to wide format from long format.  
+
+
+```{r echo=FALSE}
+countdown(minutes = 5)
+```
+
+
+```{r ssl1, warning = FALSE, results = 'hide', comment=FALSE, message=FALSE, echo=FALSE}
+ssl <- read_csv("../data/SSLpupcounts.csv")
+ssl_long <- ssl %>%
+  pivot_longer(names_to = "year",  #<<
+               values_to = "count",  #<<
+               -sitename) %>%  #<<
+  na.omit()
+#ssl_long
+```
+
+
+## We... {.large}
+
+have multiple data frames
+
+want to bring them together
+
+---
+
+```{r include=FALSE}
+professions <- read_csv("../data/scientists/professions.csv")
+dates <- read_csv("../data/scientists/dates.csv")
+works <- read_csv("../data/scientists/works.csv")
+```
+
+## Data: Women in science {.small}
+
+Information on 10 women in science who changed the world
+
+```{r echo=FALSE}
+professions |> select(name) |> kable()
+```
+
+
+.footnote[
+Source: [Discover Magazine](https://www.discovermagazine.com/the-sciences/meet-10-women-in-science-who-changed-the-world)
+]
+
+## Inputs
+
+::: {.panel-tabset}
+
+### professions
+```{r}
+professions
+```
+
+### dates
+```{r}
+dates
+```
+
+### works
+```{r}
+works
+```
+:::
+
+## Desired output
+
+```{r echo=FALSE}
+professions |>
+  left_join(dates) |>
+  left_join(works)
+```
+
+## Inputs, reminder
+
+::: columns
+::: {.column width="50%"}
+```{r}
+names(professions)
+names(dates)
+names(works)
+```
+:::
+::: {.column width="50%"}
+```{r}
+nrow(professions)
+nrow(dates)
+nrow(works)
+```
+:::
+:::
+
+# Joining data frames
+
+## Joining data frames
+
+```{r eval=FALSE}
+something_join(x, y)
+```
+
+- `left_join()`: all rows from x
+- `right_join()`: all rows from y
+- `full_join()`: all rows from both x and y
+- `semi_join()`: all rows from x where there are matching values in y, keeping just columns from x
+- `inner_join()`: all rows from x where there are matching values in y, return 
+all combination of multiple matches in the case of multiple matches
+- `anti_join()`: return all rows from x where there are not matching values in y, never duplicate rows of x
+- ...
+ 
+## Setup {.small}
+
+For the next few slides...
+
+::: columns
+::: {.column width="50%"}
+```{r echo=FALSE}
+x <- tibble(
+  id = c(1, 2, 3),
+  value_x = c("x1", "x2", "x3")
+  )
+```
+```{r}
+x
+```
+::: 
+::: {.column width="50%"}
+```{r echo=FALSE}
+y <- tibble(
+  id = c(1, 2, 4),
+  value_y = c("y1", "y2", "y4")
+  )
+```
+```{r}
+y
+```
+:::
+:::
+
+
+## `left_join()`
+
+::: columns
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%", out.extra ='style="background-color: #FDF6E3"'}
+include_graphics("img/left-join.gif")
+```
+:::
+::: {.column width="50%"}
+```{r}
+left_join(x, y)
+```
+:::
+:::
+
+
+## `left_join()`
+
+```{r}
+professions |>
+  left_join(dates) #<<
+```
+
+---
+
+## `right_join()`
+
+::: columns
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%", out.extra ='style="background-color: #FDF6E3"'}
+include_graphics("img/right-join.gif")
+```
+:::
+::: {.column width="50%"}
+```{r}
+right_join(x, y)
+```
+:::
+:::
+
+## `right_join()`
+
+
+```{r}
+professions |>
+  right_join(dates) #<<
+```
+
+## `full_join()`
+
+::: columns
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%", out.extra ='style="background-color: #FDF6E3"'}
+include_graphics("img/full-join.gif")
+```
+:::
+::: {.column width="50%"}
+```{r}
+full_join(x, y)
+```
+:::
+:::
+
+## `full_join()`
+
+```{r}
+dates |>
+  full_join(works) #<<
+```
+
+## `inner_join()`
+
+::: columns
+::: {.column width="50%"}
+```{r echo=FALSE, out.width="80%", out.extra ='style="background-color: #FDF6E3"'}
+include_graphics("img/inner-join.gif")
+```
+:::
+::: {.column width="50%"}
+```{r}
+inner_join(x, y)
+```
+:::
+:::
+
+## `inner_join()`
+
+```{r}
+dates |>
+  inner_join(works) #<<
+```
+
+
+## Putting it altogether
+
+```{r}
+professions |>
+  left_join(dates) |>
+  left_join(works)
+```
+
+
+<!-- # .hand[We...] -->
+
+<!-- .huge[.green[have]] .hand[data organised in an unideal way for our analysis] -->
+
+<!-- .huge[.pink[want]] .hand[to reorganise the data to carry on with our analysis] -->
+
+
+<!-- ## A grammar of data tidying -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r dplyr-part-of-tidyverse, echo=FALSE, out.width="60%", caption = "tidyr is part of the tidyverse"} -->
+<!-- include_graphics("img/tidyr-part-of-tidyverse.png") -->
+<!-- ``` -->
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- The goal of tidyr is to help you tidy your data via -->
+
+<!-- - pivoting for going between wide and long data -->
+<!-- - splitting and combining character columns -->
+<!-- - nesting and unnesting columns -->
+<!-- - clarifying how `NA`s should be treated -->
+<!-- ::: -->
+<!-- ::: -->
+
+
+
+
+<!-- --- -->
+
+<!-- ```{r echo=FALSE,out.width="80%",fig.align="center"} -->
+<!-- knitr::include_graphics("figs/04_transfoRm/Slide10.png") -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- ```{r echo=FALSE,out.width="80%",fig.align="center"} -->
+<!-- knitr::include_graphics("figs/04_transfoRm/Slide11.png") -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- ```{r echo=FALSE,out.width="80%",fig.align="center"} -->
+<!-- knitr::include_graphics("figs/04_transfoRm/Slide12.png") -->
+<!-- ``` -->
+
+
+<!-- ## Look at change in pup counts over time -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r ssl2, warning = FALSE, results = 'hide', comment=FALSE, message=FALSE, fig.show = 'hide'} -->
+<!-- ssl_models <- ssl_long |> -->
+<!--   group_by(sitename) |> -->
+<!--   filter(count > 0, -->
+<!--          year >= 2000) |> -->
+<!--   mutate(year2 = as.numeric(year)-2000, -->
+<!--          log_count = log(count)) |> -->
+<!--   nest() |>   #<< -->
+<!--   I() -->
+<!-- ssl_models -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- -- -->
+
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r ref.label= 'ssl2', echo = FALSE, retina = 3, message= FALSE} -->
+<!-- ssl_models -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- `ssl_models` contains a row for each rookery, the `data` variable contains the dataset for each rookery.   -->
+
+<!-- --- -->
+
+
+<!-- ## Merging data frames    -->
+
+<!--   Often we have many tables of data, and need to merge data frames based on some common information shared between them (relational data).   -->
+
+<!--   e.g. package `nycflights13` includes a dataframe `flights` that contains airline codes, but the full names for the airlines are contained in a separate table `airlines`.     -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} -->
+<!--    #library(tidyverse) -->
+<!--    #library(nycflights13) -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} -->
+<!--    flights -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} -->
+<!--    airlines -->
+<!-- ```    -->
+
+<!-- <!-- --- --> -->
+
+<!-- <!--   `match(vector1,vector2)`  returns the index vector of values in vector2 that match the values in vector1. e.g.   --> 
+
+<!-- <!--   e.g.   --> 
+<!-- <!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} --> -->
+<!-- <!--   flights$carrier[1:10] --> -->
+<!-- <!--   airlines$carrier[1:12] --> -->
+<!-- <!--   x <- match(flights$carrier,airlines$carrier)[1:10] --> -->
+<!-- <!--   airlines$name[x] --> -->
+<!-- <!-- ```   --> -->
+
+
+<!-- ## Merging flights data {.smaller} -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} -->
+<!-- flights2 <- select(flights,year:day,hour,origin,dest,tailnum,carrier) -->
+
+<!-- newflights <- left_join(flights2, airlines, by = "carrier") -->
+<!-- newflights -->
+<!-- ``` -->
+
+<!-- ## Aussie Mammal Merge {.smaller} -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} -->
+<!-- yvec <- 1:4; xvec <- sample(1:4,10,replace = TRUE) -->
+<!-- lookup <- tibble(Code=yvec, -->
+<!--                  species=c("wombat","devil","wallaby","quoll")) -->
+<!-- data <- tibble(code=xvec, -->
+<!--                abundance=c(2,4,6,2,1,3,4,7,4,1)) -->
+<!-- head(lookup,2) -->
+<!-- head(data,2) -->
+<!-- newdata <- left_join(data, lookup, by = c("code" = "Code")) -->
+<!-- newdata -->
+<!-- ``` -->
+
+<!-- ## Locating data using `grep()`  {.small} -->
+
+<!--  `grep()` is one of the most useful functions for unix users.   -->
+
+<!--  It does pattern matching.   -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} -->
+<!-- pick <- grep("w",newdata$species) -->
+<!-- pick -->
+<!-- ``` -->
+
+<!-- returns the elements of `newdata$species` containing the letter "w".   -->
+
+
+<!-- ## Locating data using `grep()` {.small} -->
+
+<!--   `gsub()` is a convenient wrapper to `grep()` that can be used to perform string substitution.   -->
+
+<!--   e.g. capitalize all the 'a's in the species names.   -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} -->
+<!-- new_names <- gsub("a", newdata$species, replacement="A") -->
+<!-- new_names -->
+<!-- ``` -->
+
+
+## Exercise 4/4 Sea lion Rookery Counts {.smaller}
+
+1. `SSL_Sites.csv` contains the latitude and longitude of sea lion rookeries.  
+2. Use a suitable `join` function to add the lat/lon information and geographic region to the counts dataset.  
+3. Summarize the average annual pups that were counted between 2000-2015 in the Aleutian Islands (west of longitude 160W), the Gulf of Alaska (east of longitude 160W, west of 140W), and Southeast Alaska (South of latiutude 60 degrees N, but not in the Pacific Northwest).  
+4. **BONUS** Look up how to make a map using `ggplot()` to map the rookery counts in 2015.  
+
+
+
+<!-- ## Recall our grammar of data wrangling... -->
+
+<!-- ... based on the concepts of functions as verbs that manipulate data frames -->
+
+<!-- `{dplyr}` verbs -->
+
+<!-- - `select`: pick columns by name -->
+<!-- - `arrange`: reorder rows -->
+<!-- - `slice`: pick rows using index(es) -->
+<!-- - `filter`: pick rows matching criteria -->
+<!-- - `distinct`: filter for unique rows -->
+<!-- - `mutate`: add new variables -->
+<!-- - `summarise`: reduce variables to values -->
+<!-- - `group_by`: for grouped operations -->
+<!-- - ... (many more) -->
+
+
+<!-- ## Rules of **dplyr** functions -->
+
+<!-- - First argument is *always* a data frame -->
+<!-- - Subsequent arguments say what to do with that data frame -->
+<!-- - Always return a data frame -->
+<!-- - Don't modify in place -->
+
+
+<!-- ## Data: Hotel bookings -->
+
+<!-- - Data from two hotels: one resort and one city hotel -->
+<!-- - Observations: Each row represents a hotel booking -->
+<!-- - Goal for original data collection: Development of prediction models to classify a hotel booking's likelihood to be cancelled ([Antonia et al., 2019](https://www.sciencedirect.com/science/article/pii/S2352340918315191#bib5)) -->
+
+<!-- ```{r message=FALSE} -->
+<!-- hotels <- read_csv("../data/hotels.csv") -->
+<!-- ``` -->
+
+<!-- .footnote[ -->
+<!-- Source: [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-02-11/readme.md) -->
+<!-- ] -->
+
+
+<!-- ## Select multiple columns -->
+
+<!-- View only the `hotel` type and `lead_time`: -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- select(hotels, hotel, lead_time) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- {.question} -->
+<!-- What if we wanted to select these columns, and then arrange the data in descending order of lead time? -->
+<!-- ::: -->
+<!-- ::: -->
+
+
+<!-- ## Data wrangling, step-by-step -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- select(hotels, hotel, lead_time) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- Select, then arrange: -->
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   select(hotel, lead_time) |> -->
+<!--   arrange(desc(lead_time)) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- # `select`, `arrange`, and `slice` -->
+
+<!-- ## `select` to keep variables -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   select(hotel, lead_time)  -->
+<!-- ``` -->
+
+<!-- ## `select` to exclude variables -->
+
+<!-- ```{r output.lines=18} -->
+<!-- hotels |> -->
+<!--   select(-agent)  -->
+<!-- ``` -->
+
+<!-- ## `select` a range of variables -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   select(hotel:arrival_date_month) -->
+<!-- ``` -->
+
+<!-- ## `select` variables with certain characteristics -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   select(starts_with("arrival")) -->
+<!-- ``` -->
+
+<!-- ## `select` variables with certain characteristics -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   select(ends_with("type")) -->
+<!-- ``` -->
+
+
+<!-- ## Select helpers -->
+
+<!-- - `starts_with()`: Starts with a prefix -->
+<!-- - `ends_with()`: Ends with a suffix -->
+<!-- - `contains()`: Contains a literal string -->
+<!-- - `num_range()`: Matches a numerical range like x01, x02, x03 -->
+<!-- - `one_of()`: Matches variable names in a character vector -->
+<!-- - `everything()`: Matches all variables -->
+<!-- - `last_col()`: Select last variable, possibly with an offset -->
+<!-- - `matches()`: Matches a regular expression (a sequence of symbols/characters expressing a string/pattern to be searched for within text) -->
+
+
+<!-- ## `arrange` in ascending / descending order -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   select(adults, children, babies) |> -->
+<!--   arrange(babies) #<< -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   select(adults, children, babies) |> -->
+<!--   arrange(desc(babies)) #<< -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ## `slice` for certain row numbers -->
+
+<!-- ```{r output.lines=17} -->
+<!-- # first five -->
+<!-- hotels |> -->
+<!--   slice(1:5) #<< -->
+<!-- ``` -->
+
+
+<!-- ## `filter` to select a subset of rows -->
+
+<!-- ```{r output.lines=17} -->
+<!-- # bookings in City Hotels -->
+<!-- hotels |> -->
+<!--   filter(hotel == "City Hotel") -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- ## `filter` for many conditions at once -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   filter(  -->
+<!--     adults == 0,     -->
+<!--     children >= 1    -->
+<!--     ) |>  -->
+<!--   select(adults, babies, children) -->
+<!-- ``` -->
+
+<!-- --- -->
+
+<!-- ## `filter` for more complex conditions -->
+
+<!-- ```{r} -->
+<!-- # bookings with no adults and some children or babies in the room -->
+<!-- hotels |> -->
+<!--   filter(  -->
+<!--     adults == 0,      -->
+<!--     children >= 1 | babies >= 1     # | means or   -->
+<!--     ) |> -->
+<!--   select(adults, babies, children) -->
+<!-- ``` -->
+
+
+<!-- <!-- ## Logical operators in R --> -->
+
+<!-- <!-- <br> --> -->
+
+<!-- <!-- operator    | definition                   || operator     | definition --> -->
+<!-- <!-- ------------|------------------------------||--------------|---------------- --> -->
+<!-- <!-- `<`         | less than                    ||`x`&nbsp;&#124;&nbsp;`y`     | `x` OR `y`  --> -->
+<!-- <!-- `<=`        |	less than or equal to        ||`is.na(x)`    | test if `x` is `NA` --> -->
+<!-- <!-- `>`         | greater than                 ||`!is.na(x)`   | test if `x` is not `NA` --> -->
+<!-- <!-- `>=`        |	greater than or equal to     ||`x %in% y`    | test if `x` is in `y` --> -->
+<!-- <!-- `==`        |	exactly equal to             ||`!(x %in% y)` | test if `x` is not in `y` --> -->
+<!-- <!-- `!=`        |	not equal to                 ||`!x`          | not `x` --> -->
+<!-- <!-- `x & y`     | `x` AND `y`                  ||              | --> -->
+
+
+<!-- <!-- # `distinct` and `count` --> -->
+
+<!-- <!-- ```{r include=FALSE} --> -->
+<!-- <!-- options(dplyr.print_max = 20) --> -->
+<!-- <!-- ``` --> -->
+
+
+<!-- ## `distinct` to filter for unique rows {.smaller} -->
+
+<!-- ... and `arrange` to order alphabetically -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- hotels |>  -->
+<!--   distinct(market_segment) |>  -->
+<!--   arrange(market_segment) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r output.lines=13} -->
+<!-- hotels |>  -->
+<!--   distinct(hotel, market_segment) |> #<< -->
+<!--   arrange(hotel, market_segment) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+
+<!-- ## `count` to create frequency tables -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- # alphabetical order by default -->
+<!-- hotels |> -->
+<!--   count(market_segment) #<< -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- .pull-right[ -->
+<!-- ```{r} -->
+<!-- # descending frequency order -->
+<!-- hotels |> -->
+<!--   count(market_segment, sort = TRUE) #<< -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ## `count` and `arrange` -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- # ascending frequency order -->
+<!-- hotels |> -->
+<!--   count(market_segment) |> -->
+<!--   arrange(n) #<< -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- .pull-right[ -->
+<!-- ```{r} -->
+<!-- # descending frequency order -->
+<!-- # just like adding sort = TRUE -->
+<!-- hotels |> -->
+<!--   count(market_segment) |> -->
+<!--   arrange(desc(n)) #<< -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ## `count` for multiple variables -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   count(hotel, market_segment) #<< -->
+<!-- ``` -->
+
+
+<!-- <!-- ## order matters when you `count` --> -->
+
+<!-- <!-- ::: columns --> -->
+<!-- <!-- ::: {.column width="50%"} --> -->
+<!-- <!-- ```{r} --> -->
+<!-- <!-- # hotel type first --> -->
+<!-- <!-- hotels |> --> -->
+<!-- <!--   count(hotel, market_segment) #<< --> -->
+<!-- <!-- ``` --> -->
+<!-- <!-- ::: --> -->
+<!-- <!-- ::: {.column width="50%"} --> -->
+<!-- <!-- ```{r} --> -->
+<!-- <!-- # market segment first --> -->
+<!-- <!-- hotels |> --> -->
+<!-- <!--   count(market_segment, hotel) #<< --> -->
+<!-- <!-- ``` --> -->
+<!-- <!-- ::: --> -->
+<!-- <!-- ::: --> -->
+
+<!-- ## `mutate` to add a new variable -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   mutate(little_ones = children + babies) |> #<< -->
+<!--   select(children, babies, little_ones) |> -->
+<!--   arrange(desc(little_ones)) -->
+<!-- ``` -->
+
+
+<!-- --- {.small} -->
+
+<!-- {.question} -->
+<!-- What is happening in the following chunk? -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   mutate(little_ones = children + babies) |> -->
+<!--   count(hotel, little_ones) |> -->
+<!--   mutate(prop = n / sum(n)) -->
+<!-- ``` -->
+
+<!-- ## `summarise` for summary stats -->
+
+<!-- ```{r} -->
+<!-- # mean average daily rate for all bookings -->
+<!-- hotels |> -->
+<!--   summarise(mean_adr = mean(adr)) #<< -->
+<!-- ``` -->
+
+<!-- `summarise()` changes the data frame entirely, it collapses rows down to a single  -->
+<!-- summary statistic, and removes all columns that are irrelevant to the calculation. -->
+
+<!-- --- -->
+
+<!-- `summarise()` also lets you get away with being sloppy and not naming your new  -->
+<!-- column, but that's not recommended! -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- `r emo::ji("x")` -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   summarise(mean(adr)) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- `r emo::ji("white_check_mark")` -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   summarise(mean_adr = mean(adr)) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ## `group_by` for grouped operations -->
+
+<!-- ```{r} -->
+<!-- # mean average daily rate for all booking at city and resort hotels -->
+<!-- hotels |> -->
+<!--   group_by(hotel) |> #<< -->
+<!--   summarise(mean_adr = mean(adr)) -->
+<!-- ``` -->
+
+<!-- ## Calculating frequencies -->
+
+<!-- The following two give the same result, so `count` is simply short for `group_by` then determine frequencies  -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   group_by(hotel) |> -->
+<!--   summarise(n = n()) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   count(hotel) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ## Multiple summary statistics -->
+
+<!-- `summarise` can be used for multiple summary statistics as well -->
+
+<!-- ```{r} -->
+<!-- hotels |> -->
+<!--   summarise( -->
+<!--     min_adr = min(adr), -->
+<!--     mean_adr = mean(adr), -->
+<!--     median_adr = median(adr), -->
+<!--     max_adr = max(adr) -->
+<!--     ) -->
+<!-- ``` -->
+
+
+
+<!-- <!-- #### What's in this tutorial?  --> -->
+
+<!-- <!-- In this tutorial, you'll learn and practice examples using some functions in `dplyr` to work with data. Those are:  --> -->
+
+<!-- <!-- - `filter()`: keep rows that satisfy your conditions --> -->
+<!-- <!-- - `select()`: keep or exclude some columns --> -->
+<!-- <!-- - `rename()`: rename columns --> -->
+<!-- <!-- - `relocate()`: move columns around --> -->
+<!-- <!-- - `mutate()`: add a new column --> -->
+<!-- <!-- - `group_by()` + `summarize()`: get summary statistics by group --> -->
+<!-- <!-- - `across()`: apply a function across columns --> -->
+<!-- <!-- - `count()`: quickly find counts for different groups --> -->
+<!-- <!-- - `case_when()`: like friendly if-else --> -->
+
+
+<!-- ## dplyr::across() -->
+
+<!-- From [tidyverse.org](https://dplyr.tidyverse.org/reference/across.html), `dplyr::across()` "makes it easy to apply the same transformation to multiple columns." -->
+
+<!-- ```{r, echo=FALSE, out.width="100%", fig.align = "center"} -->
+<!-- knitr::include_graphics("figs/dplyr_across_where.jpeg") -->
+<!-- ``` -->
+
+<!-- The `across()` function is especially useful within `summarize()` to efficiently create summary tables with one or more functions applied to multiple variables (columns). -->
+
+
+<!-- Create a summary table of mean values for all penguin size measurements ending in "mm" (bill depth, bill length, flipper length), by species. -->
+
+<!-- ## dplyr::across() -->
+
+<!-- As a reminder, here's a sample from the **penguins** data (5 observations / 344 total). -->
+
+<!-- ```{r} -->
+<!-- penguins[c(3,31,199,220,304),] |> -->
+<!--   kable() |> -->
+<!--   kable_styling(full_width=F) -->
+<!-- ``` -->
+
+<!-- ## Approach 1: Using `group_by()` |> `summarize()` -->
+
+<!-- ```{r, echo = TRUE, warning = FALSE, message = FALSE, eval = FALSE} -->
+<!-- penguins |> -->
+<!--   group_by(species) |> -->
+<!--   summarize(bill_length_mean = mean(bill_length_mm, na.rm = TRUE), -->
+<!--             bill_depth_mean = mean(bill_depth_mm, na.rm = TRUE), -->
+<!--             flipper_length_mean = mean(flipper_length_mm, na.rm = TRUE)) -->
+<!-- ``` -->
+
+<!-- ## Approach 2: Using `across()` within `summarize()` {.smaller} -->
+
+<!-- ```{r, echo = TRUE, warning = FALSE, message = FALSE} -->
+<!-- penguins |> -->
+<!--   group_by(species) |> -->
+<!--   summarize(across(ends_with("mm"), mean, na.rm = TRUE)) -->
+<!-- ``` -->
+
+<!-- The output is the same - but the second way (using `across()`) is much more efficient - and becomes even more useful as the number of columns you want to transform increases! -->
+
+<!-- The `across()` function also happily accepts most helper functions introduced for `select()`, including: `starts_with()`, `ends_with()`, `contains()`, as well as to specify classes (e.g. `is.numeric`, `is.character`, etc.). Follow along with the examples & exercises below to learn more! -->
+
+<!-- ## Lab exercise 3/4 -->
+
+<!-- Starting with `penguins`, use `across()` within `group_by()` and `summarize()` to make a summary table containing the minimum values for bill length and body mass, grouped by penguin species. -->
+
+<!-- ```{r, echo = TRUE, warning = FALSE, message = FALSE} -->
+<!-- penguins |> -->
+<!--   group_by(species) |> -->
+<!--   summarize(across(c(bill_length_mm, body_mass_g), min, na.rm = TRUE)) -->
+<!-- ``` -->
+
+
+<!-- Starting with `penguins`, use `across()` within `group_by()` and `summarize()` to make a summary table containing the maximum value within any column starting with "bill", grouped by `year`. -->
+
+<!-- ```{r, echo = TRUE, warning = FALSE, message = FALSE} -->
+<!-- penguins |> -->
+<!--   group_by(year) |> -->
+<!--   summarize(across(starts_with("bill"), max, na.rm = TRUE)) -->
+<!-- ``` -->
+
+<!-- Since what is presented in the table is the *maximum* value for bill length and depth, we probably want to update the column names. We could do that manually using `rename()`, or we can add the `.names = ` argument within `across()` as shown in the examples below. -->
+
+<!-- ## Example 4 -->
+
+<!-- Repeat the example above, but add an argument that will automatically update the column names containing the maximum bill length and depth to start with "max_" followed by the original column name. -->
+
+<!-- ```{r, echo = TRUE, warning = FALSE, message = FALSE} -->
+<!-- penguins |> -->
+<!--   group_by(year) |> -->
+<!--   summarise(across(starts_with("bill"), max, na.rm = TRUE, .names = "max_{.col}")) -->
+<!-- ``` -->
+
+<!-- ## `r fa("fas fa-robot", fill = "purple")` Example 5 -->
+
+<!-- Starting from `penguins`, create a summary table that finds the mean and standard deviation for all variables containing the string "length", grouped by penguin species. Update the column names to start with "avg_" or "sd_", followed by the original column names. -->
+
+<!-- There's quite a bit happening here, so a little breakdown: -->
+
+<!-- - We use `contains("length")` to indicate we'll apply the functions to any columns with the word "length" in the name -->
+<!-- - Within `list()` is where the functions to be applied across columns are given, and where their "names" of "avg" and "stdev" are set -->
+<!-- - We use `.names = ` to define the final column names in the summary table. Here, the name should start with the function "name" specified above ("avg" or "stdev"), then an underscore, then the original column name (that's what `"{.fn}_{.col}"` will do) -->
+
+<!-- ```{r, echo = TRUE, warning = FALSE, message = FALSE} -->
+<!-- penguins |> -->
+<!--   group_by(species) |> -->
+<!--   summarize(across(contains("length"), -->
+<!--                    list(avg = mean, stdev = sd), -->
+<!--                    na.rm = TRUE, -->
+<!--                    .names = "{.fn}_{.col}")) -->
+<!-- ``` -->
+
+
+
+
+
+
+  
