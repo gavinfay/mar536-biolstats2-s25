@@ -217,7 +217,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td><p>Thu, Feb 09</p></td>
 <td><p>GLMs II (logistic regression)</p></td>
 <td style="text-align: center;"><p><a href="weeks/week-04.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="lectures/lec-07.pdf"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><a href="lectures/lec-07.pptx"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
