@@ -13,7 +13,23 @@ tbl-colwidths: [5,10,30,5,5,5,5,5,5,5]
 This page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses.
 
 ::: column-screen-inset-right
-<table>
+Wed
+
+Wed
+
+<table style="width:100%;">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 9%" />
+<col style="width: 10%" />
+<col style="width: 9%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;"><p>Week</p></th>
@@ -228,6 +244,426 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td><p>Thu, Feb 09</p></td>
 <td><p>Due: Project description</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>5</p></td>
+<td><p>Tue, Feb 14</p></td>
+<td><p>Resampling methods, cross-validation</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Wed, Feb 15</p></td>
+<td><p>Due: Lab 4</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="writing_hand">✍️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Wed, Feb 15</p></td>
+<td><p>Lab 5 - Simulation</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="clipboard">📋</span></p></td>
+<td style="text-align: center;"><p><a href="https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Thu, Feb 16</p></td>
+<td><p>Non-linear models, splines</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>6</p></td>
+<td><p>Tue, Feb 21</p></td>
+<td><p>No class - Monday schedule</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Wed, Feb 22</p></td>
+<td><p>Due: Lab 5</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="writing_hand">✍️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Wed, Feb 22</p></td>
+<td><p>Lab 6 - Iteration</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="clipboard">📋</span></p></td>
+<td style="text-align: center;"><p><a href="https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Thu, Feb 23</p></td>
+<td><p>GAMs</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>7</p></td>
+<td><p>Tue, Feb 28</p></td>
+<td><p>Due: Data Exploration Report</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Tue, Feb 28</p></td>
+<td><p>Matrix Algebra review</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Tue, Feb 28</p></td>
+<td><p>Midterm distributed</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="white_check_mark">✅</span></p></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Wed, Mar 01</p></td>
+<td><p>Due: Lab 6</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="writing_hand">✍️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Wed, Mar 01</p></td>
+<td><p>Lab 7 - Functions</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="clipboard">📋</span></p></td>
+<td style="text-align: center;"><p><a href="https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Wed, Mar 02</p></td>
+<td><p>Principal Components Analysis</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p><strong>SPRING</strong></p></td>
+<td><p><strong>BREAK</strong></p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>8</p></td>
+<td><p>Tue, Mar 14</p></td>
+<td><p>Linear mixed effects model</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Wed, Mar 15</p></td>
+<td><p>Due: Lab 7</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="writing_hand">✍️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Wed, Mar 15</p></td>
+<td><p>Lab 8</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="clipboard">📋</span></p></td>
+<td style="text-align: center;"><p><a href="https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Thu, Mar 16</p></td>
+<td><p>More mixed effects</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Thu, Mar 16</p></td>
+<td><p>Due: Midterm</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="white_check_mark">✅</span></p></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>9</p></td>
+<td><p>Tue, Mar 21</p></td>
+<td><p>Zero-inflated models</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Wed, Mar 22</p></td>
+<td><p>Due: Lab 8</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="writing_hand">✍️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Wed, Mar 22</p></td>
+<td><p>UMASS IMS SYMPOSIUM </p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Thu, Mar 23</p></td>
+<td><p>Spatial GLMMs</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p>10</p></td>
+<td><p>Tue, Mar 28</p></td>
+<td><p>Classification / Linear Discriminant Analysis</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Wed, Mar 29</p></td>
+<td><p>Lab 9</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="clipboard">📋</span></p></td>
+<td style="text-align: center;"><p><a href="https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Thu, Mar 30</p></td>
+<td><p>Trees</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>11</p></td>
+<td><p>Tue, Apr 04</p></td>
+<td><p>Ordination methods</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Wed, Apr 05</p></td>
+<td><p>Due: Lab 9</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="writing_hand">✍️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Wed, Apr 05</p></td>
+<td><p>Cluster analysis</p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Thu, Apr 06</p></td>
+<td><p>Student presentations</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><p>12</p></td>
+<td><p>Tue, Apr 11</p></td>
+<td><p>Student presentations</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Wed, Apr 12</p></td>
+<td><p>Student presentations</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Thu, Apr 13</p></td>
+<td><p>Course Review</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td><p>Tue, Apr 25</p></td>
+<td><p>Due: Project Report</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
