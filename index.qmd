@@ -13,10 +13,6 @@ tbl-colwidths: [5,10,30,5,5,5,5,5,5,5]
 This page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses.
 
 ::: column-screen-inset-right
-Wed
-
-Wed
-
 <table style="width:100%;">
 <colgroup>
 <col style="width: 9%" />
