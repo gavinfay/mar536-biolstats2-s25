@@ -1,0 +1,31 @@
+---
+title: "Week 5"
+subtitle: "Resampling & simulation, nonlinear modeling"
+editor: visual
+---
+
+## Prepare
+
+📖 Tue: Read Chapter 5 of [James et al. (Introduction to Statistical Learning with R)](https://hastie.su.domains/ISLR2/ISLRv2_website.pdf)
+
+📖 Thu: Read Chapter 7 of [James et al. (Introduction to Statistical Learning with R)](https://hastie.su.domains/ISLR2/ISLRv2_website.pdf)
+
+## Participate
+
+🖥️ Lecture 8 - Resampling
+
+⌨️ Lab 5 - Simulation (just the exercise)
+
+-   Data sets for the lab can be found in the [class-data folder](#class-data).
+
+🖥️ Lecture 9 - Nonlinear models, splines
+
+## Practice
+
+Lab 5 exercise is due before lab on Wednesday Feb 22.
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/ "Course schedule") ⏎
+:::

@@ -253,10 +253,10 @@ Wed
 <td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><p>5</p></td>
+<td style="text-align: center;"><p><a href="weeks/week-05.html">5</a></p></td>
 <td><p>Tue, Feb 14</p></td>
 <td><p>Resampling methods, cross-validation</p></td>
-<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><a href="weeks/week-05.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
 <td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -292,7 +292,7 @@ Wed
 <td style="text-align: center;"></td>
 <td><p>Thu, Feb 16</p></td>
 <td><p>Non-linear models, splines</p></td>
-<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
+<td style="text-align: center;"><p><a href="weeks/week-05.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
 <td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
