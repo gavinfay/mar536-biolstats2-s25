@@ -1,0 +1,5 @@
+---
+title: "Course Data Sets"
+---
+
+A folder with all our class data sets from labs and lecture examples can be [found here](https://www.dropbox.com/sh/z2tp8a1ydsa8io3/AADcIW7e4EqmC9t5vUzbVsORa?dl=0).
