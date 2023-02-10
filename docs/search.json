@@ -1288,6 +1288,27 @@
     "text": "Practice\nLab 4 exercise is due before lab on Wednesday Feb 15.\n\n\nBack to course schedule ⏎"
   },
   {
+    "objectID": "weeks/week-05.html",
+    "href": "weeks/week-05.html",
+    "title": "Week 5",
+    "section": "",
+    "text": "📖 Tue: Read Chapter 5 of James et al. (Introduction to Statistical Learning with R)\n📖 Thu: Read Chapter 7 of James et al. (Introduction to Statistical Learning with R)"
+  },
+  {
+    "objectID": "weeks/week-05.html#participate",
+    "href": "weeks/week-05.html#participate",
+    "title": "Week 5",
+    "section": "Participate",
+    "text": "Participate\n🖥️ Lecture 8 - Resampling\n⌨️ Lab 5 - Simulation (just the exercise)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 9 - Nonlinear models, splines"
+  },
+  {
+    "objectID": "weeks/week-05.html#practice",
+    "href": "weeks/week-05.html#practice",
+    "title": "Week 5",
+    "section": "Practice",
+    "text": "Practice\nLab 5 exercise is due before lab on Wednesday Feb 22.\n\n\nBack to course schedule ⏎"
+  },
+  {
     "objectID": "weeks/week-02.html",
     "href": "weeks/week-02.html",
     "title": "Week 2",
@@ -2448,5 +2469,12 @@
     "title": "Syllabus",
     "section": "Important dates",
     "text": "Important dates\n\nJanuary 17: Classes begin\nJanuary 24: Drop/add ends\nMarch 6-10: Spring break, no classes are held\n\nClick here for the full UMass Dartmouth academic calendar."
+  },
+  {
+    "objectID": "class-data.html",
+    "href": "class-data.html",
+    "title": "Course Data Sets",
+    "section": "",
+    "text": "A folder with all our class data sets from labs and lecture examples can be found here."
   }
 ]
