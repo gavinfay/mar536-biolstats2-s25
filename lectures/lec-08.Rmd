@@ -1,0 +1,943 @@
+---
+title: 'Bio Stats II : Lecture 8, Resampling methods'
+subtitle: "James et al. (2021), Chapter 5"
+author: "Gavin Fay"
+date: "02/14/2023"
+output:
+  beamer_presentation:
+    colortheme: seagull
+    fonttheme: structurebold
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(infer)
+library(gapminder)
+library(ISLR)
+library(bootstrap)
+```
+
+## Objectives
+
+-   Review need for resampling methods, common methods\
+-   Present jackknifing, bootstrapping\
+-   Present cross-validation
+-   Present permutation analysis
+
+## Why do we need to discuss resampling methods?
+
+We want to address uncertainty associated with applying statistical methods.
+
+For some algorithms, we (or our software) can derive analytical estimates of variance.
+
+This is sometimes:\
+- not always possible\
+- biased
+
+Resampling methods allow us to numerically obtain estimates of variance for our model predictions
+
+Also can be used to obtain statistical signficance
+
+e.g. "there is only one test"
+
+## Resampling methods for measuring goodness of fit
+
+Goodness of fit measures (RSS, likelihood) are typically calculated on all the data.
+
+i.e. our measure of predictive ability is based on the data used to train the model.
+
+Predictive ability should really be based on how well a model does at predicting data it has never seen before.
+
+*"Out of sample prediction"*
+
+Cross-validation involves the use of resampling methods to obtain a GOF measure based on out of sample predictive ability.
+
+## Why use resampling?
+
+Standard statistical tests assume data are collected in a way that matches a particular statistical distribution.
+
+Very often data and/or estimators are complicated, and standard formulae simply don't apply.
+
+Resampling can be used on any kind of data, and any kind of estimator, to test any hypothesis.
+
+Applications include:\
+-- Estimating the precision of statistics using jackknifing (excluding data) or bootstrapping (drawing randomly with replacement).\
+-- Validating methods using random subsets of data (cross-validation).\
+-- Permutation tests that use resampling to test for significance.
+
+## Why use resampling?
+
+![](figs/onlyonetest.png)
+
+## Why use resampling?
+
+Standard statistical tests assume data are collected in a way that matches a particular statistical distribution.
+
+Very often data and/or estimators are complicated, and standard formulae simply don't apply.
+
+Resampling can be used on any kind of data, and any kind of estimator, to test any hypothesis.
+
+Applications include:\
+-- Estimating the precision of statistics using jackknifing (excluding data) or bootstrapping (drawing randomly with replacement).\
+-- Validating methods using random subsets of data (cross-validation).\
+-- Permutation tests that use resampling to test for significance.
+
+## Mean life expectancy example
+
+What is the confidence interval for the average life expectancy among countries in 2007 from the gapminder data? Mean of `gapminder` countries:
+
+```{r gap_mean}
+nrow(gapminder |> filter(year == 2007))
+gapminder |>
+  filter(year == 2007) |> 
+  summarize(avg_lifeExp = mean(lifeExp))
+```
+
+## Mean life expectancy example
+
+```{r plot_histo, echo = FALSE, out.width = "70%"}
+ggplot(filter(gapminder, year == 2007), aes(x = lifeExp)) +
+  geom_histogram(bins = 10, col = "white")
+```
+
+## Mean life expectancy example
+
+What if we only had enough money to sample 20 countries? Mean of 20 countries:
+
+```{r gapsample_mean}
+set.seed(1138)
+gap_sample <- gapminder |>
+  filter(year == 2007) |>
+  slice_sample(n = 20, replace = FALSE)
+summarize(gap_sample, avg_lifeExp = mean(lifeExp))
+```
+
+## Mean life expectancy example
+
+To estimate the variability of our estimate for the mean, we can:   
+- repeatedly draw different samples from our sampled countries,\
+- compute the mean life expectancy from those samples,\
+- summarize the distribution of estimates for the mean,\
+- calculate percentiles of this distribution.
+
+------------------------------------------------------------------------
+
+![](figs/visualize.png)
+
+
+## Mean life expectancy from 20 countries
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+
+```{r collapse = TRUE}
+gapminder |> 
+  filter(year == 2007) |> 
+  rep_sample_n(size = 20)
+```
+
+```{=tex}
+\endgroup
+```
+
+## Mean life expectancy from 20 countries
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+
+```{r collapse = TRUE}
+gapminder |> 
+  filter(year == 2007) |> 
+  rep_sample_n(size = 20) |>
+  summarize(avg_lifeExp = mean(lifeExp))
+```
+
+```{=tex}
+\endgroup
+```
+
+## 24 replicates of 20 countries
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+
+```{r collapse = TRUE}
+gapminder |> 
+  filter(year == 2007) |> 
+  rep_sample_n(size = 20, reps = 24)
+```
+
+```{=tex}
+\endgroup
+```
+
+## 24 replicates of 20 countries
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+
+```{r collapse = TRUE}
+gapminder |> 
+  filter(year == 2007) |> 
+  rep_sample_n(size = 20, reps = 24) |>
+  summarize(avg_lifeExp = mean(lifeExp))
+```
+
+```{=tex}
+\endgroup
+```
+
+```{r include=FALSE}
+meanlife_samp <- gapminder |> 
+  filter(year == 2007) |> 
+  rep_sample_n(size = 20, reps = 24) |>
+  summarize(avg_lifeExp = mean(lifeExp))
+```
+
+
+## Distribution of 24 estimates of the mean
+
+```{r, collapse = TRUE, echo = FALSE}
+ggplot(meanlife_samp, aes(x = avg_lifeExp)) +
+  geom_histogram(color = "white") +
+  labs(x = "Mean life expectancy from 20 countries", 
+       title = "Distribution of 42 life expectancy means") 
+```
+
+
+## Regression Example
+
+To estimate the variability of a linear regression fit, we can:\
+- repeatedly draw different samples from the training data,\
+- fit a linear regression to each new sample,\
+- examine the extent to which the resulting fits differ.
+
+We obtain information not available from fitting the model only once using the original training sample.
+
+Resampling approaches can be computationally expensive.\
+- fitting the same statistical method multiple times.\
+- these days, requirements generally not prohibitive.
+
+## Resampling methods discussed today
+
+1.  Jackknifing\
+2.  Bootstrapping\
+3.  Cross-validation\
+4.  Permutation tests
+
+## Jackknifing
+
+(Quenouille 1949, Tukey 1958)
+
+Used to estimate:\
+- bias in sample statistics,\
+  filter(year == 2007) |> 
+  rep_sample_
+  filter(year == 2007) |> 
+  rep_sample_e data $x_1\text{, } x_2\text{, }, \dots \text{, } x_n$ and we are computing the mean.
+
+Systematically leave out one observation at a time and recompute the statistic.\
+mean$(x_2, \dots, x_n)$; mean$(x_1, x_3, \dots, x_n)$; mean$(x_1, x_2, x_4, \dots, x_n)$
+
+If there is small-sample bias, this will appear, and can be used to correct the variance of the statistic.
+
+## Jackknifing
+
+There are additional versions where \> 1 data points are removed in each sample.
+
+Variance estimation
+
+$\text{Var}_\text{(jacknife)} = \frac{n-1}{n} \displaystyle\sum_{i=1}^{n}(\hat{\theta}_i - \hat{\theta}_{(.)})^2$
+
+Bias estimation and correction
+
+$\hat{Bias}_{\theta} = n \hat{\theta}_{(.)} - (n-1)\bar{\theta}_{(jk)}$
+
+Systematic - estimates from jacknifing will always be the same.
+
+More reading: http://www.physics.utah.edu/\~detar/phycs6730/handouts/jackknife/jackknife/
+
+<!-- ## Jackknife -->
+
+<!-- `Auto` dataset from `library(ISLR)` -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE,echo=FALSE, out.width="75%"} -->
+<!-- ggplot(Auto, aes(y = mpg, x = horsepower)) + -->
+<!--   geom_point(col = "slateblue", alpha = 0.5, size = 4) + -->
+<!--   theme_minimal() + -->
+<!--   geom_smooth(method = "lm", col = "orange") -->
+<!-- ``` -->
+
+<!-- ## Using `jackknife()` (in `bootstrap`) -->
+
+<!-- ```{=tex} -->
+<!-- \begingroup -->
+<!-- \fontsize{9}{10}\selectfont -->
+<!-- ``` -->
+<!-- Usage: `jackknife(x, theta, ...)` -->
+
+<!-- `x` is vector containing the data, `theta` is function to be jackknifed. -->
+
+<!-- e.g. slope of mpg\~horsepower -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE,R.options=library(ISLR)} -->
+<!-- slope <- function(x) lm(mpg~horsepower,  -->
+<!--                         data = slice(Auto, x))$coef[2] -->
+<!-- jack <- jackknife(1:nrow(Auto),slope) -->
+<!-- jack$jack.bias -->
+<!-- jack$jack.gapmindergapmindergapminder
+<!-- jack$jack.se^2 -->
+<!-- quantile(jack$jack.values,c(0.025,0.975)) -->
+<!-- ``` -->
+
+<!-- ```{=tex} -->
+<!-- \endgroup -->
+<!-- ``` -->
+## Bootstrapping
+
+Widely applicable and extremely powerful statistical tool.
+
+Used to quantify the uncertainty associated with a given estimator or statistical learning method.
+
+Technique allows estimation of the sampling distribution of almost any statistic using random sampling methods.
+
+Practice of estimating properties of an estimator (such as its variance) by measuring those properties when sampling from an approximating distribution.
+
+Standard choice for an approximating distribution is the empirical distribution function of the observed data.
+
+When a set of observations can be assumed to be from an independent and identically distributed population, this can be implemented by constructing a number of resamples with replacement of the observed dataset (and of equal size to the observed dataset).
+
+## Bootstrapping
+
+Based on assumption that data in samples are independent observations from a population.
+
+If sample size is large enough, then sample should describe population.
+
+Variance associated with resampling (with replacement) from sample should reflect variance in population.
+
+-   Have some data $x_1\text{, } x_2\text{, }, \dots \text{, } x_n$ and we are computing a statistic $t$.\
+-   Randomly draw $n$ values from the data *with replacement* (same value can be drawn multiple times).
+-   Calculate statistic from new random pseudo-data.\
+-   Repeat a large number of times to obtain the distribution: $t_1,t_2,\dots,t_n$.\
+-   Resulting distribution is the bootstrap sampling distribution.\
+-   Compute standard deviation and 95% confidence intervals from this. Finished.
+
+<!-- ## Bootstrapping -->
+
+<!-- Resampling methods in `R` make heavy use of `sample()` -->
+
+<!-- Recall that `sample()` can be used to obtain samples from a given vector. -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} -->
+<!-- # determine order of 6 players -->
+<!-- sample(1:6,replace=FALSE) -->
+<!-- # roll six dice -->
+<!-- sample(1:6,replace=TRUE) -->
+<!-- # pick six lottery numbers -->
+<!-- sample(1:49,6,replace=FALSE) -->
+<!-- ``` -->
+
+## Bootstrapping example, mean life expectancy
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+use functionality from `infer` package\
+1 resample:
+
+```{r boot gapsample}
+gap_resample <- gapminder |>
+  filter(year == 2007) |>
+  specify(response = lifeExp) |> 
+  generate(reps = 1)
+calculate(gap_resample, stat = "mean")
+gap_resample
+```
+
+```{=tex}
+\endgroup
+```
+
+## Bootstrapping example, mean life expectancy
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+Many resamples:
+
+```{r boot gapsamples}
+gap_resamples <- gapminder |> 
+  filter(year == 2007) |>
+  specify(response = lifeExp) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
+  calculate(stat = "mean")
+gap_resamples
+```
+
+```{=tex}
+\endgroup
+```
+
+------------------------------------------------------------------------
+
+```{r}
+visualize(gap_resamples,
+          xlab = "mean life expectancy")
+```
+
+## Regression example
+
+```{=tex}
+\begingroup
+\fontsize{10}{11}\selectfont
+```
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,echo=TRUE}
+slope_bootstrap <- Auto |>
+  specify(formula = mpg ~ horsepower) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
+  calculate(stat = "slope")
+percentile_ci <- slope_bootstrap |> 
+  get_confidence_interval(type = "percentile",
+                          level = 0.95)
+percentile_ci
+```
+
+```{=tex}
+\endgroup
+```
+
+------------------------------------------------------------------------
+
+```{r}
+visualize(slope_bootstrap)
+```
+
+<!-- slope <- coef(lm(mpg~horsepower,data=Auto))[2] -->
+
+<!-- lm.fn <- function(index,data) -->
+
+<!--   return(coef(lm(mpg~horsepower,data=data,subset=index))[2]) -->
+
+<!-- boot_index <- matrix(NA,nrow=nrow(Auto),ncol=nrow(Auto)) -->
+
+<!-- for (i in 1:nrow(Auto))  -->
+
+<!--   boot_index[,i] <- sample(1:nrow(Auto), -->
+
+<!--                     nrow(Auto),replace=TRUE) -->
+
+<!-- boot_samples <- apply(boot_index,2,lm.fn,data=Auto) -->
+
+<!-- slope -->
+
+<!-- summary(lm(mpg~horsepower,data=Auto))$coefficients[2,2]^2 -->
+
+<!-- mean(boot_samples) -->
+
+<!-- var(boot_samples) -->
+
+<!-- ``` -->
+
+<!-- \endgroup -->
+
+<!-- ## Case bootstrapping using 'bootstrap' -->
+
+<!--   In `bootstrap` package.   -->
+
+<!--   Usage:   -->
+
+<!--   `bootstrap(x, theta, ...)`   -->
+
+<!--   `x` is vector containing the data.   -->
+
+<!--   `theta` is the function to be bootstrapped. -->
+
+<!-- e.g. mean of mpg -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE,R.options={library(ISLR);library(bootstrap)}} -->
+
+<!-- boot <- bootstrap(Auto$mpg,1000,mean) -->
+
+<!-- mean(Auto$mpg) -->
+
+<!-- sd(Auto$mpg)/sqrt(length(Auto$mpg)) -->
+
+<!-- mean(boot$thetastar) -->
+
+<!-- sd(boot$thetastar) -->
+
+<!-- ``` -->
+
+<!-- slope of mpg~horsepower -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE,R.options=library(ISLR)} -->
+
+<!-- boot <- bootstrap(1:nrow(Auto),1000,lm.fn,data=Auto) -->
+
+<!-- mean(boot$thetastar) -->
+
+<!-- var(boot$thetastar) -->
+
+<!-- quantile(boot$thetastar,c(0.025,0.975)) -->
+
+<!-- ``` -->
+
+## Case bootstrapping using `boot()`
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+In package `boot()`
+
+`boot()` is very powerful, can be used to do (almost) all kinds of bootstraps.\
+However, typically requires you to still write functions.
+
+Good description of `boot()` function in Fox (2002).
+
+```{r prompt=TRUE,comment='',collapse=TRUE,eval=FALSE,R.options=library(boot)}
+  boot(data,  #data, can be vector or dataframe 
+       statistic, # function of interest 
+       R,   #number of bootstraps
+       sim = "ordinary",  #type of simulation
+       stype = c("i", "f", "w"),  #flag for 2nd arg
+       strata = rep(1,n),  #bootstrap within strata
+       weights = NULL,  #for importance sampling
+       ran.gen = function(d, p) d, #for parametric boots
+       mle = NULL, 
+       parallel = c("no", "multicore", "snow"),
+       ncpus = getOption("boot.ncpus", 1L), 
+       cl = NULL)
+```
+
+```{=tex}
+\endgroup
+```
+## When is bootstrapping useful?
+
+-   theoretical distribution of a statistic of interest is complicated or unknown.
+
+-   sample size is insufficient for straightforward statistical inference.
+
+-   for power analysis with a small pilot sample dataset available.
+
+Bootstrap distribution will not always converge to the same limit as the sample mean.\
+- confidence intervals on the basis of Monte Carlo simulation of the bootstrap could be misleading.
+
+"Unless one is reasonably sure that the underlying distribution is not heavy tailed, one should hesitate to use the naive bootstrap".\
+(Athreya)
+
+## More on bootstrapping
+
+*Advantages*\
+- simple\
+- can be applied to any statistical technique.\
+- asymptotically more accurate than standard intervals obtained using sample variance and normality assumptions.
+
+*Disadvantages*\
+- does not generate finite-sample guarantees\
+- apparent simplicity can conceal the fact that important assumptions are being made (e.g. independence of samples)
+
+## Types of bootstrap
+
+-   Case resampling (naive or empirical bootstrap)\
+    Resample individual observations\
+    Acceptable for univariate problems\
+    Size of resample equal to original data set\
+    'Exact' version involves enumerating every possible resample of the dataset - computationally expensive.
+
+-   Bayesian bootstrap\
+    new datasets obtained by reweighting initial data
+
+-   Smooth bootstrap\
+    small amount of random noise added onto each resampled observation.\
+    equivalent to sampling from kernel density estimate of data.
+
+-   Parametric bootstrap\
+    Small samples - random numbers drawn from the fitted model.
+
+-   Resampling residuals
+
+## Bias-corrected and accelerated (BCA)
+
+Simple bootstrapping can produce biased and skewed estimates of confidence intervals.
+
+Ad-hoc solutions:\
+- find some monotone transformation that makes data approximately normal\
+- get lucky: identify the exact distribution of data or some transformation thereof\
+HARD!
+
+"You can pull yourself up by your bootstraps and you don't need anything else"\
+(Efron)
+
+To correct for this, "bias-corrected and accelerated" confidence intervals from bootstrapping.\
+Efron (1987) <http://dx.doi.org/10.1080/01621459.1987.10478410>
+
+Can use functions `boot()` and `boot.ci()` from package(boot).
+
+## Resampling residuals
+
+Common form of bootstrapping involves developing pseudo-data sets by resampling residuals (with replacement) and adding these to the model predictions.
+
+$$y_{i}^U = \hat{y}_i + \epsilon_j \text{;   } \epsilon_j = y_j-\hat{y}_j$$
+
+$y_{i}^U$ is the $i$th datum in pseudo data set $U$\
+$\hat{y}_i$ is the model prediction for observation $i$\
+$j$ is selected at random from 1:n.
+
+Retains information in the explanatory variables.\
+Which residuals to resample? Raw residuals, Studentized residuals.\
+Often makes little difference and easy to run both and compare.
+
+## More types of Bootstrap
+
+-   Gaussian process regression bootstrap\
+    Good for data that are correlated (e.g. in time)\
+    Straightforward bootstrapping destroys inherent correlations.
+
+-   Wild bootstrap\
+    Suitable when model exhibits heteroskedasticity.\
+    Leave regressors at sample value, resample response variable based on residuals, but multiply residuals by random variable.
+
+-   Block bootstrap\
+    used for correlated data/errors\
+    resamples blocks of data
+
+## Comparisons with other methods
+
+Bootstrap gives different results when repeated on same data, whereas jackknife gives exactly the same result each time.
+
+Subsampling is an alternative method for approximating the sampling distribution of an estimator.  
+Two key differences to bootstrap:\
+- resample size is smaller than the sample size\
+- resampling done without replacement.
+
+## Cross-validation
+
+Difference between test error rate and the training error rate.
+
+Randomly divide the data into two sets.
+
+Resampling comes in by repeating this division multiple times, to obtain slightly different values for goodness-of-fit.
+
+Cross-validation methods therefore differ by the approach/algorithm taken to perform this resampling / calculation of the test error rate.
+
+## Validation set approach
+
+```{=tex}
+\begingroup
+\fontsize{10}{11}\selectfont
+```
+Split data into training set and a validation (or hold-out) set.
+
+Fit model to training set, fitted model used to predict the responses for the observations in the validation set.
+
+Resulting validation set error rate (e.g. MSE for quantitative response) is an estimate of the test error rate.
+
+```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE,R.options=library(ISLR)}
+set.seed(66)
+train <- sample(392,196)
+lm.fit <- lm(mpg ~ horsepower, data=Auto, subset=train)
+mean((Auto$mpg - predict(lm.fit, Auto))[-train]^2)
+lm.fit2 <- lm(mpg ~ poly(horsepower, 2), data=Auto, 
+              subset=train)
+mean((Auto$mpg - predict(lm.fit2, Auto))[-train]^2)
+lm.fit3 <- lm(mpg ~ poly(horsepower, 3), data=Auto,
+              subset=train)
+mean((Auto$mpg - predict(lm.fit3, Auto))[-train]^2)
+```
+
+```{=tex}
+\endgroup
+```
+## Validation set approach
+
+Conceptually simple and easy to implement.
+
+Two potential drawbacks:
+
+1.  Validation estimates of the test error rate can be highly variable, depends on which observations are included in training set and which included in the validation set.
+
+2.  Only a subset of the observations are used to fit the model. Statistical methods perform worse when trained on fewer observations. Validation set error rate may overestimate test error rate for a model fit to the entire data set.
+
+Cross-validation refines the validation set approach to address these issues.
+
+## Leave One Out Cross-Validation (LOOCV)
+
+Fit the model $n$ times to $n-1$ training observations.
+
+Do this systematically such that each observation is predicted out-of-sample.
+
+The MSE is approximately unbiased estimate for the test error.
+
+The LOOCV is the average MSE of the n test error estimates.
+
+$$CV_{(n)} = \frac{1}{n} \displaystyle\sum_{i=1}^{n} \text{MSE}_i$$
+
+## LOOCV
+
+![](figs/loocv.png)
+
+## Cross-Validation of GLM, LOOCV
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+Make use of `cv.glm` in `boot`.
+
+```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE}
+library(boot)
+glm.fit <- glm(mpg~horsepower,data=Auto)
+coef(glm.fit)
+cv.err <- cv.glm(Auto,glm.fit)
+cv.err$delta
+```
+
+```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE}
+cv.error <- map(1:5, 
+            ~cv.glm(Auto,
+            glm(mpg~poly(horsepower,.x),data = Auto))$delta[1])
+cv.error
+```
+
+```{=tex}
+\endgroup
+```
+## More on LOOCV
+
+Less biased than validation set approach.
+
+Each model is fit using training sets that contain nearly almost all the data.\
+- tends not to overestimate the test error rate as much as validation set approach.
+
+LOOCV always returns same results: no randomness in the training/validation set splits.
+
+However,\
+LOOCV can be expensive/time-consuming to implement:\
+- if $n$ is large, or\
+- each individual model is slow to fit.
+
+## More on LOOCV
+
+With least squares linear or polynomial regression, cost of LOOCV same as that of single model fit!\
+$$CV_{(n)} = \frac{1}{n} \displaystyle\sum_{i=1}^{n} \left(\frac{y_i-\hat{y}_i}{1-h_i}\right)^2$$
+
+where $\hat{y}_i$ is the \_i_th fitted value from the original least squares fit\
+$h_i$ is the leverage.
+
+Same as ordinary MSE, except $i$th residual is divided by $1-h_i$.\
+$1/n \leq h_i \leq 1$ reflects the amount that an observation influences its own fit.
+
+LOOCV very general, can be used with any kind of predictive modeling.
+
+Sadly, the magic formula does not hold in general, and the model has to be refit $n$ times.
+
+## *k*-Fold Cross Validation
+
+-   Randomly divide observations into $k$ groups (folds) of equal size.
+
+-   Treat 1st fold as a validation set,
+
+-   Fit the method on the remaining $k-1$ folds.
+
+-   Compute $\text{MSE}_1$ on the observations in the held-out fold.
+
+-   Repeat for each fold.
+
+-   Gives $k$ estimates of the test error, $\text{MSE}_1, \text{MSE}_2, \dots, \text{MSE}_k$.
+
+-   Average these to obtain the $k$-fold CV estimate:
+
+$$CV_{(k)} = \frac{1}{k} \displaystyle\sum_{i=1}^{k} \text{MSE}_i$$
+
+(LOOCV a special case when $k=n$)
+
+In practice perform either $k=5$ or $k=10$.
+
+------------------------------------------------------------------------
+
+![](figs/kfoldcv.png)
+
+## Comparing 10-fold CV with LOOCV
+
+![](figs/cv_err_5_4.png)
+
+## k-Fold Cross-Validation
+
+Use `cv.glm()` with argument `K=k` to perform k-fold cross-validation.
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,R.options=library(ISLR)}
+set.seed(17)
+cv_error <- expand.grid(poly = 1:10,
+                         sim = 1:10) |>
+  mutate(cv = map_dbl(poly,
+                      ~cv.glm(Auto,
+                              glm(mpg~poly(horsepower,.x),data=Auto),
+                              K=10)$delta[1]))
+```
+
+```{=tex}
+\endgroup
+```
+Setting K=n replicates LOOCV.
+
+<!--   for (ideg in 1:10) { --> <!--   glm.fit <- glm(mpg~poly(horsepower,ideg),data=Auto) --> <!--   cv.error.10[isim,] <- cv.glm(Auto, --> <!--                             glm.fit,K=10)$delta[1] --> <!-- }   -->
+
+------------------------------------------------------------------------
+
+```{r echo = FALSE}
+ggplot(cv_error) +
+  aes(x = poly, y = cv) +
+  geom_point() +
+  geom_line(aes(group = sim, col = factor(sim))) +
+  labs(y = "Mean Squared Error") +
+  ylim(16,NA) +
+  guides(col = "none") +
+  scale_x_discrete(name ="degree of polynomial", 
+                    limits=factor(1:10))
+```
+
+
+
+## Cross-Validation
+
+Goal might be to determine how well a given statistical learning procedure can be expected to perform on independent data.\
+- the actual estimate of the test MSE is of interest.
+
+Other times we are interested only in the location of the minimum point in the estimated test MSE curve.\
+- might be performing cross-validation on a number of statistical learning methods,\
+- or on a single method using different levels of flexibility.\
+- want to identify the method that results in the lowest test error.
+
+Here, location of the minimum point in the estimated test MSE curve is important, but not actual value of the estimated test MSE.
+
+## Cross-Validation
+
+$k$-fold CV often gives more accurate estimates of the test error rate than LOOCV.
+
+Bias reduction - LOOCV should be preferred to $k$-fold CV.
+
+*BUT* also need to consider variance of procedure.\
+LOOCV has higher variance than $k$-fold CV with $k < n$.
+
+LOOCV averages output of $n$ models, each trained on almost same data.\
+- outputs are highly (positively) correlated.
+
+$k$-fold CV averages output of $k$ models that are less correlated with each other.\
+- overlap between training data sets is lower.
+
+Test error estimates from LOOCV tends to have higher variance than from $k$-fold CV.
+
+## Cross-validation on classification
+
+Note that we can also perform cross-validation on classification methods.
+
+$$CV_{(n)} = \frac{1}{n} \displaystyle\sum_{i=1}^{n} \text{Err}_i$$
+
+$$\text{Err}_i = I(y_i \neq \hat{y}_i)$$
+
+------------------------------------------------------------------------
+
+![](figs/cv_logistic.png)
+
+## Permutation test
+
+Type of statistical significance test where the distribution of the test statistic under the null hypothesis is obtained by calculating all possible values of the test statistic under rearrangements of the labels on the observed data points.
+
+e.g. non-parametric $t$-test
+
+Is the mean of group A larger than the mean of group B?\
+Assume sample means $\bar{x}_A$ and $\bar{x}_B$, sample sizes $n_A$ & $n_B$.\
+Test statistic is $T_{obs} = \bar{x}_A - \bar{x}_B$
+
+Method: - pool all observations for A and B.\
+- Find every possible permutation of dividing the pool into two groups $A_i$ and $B_i$ of size $n_A$ & $n_B$.\
+- For each permutation calculate $T_i = \bar{x}_{A_i} - \bar{x}_{B_i}$\
+- The set ${T_1, T_2, ...}$ is the distribution of possible differences under the null hypothesis that group label does not matter.\
+- $p$-value is proportion of $T_i$ values greater than $T_{obs}$.
+
+## Permutation tests
+
+*Advantages*\
+Exist for any statistic, regardless of whether its distribution is known.\
+Can be used for unbalanced designs.\
+Combine dependent tests on mixtures of nominal, ordinal, and metric data.
+
+*Disadvantages*\
+Assumes observations are exchangeable under the null hypothesis.\
+Tests of difference in location require equal variance.\
+- permutation t-test shares same weakness as classical Student's t-test.
+
+## Monte Carlo testing
+
+-   The number of permutations rises too rapidly to calculate all directly.\
+-   Instead, randomly choose $N$ (large) permutations and use this as the reference distribution.\
+-   called an *approximate* permutation test, Monte Carlo permutation test, random permutation test, randomization test, etc.
+
+<!-- \begingroup -->
+
+<!-- \fontsize{10}{11}\selectfont -->
+
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} -->
+
+<!-- library(moderndive) -->
+
+<!-- evals |> -->
+
+<!--   #group_by(gender) |>  -->
+
+<!--   specify(score ~ gender) |> -->
+
+<!--   hypothesize(null = "independence") |>  -->
+
+<!--   generate(reps = 1000, type = "permute") |>  -->
+
+<!--   calculate(stat = "diff in means") |>   -->
+
+<!-- #    order = c("male", "female")) |> -->
+
+<!--   summarise( -->
+
+<!--     l = quantile(stat, 0.025),  -->
+
+<!--     u = quantile(stat, 0.975) -->
+
+<!--     ) -->
+
+<!-- ``` -->
+
+<!-- \endgroup -->
+
+## Why to apply these methods
+
+Cross-validation can be used to estimate the test error associated with a given statistical learning method to evaluate its performance, or to select the appropriate level of flexibility.
+
+-   Process of evaluating a model's performance is known as model assessment.\
+-   Process of selecting the proper level of flexibility for a model is known as assessment model selection.
+
+The bootstrap is used in several contexts, most commonly to provide a measure of accuracy of a parameter estimate or a given selection of a statistical learning method.
+
+------------------------------------------------------------------------
+
+_Tomorrow..._ 
+Lab Exercises on Resampling methods    
+
+![](../images/opinions/bushbaby.png){width=60%}
+
+-   Thu 2/16: nonlinear modeling, splines
