@@ -2296,6 +2296,356 @@
     "text": "Supplemental Reading\nIntroduction to Modern Statistics Chap 4-6\nR for Data Science, Chap 3\nCommunicating with Data, Chap 3-4\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   },
   {
+    "objectID": "lectures/lec-08.html",
+    "href": "lectures/lec-08.html",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "",
+    "text": "Review need for resampling methods, common methods\n\nPresent jackknifing, bootstrapping\n\nPresent cross-validation\nPresent permutation analysis"
+  },
+  {
+    "objectID": "lectures/lec-08.html#why-do-we-need-to-discuss-resampling-methods",
+    "href": "lectures/lec-08.html#why-do-we-need-to-discuss-resampling-methods",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Why do we need to discuss resampling methods?",
+    "text": "Why do we need to discuss resampling methods?\nWe want to address uncertainty associated with applying statistical methods.\nFor some algorithms, we (or our software) can derive analytical estimates of variance.\nThis is sometimes:\n- not always possible\n- biased\nResampling methods allow us to numerically obtain estimates of variance for our model predictions\nAlso can be used to obtain statistical signficance\ne.g. “there is only one test”"
+  },
+  {
+    "objectID": "lectures/lec-08.html#resampling-methods-for-measuring-goodness-of-fit",
+    "href": "lectures/lec-08.html#resampling-methods-for-measuring-goodness-of-fit",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Resampling methods for measuring goodness of fit",
+    "text": "Resampling methods for measuring goodness of fit\nGoodness of fit measures (RSS, likelihood) are typically calculated on all the data.\ni.e. our measure of predictive ability is based on the data used to train the model.\nPredictive ability should really be based on how well a model does at predicting data it has never seen before.\n“Out of sample prediction”\nCross-validation involves the use of resampling methods to obtain a GOF measure based on out of sample predictive ability."
+  },
+  {
+    "objectID": "lectures/lec-08.html#why-use-resampling",
+    "href": "lectures/lec-08.html#why-use-resampling",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Why use resampling?",
+    "text": "Why use resampling?\nStandard statistical tests assume data are collected in a way that matches a particular statistical distribution.\nVery often data and/or estimators are complicated, and standard formulae simply don’t apply.\nResampling can be used on any kind of data, and any kind of estimator, to test any hypothesis.\nApplications include:\n– Estimating the precision of statistics using jackknifing (excluding data) or bootstrapping (drawing randomly with replacement).\n– Validating methods using random subsets of data (cross-validation).\n– Permutation tests that use resampling to test for significance."
+  },
+  {
+    "objectID": "lectures/lec-08.html#why-use-resampling-1",
+    "href": "lectures/lec-08.html#why-use-resampling-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Why use resampling?",
+    "text": "Why use resampling?"
+  },
+  {
+    "objectID": "lectures/lec-08.html#why-use-resampling-2",
+    "href": "lectures/lec-08.html#why-use-resampling-2",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Why use resampling?",
+    "text": "Why use resampling?\nStandard statistical tests assume data are collected in a way that matches a particular statistical distribution.\nVery often data and/or estimators are complicated, and standard formulae simply don’t apply.\nResampling can be used on any kind of data, and any kind of estimator, to test any hypothesis.\nApplications include:\n– Estimating the precision of statistics using jackknifing (excluding data) or bootstrapping (drawing randomly with replacement).\n– Validating methods using random subsets of data (cross-validation).\n– Permutation tests that use resampling to test for significance."
+  },
+  {
+    "objectID": "lectures/lec-08.html#mean-life-expectancy-example",
+    "href": "lectures/lec-08.html#mean-life-expectancy-example",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Mean life expectancy example",
+    "text": "Mean life expectancy example\nWhat is the confidence interval for the average life expectancy among countries in 2007 from the gapminder data? Mean of gapminder countries:\n\nnrow(gapminder |> filter(year == 2007))\n\n[1] 142\n\ngapminder |>\n  filter(year == 2007) |> \n  summarize(avg_lifeExp = mean(lifeExp))\n\n# A tibble: 1 × 1\n  avg_lifeExp\n        <dbl>\n1        67.0"
+  },
+  {
+    "objectID": "lectures/lec-08.html#mean-life-expectancy-example-1",
+    "href": "lectures/lec-08.html#mean-life-expectancy-example-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Mean life expectancy example",
+    "text": "Mean life expectancy example"
+  },
+  {
+    "objectID": "lectures/lec-08.html#mean-life-expectancy-example-2",
+    "href": "lectures/lec-08.html#mean-life-expectancy-example-2",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Mean life expectancy example",
+    "text": "Mean life expectancy example\nWhat if we only had enough money to sample 20 countries? Mean of 20 countries:\n\nset.seed(1138)\ngap_sample <- gapminder |>\n  filter(year == 2007) |>\n  slice_sample(n = 20, replace = FALSE)\nsummarize(gap_sample, avg_lifeExp = mean(lifeExp))\n\n# A tibble: 1 × 1\n  avg_lifeExp\n        <dbl>\n1        66.6"
+  },
+  {
+    "objectID": "lectures/lec-08.html#mean-life-expectancy-example-3",
+    "href": "lectures/lec-08.html#mean-life-expectancy-example-3",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Mean life expectancy example",
+    "text": "Mean life expectancy example\nTo estimate the variability of our estimate for the mean, we can:\n- repeatedly draw different samples from our sampled countries,\n- compute the mean life expectancy from those samples,\n- summarize the distribution of estimates for the mean,\n- calculate percentiles of this distribution."
+  },
+  {
+    "objectID": "lectures/lec-08.html#mean-life-expectancy-from-20-countries",
+    "href": "lectures/lec-08.html#mean-life-expectancy-from-20-countries",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Mean life expectancy from 20 countries",
+    "text": "Mean life expectancy from 20 countries\n\ngapminder |> \n  filter(year == 2007) |> \n  rep_sample_n(size = 20)\n## # A tibble: 20 × 7\n## # Groups:   replicate [1]\n##    replicate country         continent  year lifeExp        pop gdpPercap\n##        <int> <fct>           <fct>     <int>   <dbl>      <int>     <dbl>\n##  1         1 Serbia          Europe     2007    74.0   10150265     9787.\n##  2         1 Burundi         Africa     2007    49.6    8390505      430.\n##  3         1 Ireland         Europe     2007    78.9    4109086    40676.\n##  4         1 Guinea          Africa     2007    56.0    9947814      943.\n##  5         1 Israel          Asia       2007    80.7    6426679    25523.\n##  6         1 Romania         Europe     2007    72.5   22276056    10808.\n##  7         1 Cameroon        Africa     2007    50.4   17696293     2042.\n##  8         1 South Africa    Africa     2007    49.3   43997828     9270.\n##  9         1 Ghana           Africa     2007    60.0   22873338     1328.\n## 10         1 Kenya           Africa     2007    54.1   35610177     1463.\n## 11         1 Benin           Africa     2007    56.7    8078314     1441.\n## 12         1 Cambodia        Asia       2007    59.7   14131858     1714.\n## 13         1 Canada          Americas   2007    80.7   33390141    36319.\n## 14         1 China           Asia       2007    73.0 1318683096     4959.\n## 15         1 Slovak Republic Europe     2007    74.7    5447502    18678.\n## 16         1 Mauritania      Africa     2007    64.2    3270065     1803.\n## 17         1 Paraguay        Americas   2007    71.8    6667147     4173.\n## 18         1 Japan           Asia       2007    82.6  127467972    31656.\n## 19         1 Pakistan        Asia       2007    65.5  169270617     2606.\n## 20         1 Sudan           Africa     2007    58.6   42292929     2602."
+  },
+  {
+    "objectID": "lectures/lec-08.html#mean-life-expectancy-from-20-countries-1",
+    "href": "lectures/lec-08.html#mean-life-expectancy-from-20-countries-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Mean life expectancy from 20 countries",
+    "text": "Mean life expectancy from 20 countries\n\ngapminder |> \n  filter(year == 2007) |> \n  rep_sample_n(size = 20) |>\n  summarize(avg_lifeExp = mean(lifeExp))\n## # A tibble: 1 × 2\n##   replicate avg_lifeExp\n##       <int>       <dbl>\n## 1         1        72.6"
+  },
+  {
+    "objectID": "lectures/lec-08.html#replicates-of-20-countries",
+    "href": "lectures/lec-08.html#replicates-of-20-countries",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "24 replicates of 20 countries",
+    "text": "24 replicates of 20 countries\n\ngapminder |> \n  filter(year == 2007) |> \n  rep_sample_n(size = 20, reps = 24)\n## # A tibble: 480 × 7\n## # Groups:   replicate [24]\n##    replicate country           continent  year lifeExp       pop gdpPercap\n##        <int> <fct>             <fct>     <int>   <dbl>     <int>     <dbl>\n##  1         1 Australia         Oceania    2007    81.2  20434176    34435.\n##  2         1 Hong Kong, China  Asia       2007    82.2   6980412    39725.\n##  3         1 Tunisia           Africa     2007    73.9  10276158     7093.\n##  4         1 Turkey            Europe     2007    71.8  71158647     8458.\n##  5         1 Pakistan          Asia       2007    65.5 169270617     2606.\n##  6         1 Germany           Europe     2007    79.4  82400996    32170.\n##  7         1 Equatorial Guinea Africa     2007    51.6    551201    12154.\n##  8         1 Malaysia          Asia       2007    74.2  24821286    12452.\n##  9         1 Czech Republic    Europe     2007    76.5  10228744    22833.\n## 10         1 Sri Lanka         Asia       2007    72.4  20378239     3970.\n## # … with 470 more rows"
+  },
+  {
+    "objectID": "lectures/lec-08.html#replicates-of-20-countries-1",
+    "href": "lectures/lec-08.html#replicates-of-20-countries-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "24 replicates of 20 countries",
+    "text": "24 replicates of 20 countries\n\ngapminder |> \n  filter(year == 2007) |> \n  rep_sample_n(size = 20, reps = 24) |>\n  summarize(avg_lifeExp = mean(lifeExp))\n## # A tibble: 24 × 2\n##    replicate avg_lifeExp\n##        <int>       <dbl>\n##  1         1        63.3\n##  2         2        64.7\n##  3         3        66.1\n##  4         4        66.2\n##  5         5        69.1\n##  6         6        64.1\n##  7         7        63.5\n##  8         8        63.9\n##  9         9        66.4\n## 10        10        63.5\n## # … with 14 more rows"
+  },
+  {
+    "objectID": "lectures/lec-08.html#distribution-of-24-estimates-of-the-mean",
+    "href": "lectures/lec-08.html#distribution-of-24-estimates-of-the-mean",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Distribution of 24 estimates of the mean",
+    "text": "Distribution of 24 estimates of the mean\n\n## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
+  },
+  {
+    "objectID": "lectures/lec-08.html#regression-example",
+    "href": "lectures/lec-08.html#regression-example",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Regression Example",
+    "text": "Regression Example\nTo estimate the variability of a linear regression fit, we can:\n- repeatedly draw different samples from the training data,\n- fit a linear regression to each new sample,\n- examine the extent to which the resulting fits differ.\nWe obtain information not available from fitting the model only once using the original training sample.\nResampling approaches can be computationally expensive.\n- fitting the same statistical method multiple times.\n- these days, requirements generally not prohibitive."
+  },
+  {
+    "objectID": "lectures/lec-08.html#resampling-methods-discussed-today",
+    "href": "lectures/lec-08.html#resampling-methods-discussed-today",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Resampling methods discussed today",
+    "text": "Resampling methods discussed today\n\nJackknifing\n\nBootstrapping\n\nCross-validation\n\nPermutation tests"
+  },
+  {
+    "objectID": "lectures/lec-08.html#jackknifing",
+    "href": "lectures/lec-08.html#jackknifing",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Jackknifing",
+    "text": "Jackknifing\n(Quenouille 1949, Tukey 1958)\nUsed to estimate:\n- bias in sample statistics,\nfilter(year == 2007) |> rep_sample_ filter(year == 2007) |> rep_sample_e data \\(x_1\\text{, } x_2\\text{, }, \\dots \\text{, } x_n\\) and we are computing the mean.\nSystematically leave out one observation at a time and recompute the statistic.\nmean\\((x_2, \\dots, x_n)\\); mean\\((x_1, x_3, \\dots, x_n)\\); mean\\((x_1, x_2, x_4, \\dots, x_n)\\)\nIf there is small-sample bias, this will appear, and can be used to correct the variance of the statistic."
+  },
+  {
+    "objectID": "lectures/lec-08.html#jackknifing-1",
+    "href": "lectures/lec-08.html#jackknifing-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Jackknifing",
+    "text": "Jackknifing\nThere are additional versions where > 1 data points are removed in each sample.\nVariance estimation\n\\(\\text{Var}_\\text{(jacknife)} = \\frac{n-1}{n} \\displaystyle\\sum_{i=1}^{n}(\\hat{\\theta}_i - \\hat{\\theta}_{(.)})^2\\)\nBias estimation and correction\n\\(\\hat{Bias}_{\\theta} = n \\hat{\\theta}_{(.)} - (n-1)\\bar{\\theta}_{(jk)}\\)\nSystematic - estimates from jacknifing will always be the same.\nMore reading: http://www.physics.utah.edu/~detar/phycs6730/handouts/jackknife/jackknife/"
+  },
+  {
+    "objectID": "lectures/lec-08.html#bootstrapping",
+    "href": "lectures/lec-08.html#bootstrapping",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Bootstrapping",
+    "text": "Bootstrapping\nWidely applicable and extremely powerful statistical tool.\nUsed to quantify the uncertainty associated with a given estimator or statistical learning method.\nTechnique allows estimation of the sampling distribution of almost any statistic using random sampling methods.\nPractice of estimating properties of an estimator (such as its variance) by measuring those properties when sampling from an approximating distribution.\nStandard choice for an approximating distribution is the empirical distribution function of the observed data.\nWhen a set of observations can be assumed to be from an independent and identically distributed population, this can be implemented by constructing a number of resamples with replacement of the observed dataset (and of equal size to the observed dataset)."
+  },
+  {
+    "objectID": "lectures/lec-08.html#bootstrapping-1",
+    "href": "lectures/lec-08.html#bootstrapping-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Bootstrapping",
+    "text": "Bootstrapping\nBased on assumption that data in samples are independent observations from a population.\nIf sample size is large enough, then sample should describe population.\nVariance associated with resampling (with replacement) from sample should reflect variance in population.\n\nHave some data \\(x_1\\text{, } x_2\\text{, }, \\dots \\text{, } x_n\\) and we are computing a statistic \\(t\\).\n\nRandomly draw \\(n\\) values from the data with replacement (same value can be drawn multiple times).\nCalculate statistic from new random pseudo-data.\n\nRepeat a large number of times to obtain the distribution: \\(t_1,t_2,\\dots,t_n\\).\n\nResulting distribution is the bootstrap sampling distribution.\n\nCompute standard deviation and 95% confidence intervals from this. Finished."
+  },
+  {
+    "objectID": "lectures/lec-08.html#bootstrapping-example-mean-life-expectancy",
+    "href": "lectures/lec-08.html#bootstrapping-example-mean-life-expectancy",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Bootstrapping example, mean life expectancy",
+    "text": "Bootstrapping example, mean life expectancy\nuse functionality from infer package\n1 resample:\n\ngap_resample <- gapminder |>\n  filter(year == 2007) |>\n  specify(response = lifeExp) |> \n  generate(reps = 1)\n\nSetting `type = \"bootstrap\"` in `generate()`.\n\ncalculate(gap_resample, stat = \"mean\")\n\nResponse: lifeExp (numeric)\n# A tibble: 1 × 1\n   stat\n  <dbl>\n1  66.2\n\ngap_resample\n\nResponse: lifeExp (numeric)\n# A tibble: 142 × 2\n# Groups:   replicate [1]\n   replicate lifeExp\n       <int>   <dbl>\n 1         1    59.4\n 2         1    71.9\n 3         1    60.0\n 4         1    75.6\n 5         1    76.2\n 6         1    70.2\n 7         1    51.5\n 8         1    63.1\n 9         1    78.6\n10         1    42.7\n# … with 132 more rows"
+  },
+  {
+    "objectID": "lectures/lec-08.html#bootstrapping-example-mean-life-expectancy-1",
+    "href": "lectures/lec-08.html#bootstrapping-example-mean-life-expectancy-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Bootstrapping example, mean life expectancy",
+    "text": "Bootstrapping example, mean life expectancy\nMany resamples:\n\ngap_resamples <- gapminder |> \n  filter(year == 2007) |>\n  specify(response = lifeExp) |> \n  generate(reps = 1000, type = \"bootstrap\") |> \n  calculate(stat = \"mean\")\ngap_resamples\n\nResponse: lifeExp (numeric)\n# A tibble: 1,000 × 2\n   replicate  stat\n       <int> <dbl>\n 1         1  67.7\n 2         2  67.6\n 3         3  66.0\n 4         4  67.7\n 5         5  66.5\n 6         6  68.8\n 7         7  67.7\n 8         8  66.3\n 9         9  65.3\n10        10  66.7\n# … with 990 more rows\n\n\n\n\nvisualize(gap_resamples,\n          xlab = \"mean life expectancy\")"
+  },
+  {
+    "objectID": "lectures/lec-08.html#regression-example-1",
+    "href": "lectures/lec-08.html#regression-example-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Regression example",
+    "text": "Regression example\n\nslope_bootstrap <- Auto |>\n  specify(formula = mpg ~ horsepower) |> \n  generate(reps = 1000, type = \"bootstrap\") |> \n  calculate(stat = \"slope\")\npercentile_ci <- slope_bootstrap |> \n  get_confidence_interval(type = \"percentile\",\n                          level = 0.95)\npercentile_ci\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     <dbl>    <dbl>\n1   -0.173   -0.144\n\n\n\nvisualize(slope_bootstrap)"
+  },
+  {
+    "objectID": "lectures/lec-08.html#case-bootstrapping-using-boot",
+    "href": "lectures/lec-08.html#case-bootstrapping-using-boot",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Case bootstrapping using boot()",
+    "text": "Case bootstrapping using boot()\nIn package boot()\nboot() is very powerful, can be used to do (almost) all kinds of bootstraps.\nHowever, typically requires you to still write functions.\nGood description of boot() function in Fox (2002).\n\n  boot(data,  #data, can be vector or dataframe \n       statistic, # function of interest \n       R,   #number of bootstraps\n       sim = \"ordinary\",  #type of simulation\n       stype = c(\"i\", \"f\", \"w\"),  #flag for 2nd arg\n       strata = rep(1,n),  #bootstrap within strata\n       weights = NULL,  #for importance sampling\n       ran.gen = function(d, p) d, #for parametric boots\n       mle = NULL, \n       parallel = c(\"no\", \"multicore\", \"snow\"),\n       ncpus = getOption(\"boot.ncpus\", 1L), \n       cl = NULL)"
+  },
+  {
+    "objectID": "lectures/lec-08.html#when-is-bootstrapping-useful",
+    "href": "lectures/lec-08.html#when-is-bootstrapping-useful",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "When is bootstrapping useful?",
+    "text": "When is bootstrapping useful?\n\ntheoretical distribution of a statistic of interest is complicated or unknown.\nsample size is insufficient for straightforward statistical inference.\nfor power analysis with a small pilot sample dataset available.\n\nBootstrap distribution will not always converge to the same limit as the sample mean.\n- confidence intervals on the basis of Monte Carlo simulation of the bootstrap could be misleading.\n“Unless one is reasonably sure that the underlying distribution is not heavy tailed, one should hesitate to use the naive bootstrap”.\n(Athreya)"
+  },
+  {
+    "objectID": "lectures/lec-08.html#more-on-bootstrapping",
+    "href": "lectures/lec-08.html#more-on-bootstrapping",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "More on bootstrapping",
+    "text": "More on bootstrapping\nAdvantages\n- simple\n- can be applied to any statistical technique.\n- asymptotically more accurate than standard intervals obtained using sample variance and normality assumptions.\nDisadvantages\n- does not generate finite-sample guarantees\n- apparent simplicity can conceal the fact that important assumptions are being made (e.g. independence of samples)"
+  },
+  {
+    "objectID": "lectures/lec-08.html#types-of-bootstrap",
+    "href": "lectures/lec-08.html#types-of-bootstrap",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Types of bootstrap",
+    "text": "Types of bootstrap\n\nCase resampling (naive or empirical bootstrap)\nResample individual observations\nAcceptable for univariate problems\nSize of resample equal to original data set\n‘Exact’ version involves enumerating every possible resample of the dataset - computationally expensive.\nBayesian bootstrap\nnew datasets obtained by reweighting initial data\nSmooth bootstrap\nsmall amount of random noise added onto each resampled observation.\nequivalent to sampling from kernel density estimate of data.\nParametric bootstrap\nSmall samples - random numbers drawn from the fitted model.\nResampling residuals"
+  },
+  {
+    "objectID": "lectures/lec-08.html#bias-corrected-and-accelerated-bca",
+    "href": "lectures/lec-08.html#bias-corrected-and-accelerated-bca",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Bias-corrected and accelerated (BCA)",
+    "text": "Bias-corrected and accelerated (BCA)\nSimple bootstrapping can produce biased and skewed estimates of confidence intervals.\nAd-hoc solutions:\n- find some monotone transformation that makes data approximately normal\n- get lucky: identify the exact distribution of data or some transformation thereof\nHARD!\n“You can pull yourself up by your bootstraps and you don’t need anything else”\n(Efron)\nTo correct for this, “bias-corrected and accelerated” confidence intervals from bootstrapping.\nEfron (1987) http://dx.doi.org/10.1080/01621459.1987.10478410\nCan use functions boot() and boot.ci() from package(boot)."
+  },
+  {
+    "objectID": "lectures/lec-08.html#resampling-residuals",
+    "href": "lectures/lec-08.html#resampling-residuals",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Resampling residuals",
+    "text": "Resampling residuals\nCommon form of bootstrapping involves developing pseudo-data sets by resampling residuals (with replacement) and adding these to the model predictions.\n\\[y_{i}^U = \\hat{y}_i + \\epsilon_j \\text{;   } \\epsilon_j = y_j-\\hat{y}_j\\]\n\\(y_{i}^U\\) is the \\(i\\)th datum in pseudo data set \\(U\\)\n\\(\\hat{y}_i\\) is the model prediction for observation \\(i\\)\n\\(j\\) is selected at random from 1:n.\nRetains information in the explanatory variables.\nWhich residuals to resample? Raw residuals, Studentized residuals.\nOften makes little difference and easy to run both and compare."
+  },
+  {
+    "objectID": "lectures/lec-08.html#more-types-of-bootstrap",
+    "href": "lectures/lec-08.html#more-types-of-bootstrap",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "More types of Bootstrap",
+    "text": "More types of Bootstrap\n\nGaussian process regression bootstrap\nGood for data that are correlated (e.g. in time)\nStraightforward bootstrapping destroys inherent correlations.\nWild bootstrap\nSuitable when model exhibits heteroskedasticity.\nLeave regressors at sample value, resample response variable based on residuals, but multiply residuals by random variable.\nBlock bootstrap\nused for correlated data/errors\nresamples blocks of data"
+  },
+  {
+    "objectID": "lectures/lec-08.html#comparisons-with-other-methods",
+    "href": "lectures/lec-08.html#comparisons-with-other-methods",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Comparisons with other methods",
+    "text": "Comparisons with other methods\nBootstrap gives different results when repeated on same data, whereas jackknife gives exactly the same result each time.\nSubsampling is an alternative method for approximating the sampling distribution of an estimator.\nTwo key differences to bootstrap:\n- resample size is smaller than the sample size\n- resampling done without replacement."
+  },
+  {
+    "objectID": "lectures/lec-08.html#cross-validation",
+    "href": "lectures/lec-08.html#cross-validation",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Cross-validation",
+    "text": "Cross-validation\nDifference between test error rate and the training error rate.\nRandomly divide the data into two sets.\nResampling comes in by repeating this division multiple times, to obtain slightly different values for goodness-of-fit.\nCross-validation methods therefore differ by the approach/algorithm taken to perform this resampling / calculation of the test error rate."
+  },
+  {
+    "objectID": "lectures/lec-08.html#validation-set-approach",
+    "href": "lectures/lec-08.html#validation-set-approach",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Validation set approach",
+    "text": "Validation set approach\nSplit data into training set and a validation (or hold-out) set.\nFit model to training set, fitted model used to predict the responses for the observations in the validation set.\nResulting validation set error rate (e.g. MSE for quantitative response) is an estimate of the test error rate.\n\nset.seed(66)\ntrain <- sample(392,196)\nlm.fit <- lm(mpg ~ horsepower, data=Auto, subset=train)\nmean((Auto$mpg - predict(lm.fit, Auto))[-train]^2)\n[1] 26.17334\nlm.fit2 <- lm(mpg ~ poly(horsepower, 2), data=Auto, \n              subset=train)\nmean((Auto$mpg - predict(lm.fit2, Auto))[-train]^2)\n[1] 22.0495\nlm.fit3 <- lm(mpg ~ poly(horsepower, 3), data=Auto,\n              subset=train)\nmean((Auto$mpg - predict(lm.fit3, Auto))[-train]^2)\n[1] 23.30051"
+  },
+  {
+    "objectID": "lectures/lec-08.html#validation-set-approach-1",
+    "href": "lectures/lec-08.html#validation-set-approach-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Validation set approach",
+    "text": "Validation set approach\nConceptually simple and easy to implement.\nTwo potential drawbacks:\n\nValidation estimates of the test error rate can be highly variable, depends on which observations are included in training set and which included in the validation set.\nOnly a subset of the observations are used to fit the model. Statistical methods perform worse when trained on fewer observations. Validation set error rate may overestimate test error rate for a model fit to the entire data set.\n\nCross-validation refines the validation set approach to address these issues."
+  },
+  {
+    "objectID": "lectures/lec-08.html#leave-one-out-cross-validation-loocv",
+    "href": "lectures/lec-08.html#leave-one-out-cross-validation-loocv",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Leave One Out Cross-Validation (LOOCV)",
+    "text": "Leave One Out Cross-Validation (LOOCV)\nFit the model \\(n\\) times to \\(n-1\\) training observations.\nDo this systematically such that each observation is predicted out-of-sample.\nThe MSE is approximately unbiased estimate for the test error.\nThe LOOCV is the average MSE of the n test error estimates.\n\\[CV_{(n)} = \\frac{1}{n} \\displaystyle\\sum_{i=1}^{n} \\text{MSE}_i\\]"
+  },
+  {
+    "objectID": "lectures/lec-08.html#loocv",
+    "href": "lectures/lec-08.html#loocv",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "LOOCV",
+    "text": "LOOCV"
+  },
+  {
+    "objectID": "lectures/lec-08.html#cross-validation-of-glm-loocv",
+    "href": "lectures/lec-08.html#cross-validation-of-glm-loocv",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Cross-Validation of GLM, LOOCV",
+    "text": "Cross-Validation of GLM, LOOCV\nMake use of cv.glm in boot.\n\nlibrary(boot)\nglm.fit <- glm(mpg~horsepower,data=Auto)\ncoef(glm.fit)\n(Intercept)  horsepower \n 39.9358610  -0.1578447 \ncv.err <- cv.glm(Auto,glm.fit)\ncv.err$delta\n[1] 24.23151 24.23114\n\n\ncv.error <- map(1:5, \n            ~cv.glm(Auto,\n            glm(mpg~poly(horsepower,.x),data = Auto))$delta[1])\ncv.error\n[[1]]\n[1] 24.23151\n\n[[2]]\n[1] 19.24821\n\n[[3]]\n[1] 19.33498\n\n[[4]]\n[1] 19.42443\n\n[[5]]\n[1] 19.03321"
+  },
+  {
+    "objectID": "lectures/lec-08.html#more-on-loocv",
+    "href": "lectures/lec-08.html#more-on-loocv",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "More on LOOCV",
+    "text": "More on LOOCV\nLess biased than validation set approach.\nEach model is fit using training sets that contain nearly almost all the data.\n- tends not to overestimate the test error rate as much as validation set approach.\nLOOCV always returns same results: no randomness in the training/validation set splits.\nHowever,\nLOOCV can be expensive/time-consuming to implement:\n- if \\(n\\) is large, or\n- each individual model is slow to fit."
+  },
+  {
+    "objectID": "lectures/lec-08.html#more-on-loocv-1",
+    "href": "lectures/lec-08.html#more-on-loocv-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "More on LOOCV",
+    "text": "More on LOOCV\nWith least squares linear or polynomial regression, cost of LOOCV same as that of single model fit!\n\n\\[CV_{(n)} = \\frac{1}{n} \\displaystyle\\sum_{i=1}^{n} \\left(\\frac{y_i-\\hat{y}_i}{1-h_i}\\right)^2\\]\nwhere \\(\\hat{y}_i\\) is the _i_th fitted value from the original least squares fit\n\\(h_i\\) is the leverage.\nSame as ordinary MSE, except \\(i\\)th residual is divided by \\(1-h_i\\).\n\\(1/n \\leq h_i \\leq 1\\) reflects the amount that an observation influences its own fit.\nLOOCV very general, can be used with any kind of predictive modeling.\nSadly, the magic formula does not hold in general, and the model has to be refit \\(n\\) times."
+  },
+  {
+    "objectID": "lectures/lec-08.html#k-fold-cross-validation",
+    "href": "lectures/lec-08.html#k-fold-cross-validation",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "k-Fold Cross Validation",
+    "text": "k-Fold Cross Validation\n\nRandomly divide observations into \\(k\\) groups (folds) of equal size.\nTreat 1st fold as a validation set,\nFit the method on the remaining \\(k-1\\) folds.\nCompute \\(\\text{MSE}_1\\) on the observations in the held-out fold.\nRepeat for each fold.\nGives \\(k\\) estimates of the test error, \\(\\text{MSE}_1, \\text{MSE}_2, \\dots, \\text{MSE}_k\\).\nAverage these to obtain the \\(k\\)-fold CV estimate:\n\n\\[CV_{(k)} = \\frac{1}{k} \\displaystyle\\sum_{i=1}^{k} \\text{MSE}_i\\]\n(LOOCV a special case when \\(k=n\\))\nIn practice perform either \\(k=5\\) or \\(k=10\\)."
+  },
+  {
+    "objectID": "lectures/lec-08.html#comparing-10-fold-cv-with-loocv",
+    "href": "lectures/lec-08.html#comparing-10-fold-cv-with-loocv",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Comparing 10-fold CV with LOOCV",
+    "text": "Comparing 10-fold CV with LOOCV"
+  },
+  {
+    "objectID": "lectures/lec-08.html#k-fold-cross-validation-1",
+    "href": "lectures/lec-08.html#k-fold-cross-validation-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "k-Fold Cross-Validation",
+    "text": "k-Fold Cross-Validation\nUse cv.glm() with argument K=k to perform k-fold cross-validation.\n\nset.seed(17)\ncv_error <- expand.grid(poly = 1:10,\n                         sim = 1:10) |>\n  mutate(cv = map_dbl(poly,\n                      ~cv.glm(Auto,\n                              glm(mpg~poly(horsepower,.x),data=Auto),\n                              K=10)$delta[1]))\n\nSetting K=n replicates LOOCV."
+  },
+  {
+    "objectID": "lectures/lec-08.html#cross-validation-1",
+    "href": "lectures/lec-08.html#cross-validation-1",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Cross-Validation",
+    "text": "Cross-Validation\nGoal might be to determine how well a given statistical learning procedure can be expected to perform on independent data.\n- the actual estimate of the test MSE is of interest.\nOther times we are interested only in the location of the minimum point in the estimated test MSE curve.\n- might be performing cross-validation on a number of statistical learning methods,\n- or on a single method using different levels of flexibility.\n- want to identify the method that results in the lowest test error.\nHere, location of the minimum point in the estimated test MSE curve is important, but not actual value of the estimated test MSE."
+  },
+  {
+    "objectID": "lectures/lec-08.html#cross-validation-2",
+    "href": "lectures/lec-08.html#cross-validation-2",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Cross-Validation",
+    "text": "Cross-Validation\n\\(k\\)-fold CV often gives more accurate estimates of the test error rate than LOOCV.\nBias reduction - LOOCV should be preferred to \\(k\\)-fold CV.\nBUT also need to consider variance of procedure.\nLOOCV has higher variance than \\(k\\)-fold CV with \\(k < n\\).\nLOOCV averages output of \\(n\\) models, each trained on almost same data.\n- outputs are highly (positively) correlated.\n\\(k\\)-fold CV averages output of \\(k\\) models that are less correlated with each other.\n- overlap between training data sets is lower.\nTest error estimates from LOOCV tends to have higher variance than from \\(k\\)-fold CV."
+  },
+  {
+    "objectID": "lectures/lec-08.html#cross-validation-on-classification",
+    "href": "lectures/lec-08.html#cross-validation-on-classification",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Cross-validation on classification",
+    "text": "Cross-validation on classification\nNote that we can also perform cross-validation on classification methods.\n\\[CV_{(n)} = \\frac{1}{n} \\displaystyle\\sum_{i=1}^{n} \\text{Err}_i\\]\n\\[\\text{Err}_i = I(y_i \\neq \\hat{y}_i)\\]"
+  },
+  {
+    "objectID": "lectures/lec-08.html#permutation-test",
+    "href": "lectures/lec-08.html#permutation-test",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Permutation test",
+    "text": "Permutation test\nType of statistical significance test where the distribution of the test statistic under the null hypothesis is obtained by calculating all possible values of the test statistic under rearrangements of the labels on the observed data points.\ne.g. non-parametric \\(t\\)-test\nIs the mean of group A larger than the mean of group B?\nAssume sample means \\(\\bar{x}_A\\) and \\(\\bar{x}_B\\), sample sizes \\(n_A\\) & \\(n_B\\).\nTest statistic is \\(T_{obs} = \\bar{x}_A - \\bar{x}_B\\)\nMethod: - pool all observations for A and B.\n- Find every possible permutation of dividing the pool into two groups \\(A_i\\) and \\(B_i\\) of size \\(n_A\\) & \\(n_B\\).\n- For each permutation calculate \\(T_i = \\bar{x}_{A_i} - \\bar{x}_{B_i}\\)\n- The set \\({T_1, T_2, ...}\\) is the distribution of possible differences under the null hypothesis that group label does not matter.\n- \\(p\\)-value is proportion of \\(T_i\\) values greater than \\(T_{obs}\\)."
+  },
+  {
+    "objectID": "lectures/lec-08.html#permutation-tests",
+    "href": "lectures/lec-08.html#permutation-tests",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Permutation tests",
+    "text": "Permutation tests\nAdvantages\nExist for any statistic, regardless of whether its distribution is known.\nCan be used for unbalanced designs.\nCombine dependent tests on mixtures of nominal, ordinal, and metric data.\nDisadvantages\nAssumes observations are exchangeable under the null hypothesis.\nTests of difference in location require equal variance.\n- permutation t-test shares same weakness as classical Student’s t-test."
+  },
+  {
+    "objectID": "lectures/lec-08.html#monte-carlo-testing",
+    "href": "lectures/lec-08.html#monte-carlo-testing",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Monte Carlo testing",
+    "text": "Monte Carlo testing\n\nThe number of permutations rises too rapidly to calculate all directly.\n\nInstead, randomly choose \\(N\\) (large) permutations and use this as the reference distribution.\n\ncalled an approximate permutation test, Monte Carlo permutation test, random permutation test, randomization test, etc."
+  },
+  {
+    "objectID": "lectures/lec-08.html#why-to-apply-these-methods",
+    "href": "lectures/lec-08.html#why-to-apply-these-methods",
+    "title": "Bio Stats II : Lecture 8, Resampling methods",
+    "section": "Why to apply these methods",
+    "text": "Why to apply these methods\nCross-validation can be used to estimate the test error associated with a given statistical learning method to evaluate its performance, or to select the appropriate level of flexibility.\n\nProcess of evaluating a model’s performance is known as model assessment.\n\nProcess of selecting the proper level of flexibility for a model is known as assessment model selection.\n\nThe bootstrap is used in several contexts, most commonly to provide a measure of accuracy of a parameter estimate or a given selection of a statistical learning method.\n\nTomorrow… Lab Exercises on Resampling methods\n\n\nThu 2/16: nonlinear modeling, splines"
+  },
+  {
     "objectID": "lectures/lec-06b.html",
     "href": "lectures/lec-06b.html",
     "title": "poisson glm in R",
