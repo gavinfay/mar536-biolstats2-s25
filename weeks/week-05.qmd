@@ -14,11 +14,11 @@ editor: visual
 
 🖥️ [Lecture 8 - Resampling](../lectures/lec-08.pdf)
 
-⌨️ Lab 5 - Simulation (just the exercise)
+⌨️ [Lab 5 - Simulation](../labs/lab-05.pdf) (just the [exercise](../labs/lab-exercise-05.pdf))
 
 -   Data sets for the lab can be found in the [class-data folder](#class-data).
 
-🖥️ Lecture 9 - Nonlinear models, splines
+🖥️ [Lecture 9 - Nonlinear models, splines](../lectures/lec-09.pdf)
 
 ## Practice
 

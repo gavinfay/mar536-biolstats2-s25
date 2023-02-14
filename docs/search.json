@@ -875,6 +875,34 @@
     "text": "Exercise 4/4 Sea lion Rookery Counts\n\nSSL_Sites.csv contains the latitude and longitude of sea lion rookeries.\n\nUse a suitable join function to add the lat/lon information and geographic region to the counts dataset.\n\nSummarize the average annual pups that were counted between 2000-2015 in the Aleutian Islands (west of longitude 160W), the Gulf of Alaska (east of longitude 160W, west of 140W), and Southeast Alaska (South of latiutude 60 degrees N, but not in the Pacific Northwest).\n\nBONUS Look up how to make a map using ggplot() to map the rookery counts in 2015.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–>\n\n–>\n\n–>  –>  –>  –>  –>  –>  –>  –>  –>\n\n–>\n\n–>  –>  –>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–>\n\n–>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>  –>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n–>\n\n–>\n\n–>  –>  –>  –>  –>  –>  –>  –>  –>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   },
   {
+    "objectID": "labs/lab-solution-03.html#r-laboratory-exercise-3-solution",
+    "href": "labs/lab-solution-03.html#r-laboratory-exercise-3-solution",
+    "title": "MAR 536 - Spring 2023",
+    "section": "R Laboratory Exercise 3 Solution",
+    "text": "R Laboratory Exercise 3 Solution"
+  },
+  {
+    "objectID": "labs/lab-solution-03.html#lab-exercise-13",
+    "href": "labs/lab-solution-03.html#lab-exercise-13",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab Exercise 1/3",
+    "text": "Lab Exercise 1/3\n\nGenerate 1,000 random normal numbers with mean 24 and standard deviation 10. Find the proportion of those random numbers that are \\(\\geq2\\) standard deviations from the sample mean.\n\n\n\n#create a vector of 1000 random variables drawn from the normal distribution\nmyvals <- rnorm(1000, mean = 24, sd = 10)\nsummary(myvals)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n -8.556  17.136  23.313  23.623  30.008  56.100 \n\n\nWe are looking for how many of our points lie in the tails of the distribution\n\n\n\n\n\n\n#find the sample mean (this should be close to the population mean)\nsample_mean <- mean(myvals)\n#find the sample standard deviation\nsample_sd <- sd(myvals)\n#how many are greater than or equal to 2 std devs below the mean?\nnbelow <- length(which(myvals <= sample_mean - 2*sample_sd))\n#how many are greater than or equal to 2 std devs above the mean?\nnabove <- length(which(myvals >= sample_mean + 2*sample_sd))\n#total proportion in the tails\n(nbelow+nabove)/1000\n\n[1] 0.051\n\n\n\nFlip a (fair) coin six times.\n\n\n\n#generate six Bernoulli random variables where the probability of success (say a head) is 0.5 each time\nrbinom(n = 6, size = 1, prob = 0.5)\n\n[1] 1 1 0 0 1 1\n\n\n\nFind the probability of getting six heads on those six flips (i.e. \\(P(X=6)\\) given \\(n=6\\)).\n\n\n\n# number of heads is a binomial random variable given six trials and a probability of success for each trial (coin flip) of 0.5\ndbinom(x = 6, size = 6, prob = 0.5)\n\n[1] 0.015625\n\n\n\nHow much more likely is it to get three heads than six?\n\n\n\n# probability of getting three heads on six trials\ndbinom(x = 3, size = 6, prob = 0.5)\n\n[1] 0.3125\n\n# now want ratio of P(X=3) to P(X=6)\ndbinom(x = 3, size = 6, prob = 0.5) / dbinom(x = 6, size = 6, prob = 0.5)\n\n[1] 20\n\n\n\nFor a standard normal random variable, find the number \\(x\\) such that \\(P(-x \\leq X \\leq x) = 0.24\\).\n\n\n\n\n\n\n\nWe are interested in the value for x that creates an area under the curve in between the two dashed lines that is 0.24 the total area under the curve.\nWe know the normal is symmetrical about its mean. The cumulative probability density that is less than the mean is 0.5.\nThe area on the left of the left-most dashed line then corresponds to 0.5 - 0.24/2 = 0.38.\nSo we want the x value associated with a cumulative probability for the normal of 0.38.\n\n\nqnorm(p = 0.38, mean = 0, sd = 1) #standard normal has mean 0, sd = 1\n\n[1] -0.3054808\n\n\n\nThe mean rate of arrival of alewives at a weir is 3.5 per hour. Plot the probability distribution function for the number of alewife arrivals in an hour.\n\n\n\n#Poisson with mean 3.5\ntibble(number = 0:12,\n       prob = c(dpois(0:11, 3.5),1-sum(dpois(0:11, 3.5)))) |>\n  ggplot() +\n  aes(x = factor(number), y = prob) +\n  geom_col() +\n  labs(x = \"number of alewives\",\n       y = \"probability\") +\n  scale_x_discrete(labels=c(0:11,\"12+\"))\n\n\n\n#note that to make this a complete distribution we must sum the remaining probabilities in the largest class - there is a small chance we could see 10,000 fish.  \n\n\nFind the 95% confidence interval for the number of alewives arriving per day.\n\n\n#number of alewives per day is poisson with mean 24*3.5 = 84\n#corresponds to the 2.5% and 97.5% quantiles of this poisson distribution\nqpois(c(0.025, 0.975), lambda = 84)\n## [1]  67 102"
+  },
+  {
+    "objectID": "labs/lab-solution-03.html#lab-exercise-23",
+    "href": "labs/lab-solution-03.html#lab-exercise-23",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 2/3",
+    "text": "Lab exercise 2/3\n\nExtract the residuals from the RIKZ_lm2 model\n\n\n\nlibrary(broom)\nRIKZ <- readRDS(\"../data/RIKZ.rds\")\nRIKZ_lm2 <- lm(Richness ~ NAP + factor(week), data = RIKZ)\nlm2_results <- augment(RIKZ_lm2, newdata = RIKZ)\nlm2_results$.resid\n\n [1] -0.26551727 -3.72020722 -1.40143477  1.03108584 -2.92090022 -0.66549878\n [7] -0.50567943 -1.92576975  7.77081486  2.60310674  0.04118765  0.64996116\n[13] -0.19897451 -1.83705765 -0.36333538  1.27214900 -0.81067480  0.30199687\n[19]  0.36157483 -1.58413720 -3.23691749 12.08445372 -1.11797179 -5.07883065\n[25] -2.65073379 -1.50224636 -1.97997190  0.85587746 -1.21753529  0.54965308\n[31]  0.26252772  1.31302265  0.37974090 -0.87879756  1.09081632  1.60468953\n[37] -1.04128238 -0.47186024  0.19628100 -0.53015148  1.00186203  6.02370336\n[43] -2.19428946 -0.06918751 -1.22554183\n\n\n\nAre the linear regression assumptions met? Explain your reasoning\n\n\n\nlibrary(gglm)\ngglm(RIKZ_lm2)\n\n\n\n\nEvidence for heteroscedasticity - increasing variability in the residuals with the fitted values. (Scale-Location & Residuals vs Fitted). A few larger than expected positive residuals - departure from normality assumption. (Q-Q plot).\nSome points with high leverage, though not egregious. 1 data point has Cook’s distance > 1. These suggest the linear regression assumptions are not well met.\nAnother look at whether the residuals are normally distributed:\n\nshapiro.test(lm2_results$.resid)\n\n\n    Shapiro-Wilk normality test\n\ndata:  lm2_results$.resid\nW = 0.79435, p-value = 1.791e-06\n\n\n\nSummarize the results of the model. What are the parameter estimates telling you about species richness on these beaches?\n\n\nnegative effect of NAP on species richness (as NAP increases, species richness decreases).\n\na one unit increase in NAP is associated with 2.27 fewer species.\n\nIn week 1, at a NAP value of 0, we would expect to find ~11 species (11.4).\n\nIn weeks 2, 3, and 4, we see fewer species.\n\nAt NAP of 0, week 2 has 7.63 fewer species than expected in week 1.\n\nAt NAP of 0, week 3 has 6.18 fewer species than expected in week 1.\n\nAt NAP of 0, week 4 has 2.59 fewer species than expected in week 1, but this effect is marginal - we cannot reject the null hypothesis that the expected number of species in week 4 is different from that in week 1."
+  },
+  {
+    "objectID": "labs/lab-solution-03.html#lab-exercise-33",
+    "href": "labs/lab-solution-03.html#lab-exercise-33",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 3/3",
+    "text": "Lab exercise 3/3\n\nFit a linear regression using 2007 gapminder data of the form lm(gdpPercap ~ continent, where gdpPercap is the new outcome variable y. Get information about the best-fitting line from the regression table. How do the regression results match up with those of an analysis of life expectancy by continent?\n\n\n\nlibrary(gapminder)\ngap_2007 <- gapminder |> filter(year == 2007)\ngdp_model <- lm(gdpPercap ~ continent-1, data = gap_2007)\nlifexp_model <- lm(lifeExp ~ continent-1, data = gap_2007)\ntidy(gdp_model)\n## # A tibble: 5 × 5\n##   term              estimate std.error statistic  p.value\n##   <chr>                <dbl>     <dbl>     <dbl>    <dbl>\n## 1 continentAfrica      3089.     1373.      2.25 2.60e- 2\n## 2 continentAmericas   11003.     1980.      5.56 1.38e- 7\n## 3 continentAsia       12473.     1723.      7.24 2.95e-11\n## 4 continentEurope     25054.     1807.     13.9  7.39e-28\n## 5 continentOceania    29810.     7000.      4.26 3.79e- 5\ntidy(lifexp_model)\n## # A tibble: 5 × 5\n##   term              estimate std.error statistic  p.value\n##   <chr>                <dbl>     <dbl>     <dbl>    <dbl>\n## 1 continentAfrica       54.8      1.03      53.4 1.23e-93\n## 2 continentAmericas     73.6      1.48      49.8 1.32e-89\n## 3 continentAsia         70.7      1.29      54.9 3.28e-95\n## 4 continentEurope       77.6      1.35      57.5 8.12e-98\n## 5 continentOceania      80.7      5.23      15.4 8.88e-32\n\n\nRanking of continents by GDP is similar to that under life expectancy: these variables are positively correlated.\n\nAfrica has the lowest GDP and life expectancy.\n\nOceania and Europe have the highest and second highest, respectively.\n\nCountries in Asia on average have a higher GDP than those in the Americas, but life expectancy in American countries is on average higher than that in Asian countries.\n\n\n\nExtract the model coefficients and their 95 percent confidence intervals.\n\n\n\n#GDP\ntidy(gdp_model, conf.int = TRUE) |> select(term, estimate, conf.low, conf.high)\n## # A tibble: 5 × 4\n##   term              estimate conf.low conf.high\n##   <chr>                <dbl>    <dbl>     <dbl>\n## 1 continentAfrica      3089.     375.     5804.\n## 2 continentAmericas   11003.    7088.    14918.\n## 3 continentAsia       12473.    9066.    15881.\n## 4 continentEurope     25054.   21481.    28628.\n## 5 continentOceania    29810.   15969.    43651.\n#Life Expectancy\ntidy(lifexp_model, conf.int = TRUE) |> select(term, estimate, conf.low, conf.high)\n## # A tibble: 5 × 4\n##   term              estimate conf.low conf.high\n##   <chr>                <dbl>    <dbl>     <dbl>\n## 1 continentAfrica       54.8     52.8      56.8\n## 2 continentAmericas     73.6     70.7      76.5\n## 3 continentAsia         70.7     68.2      73.3\n## 4 continentEurope       77.6     75.0      80.3\n## 5 continentOceania      80.7     70.4      91.1\n\nThe confidence intervals for Oceania are very wide, reflecting the fact there are only 2 countries included in the dataset (Australia and New Zealand).\n\n#GDP\ngdp_res <- tidy(gdp_model, conf.int = TRUE) |> \n  select(term, estimate, conf.low, conf.high) |>\n  rename(\"continent\" = term) |> #change name of variable\n  mutate(continent = str_remove(continent, \"continent\")) #remove unwanted text from label\np1 <- gdp_res |>\n  ggplot() +\n  aes(y = estimate, x = continent) +\n  geom_point() +\n  geom_linerange(aes(ymin = conf.low, ymax = conf.high)) +\n  labs(y = \"GDP per capita\",\n       title = \"2007 per capita GDP\")\n#Life Expectancy\nlifexp_res <- tidy(lifexp_model, conf.int = TRUE) |>\n  select(term, estimate, conf.low, conf.high) |>\n  rename(\"continent\" = term) |> #change name of variable\n  mutate(continent = str_remove(continent, \"continent\")) #remove unwanted text from label\np2 <- lifexp_res |>\n  ggplot() +\n  aes(y = estimate, x = continent) +\n  geom_point() +\n  geom_linerange(aes(ymin = conf.low, ymax = conf.high)) +\n  labs(y = \"life expectancy\",\n       title = \"2007 life expectancy\")\nlibrary(patchwork)\np1 + p2\n\n\n\n\n\nPlot the residuals vs the fitted values and comment on their distribution and patterns.\n\n\n\np3 <- augment(gdp_model) |>\n  ggplot() +\n  aes(x = .fitted, y = .std.resid) +\n  geom_point()\np4 <- augment(lifexp_model) |>\n  ggplot() +\n  aes(x = .fitted, y = .std.resid) +\n  geom_point()\np3 + p4\n\n\n\n\n\nEvidence for heteroscedasticity in both models\n\ndifferent within-group variance among continents\n\nless variability in life expectancy among countries in continents with higher life expectancies and per capita GDP\n\n\n\nIdentify the five countries with the five most negative residuals? What do these negative residuals say about their life expectancy relative to their continents life expectancy?\n\n\n\naugment(gdp_model, newdata = gap_2007) |>\n  arrange(.resid) |>\n  slice(1:5)\n\n# A tibble: 5 × 8\n  country               continent  year lifeExp    pop gdpPercap .fitted  .resid\n  <fct>                 <fct>     <int>   <dbl>  <int>     <dbl>   <dbl>   <dbl>\n1 Albania               Europe     2007    76.4 3.60e6     5937.  25054. -19117.\n2 Bosnia and Herzegovi… Europe     2007    74.9 4.55e6     7446.  25054. -17608.\n3 Turkey                Europe     2007    71.8 7.12e7     8458.  25054. -16596.\n4 Montenegro            Europe     2007    74.5 6.85e5     9254.  25054. -15801.\n5 Serbia                Europe     2007    74.0 1.02e7     9787.  25054. -15268.\n\naugment(lifexp_model, newdata = gap_2007) |>\n  arrange(.resid) |>\n  slice(1:5)\n\n# A tibble: 5 × 8\n  country     continent  year lifeExp      pop gdpPercap .fitted .resid\n  <fct>       <fct>     <int>   <dbl>    <int>     <dbl>   <dbl>  <dbl>\n1 Afghanistan Asia       2007    43.8 31889923      975.    70.7  -26.9\n2 Swaziland   Africa     2007    39.6  1133066     4513.    54.8  -15.2\n3 Mozambique  Africa     2007    42.1 19951656      824.    54.8  -12.7\n4 Haiti       Americas   2007    60.9  8502814     1202.    73.6  -12.7\n5 Zambia      Africa     2007    42.4 11746035     1271.    54.8  -12.4\n\n\n\nThe five countries with the most negative residuals in GDP model are all countries in the Balkans, plus Turkey. Europe has the largest variance in national per capita GDP of the five countries. These five countries represent the countries in Europe with the lowest GDP per capita\n\nThe five countries with the most negative residuals in life expectancy model are three African countries (Swaziland [Eswatini], Mozambique, and Zambia), Afghanistan, and Haiti. These countries represent the lowest life expectancies relative to their continent’s average over all countries. People in Afghanistan on average live 27 years less than the average in other Asian countries. People in the other 4 countries on average live 12-15 years less than the avarage over the other countries in their continents (Africa and the Americas).\n\n\nRepeat this process, but identify the five countries with the five most positive residuals. What do these positive residuals say about their life expectancy relative to their continents life expectancy?\n\n\n\naugment(gdp_model, newdata = gap_2007) |>\n  arrange(desc(.resid)) |>\n  slice(1:5)\n\n# A tibble: 5 × 8\n  country          continent  year lifeExp       pop gdpPercap .fitted .resid\n  <fct>            <fct>     <int>   <dbl>     <int>     <dbl>   <dbl>  <dbl>\n1 Kuwait           Asia       2007    77.6   2505559    47307.  12473. 34834.\n2 Singapore        Asia       2007    80.0   4553009    47143.  12473. 34670.\n3 United States    Americas   2007    78.2 301139947    42952.  11003. 31949.\n4 Hong Kong, China Asia       2007    82.2   6980412    39725.  12473. 27252.\n5 Canada           Americas   2007    80.7  33390141    36319.  11003. 25316.\n\naugment(lifexp_model, newdata = gap_2007) |>\n  arrange(desc(.resid)) |>\n  slice(1:5)\n\n# A tibble: 5 × 8\n  country   continent  year lifeExp      pop gdpPercap .fitted .resid\n  <fct>     <fct>     <int>   <dbl>    <int>     <dbl>   <dbl>  <dbl>\n1 Reunion   Africa     2007    76.4   798094     7670.    54.8   21.6\n2 Libya     Africa     2007    74.0  6036914    12057.    54.8   19.1\n3 Tunisia   Africa     2007    73.9 10276158     7093.    54.8   19.1\n4 Mauritius Africa     2007    72.8  1250882    10957.    54.8   18.0\n5 Algeria   Africa     2007    72.3 33333216     6223.    54.8   17.5\n\n\n\nThe five countries with the most positive residuals in GDP model are Kuwait, Singapore, the USA, Hong Kong (China), and Canada. These five countries represent the countries with the highest GDP per capita relative to the average among coutntries in the same continents, with their per capita GDP being $25k-35k higher than the average of ther nations.\n\nThe five countries with the most positive residuals in life expectancy model are all African nations, Réunion, Libya, Tunisia, Mauritius, and Algeria. These countries represent the highest life expectancies relative to their continent’s average over all countries. Even though on average people from African nations live shorter lives than people from countries in other continents, the difference relative to the continent national average is greater for these nations than the longest-lived nations in other continents. People in Réunion, Libya, and Tunisia live 19-22 years longer than the continental national average."
+  },
+  {
     "objectID": "labs/lab-03.html",
     "href": "labs/lab-03.html",
     "title": "Bio Stats II : Lab 3",
@@ -1106,32 +1134,221 @@
     "text": "Lab exercise 3/3\n\n\n\nFit a linear regression using 2007 gapminder data of the form lm(gdpPercap ~ continent, where gdpPercap is the new outcome variable y. Get information about the best-fitting line from the regression table. How do the regression results match up with those of an analysis of life expectancy by continent?\n\nExtract the model coefficients and their 95 percent confidence intervals.\n\nPlot the residuals vs the fitted values and comment on their distribution and patterns.\n\nIdentify the five countries with the five most negative residuals? What do these negative residuals say about their life expectancy relative to their continents life expectancy?\n\nRepeat this process, but identify the five countries with the five most positive residuals. What do these positive residuals say about their life expectancy relative to their continents life expectancy?"
   },
   {
-    "objectID": "labs/lab-exercise-03.html#r-laboratory-exercise-2",
-    "href": "labs/lab-exercise-03.html#r-laboratory-exercise-2",
-    "title": "MAR 536 - Spring 2023",
-    "section": "R Laboratory Exercise 2",
-    "text": "R Laboratory Exercise 2\nJanuary 25, 2023\nOpen a new R markdown file. Save it. (name it lastname_lab2.Rmd or something similar)\nAt the top of the script, add comments with your name and lab 2. Work in pairs or individually. Submit your Rmd and any other files via myCourses before lab next week."
+    "objectID": "labs/lab-05.html",
+    "href": "labs/lab-05.html",
+    "title": "Biological Stats II : Lab 5",
+    "section": "",
+    "text": "1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Simulation, Resampling\n2/22: Iteration\n3/01: Creating functions, debugging\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling"
   },
   {
-    "objectID": "labs/lab-exercise-03.html#lab-exercise-13-laengelmavesi-penguins",
-    "href": "labs/lab-exercise-03.html#lab-exercise-13-laengelmavesi-penguins",
-    "title": "MAR 536 - Spring 2023",
-    "section": "Lab exercise 1/3 (Laengelmavesi + penguins)",
-    "text": "Lab exercise 1/3 (Laengelmavesi + penguins)\nRead in the data in the ‘data’ sheet of Laengelmavesi2.xlsx and:\n\nDisplay the number of observations for each species of fish. (hint: the function count() will tell you how many rows)\n\nFind the overall mean lengths, weights, and heights of fish in the data.\n\nFind the range of the lengths of Perch.\n\nCalculate the mean length for each species.\n\nbonus With the Pike data, create a new factor for small and large based on the weights.\n\nUse the ggpairs() function in library(GGally) to create a pairs plot for the palmer penguins data. What are five things you learn about the data and the penguins from this view of the data?"
+    "objectID": "labs/lab-05.html#segue-packages-in-r",
+    "href": "labs/lab-05.html#segue-packages-in-r",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Segue: Packages in R",
+    "text": "Segue: Packages in R\nInstalling packages:\ninstall.packages(\"packagename\")\nIf in doubt, use the source:\ninstall.packages(\"packagename\", type=\"source\")\nInstalling packages from github:\ndevtools::install_github(\"repositoryname\")\nLoading (attaching) packages into the workspace:\nlibrary(packagename)\nSome people use require() instead of library().\nDon’t do this!\nrequire() is basically try(library())\nOften description of a package and how to use its functions is in the form of a vignette.\nvignette() lists available vignettes.\nvignette(packagename) views the vignette for packagename."
   },
   {
-    "objectID": "labs/lab-exercise-03.html#lab-exercise-23-gapminder-data",
-    "href": "labs/lab-exercise-03.html#lab-exercise-23-gapminder-data",
-    "title": "MAR 536 - Spring 2023",
-    "section": "Lab exercise 2/3: Gapminder data",
-    "text": "Lab exercise 2/3: Gapminder data\n\nUse the gapminder data to replicate as close as possible this graph. (Try out different ‘themes’ with + theme_XXXX())\n\n\n\n\n\n\n\nbonus plot time series of life expectancy by continent and country. (You can use geom_line() to link points)"
+    "objectID": "labs/lab-05.html#programming-practices-i",
+    "href": "labs/lab-05.html#programming-practices-i",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Programming practices I",
+    "text": "Programming practices I\nUse projects (RStudio)\nWrite scripts (or markdown files)\nInclude whitespace in code\n- blank lines, spaces in functions\nUse an editor with syntax highlighting\nUse a style guide\nIndent code\nUse meaningful object names"
   },
   {
-    "objectID": "labs/lab-exercise-03.html#lab-exercise-33-laengelmavesi-revisited",
-    "href": "labs/lab-exercise-03.html#lab-exercise-33-laengelmavesi-revisited",
+    "objectID": "labs/lab-05.html#programming-practices-ii",
+    "href": "labs/lab-05.html#programming-practices-ii",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Programming practices II",
+    "text": "Programming practices II\nTest code\n- Write smallest possible amount (e.g. 1 line).\n- Knit early and often.\n- Try simple examples that you know the answer to.\n- Always assume that there will be an error somewhere.\nView results / objects (e.g. with print()).\nPlot results - are they what you expect?\nBe careful when copying sections of code and changing a variable name (it’s super common to forget to change all occurrences).\n- hint: use your text editor’s “Find: Replace all” functionality."
+  },
+  {
+    "objectID": "labs/lab-05.html#commenting",
+    "href": "labs/lab-05.html#commenting",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Commenting",
+    "text": "Commenting\nR ignores everything on a line that follows a #\nComment at the top of your script.\n- What the script does, your name, email, date started.\nComment before each function or section of code - What is the purpose of that section of code, what does it do?\n- Comment the ‘why’ not the ‘what’\nComment throughout:\n- whenever an unusual function is used\n- whenever the code is hard to understand\n- whenever an algorithm is particularly useful"
+  },
+  {
+    "objectID": "labs/lab-05.html#commenting-out-code",
+    "href": "labs/lab-05.html#commenting-out-code",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Commenting out code",
+    "text": "Commenting out code\nWhen you make modifications to your code: - Copy the code that works then comment it out by prefixing it with #. - Change the new copy of the code.\nIf you need to revert to the old code, just remove the # before each line (“uncomment”).\nctrl+shift+C is a shortcut in Rstudio to comment/uncomment large blocks of code.\nIn .Rmd files, you can comment out blocks of the file using\n\n  <!---\n  Lines of text and code you want to not be included\n  --->"
+  },
+  {
+    "objectID": "labs/lab-05.html#permutation-tests",
+    "href": "labs/lab-05.html#permutation-tests",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Permutation tests",
+    "text": "Permutation tests\n\nlibrary(moderndive)\nnull_evals <- evals |>\n  specify(score ~ gender) |>\n  hypothesize(null = \"independence\") |>\n  generate(reps = 1000, type = \"permute\") |>\n  calculate(stat = \"diff in means\",\n            order = c(\"male\", \"female\"))\nnull_evals_ci <- null_evals |>  \n  summarize(\n    l = quantile(stat, 0.025),\n    u = quantile(stat, 0.975)\n    )\nscore_means <- evals |>  group_by(gender) |> \n  summarize(avg_score = mean(score))\ndscore <- score_means[2,2]-score_means[1,2]\n\npercentile_ci <- null_evals |> \n  get_confidence_interval(type = \"percentile\",\n                          level = 0.95)\n\n\n\nvisualize(null_evals) +\n  shade_confidence_interval(endpoints = percentile_ci) +\n  geom_vline(xintercept = as.numeric(dscore),linetype = \"dashed\")"
+  },
+  {
+    "objectID": "labs/lab-05.html#lab-exercise-1---permutation-test",
+    "href": "labs/lab-05.html#lab-exercise-1---permutation-test",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Lab exercise 1 - permutation test",
+    "text": "Lab exercise 1 - permutation test\nUse the Laengelmavesi data in ../data/Laengelmavesi2.csv\n\nObtain the data for just the lengths of perch and bream.\n\nPlot the distribution of lengths for both species, and calculate the mean lengths for both species.\n\nConduct a permutation test to assess whether the difference in mean length between bream and perch is statistically clear.\n\nPlot the distribution for the test statistic under the null hypothesis of no difference in length, and indicate the true value for the test statistic relative to the two-tailed 95th percent of the null hypothesis distribution.\n\nWhat are your conclusions?"
+  },
+  {
+    "objectID": "labs/lab-05.html#auto-dataset",
+    "href": "labs/lab-05.html#auto-dataset",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Auto dataset",
+    "text": "Auto dataset\nin ‘ISLR’ package\n\n`geom_smooth()` using formula 'y ~ x'"
+  },
+  {
+    "objectID": "labs/lab-05.html#bootstrapping",
+    "href": "labs/lab-05.html#bootstrapping",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Bootstrapping",
+    "text": "Bootstrapping\nRecall:\n\nHave some data \\(x_1\\text{, } x_2\\text{, }, \\dots \\text{, } x_n\\) and we are computing a statistic.\n\nRandomly draw \\(n\\) values from the data with replacement (same value can be drawn multiple times).\n\nCalculate statistic from new random pseudo-data.\n\nRepeat a large number of times to obtain the distribution: \\(t_1,t_2,\\dots,t_n\\).\n\nResulting distribution is the bootstrap sampling distribution.\n\nCompute standard deviation and 95 percent confidence intervals from this. Finished."
+  },
+  {
+    "objectID": "labs/lab-05.html#performing-generic-case-bootstrapping-in-r",
+    "href": "labs/lab-05.html#performing-generic-case-bootstrapping-in-r",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Performing generic case bootstrapping in R",
+    "text": "Performing generic case bootstrapping in R\nBootstrap estimates of slope from a linear model.\n\nslope_bootstrap <- Auto |>\n  specify(formula = mpg ~ horsepower) |> \n  generate(reps = 1000, type = \"bootstrap\") |> \n  calculate(stat = \"slope\")\npercentile_ci <- slope_bootstrap |> \n  get_confidence_interval(type = \"percentile\",\n                          level = 0.95)\npercentile_ci\n# A tibble: 1 × 2\n  lower_ci upper_ci\n     <dbl>    <dbl>\n1   -0.173   -0.145\n\n\n\nvisualize(slope_bootstrap) + \n  shade_confidence_interval(endpoints = percentile_ci)"
+  },
+  {
+    "objectID": "labs/lab-05.html#residual-bootstrap",
+    "href": "labs/lab-05.html#residual-bootstrap",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Residual bootstrap",
+    "text": "Residual bootstrap\n\nslope <- coef(lm(mpg~horsepower,data=Auto))[2]\nlm1 <- lm(mpg~horsepower,data=Auto)\nautomod <- augment(lm1, newdata = Auto) |> \n  janitor::clean_names()\nautomod\n# A tibble: 392 × 12\n   rownames   mpg cylinders displacement horsepower weight acceleration  year\n   <chr>    <dbl>     <dbl>        <dbl>      <dbl>  <dbl>        <dbl> <dbl>\n 1 1           18         8          307        130   3504         12      70\n 2 2           15         8          350        165   3693         11.5    70\n 3 3           18         8          318        150   3436         11      70\n 4 4           16         8          304        150   3433         12      70\n 5 5           17         8          302        140   3449         10.5    70\n 6 6           15         8          429        198   4341         10      70\n 7 7           14         8          454        220   4354          9      70\n 8 8           14         8          440        215   4312          8.5    70\n 9 9           14         8          455        225   4425         10      70\n10 10          15         8          390        190   3850          8.5    70\n# … with 382 more rows, and 4 more variables: origin <dbl>, name <fct>,\n#   fitted <dbl>, resid <dbl>\n\n\n\nautoboot <- automod |> specify(response = resid) |> \n  generate(reps = 1000, type = \"bootstrap\") |> \n  #ungroup() |> \n  mutate(fitted = automod$fitted) |> \n  mutate(new_mpg = fitted + resid) |> \n  mutate(horsepower = automod$horsepower)\nautoboot\n# A tibble: 392,000 × 5\n# Groups:   replicate [1,000]\n   replicate  resid fitted new_mpg horsepower\n       <int>  <dbl>  <dbl>   <dbl>      <dbl>\n 1         1 -0.725  19.4    18.7         130\n 2         1 -0.891  13.9    13           165\n 3         1 -2.47   16.3    13.8         150\n 4         1 -2.57   16.3    13.7         150\n 5         1 -8.05   17.8     9.79        140\n 6         1 -4.57    8.68    4.11        198\n 7         1  1.90    5.21    7.11        220\n 8         1 -1.20    6.00    4.80        215\n 9         1  4.98    4.42    9.40        225\n10         1 -0.259   9.95    9.69        190\n# … with 391,990 more rows\n\n\n\nslope_autoboot <- autoboot |>\n  group_by(replicate) |> \n  summarize(slope = coef(lm(new_mpg~horsepower))[2])\nslope_autoboot\n# A tibble: 1,000 × 2\n   replicate  slope\n       <int>  <dbl>\n 1         1 -0.142\n 2         2 -0.147\n 3         3 -0.155\n 4         4 -0.165\n 5         5 -0.153\n 6         6 -0.141\n 7         7 -0.156\n 8         8 -0.158\n 9         9 -0.159\n10        10 -0.158\n# … with 990 more rows\npercentile_ci <- quantile(slope_autoboot$slope, c(0.025, 0.975))\npercentile_ci\n      2.5%      97.5% \n-0.1700459 -0.1447860"
+  },
+  {
+    "objectID": "labs/lab-05.html#lab-exercise-2",
+    "href": "labs/lab-05.html#lab-exercise-2",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Lab exercise 2",
+    "text": "Lab exercise 2\nhake.csv contains abundance data for silver hake from tows in the 2015 NMFS spring bottom trawl survey.\na. Produce 5,000 bootstrapped estimates for the mean abundance per tow based on case resampling (5000 samples).\nb. Compare the standard deviation of the bootstrapped estimates of the mean to the standard error of the mean from the original sample.\nc. Compute an approximate 95 percent confidence interval for the mean based on the bootstrap, assuming normality. Compare this to the interval based on percentiles of the bootstrap sampling distribution.\nd. BONUS Plot how the bootstrap confidence interval for the mean changes with the number of bootstrap samples. (100, 500, 1000, 2000, 5000, 10000)"
+  },
+  {
+    "objectID": "labs/lab-05.html#validation-approach",
+    "href": "labs/lab-05.html#validation-approach",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Validation Approach",
+    "text": "Validation Approach\nRecall:\nSplit data into training set and a validation (or hold-out) set.\nFit model to training set, fitted model used to predict the responses for the observations in the validation set.\nResulting validation set error rate (e.g. MSE for quantitative response) is an estimate of the test error rate.\n\nset.seed(1)\ntrain <- sample(392,196)\nlm.fit <- lm(mpg ~ horsepower, data=Auto, subset=train)\nmean((Auto$mpg - predict(lm.fit, Auto))[-train]^2)\n[1] 23.26601\nlm.fit2 <- lm(mpg ~ poly(horsepower, 2), data=Auto, subset=train)\nmean((Auto$mpg - predict(lm.fit2, Auto))[-train]^2)\n[1] 18.71646\nlm.fit3 <- lm(mpg ~ poly(horsepower, 3), data=Auto, subset=train)\nmean((Auto$mpg - predict(lm.fit3, Auto))[-train]^2)\n[1] 18.79401"
+  },
+  {
+    "objectID": "labs/lab-05.html#wages-from-islr",
+    "href": "labs/lab-05.html#wages-from-islr",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Wages (from ISLR)",
+    "text": "Wages (from ISLR)\n\nggplot(Wage, aes(y = wage, x = age)) +\n  geom_point(col = \"slateblue\", alpha = 0.1, size = 4) +\n  theme_minimal() +\n  geom_smooth(method = \"lm\", col = \"orange\")\n\n`geom_smooth()` using formula 'y ~ x'"
+  },
+  {
+    "objectID": "labs/lab-05.html#k-fold-cross-validation",
+    "href": "labs/lab-05.html#k-fold-cross-validation",
+    "title": "Biological Stats II : Lab 5",
+    "section": "k-Fold Cross-Validation",
+    "text": "k-Fold Cross-Validation\nUse cv.glm() with argument K=k to perform k-fold cross-validation.\n\nset.seed(17)\ncv.error.10 <- matrix(0,nrow=10,ncol=10)\nfor (isim in 1:10) {\n  cv.error <- map(1:10, \n            ~cv.glm(Auto,\n            glm(mpg~poly(horsepower,.x),data = Auto),\n            K=10)$delta[1])\n  cv.error.10[isim,] <- as.numeric(cv.error)\n}\ncv.error.10\n          [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]\n [1,] 24.27207 19.26909 19.34805 19.29496 19.03198 18.89781 19.12061 19.14666\n [2,] 24.32221 19.20485 19.20345 19.19061 18.81104 18.93199 18.64288 18.99985\n [3,] 24.40176 19.28566 19.47768 19.45928 19.11895 18.96636 19.14254 19.19909\n [4,] 24.34410 19.21850 19.23349 19.29482 19.20885 18.89513 18.83750 19.40794\n [5,] 24.12350 19.15993 19.30270 19.43933 19.14562 18.77230 18.95511 18.88465\n [6,] 24.26450 19.20361 19.21035 19.50279 19.03784 19.00893 18.80578 20.09835\n [7,] 24.21276 19.32266 19.25201 19.57620 18.94538 18.98961 19.36863 18.99092\n [8,] 24.23926 19.19939 19.36453 19.18138 18.98821 19.20072 18.82207 19.17620\n [9,] 24.25723 19.19239 19.43090 19.64706 19.03607 18.83338 18.74457 18.78450\n[10,] 24.06964 19.23239 19.41729 19.54851 19.02514 18.90808 18.94559 19.03320\n          [,9]    [,10]\n [1,] 18.87013 20.95520\n [2,] 19.09146 19.02690\n [3,] 19.14876 19.96767\n [4,] 18.91545 19.79555\n [5,] 19.07591 19.28447\n [6,] 18.74927 19.23977\n [7,] 19.20971 20.90766\n [8,] 19.02977 19.38514\n [9,] 19.36472 19.19204\n[10,] 19.18411 19.05571\n\nSetting K=n replicates LOOCV."
+  },
+  {
+    "objectID": "labs/lab-05.html#lab-exercise-3-k-fold-cross-validation",
+    "href": "labs/lab-05.html#lab-exercise-3-k-fold-cross-validation",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Lab exercise 3, k-fold cross validation",
+    "text": "Lab exercise 3, k-fold cross validation\nUsing the Wage data set, evaluate the predictive ability of models for wages.\na. Define a unique random number seed. Use 10-fold cross validation to estimate the test error rate for models fitting a polynomial of age of order 2, 3, 4, 5, and 6.\nb. Conduct the validation 20 times for each polynomial. Plot the distribution (use boxplots) for the validation test error rate as a function of the degree of polynomial. Based on the results, what order polynomial would you use?\n c. Use 5-fold cross-validation to compare the performance of models that include combinations of:\n- a polynomial of age\n- education level\n- race\n- industry\ne. What model would you choose based on the test error rates?\nf. BONUS How does the model chosen by 5-fold CV compare to that from using AIC as a model selection tool?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHINTS\nWrite down the steps you need to take to perform the calculations.\nMake use of existing code from earlier in the lab to help."
+  },
+  {
+    "objectID": "labs/lab-05.html#lab-schedule-1",
+    "href": "labs/lab-05.html#lab-schedule-1",
+    "title": "Biological Stats II : Lab 5",
+    "section": "Lab schedule",
+    "text": "Lab schedule\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Simulation, Resampling\n2/22: Iteration 3/01: Creating functions, debugging\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling"
+  },
+  {
+    "objectID": "labs/lab4_exercise.html#r-laboratory-exercise-4",
+    "href": "labs/lab4_exercise.html#r-laboratory-exercise-4",
     "title": "MAR 536 - Spring 2023",
-    "section": "Lab exercise 3/3 (Laengelmavesi revisited)",
-    "text": "Lab exercise 3/3 (Laengelmavesi revisited)\nUse the data in Laengelmavesi2.xlsx to create the following graphs. Make sure to add axis labels and plot titles.\n\nCreate boxplots and histograms of the length distributions for each species.\n\nPlot all the weights vs the lengths. Include enough information that the data for each species can be identified.\n\nPlot the mean weight of each species as a function of the mean length, with the species names and mean heights also indicated on the plot.\n\nCreate one plot of the heights as a function of the lengths. Add a line separating fish with height greater than 20cm.\n\nbonus Add to your plot from step (2) the mean weight and length for each species."
+    "section": "R Laboratory Exercise 4",
+    "text": "R Laboratory Exercise 4\nFebruary 12, 2020 Instructor: Gavin Fay gfay@umassd.edu\nOpen a new R script (or .Rmd). Save it. (name it lastname_lab3.R or something similar)\nAt the top of the script, add comments with your name and lab 4. (comments are text preceded by a “#”)\nWork in pairs or individually. Submit your R script to Amanda before lab next week."
+  },
+  {
+    "objectID": "labs/lab4_exercise.html#lab-exercise-1---permutation-test",
+    "href": "labs/lab4_exercise.html#lab-exercise-1---permutation-test",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 1 - permutation test",
+    "text": "Lab exercise 1 - permutation test\nUse the Laengelmavesi data in ../data/Laengelmavesi2.csv\n\nObtain the data for just the lengths of perch and bream.\n\nPlot the distribution of lengths for both species, and calculate the mean lengths for both species.\n\nConduct a permutation test to assess whether the difference in mean length between bream and perch is statistically clear.\n\nPlot the distribution for the test statistic under the null hypothesis of no difference in length, and indicate the true value for the test statistic relative to the two-tailed 95th percent of the null hypothesis distribution.\n\nWhat are your conclusions?"
+  },
+  {
+    "objectID": "labs/lab4_exercise.html#lab-exercise-2",
+    "href": "labs/lab4_exercise.html#lab-exercise-2",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 2",
+    "text": "Lab exercise 2\nhake.csv contains abundance data for silver hake from the 2015 NMFS spring bottom trawl survey.\na. Produce 5,000 bootstrapped estimates for the mean abundance per tow based on case resampling (5000 samples).\nb. Compare the standard deviation of the bootstrapped estimates of the mean to the standard error of the mean from the original sample.\nc. Compute an approximate 95 percent confidence interval for the mean based on the bootstrap, assuming normality. Compare this to the interval based on percentiles of the bootstrap sampling distribution.\nd. BONUS Plot how the bootstrap confidence interval for the mean changes with the number of bootstrap samples. (100, 500, 1000, 2000, 5000, 10000)"
+  },
+  {
+    "objectID": "labs/lab4_exercise.html#lab-exercise-3",
+    "href": "labs/lab4_exercise.html#lab-exercise-3",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 3",
+    "text": "Lab exercise 3\nConsider the polynomial regression of wage on age. e.g. \n\nwage_lm.1 <- lm(wage~poly(age,4),data=Wage)\n\n\nDefine a unique random number seed. Use the validation approach to estimate the test error rate for polynomials of order 2, 3, 4, 5, and 6.\n\nConduct the validation 20 times for each polynomial regression.\n\nPlot the distribution (use boxplots) for the validation test error rate as a function of the degree of polynomial.\n\nBased on the results, what order polynomial would you use?"
+  },
+  {
+    "objectID": "labs/lab4_exercise.html#lab-exercise-4-k-fold-cross-validation",
+    "href": "labs/lab4_exercise.html#lab-exercise-4-k-fold-cross-validation",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 4, k-fold cross validation",
+    "text": "Lab exercise 4, k-fold cross validation\nUsing the Wage data set, evaluate the predictive ability of models for wages.\na. Define a unique random number seed. Use 10-fold cross validation to estimate the test error rate for models fitting a polynomial of age of order 2, 3, 4, 5, and 6.\nb. Conduct the validation 20 times for each polynomial. Plot the distribution (use boxplots) for the validation test error rate as a function of the degree of polynomial. Based on the results, what order polynomial would you use?\nc. How do the results compare to those from the validation approach (lab exercise 2)\nd. Use 5-fold cross-validation to compare the performance of models that include combinations of:\n- a polynomial of age\n- education level\n- race\n- industry\ne. What model would you choose based on the test error rates?\nf. BONUS How does the model chosen by 5-fold CV compare to that from using AIC as a model selection tool?"
+  },
+  {
+    "objectID": "labs/lab-exercise-05.html#r-laboratory-exercise-5",
+    "href": "labs/lab-exercise-05.html#r-laboratory-exercise-5",
+    "title": "MAR 536 - Spring 2023",
+    "section": "R Laboratory Exercise 5",
+    "text": "R Laboratory Exercise 5\nFebruary 15, 2023\nOpen a new R markdown file. Save it. (name it lastname_lab5.Rmd or something similar)\nAt the top of the script, add comments with your name and lab 5. Work in pairs or individually. Submit your Rmd and any other files via myCourses before lab next week."
+  },
+  {
+    "objectID": "labs/lab-exercise-05.html#lab-exercise-1---permutation-test",
+    "href": "labs/lab-exercise-05.html#lab-exercise-1---permutation-test",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 1 - permutation test",
+    "text": "Lab exercise 1 - permutation test\nUse the Laengelmavesi data in ../data/Laengelmavesi2.csv\n\nObtain the data for just the lengths of perch and bream.\n\nPlot the distribution of lengths for both species, and calculate the mean lengths for both species.\n\nConduct a permutation test to assess whether the difference in mean length between bream and perch is statistically clear.\n\nPlot the distribution for the test statistic under the null hypothesis of no difference in length, and indicate the true value for the test statistic relative to the two-tailed 95th percent of the null hypothesis distribution.\n\nWhat are your conclusions?"
+  },
+  {
+    "objectID": "labs/lab-exercise-05.html#lab-exercise-2---bootstrapping",
+    "href": "labs/lab-exercise-05.html#lab-exercise-2---bootstrapping",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 2 - Bootstrapping",
+    "text": "Lab exercise 2 - Bootstrapping\nhake.csv contains abundance data for silver hake from tows in the 2015 NMFS spring bottom trawl survey.\na. Produce 5,000 bootstrapped estimates for the mean abundance per tow based on case resampling (5000 samples).\nb. Compare the standard deviation of the bootstrapped estimates of the mean to the standard error of the mean from the original sample.\nc. Compute an approximate 95 percent confidence interval for the mean based on the bootstrap, assuming normality. Compare this to the interval based on percentiles of the bootstrap sampling distribution.\nd. BONUS Plot how the bootstrap confidence interval for the mean changes with the number of bootstrap samples. (100, 500, 1000, 2000, 5000, 10000)"
+  },
+  {
+    "objectID": "labs/lab-exercise-05.html#lab-exercise-3-k-fold-cross-validation",
+    "href": "labs/lab-exercise-05.html#lab-exercise-3-k-fold-cross-validation",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 3, k-fold cross validation",
+    "text": "Lab exercise 3, k-fold cross validation\nUsing the ISLR::Wage data set, evaluate the predictive ability of models for wages.\na. Define a unique random number seed. Use 10-fold cross validation to estimate the test error rate for models fitting a polynomial of age of order 2, 3, 4, 5, and 6.\nb. Conduct the validation 20 times for each polynomial. Plot the distribution (use boxplots) for the validation test error rate as a function of the degree of polynomial. Based on the results, what order polynomial would you use?\n c. Use 5-fold cross-validation to compare the performance of models that include combinations of:\n- a polynomial of age\n- education level\n- race\n- industry\ne. What model would you choose based on the test error rates?\nf. BONUS How does the model chosen by 5-fold CV compare to that from using AIC as a model selection tool?"
+  },
+  {
+    "objectID": "labs/lab-exercise-03.html#r-laboratory-exercise-3-solution",
+    "href": "labs/lab-exercise-03.html#r-laboratory-exercise-3-solution",
+    "title": "MAR 536 - Spring 2023",
+    "section": "R Laboratory Exercise 3 Solution",
+    "text": "R Laboratory Exercise 3 Solution"
+  },
+  {
+    "objectID": "labs/lab-exercise-03.html#lab-exercise-13",
+    "href": "labs/lab-exercise-03.html#lab-exercise-13",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab Exercise 1/3",
+    "text": "Lab Exercise 1/3\n\nGenerate 1,000 random normal numbers with mean 24 and standard deviation 10. Find the proportion of those random numbers that are \\(\\geq2\\) standard deviations from the sample mean.\n\n\n\n#create a vector of 1000 random variables drawn from the normal distribution\nmyvals <- rnorm(1000, mean = 24, sd = 10)\nsummary(myvals)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n -20.42   17.23   23.74   23.93   30.87   58.21 \n\n\nWe are looking for how many of our points lie in the tails of the distribution\n\n\n\n\n\n\n#find the sample mean (this should be close to the population mean)\nsample_mean <- mean(myvals)\n#find the sample standard deviation\nsample_sd <- sd(myvals)\n#how many are greater than or equal to 2 std devs below the mean?\nnbelow <- length(which(myvals <= sample_mean - 2*sample_sd))\n#how many are greater than or equal to 2 std devs above the mean?\nnabove <- length(which(myvals >= sample_mean + 2*sample_sd))\n#total proportion in the tails\n(nbelow+nabove)/1000\n\n[1] 0.046\n\n\n\nFlip a (fair) coin six times.\n\n\n\n#generate six Bernoulli random variables where the probability of success (say a head) is 0.5 each time\nrbinom(n = 6, size = 1, prob = 0.5)\n\n[1] 0 1 0 0 1 1\n\n\n\nFind the probability of getting six heads on those six flips (i.e. \\(P(X=6)\\) given \\(n=6\\)).\n\n\n\n# number of heads is a binomial random variable given six trials and a probability of success for each trial (coin flip) of 0.5\ndbinom(x = 6, size = 6, prob = 0.5)\n\n[1] 0.015625\n\n\n\nHow much more likely is it to get three heads than six?\n\n\n\n# probability of getting three heads on six trials\ndbinom(x = 3, size = 6, prob = 0.5)\n\n[1] 0.3125\n\n# now want ratio of P(X=3) to P(X=6)\ndbinom(x = 3, size = 6, prob = 0.5) / dbinom(x = 6, size = 6, prob = 0.5)\n\n[1] 20\n\n\n\nFor a standard normal random variable, find the number \\(x\\) such that \\(P(-x \\leq X \\leq x) = 0.24\\).\n\n\n\n\n\n\n\nWe are interested in the value for x that creates an area under the curve in between the two dashed lines that is 0.24 the total area under the curve.\nWe know the normal is symmetrical about its mean. The cumulative probability density that is less than the mean is 0.5.\nThe area on the left of the left-most dashed line then corresponds to 0.5 - 0.24/2 = 0.38.\nSo we want the x value associated with a cumulative probability for the normal of 0.38.\n\n\nqnorm(p = 0.38, mean = 0, sd = 1) #standard normal has mean 0, sd = 1\n\n[1] -0.3054808\n\n\n\nThe mean rate of arrival of alewives at a weir is 3.5 per hour. Plot the probability distribution function for the number of alewife arrivals in an hour.\n\n\n\n#Poisson with mean 3.5\ntibble(number = 0:12,\n       prob = c(dpois(0:11, 3.5),1-sum(dpois(0:11, 3.5)))) |>\n  ggplot() +\n  aes(x = factor(number), y = prob) +\n  geom_col() +\n  labs(x = \"number of alewives\",\n       y = \"probability\") +\n  scale_x_discrete(labels=c(0:11,\"12+\"))\n\n\n\n#note that to make this a complete distribution we must sum the remaining probabilities in the largest class - there is a small chance we could see 10,000 fish.  \n\n\nFind the 95% confidence interval for the number of alewives arriving per day.\n\n\n#number of alewives per day is poisson with mean 24*3.5 = 84\n#corresponds to the 2.5% and 97.5% quantiles of this poisson distribution\nqpois(c(0.025, 0.975), lambda = 84)\n## [1]  67 102"
+  },
+  {
+    "objectID": "labs/lab-exercise-03.html#lab-exercise-23",
+    "href": "labs/lab-exercise-03.html#lab-exercise-23",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 2/3",
+    "text": "Lab exercise 2/3\n\nExtract the residuals from the RIKZ_lm2 model\n\nAre the linear regression assumptions met? Explain your reasoning\n\nSummarize the results of the model. What are the parameter estimates telling you about species richness on these beaches?"
+  },
+  {
+    "objectID": "labs/lab-exercise-03.html#lab-exercise-33",
+    "href": "labs/lab-exercise-03.html#lab-exercise-33",
+    "title": "MAR 536 - Spring 2023",
+    "section": "Lab exercise 3/3",
+    "text": "Lab exercise 3/3\n\nFit a linear regression using 2007 gapminder data of the form lm(gdpPercap ~ continent, where gdpPercap is the new outcome variable y. Get information about the best-fitting line from the regression table. How do the regression results match up with those of an analysis of life expectancy by continent?\n\nExtract the model coefficients and their 95 percent confidence intervals.\n\nPlot the residuals vs the fitted values and comment on their distribution and patterns.\n\nIdentify the five countries with the five most negative residuals? What do these negative residuals say about their life expectancy relative to their continents life expectancy?\n\nRepeat this process, but identify the five countries with the five most positive residuals. What do these positive residuals say about their life expectancy relative to their continents life expectancy?"
   },
   {
     "objectID": "labs/lab-exercise-02.html#r-laboratory-exercise-2",
@@ -2296,6 +2513,153 @@
     "text": "Supplemental Reading\nIntroduction to Modern Statistics Chap 4-6\nR for Data Science, Chap 3\nCommunicating with Data, Chap 3-4\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   },
   {
+    "objectID": "lectures/lec-09.html",
+    "href": "lectures/lec-09.html",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "",
+    "text": "Discuss need for nonlinear models\nReview approaches for nonlinearity in linear models\nPolynomials\nRegression splines\nSmoothing splines"
+  },
+  {
+    "objectID": "lectures/lec-09.html#linear-regression",
+    "href": "lectures/lec-09.html#linear-regression",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Linear regression",
+    "text": "Linear regression\n\\[\\mathbf{Y} = \\mathbf{X}\\boldsymbol{\\beta} + \\boldsymbol{\\epsilon}\\]\n\nLimitations in terms of predictive power\n\nLinear assumption almost always an approximation.\n(sometimes a poor one)"
+  },
+  {
+    "objectID": "lectures/lec-09.html#linear-regression-1",
+    "href": "lectures/lec-09.html#linear-regression-1",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Linear regression",
+    "text": "Linear regression\n\\[\\mathbf{Y} = \\mathbf{X}\\boldsymbol{\\beta} + \\boldsymbol{\\epsilon}\\]\n\nLimitations in terms of predictive power\n\nLinear assumption almost always an approximation.\n(sometimes a poor one)\n\nToday’s question:\n- Can we relax the linear assumptions but retain interpretability?"
+  },
+  {
+    "objectID": "lectures/lec-09.html#options-for-nonlinearity",
+    "href": "lectures/lec-09.html#options-for-nonlinearity",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Options for nonlinearity",
+    "text": "Options for nonlinearity\nPolynomial regression\n- Raise original predictors to powers, e.g. \\(x^{2} \\text{, } x^{3} \\text{, etc.}\\)\nStep functions\n- Divide range of \\(X\\) into \\(K\\) regions, to create a categorical variable.\n- Piecewise constant function\nRegression splines\n- Extension of previous two, \\(K\\) regions,\n- Fit polynomial to the data in each region - Constraints so pieces join smoothly at region boundaries\nSmoothing splines\n- Minimize RSS subject to a smoothness penalty\nLocal regression\n- Regions are allowed to overlap (e.g. LOESS)\nGeneralized Additive Models\n- extend all of the above\n- deal with multiple predictors\nTrue nonlinear models\n- The above all consider linear functions\n- fit nonlinear functions of data e.g. via nls, maximum likelihood"
+  },
+  {
+    "objectID": "lectures/lec-09.html#polynomial-regression",
+    "href": "lectures/lec-09.html#polynomial-regression",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Polynomial regression",
+    "text": "Polynomial regression\nAdd additional predictors that are some degree polynomials of X.\n\\[y_{i} = \\alpha + \\beta_1 x_i + \\beta_2 x_{i}^2 + \\beta_3 x_{i}^3 + \\epsilon_i\\]\nUse usual lm() machinery.\n\nfit=lm(wage~poly(age,4),data=Wage)\nfit2a=lm(wage~age+I(age^2)+I(age^3)+I(age^4),data=Wage)\nfit2b=lm(wage~cbind(age,age^2,age^3,age^4),data=Wage)\n\n\n\nfit.1=lm(wage~age,data=Wage)\nfit.2=lm(wage~poly(age,2),data=Wage)\nfit.3=lm(wage~poly(age,3),data=Wage)\nfit.4=lm(wage~poly(age,4),data=Wage)\nfit.5=lm(wage~poly(age,5),data=Wage)\nanova(fit.1,fit.2,fit.3,fit.4,fit.5)\nAnalysis of Variance Table\n\nModel 1: wage ~ age\nModel 2: wage ~ poly(age, 2)\nModel 3: wage ~ poly(age, 3)\nModel 4: wage ~ poly(age, 4)\nModel 5: wage ~ poly(age, 5)\n  Res.Df     RSS Df Sum of Sq        F    Pr(>F)    \n1   2998 5022216                                    \n2   2997 4793430  1    228786 143.5931 < 2.2e-16 ***\n3   2996 4777674  1     15756   9.8888  0.001679 ** \n4   2995 4771604  1      6070   3.8098  0.051046 .  \n5   2994 4770322  1      1283   0.8050  0.369682    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\n\n\n\n(Very) high order polynomials sometimes necessary to approximate functions and these are often still not sensible."
+  },
+  {
+    "objectID": "lectures/lec-09.html#step-function",
+    "href": "lectures/lec-09.html#step-function",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Step function",
+    "text": "Step function\nPolynomial imposes ‘global’ structure on the function of \\(X\\).\nStep functions convert continuous variable to ‘ordered categorical’ variables.\nCreates a piece-wise constant function.\n\\[y_{i} = \\alpha + \\beta_1 \\mathbf{I}_{1}(x_i)  + \\beta_2 \\mathbf{I}_{2}(x_i) + \\beta_3 \\mathbf{I}_{3}(x_i) + \\epsilon_i\\]\nwhere \\(\\mathbf{I}_{k}\\) is an indicator function returning 1 if \\(x_i\\) is within region \\(k\\) and 0 otherwise.\n\n\n\n\n\n\nPiece-wise constant functions miss the action.\n- fail to capture increasing wage with age."
+  },
+  {
+    "objectID": "lectures/lec-09.html#basis-functions",
+    "href": "lectures/lec-09.html#basis-functions",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Basis Functions",
+    "text": "Basis Functions\nPolynomial and Step functions are special cases of basis function approach:\nA family of functions or transformations that can be applied to a variable \\(X\\).\ne.g. \\(b_1(X) \\text{, } b_2(X) \\text{, } b_3(X) \\text{, etc.}\\)\nWe can view predictions from a regression as a weighted sum of basis functions.\nAll inference tools for linear models are therefore available.\nBasis functions must be chosen ahead of time (basis functions are known)\n- other choices for constructing basis functions include wavelets & Fourier series.\nRegression splines are a common choice for basis function."
+  },
+  {
+    "objectID": "lectures/lec-09.html#regression-splines",
+    "href": "lectures/lec-09.html#regression-splines",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Regression splines",
+    "text": "Regression splines\nFit piecewise polynomials.\nDivide data into \\(K+1\\) regions using \\(K\\) knots\nSeparate polynomial fitted to the data in each region.\ne.g. for a function with a single knot at \\(x=c\\),\n\\[ \\hat{y}_i = \\begin{cases} \\text{ polynomial 1 if } x_i < c \\\\\n\\text{ polynomial 2 if } x_i \\geq c \\end{cases}\\]\nImmediate problem: functions are discontinuous and look silly!"
+  },
+  {
+    "objectID": "lectures/lec-09.html#constraints-and-splines",
+    "href": "lectures/lec-09.html#constraints-and-splines",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Constraints and splines",
+    "text": "Constraints and splines\nAdd constraints:\nFirst fitted curve must be continuous at \\(age=50\\).\n1st & 2nd derivatives are continuous at \\(age=50\\).\nCubic spline has \\(4+K\\) degrees of freedom (\\(K\\) is the number of knots)\nFor a degree-d spline:\n- piecewise degree-d polynomial with continuity in derivatives up to \\(d-1\\) at each knot."
+  },
+  {
+    "objectID": "lectures/lec-09.html#spline-basis-representation",
+    "href": "lectures/lec-09.html#spline-basis-representation",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Spline basis representation",
+    "text": "Spline basis representation\nHow can we fit regression splines with constraints?\nUse basis functions. e.g. for a cubic spline with \\(K\\) knots:\n\n\\[y_i = \\beta_0 + \\beta_1 b_1(x_i) + \\beta_2 b_2(x_i) + \\dots + \\beta_{K+3} b_{K+3}(x_i) + \\epsilon_i\\]\nThere are many ways to represent the basis functions for regression splines.\nA common one is to add one truncated power basis per knot\n$$h(x,) =\n\\[\\begin{cases}\n    (x-\\xi)^3 & \\quad \\text{if } x > \\xi\\\\\n    0  & \\quad \\text{if } otherwise,\\\\\n  \\end{cases}\\]\n$$\n\nWage$trunc50 <- (Wage$age-50)^3\nWage$trunc50[Wage$age<50] <- 0\nfit <- lm(wage ~ poly(age,3) + trunc50,data=Wage)"
+  },
+  {
+    "objectID": "lectures/lec-09.html#spline-basis-representation-1",
+    "href": "lectures/lec-09.html#spline-basis-representation-1",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Spline basis representation",
+    "text": "Spline basis representation\nTruncated power basis can be unstable.\nThere are other ways of defining basis functions for cubic regression splines.\nSome of these include paramterizations in terms of the values at the knots.\n\n\n(Figure from Wood, 2006)\nOthers include:\n- cyclic cubic regression splines\n- B-splines (basis functions are strictly local)\n- P-splines (for equally spaced knots)\n- Thin plate splines (Duchon 1977), are an example of a smoothing spline."
+  },
+  {
+    "objectID": "lectures/lec-09.html#natural-splines",
+    "href": "lectures/lec-09.html#natural-splines",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Natural splines",
+    "text": "Natural splines\nSplines can have high variance, particularly at the data extremes.\nNatural splines have additional boundary constraints:\n- the function is required to be linear outside the smallest/largest knots.\n\nfit <- lm(wage ~ ns(age, knots=c(25, 40, 60)), \n          data=Wage)"
+  },
+  {
+    "objectID": "lectures/lec-09.html#number-location-of-knots",
+    "href": "lectures/lec-09.html#number-location-of-knots",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Number & Location of knots",
+    "text": "Number & Location of knots\nMight want to be flexible\n- e.g. place more knots in region where suspect function most likely to be changing\nMore commonly, place knots in uniform fashion\n- uniformly spaced over range of data\n- uniform quantiles of data\nIn function calls:\n- either request the degrees of freedom (e.g. \\(6\\text{df} \\implies 3\\) knots)\n- or specify the knot locations.\n\nfit <- lm(wage ~ bs(age, knots=c(25, 40, 60)), data=Wage)\nfit2 <- lm(wage ~ bs(age, df=6), data=Wage)\nattr(bs(age,df=6),\"knots\")\n  25%   50%   75% \n33.75 42.00 51.00 \n\nNote that if df= is chosen then knots are spaced at uniform quantiles of the data."
+  },
+  {
+    "objectID": "lectures/lec-09.html#number-location-of-knots-1",
+    "href": "lectures/lec-09.html#number-location-of-knots-1",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Number & Location of knots",
+    "text": "Number & Location of knots\nRun for different numbers of knots, look at which produces the best curve.\nCross-validation more objective.\n1. remove \\(k\\)% of the data. (\\(k\\)-fold cv)\n2. fit spline to remaining data\n3. Predict the left-out data, compute RSS (or other measure of fit)\n4. Repeat 1-3 until all data used, compute total RSS\n5. Repeat 1-4 using different # of knots\nSplines v polynomials:\nPolynomials require high degree to produce flexible fits.\nSplines, increase # knots but keep degree fixed.\n- generally produce more stable estimates.\n- also allow knots to be placed where function appears to be changing most rapidly."
+  },
+  {
+    "objectID": "lectures/lec-09.html#smoothing-splines",
+    "href": "lectures/lec-09.html#smoothing-splines",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Smoothing splines",
+    "text": "Smoothing splines\nRelated to regression splines but instead have \\(n\\) knots, 1 for each data point.\nIn general, we want \\(\\sum_{i}(y_i-g(x_i))^2\\) to be small.\nCould make \\(g()\\) so flexible that it interpolates all the \\(y_i\\).\nFind function \\(g\\) that minimizes\n\\[\\displaystyle\\sum_{i=1}^{n}(y_i-g(x_i))^2 + \\lambda \\int\\limits_0^\\infty g^{''}(t)^{2}dt\\]\n‘loss’ plus ‘penalty’\nThe tuning parameter \\(\\lambda\\) controls the bias-variance tradeoff of smoothing spline."
+  },
+  {
+    "objectID": "lectures/lec-09.html#lambda-controls-the-smoothness",
+    "href": "lectures/lec-09.html#lambda-controls-the-smoothness",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Lambda controls the smoothness",
+    "text": "Lambda controls the smoothness\n\n\n\n\n\n(Kenny G has a high \\(\\lambda\\))"
+  },
+  {
+    "objectID": "lectures/lec-09.html#choosing-lambda",
+    "href": "lectures/lec-09.html#choosing-lambda",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Choosing \\(\\lambda\\)",
+    "text": "Choosing \\(\\lambda\\)\nIf \\(g()\\) is a piece-wise cubic polynomial with knots at \\(x_1\\text{, }x_2\\text{, }\\dots\\text{, }x_n\\), with continuous 1st & 2nd derivatives at each knot, then it is a ‘shrunken’ version of a natural cubic spline.\n(\\(\\lambda\\) controls the shrinkage)\nAs \\(\\begin{matrix} \\lambda & 0 & \\to & \\infty \\\\ df & n & \\to & 2 \\end{matrix}\\)\nEffective degrees of freedom\n\\(\\text{df}_\\lambda = \\displaystyle\\sum_{i=1}^{n}{S_\\lambda}_ii\\) (sum of diagonal)\nUse cross-validation to choose the \\(\\lambda\\) that minimizes the cumulative cross-validated RSS."
+  },
+  {
+    "objectID": "lectures/lec-09.html#local-regression",
+    "href": "lectures/lec-09.html#local-regression",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Local regression",
+    "text": "Local regression\nFit at a given point computed using only neighboring data.\nA new weighted least squares regression at each point.\n\nLOESS smooth probably most common.\n(tri-cube weight function)"
+  },
+  {
+    "objectID": "lectures/lec-09.html#local-regression-1",
+    "href": "lectures/lec-09.html#local-regression-1",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Local regression",
+    "text": "Local regression\nBasis functions include the weights assigned to neighboring data points.\ne.g. \nMost important choice is the span, which controls the size of the neighborhood and therefore the wiggliness."
+  },
+  {
+    "objectID": "lectures/lec-09.html#generalized-additive-modeling",
+    "href": "lectures/lec-09.html#generalized-additive-modeling",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Generalized Additive Modeling",
+    "text": "Generalized Additive Modeling\n(Next week)\nUses the methods today as building blocks for fitting an additive model."
+  },
+  {
+    "objectID": "lectures/lec-09.html#additional-recommended-reading",
+    "href": "lectures/lec-09.html#additional-recommended-reading",
+    "title": "Biol. Stats II : Nonlinear models & splines",
+    "section": "Additional Recommended Reading",
+    "text": "Additional Recommended Reading\nWood, S., 2006. Generalized additive models: an introduction with R. CRC press.\n(today’s material Chapters 3 & 4.1)\nHastie, T.J. and Tibshirani, R.J., 1990. Generalized additive models (Vol. 43). CRC Press.\nWahba, G. (1990). Spline Models for Observational Data. Philadelphia: Society for Industrial and Applied Mathematics."
+  },
+  {
     "objectID": "lectures/lec-08.html",
     "href": "lectures/lec-08.html",
     "title": "Bio Stats II : Lecture 8, Resampling methods",
@@ -2762,7 +3126,7 @@
     "href": "course-syllabus.html#course-info",
     "title": "Syllabus",
     "section": "Course info",
-    "text": "Course info\nInstructor: Gavin Fay, Associate Professor, Fisheries Oceanography\nLab teaching assistant: Lucy McGinnis, MS student, Fisheries Oceanography\nStudent Hours:\n\nGavin: By appointment (via Office365 Bookings)\nLucy: Thu 1-3, SMAST-E 245\n\n\n\n\n\nDay\nTime\nLocation\n\n\n\n\nLectures\nTue & Thu\n10:30 am - 11:30 am\nSMAST-East 102 + 103\n\n\nLabs\nWed\n10:30 am - 12:00 pm\nSMAST-East 102 + 103"
+    "text": "Course info\nInstructor: Gavin Fay, Associate Professor, Fisheries Oceanography\nLab teaching assistant: Lucy McGinnis, MS student, Fisheries Oceanography\nStudent Hours:\n\nGavin: By appointment on Zoom (via Office365 Bookings)\n\nMon 4-6, Tue 1-3, Fri 10:30-12\n\nLucy: Thu 1-3, SMAST-E 245\n\n\n\n\n\nDay\nTime\nLocation\n\n\n\n\nLectures\nTue & Thu\n10:30 am - 11:30 am\nSMAST-East 102 + 103\n\n\nLabs\nWed\n10:30 am - 12:00 pm\nSMAST-East 102 + 103"
   },
   {
     "objectID": "course-syllabus.html#course-description",

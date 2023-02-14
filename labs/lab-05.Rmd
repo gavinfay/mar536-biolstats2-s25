@@ -1,0 +1,601 @@
+---
+title: 'Biological Stats II : Lab 5'
+author: "Gavin Fay"
+date: "02/15/2023"
+output:
+  beamer_presentation:
+    colortheme: seagull
+    fonttheme: structurebold
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ISLR)
+library(boot)
+library(tidyverse)
+library(infer)
+library(broom)
+```
+
+## Lab schedule
+
+1/18: Introduction to R and R Studio, working with data\
+1/25: Intro to Visualization\
+2/01: Probability, linear modeling\
+2/08: Data wrangling, model summaries\
+**2/15: Simulation, Resampling**\
+2/22: Iteration\
+3/01: Creating functions, debugging\
+3/15: Flex: more modeling (brms, glmmTMB)\
+3/29: Spatial data or tidymodeling
+
+## Segue: Packages in R
+
+Installing packages:\
+`install.packages("packagename")`
+
+If in doubt, use the source:\
+`install.packages("packagename", type="source")`
+
+Installing packages from github:\
+`devtools::install_github("repositoryname")`
+
+Loading (attaching) packages into the workspace:\
+`library(packagename)`
+
+Some people use `require()` instead of `library()`.\
+Don't do this!\
+`require()` is basically `try(library())`
+
+Often description of a package and how to use its functions is in the form of a vignette.\
+`vignette()` lists available vignettes.\
+`vignette(packagename)` views the vignette for `packagename`.
+
+## Programming practices I
+
+Use projects (RStudio)
+
+Write scripts (or markdown files)
+
+Include whitespace in code\
+- blank lines, spaces in functions
+
+Use an editor with syntax highlighting
+
+Use a style guide
+
+Indent code
+
+Use meaningful object names
+
+## Programming practices II
+
+Test code\
+- Write smallest possible amount (e.g. 1 line).\
+- Knit early and often.\
+- Try simple examples that you know the answer to.\
+- Always assume that there will be an error somewhere.
+
+View results / objects (e.g. with `print()`).
+
+Plot results - are they what you expect?
+
+Be careful when copying sections of code and changing a variable name (it's super common to forget to change all occurrences).\
+- hint: use your text editor's "Find: Replace all" functionality.
+
+## Commenting
+
+`R` ignores everything on a line that follows a `#`
+
+Comment at the top of your script.\
+- What the script does, your name, email, date started.
+
+Comment before each function or section of code - What is the purpose of that section of code, what does it do?\
+- Comment the 'why' not the 'what'
+
+Comment throughout:\
+- whenever an unusual function is used\
+- whenever the code is hard to understand\
+- whenever an algorithm is particularly useful
+
+## Commenting out code
+
+When you make modifications to your code: - Copy the code that works then comment it out by prefixing it with `#`. - Change the new copy of the code.
+
+If you need to revert to the old code, just remove the `#` before each line ("uncomment").
+
+`ctrl+shift+C` is a shortcut in Rstudio to comment/uncomment large blocks of code.
+
+In `.Rmd` files, you can comment out blocks of the file using
+
+```{r, eval=FALSE}
+  <!---
+  Lines of text and code you want to not be included
+  --->
+```
+
+<!-- ## Segue: Calling other programs from `R` -->
+
+<!-- \begingroup -->
+
+<!-- \fontsize{9}{10}\selectfont -->
+
+<!-- We sometimes want to call other programs from within `R`.   -->
+
+<!-- e.g. fit a model written in another software package   -->
+
+<!-- One way to do this is to us the `system()` function to invoke a OS command.   -->
+
+<!-- ```{r prompt=FALSE,comment='',collapse=TRUE,eval=FALSE} -->
+
+<!-- system(command,wait=TRUE) -->
+
+<!-- ``` -->
+
+<!-- Note in Windows, `system` does not use a shell and there is a separate `shell()` -->
+
+<!-- e.g. -->
+
+<!-- ```{r prompt=FALSE,comment='',collapse=TRUE,eval=FALSE} -->
+
+<!-- shell(command,wait=TRUE) -->
+
+<!-- ``` -->
+
+<!-- `command` can be the call to your other program.   -->
+
+<!-- Note that you are opening a shell, so you will need to include in the command instructions to change to the right directory.   -->
+
+<!-- ```{r prompt=FALSE,comment='',collapse=TRUE,eval=FALSE} -->
+
+<!-- command <- 'cd ~/sandbox/ & echo hello world' -->
+
+<!-- system(command,wait=TRUE) -->
+
+<!-- ``` -->
+
+<!-- \endgroup -->
+
+<!-- ## Resampling recommended reading -->
+
+<!-- Fox, J. 2002. Bootstrapping Regression Models.   -->
+
+<!-- <http://statweb.stanford.edu/~tibs/sta305files/FoxOnBootingRegInR.pdf>   -->
+
+<!-- Efron,  B. and Tibshirani,  R. (1993) An Introduction to the Bootstrap.  Chapman and Hall,  New York, London. -->
+
+<!-- James et al. Lab 5 -->
+
+<!-- Zieffler, A. S., Harring, J. R., & Long, J. D. (2011). Comparing Groups: -->
+
+<!--      Randomization and Bootstrap Methods Using R. Hoboken, NJ: Wiley -->
+
+## Permutation tests
+
+```{=tex}
+\begingroup
+\fontsize{10}{11}\selectfont
+```
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+library(moderndive)
+null_evals <- evals |>
+  specify(score ~ gender) |>
+  hypothesize(null = "independence") |>
+  generate(reps = 1000, type = "permute") |>
+  calculate(stat = "diff in means",
+            order = c("male", "female"))
+null_evals_ci <- null_evals |>  
+  summarize(
+    l = quantile(stat, 0.025),
+    u = quantile(stat, 0.975)
+    )
+score_means <- evals |>  group_by(gender) |> 
+  summarize(avg_score = mean(score))
+dscore <- score_means[2,2]-score_means[1,2]
+
+percentile_ci <- null_evals |> 
+  get_confidence_interval(type = "percentile",
+                          level = 0.95)
+```
+
+```{=tex}
+\endgroup
+```
+
+------------------------------------------------------------------------
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE, out.width = "80%"}
+visualize(null_evals) +
+  shade_confidence_interval(endpoints = percentile_ci) +
+  geom_vline(xintercept = as.numeric(dscore),linetype = "dashed")
+```
+
+## Lab exercise 1 - permutation test
+
+Use the Laengelmavesi data in `../data/Laengelmavesi2.csv`
+
+a.  Obtain the data for just the lengths of perch and bream.\
+b.  Plot the distribution of lengths for both species, and calculate the mean lengths for both species.\
+c.  Conduct a permutation test to assess whether the difference in mean length between bream and perch is statistically clear.\
+d.  Plot the distribution for the test statistic under the null hypothesis of no difference in length, and indicate the true value for the test statistic relative to the two-tailed 95th percent of the null hypothesis distribution.\
+e.  What are your conclusions?
+
+## Auto dataset
+
+in 'ISLR' package
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,echo=FALSE,out.width="80%"}
+ggplot(Auto, aes(x=horsepower, y=mpg)) +
+  geom_point(col = "slateblue", alpha = 0.5, size = 4) +
+  theme_minimal() +
+  geom_smooth(method = "lm", col = "orange")
+```
+
+<!-- ## Lab exercise 1   -->
+
+<!-- Using the data in Laengelmavesi2.csv, find the estimate for the coefficient of variation (CV) of lengths of pike.      -->
+
+<!-- Use jackknifing to bias correct this estimate, and estimate the sampling error for the CV.    -->
+
+<!-- Plot a histogram of the jackknifed estimates for the CV, and add vertical lines corresponding to the upper and lower limits of a central 95% confidence interval.   -->
+
+## Bootstrapping
+
+Recall:
+
+-   Have some data $x_1\text{, } x_2\text{, }, \dots \text{, } x_n$ and we are computing a statistic.\
+-   Randomly draw $n$ values from the data *with replacement* (same value can be drawn multiple times).\
+-   Calculate statistic from new random pseudo-data.\
+-   Repeat a large number of times to obtain the distribution: $t_1,t_2,\dots,t_n$.\
+-   Resulting distribution is the bootstrap sampling distribution.\
+-   Compute standard deviation and 95 percent confidence intervals from this. Finished.
+
+## Performing generic case bootstrapping in `R`
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+Bootstrap estimates of slope from a linear model.
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,echo=TRUE}
+slope_bootstrap <- Auto |>
+  specify(formula = mpg ~ horsepower) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
+  calculate(stat = "slope")
+percentile_ci <- slope_bootstrap |> 
+  get_confidence_interval(type = "percentile",
+                          level = 0.95)
+percentile_ci
+```
+
+```{=tex}
+\endgroup
+```
+
+------------------------------------------------------------------------
+
+```{r}
+visualize(slope_bootstrap) + 
+  shade_confidence_interval(endpoints = percentile_ci)
+```
+
+<!-- ## Implementing BCA bootstrapping using `boot()` -->
+
+<!-- ```{=tex} -->
+<!-- \begingroup -->
+<!-- \fontsize{9}{10}\selectfont -->
+<!-- ``` -->
+<!-- ```{r prompt=FALSE,comment='',collapse=TRUE} -->
+<!-- lm.fn2 <- function(data,index) -->
+<!--   coef(lm(mpg~horsepower,data=data,subset=index))[2] -->
+<!-- boot_slope <- boot(Auto,statistic=lm.fn2,R=1000) -->
+<!-- boot.ci(boot_slope, conf=0.95, type= "all") -->
+<!-- ``` -->
+
+<!-- ```{=tex} -->
+<!-- \endgroup -->
+<!-- ``` -->
+
+## Residual bootstrap
+
+```{=tex}
+\begingroup
+\fontsize{10}{11}\selectfont
+```
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,echo=TRUE}
+slope <- coef(lm(mpg~horsepower,data=Auto))[2]
+lm1 <- lm(mpg~horsepower,data=Auto)
+automod <- augment(lm1, newdata = Auto) |> 
+  janitor::clean_names()
+automod
+```
+
+```{=tex}
+\endgroup
+```
+
+------------------------------------------------------------------------
+
+```{=tex}
+\begingroup
+\fontsize{10}{11}\selectfont
+```
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,echo=TRUE}
+autoboot <- automod |> specify(response = resid) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
+  #ungroup() |> 
+  mutate(fitted = automod$fitted) |> 
+  mutate(new_mpg = fitted + resid) |> 
+  mutate(horsepower = automod$horsepower)
+autoboot
+```
+
+```{=tex}
+\endgroup
+```
+
+------------------------------------------------------------------------
+
+```{=tex}
+\begingroup
+\fontsize{10}{11}\selectfont
+```
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,echo=TRUE}
+slope_autoboot <- autoboot |>
+  group_by(replicate) |> 
+  summarize(slope = coef(lm(new_mpg~horsepower))[2])
+slope_autoboot
+percentile_ci <- quantile(slope_autoboot$slope, c(0.025, 0.975))
+percentile_ci
+```
+
+```{=tex}
+\endgroup
+```
+## Lab exercise 2
+
+```{=tex}
+\begingroup
+\fontsize{10}{11}\selectfont
+```
+`hake.csv` contains abundance data for silver hake from tows in the 2015 NMFS spring bottom trawl survey.\
+a. Produce 5,000 bootstrapped estimates for the mean abundance per tow based on case resampling (5000 samples).\
+b. Compare the standard deviation of the bootstrapped estimates of the mean to the standard error of the mean from the original sample.\
+c. Compute an approximate 95 percent confidence interval for the mean based on the bootstrap, assuming normality. Compare this to the interval based on percentiles of the bootstrap sampling distribution.\
+d. *BONUS* Plot how the bootstrap confidence interval for the mean changes with the number of bootstrap samples. (100, 500, 1000, 2000, 5000, 10000)\
+\endgroup
+
+## Validation Approach
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+Recall:\
+Split data into training set and a validation (or hold-out) set.
+
+Fit model to training set, fitted model used to predict the responses for the observations in the validation set.
+
+Resulting validation set error rate (e.g. MSE for quantitative response) is an estimate of the test error rate.
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,R.options=library(ISLR)}
+set.seed(1)
+train <- sample(392,196)
+lm.fit <- lm(mpg ~ horsepower, data=Auto, subset=train)
+mean((Auto$mpg - predict(lm.fit, Auto))[-train]^2)
+lm.fit2 <- lm(mpg ~ poly(horsepower, 2), data=Auto, subset=train)
+mean((Auto$mpg - predict(lm.fit2, Auto))[-train]^2)
+lm.fit3 <- lm(mpg ~ poly(horsepower, 3), data=Auto, subset=train)
+mean((Auto$mpg - predict(lm.fit3, Auto))[-train]^2)
+```
+
+```{=tex}
+\endgroup
+```
+## Wages (from ISLR)
+
+```{r}
+ggplot(Wage, aes(y = wage, x = age)) +
+  geom_point(col = "slateblue", alpha = 0.1, size = 4) +
+  theme_minimal() +
+  geom_smooth(method = "lm", col = "orange")
+```
+
+<!-- ## Lab exercise 3 -->
+
+<!-- Consider the polynomial regression of wage on age. e.g. -->
+
+<!-- ```{r prompt=FALSE,comment='',collapse=TRUE,eval=FALSE} -->
+<!-- wage_lm.1 <- lm(wage~poly(age,4),data=Wage) -->
+<!-- ``` -->
+
+<!-- a.  Define a unique random number seed. Use the validation approach to estimate the test error rate for polynomials of order 2, 3, 4, 5, and 6.\ -->
+<!-- b.  Conduct the validation 20 times for each polynomial regression.\ -->
+<!-- c.  Plot the distribution (use boxplots) for the validation test error rate as a function of the degree of polynomial.\ -->
+<!-- d.  Based on the results, what order polynomial would you use? -->
+
+<!-- ## Cross-Validation of GLM, LOOCV -->
+
+<!-- \begingroup -->
+
+<!-- \fontsize{9}{10}\selectfont -->
+
+<!-- Make use of `cv.glm` in `boot`.   -->
+
+<!-- ```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,R.options=library(ISLR)} -->
+
+<!-- library(boot) -->
+
+<!-- glm.fit <- glm(mpg~horsepower,data=Auto) -->
+
+<!-- coef(glm.fit) -->
+
+<!-- cv.err <- cv.glm(Auto,glm.fit) -->
+
+<!-- cv.err$delta -->
+
+<!-- cv.error <- rep(NA,5) -->
+
+<!-- for (i in 1:5){ -->
+
+<!--   glm.fit <- glm(mpg~poly(horsepower,i),data=Auto) -->
+
+<!--   cv.error[i] <- cv.glm(Auto,glm.fit)$delta[1] -->
+
+<!-- } -->
+
+<!-- cv.error -->
+
+<!-- ``` -->
+
+<!-- \endgroup -->
+
+## k-Fold Cross-Validation
+
+Use `cv.glm()` with argument `K=k` to perform k-fold cross-validation.
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,R.options=library(ISLR)}
+set.seed(17)
+cv.error.10 <- matrix(0,nrow=10,ncol=10)
+for (isim in 1:10) {
+  cv.error <- map(1:10, 
+            ~cv.glm(Auto,
+            glm(mpg~poly(horsepower,.x),data = Auto),
+            K=10)$delta[1])
+  cv.error.10[isim,] <- as.numeric(cv.error)
+}
+cv.error.10
+```
+
+```{=tex}
+\endgroup
+```
+Setting K=n replicates LOOCV.
+
+<!-- ## k-fold cross-validation using custom function -->
+
+<!-- \begingroup -->
+
+<!-- \fontsize{9}{10}\selectfont -->
+
+<!-- Consider the logistic regression model of _Solea_ presence/absence as a function of salinity.   -->
+
+<!-- ```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,R.options=library(ISLR)} -->
+
+<!-- Solea <- read.table("Solea.txt", header = T) -->
+
+<!-- solea_glm.1 <- glm(Solea_solea ~ salinity, -->
+
+<!--                    data = Solea, family = binomial) -->
+
+<!-- sole_glm_fn <- function(train,validate) { -->
+
+<!--  glm.1 <- glm(Solea_solea ~ salinity,data = train, family = binomial) -->
+
+<!--  pred <- round(predict(glm.1,newdata=validate,type='response')) -->
+
+<!--  return(length(which((pred == validate$Solea_solea)==FALSE)) -->
+
+<!--          /nrow(validate)) -->
+
+<!-- } -->
+
+<!-- k=nrow(Solea) -->
+
+<!-- groups <- sample(rep(1:k,length=nrow(Solea)),replace=FALSE) -->
+
+<!-- cv.err <- rep(0,k) -->
+
+<!-- for (i in 1:k) { -->
+
+<!--    pick <- which(groups==i) -->
+
+<!--    cv.err[i] <- sole_glm_fn(Solea[-pick,],Solea[pick,])      -->
+
+<!-- } -->
+
+<!-- cv.err.k <- mean(cv.err) -->
+
+<!-- cv.err.k -->
+
+<!-- loo_cv <- cv.glm(Solea,solea_glm.1)$delta[1] -->
+
+<!-- loo_cv -->
+
+<!-- ``` -->
+
+<!-- \endgroup -->
+
+## Lab exercise 3, k-fold cross validation
+
+```{=tex}
+\begingroup
+\fontsize{9}{10}\selectfont
+```
+Using the Wage data set, evaluate the predictive ability of models for wages.\
+a. Define a unique random number seed. Use 10-fold cross validation to estimate the test error rate for models fitting a polynomial of age of order 2, 3, 4, 5, and 6.\
+b. Conduct the validation 20 times for each polynomial. Plot the distribution (use boxplots) for the validation test error rate as a function of the degree of polynomial. Based on the results, what order polynomial would you use?\
+<!-- c. How do the results compare to those from the validation approach (lab exercise 2)\ -->
+c. Use 5-fold cross-validation to compare the performance of models that include combinations of:\
+- a polynomial of age\
+- education level\
+- race\
+- industry\
+e. What model would you choose based on the test error rates?\
+f. *BONUS* How does the model chosen by 5-fold CV compare to that from using AIC as a model selection tool?
+
+<!-- ## Lab exercise 4, Cross-validation of classification -->
+
+<!-- \begingroup -->
+
+<!-- \fontsize{9}{10}\selectfont -->
+
+<!-- Linear discriminant analysis, species classification of Laengelmavesi based on length, weight and height.   -->
+
+<!-- ```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE} -->
+
+<!-- library(MASS) -->
+
+<!-- Laengel <- na.omit(read.csv(file="Laengelmavesi2.csv", -->
+
+<!--                  header=TRUE)) -->
+
+<!-- lda1 <- lda(species~.,data=Laengel) -->
+
+<!-- pred_lda1 <- predict(lda1, data=Laengel)$class -->
+
+<!-- vote <- pred_lda1==Laengel$species -->
+
+<!-- length(which(vote==FALSE))/nrow(Laengel) -->
+
+<!-- ``` -->
+
+<!-- How does the classification rate vary among species?   -->
+
+<!-- Write a function to perform cross-validation for this analysis. Compute the LOOCV, and 10 estimates for the 5-fold CV.   -->
+
+<!-- Use LOOCV to determine the predictive ability of analyses based on only one of either weight, length, or height. Compare these CV results to those of the full model. For species identification purposes, which of these measurements would you prioritize collecting?   -->
+
+**HINTS**\
+Write down the steps you need to take to perform the calculations.\
+Make use of existing code from earlier in the lab to help.\
+\endgroup
+
+## Lab schedule
+
+1/18: Introduction to R and R Studio, working with data\
+1/25: Intro to Visualization\
+2/01: Probability, linear modeling\
+2/08: Data wrangling, model summaries\
+2/15: Simulation, Resampling\
+**2/22: Iteration**
+3/01: Creating functions, debugging\
+3/15: Flex: more modeling (brms, glmmTMB)\
+3/29: Spatial data or tidymodeling
+
