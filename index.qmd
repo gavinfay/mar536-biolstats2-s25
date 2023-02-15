@@ -13,18 +13,18 @@ tbl-colwidths: [5,10,30,5,5,5,5,5,5,5]
 This page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses.
 
 ::: column-screen-inset-right
-<table style="width:96%;">
+<table style="width:89%;">
 <colgroup>
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 8%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -406,7 +406,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td><p>Wed, Mar 02</p></td>
+<td><p>Thu, Mar 02</p></td>
 <td><p>Principal Components Analysis</p></td>
 <td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
 <td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>

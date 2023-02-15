@@ -399,8 +399,8 @@ mean((Auto$mpg - predict(lm.fit3, Auto))[-train]^2)
 ```{r}
 ggplot(Wage, aes(y = wage, x = age)) +
   geom_point(col = "slateblue", alpha = 0.1, size = 4) +
-  theme_minimal() +
-  geom_smooth(method = "lm", col = "orange")
+  theme_minimal() #+
+  #geom_smooth(method = "lm", col = "orange") +
 ```
 
 <!-- ## Lab exercise 3 -->
