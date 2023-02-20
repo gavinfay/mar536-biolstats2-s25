@@ -143,7 +143,7 @@ I will draw from several sources. The primary text we will use is:
 
 Zuur, A.F., Ieno, E.N. and Smith, G.M. (2007). Analysing Ecological Data. Springer. 700p. Series: Statistics for Biology and Health. (available free ebook available through the UMass Amherst library system, or hard copy \~\$100 online).
 
-Support website for book (<http://highstat.com/index.php/analysing-ecological-data>)
+[Support website for book, including data & R code](https://www.highstat.com/index.php/books2?view=article&id=16&catid=18)
 
 The form for students to request access to UMass Amherst ebook collection is available at: <https://www.umass.edu/it/accounts/courtesy-accounts-non-employees-non-students-nens>
 
