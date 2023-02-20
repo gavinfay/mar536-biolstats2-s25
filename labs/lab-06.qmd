@@ -1,0 +1,948 @@
+---
+title: "MAR 536 Lab 6"
+date: "2023-02-22"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+logo: "../images/logo.png"
+format:
+  revealjs:
+    theme: slides.scss
+    multiplex: true
+    transition: fade
+    slide-number: true
+editor: source
+execute:
+  freeze: auto
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+#| include: false
+#library(MASS)
+library(tidyverse)
+library(countdown)
+library(broom)
+library(nycflights13)
+# library(knitr)
+# # library(skimr)
+# # library(Tmisc)
+# # library(magick)
+library(palmerpenguins)
+# library(kableExtra)
+# library(fontawesome)
+# # library(openintro)
+# library(GGally)
+# loans_full_schema <- loans_full_schema |>
+#   mutate(grade = factor(grade, ordered = TRUE))
+# loans <- loans_full_schema
+```
+
+## Lab schedule
+
+1/18: Introduction to R and R Studio, working with data\
+1/25: Intro to Visualization\
+2/01: Probability, linear modeling\
+2/08: Data wrangling, model summaries\
+2/15: Simulation, Resampling\
+**2/22: Iteration**\
+3/01: Creating functions, debugging\
+3/15: Flex: more modeling (brms, glmmTMB)\
+3/29: Spatial data or tidymodeling
+
+## Acknowledgements
+
+- [Dan Ovando]("https://twitter.com/DanOvand0")
+- [Maia Kapur]("https://twitter.com/KapurMaia") 
+- [Mine Çetinkaya-Rundel]("https://twitter.com/minebocek")  
+- [Alison Hill]("https://twitter.com/apreshill") 
+- [Megsie Siple]("https://twitter.com/margaretsiple")
+- [Sander Quyts]("https://sanderwuyts.com/en/home-2/")
+
+
+## Reducing code duplication
+
+- Easier to see the intent of your code, eyes are drawn to what’s different, not what stays the same.  
+
+- Easier to respond to changes, only need to make changes in one place, rather than every place you copied-and-pasted.  
+
+- Likely to have fewer bugs because each line of code is used in more places.  
+
+How? Iteration (today) & Functions (next wk)  
+
+## Iteration
+
+When you need to do the same thing to multiple inputs: repeating the same operation on different columns, or on different datasets.  
+
+Two main paradigms:  
+1. imperative programming  
+2. functional programming  
+
+
+## Pivot tables & loops
+
+```{r comment='',collapse=TRUE,eval=FALSE}
+library(palmerpenguins)
+for (species in unique(penguins$species)) {
+  mean_bodymass <-
+      mean(penguins$body_mass_g[penguins$species == species],
+           na.rm = TRUE)
+  cat(i, mean_bodymass, "\n")
+}
+```
+
+```{r eval=FALSE}
+with(penguins,tapply(body_mass_g, species, mean, na.rm = TRUE))   
+```
+
+
+```{r eval=FALSE}
+aggregate(penguins$body_mass_g, 
+          by=list(penguins$species), 
+          mean, na.rm = TRUE)
+```
+
+```{r eval=FALSE}
+penguins |> 
+  group_by(species) |> 
+  summarize(mean_bodymass = mean(body_mass_g, na.rm = TRUE))
+```
+
+## Looping  
+
+Vector operations can do many things and are quick.  
+But sometimes we need to do more.  
+
+Loops in `R` are of this form:  
+  
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=FALSE}
+for (i in set) {
+  #do something
+}
+```
+
+This is a very flexible structure, try the following:  
+  
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=FALSE}
+for (i in seq(from=1,to=5,by=1)) { print(i) }
+for (i in 1:100) { print(i) }
+for (i in c("1","N","L")) { print(i) }  
+```
+
+
+## Looping through species  
+
+Imagine we need to calculate the mean flipper and bill lengths for every species in the `palmerpenguins` data set.  
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=FALSE}
+for (species in unique(penguins$species)) {
+  mean_flipper_length <-
+      mean(penguins$flipper_length_mm[penguins$species == species])   
+  mean_bill_length <-
+      mean(penguins$bill_length_mm[penguins$species == species])   
+  cat(species, mean_flipper_length, mean_bill_length, "\n")
+}
+```
+
+NB: We already know better ways to do this using `summarize()`.  
+
+
+## Common way to use loops  
+
+```{r comment='',collapse=TRUE,eval=FALSE}
+#define the elements to loop over
+species <- sort(unique(penguins$species))
+
+#define how many times to do the loop
+nspecies <- length(species)
+
+#create a place to store results
+mean_mass <- vector(length=nspecies)
+
+#get loopy
+for (isp in 1:nspecies) {
+  species.data <- penguins[penguins$species==species[isp], ]
+  mean_mass[isp] <- mean(species.data$body_mass_g, na.rm = TRUE)
+  print(mean_mass[isp])
+  cat("Running species ", isp,"\n")
+}
+```
+
+A lot of this code is book-keeping rather than the thing we want to do.  
+
+## `purrr`
+
+`for` loops are simple, but they require lots of code that is mostly book-keeping.  
+
+Attention is then on this rather than the action the code is doing.  
+
+Functional programming abstracts the book-keeping of the loop to keep attention on the code that matters.  
+
+Series of `apply` functions in base R. (`apply`, `tapply`, `sapply`, `lapply`)  
+These all have slightly differences about how they are used.  
+
+`purrr` package is the tidyverse solution to the apply functions.  
+
+
+## Basics of `purrr`
+
+The `map` function is the workhorse of `purrr`.  
+e.g. 
+```{r}
+shades <- colors()[1:5]  
+for (i in seq_along(shades)) { 
+  print(shades[i])  
+}
+```
+
+```{r}
+a <-  map(shades, print)
+```
+
+
+
+
+## `map` {.small}
+
+Basic syntax:
+
+```{r eval=FALSE}
+map("Lists to apply function to",  
+    "Function to apply across lists",
+    "Additional parameters")
+```
+
+`map` by default returns a list. However we can specify the type of output:  
+
+`map_dbl` returns real numbers  
+`map_lgl` returns logicals  
+`map_chr` returns characters  
+`map_int` returns integers  
+`map_df`  returns a dataframe    
+
+![](figs/map.png)
+
+[cheatsheat: github.com/rstudio/cheatsheets/blob/master/purrr.pdf](https://github.com/rstudio/cheatsheets/blob/master/purrr.pdf)
+
+
+## Shortcuts
+
+```{r eval=FALSE}
+models <- penguins %>% 
+  split(.$species) %>% 
+  map(function(df) lm(body_mass_g ~ flipper_length_mm, data = df))
+```
+
+The syntax for creating an anonymous function in R is quite verbose so purrr provides a convenient shortcut: a one-sided formula.  
+
+```{r eval=FALSE}
+models <- penguins %>%
+  split(.$species) %>% 
+  map(~lm(body_mass_g ~ flipper_length_mm, data = .))
+  #The 1st ~ is shorthand for a function
+  #The '.' shows where the stuff passed to map gets used.
+```  
+
+
+## Shortcuts 2
+
+Extracting summary statistics
+
+```{r eval=FALSE}
+models |>
+  map(summary) |> 
+  map_dbl(pluck, "r.squared")
+```
+
+```{r eval=FALSE}
+models |>
+  map(summary) |> #run 'summary() for each model
+  map_dbl(~.$r.squared) # find the R-squared
+```
+
+Extracting named components is a common operation, so can use a string instead.
+
+```{r eval = FALSE, warning = FALSE}
+models |>
+  map(summary) |> #run 'summary() for each model
+  map_dbl("r.squared") #find the R-squared 
+```
+
+
+## Exercise 1
+
+Write code that uses one of the map functions to:  
+
+a. Compute the mean of every numeric column in `palmerpenguins::penguins`.  
+
+<!-- ```{r} -->
+<!-- map_dbl(penguins |> select_if(is.numeric), mean, na.rm = TRUE) -->
+<!-- ``` -->
+
+b. Determine the type of each column in `nycflights13::flights`.  
+
+<!-- ```{r} -->
+<!-- map_chr(nycflights13::flights, typeof) -->
+<!-- ``` -->
+
+c. Compute the number of unique values in each column of `palmerpenguins::penguins`.  
+
+<!-- ```{r} -->
+<!-- map_int(penguins, ~length(unique(.))) -->
+<!-- map_int(penguins, n_distinct) -->
+<!-- ``` -->
+
+
+```{r, echo=FALSE}
+countdown(minutes = 5)
+```
+
+
+## Extending to multiple input lists {.small}
+
+`map2` allows you to map over two sets of inputs.  
+
+```{r eval=FALSE}
+map2(list1, list2, ~function(.x,.y), ...)
+```
+
+e.g. generate 3 sets of 5 normal random variables, with the means & standard deviations different in each set.  
+```{r}
+mu <- list(5, 10, -3)
+sigma <- list(1, 5, 10)
+map2(mu, sigma, rnorm, n = 5) |> str()
+```
+
+![](figs/map2.png)
+
+
+##  More than 2 inputs, use `pmap` {.small}
+
+e.g. same problem as previous, but now n varies in each set.  
+
+```{r}
+n <- list(1, 3, 5)
+mu <- list(5, 10, -3)
+sigma <- list(1, 5, 10)
+
+args1 <- list(mean = mu, sd = sigma, n = n)
+args1 |>
+  pmap(rnorm) |>
+  str()
+```
+
+Safest to use named arguments with `pmap`, as it will do positional matching if not.  
+
+![](figs/pmap.png)
+
+
+## Debugging using `safely` {.small}
+
+Handling errors can be tricky to diagnose with map.  
+It's not as obvious when/where things break.  
+
+Can use `safely()`. e.g.  
+
+```{r}
+safe_log <- safely(log, otherwise = NA_real_) 
+#safe_log return a NA if log() returns error, plus error msg.  
+list("a", 10, 100) |>
+  map(safe_log) |>  #<<
+  transpose() |>
+  simplify_all()
+```
+
+
+## Exercise 2 {.small}
+
+1. Create a data frame of samples from the `palmerpenguins::penguins` dataset, that contains 3 Adelies, 6 Gentoos, and 4 Chinstraps.  
+**(your new data frame will have 13 rows, with 3, 6, and 4 of the three species)**
+**(hint: use a nested dataframe, `map2()`, and `slice_sample()`)**
+
+2. We have data from several years of crab surveys. The data for each year is contained in separate ".csv" files.  
+
+We would like to read these data into R, and combine them into a single data frame so we can inspect and plot them.  
+
+a. Write code to read these data into R, and combine them into a single dataframe. 
+
+b-d. Then produce 3 plots (of your choice) summarizing the full dataset. Include "b", "c", and "d" in the title of your plots.  
+
+For hints see next slide.  
+
+<!-- ## Crab example. {.small} -->
+
+<!-- ```{r crabs, warning = FALSE, comment=FALSE, message=FALSE} -->
+<!-- files <- dir(path = "../data/crabs",  -->
+<!--              pattern = "*.csv",  -->
+<!--              full.names = TRUE, -->
+<!--              recursive = TRUE) -->
+<!-- files -->
+<!-- crab_data <- map_df(files, read_csv) -->
+<!-- crab_data -->
+<!-- ``` -->
+
+<!-- ## Crab example {.small} -->
+<!-- ```{r collapse = TRUE}  -->
+<!-- crab_plot <- ggplot(crab_data) + -->
+<!--   aes(x = carcinus,  -->
+<!--       y = cancer,  -->
+<!--       group = year) + -->
+<!--   geom_point() + -->
+<!--   facet_wrap(~year) + -->
+<!--   theme_minimal() + -->
+<!--   NULL -->
+<!-- crab_plot -->
+<!-- ``` -->
+
+
+---
+
+_Hints for exercise 2:_  
+
+- you can use the following to get an object containing a list of files in a folder  
+```{r manyfiles, collapse = TRUE}
+data_path = "../data/crabs"  # directory where the files are located
+files <- dir(path = data_path, pattern = "*.csv",
+             full.names = TRUE) # names of files ending in ".csv"
+files
+```
+- look at the help for 'dir' for additional functionality  
+
+
+## Steller sea lion pups revisited  {.small}
+
+We have data on Steller sea lion pup counts over time at a bunch of rookeries in Alaska.  
+
+```{r out.width="60%", retina = 3, echo= FALSE}
+knitr::include_graphics("figs/04_transfoRm/Slide5.png")
+```
+
+The number of data points for each rookery is not the same.  
+
+We want to investigate the annual trend in counts for each rookery.  
+We want to plot the slopes of the regressions using a histogram.  
+We want to obtain confidence intervals of the slope estimates using bootstrapping.  
+
+
+---
+
+```{r collapse=TRUE}
+ssl <- read_csv("../data/SSLpupcounts.csv")
+slice(ssl,1:3)
+ssl_long <- ssl |> 
+  pivot_longer(names_to = "year",
+               values_to = "count",
+               -sitename) |> 
+  drop_na() |> 
+  mutate(year = as.numeric(year)) |> 
+  filter(year >= 2000,
+         count > 0) |>
+  mutate(log_count = log(count),
+         year2 = year-2000) |> 
+  I()
+```
+
+--- 
+
+```{r collapse=TRUE}
+ssl_models <- ssl_long |>
+  group_by(sitename) |> 
+  nest() |> 
+  mutate(model = map(data, ~lm(log_count ~ year2, data = .))) |> 
+  mutate(results = map(model, tidy))
+ssl_models
+```
+
+---
+
+```{r collapse=TRUE}
+ssl_slopes <- ssl_models |> 
+  select(sitename, results) |>
+  unnest() |>
+  filter(term == "year2")
+ssl_slopes
+```
+
+---
+
+::: {.panel-tabset}
+### Plot
+```{r collapse=TRUE, echo=FALSE}
+plot1 <- ggplot(ssl_slopes) +
+  aes(x = estimate) +
+  geom_histogram(col="white") +
+  theme_minimal()
+plot1
+```
+### Code
+```{r collapse=TRUE, eval=FALSE}
+plot1 <- ggplot(ssl_slopes) +
+  aes(x = estimate) +
+  geom_histogram(col="white") +
+  theme_minimal()
+plot1
+```
+:::
+
+--- 
+
+::: {.panel-tabset}
+### Plot
+```{r collapse=TRUE, echo=FALSE}
+plot2 <- ggplot(ssl_slopes) +
+  aes(x = fct_reorder(sitename, estimate), y= estimate) +
+  geom_point() +
+  coord_flip() +
+  theme_minimal()
+plot2
+```
+### Code
+```{r collapse=TRUE, eval=FALSE}
+plot2 <- ggplot(ssl_slopes) +
+  aes(x = fct_reorder(sitename, estimate), y= estimate) +
+  geom_point() +
+  coord_flip() +
+  theme_minimal()
+plot2
+```
+:::
+
+## residual bootstrapping {.small}
+
+resample residuals from the original models to obtain bootstrapped confidence intervals of the slopes.  
+
+```{r collapse = TRUE}
+nboot <- 100
+# first extract a table of fitted values and residuals using augment
+ssl_boot <- ssl_models |>
+  mutate(tbl = map(model, augment)) |> 
+  select(sitename, tbl)
+ssl_boot
+```
+
+## residual bootstrapping {.small}
+
+```{r collapse = TRUE}
+nboot <- 100
+# first extract a table of fitted values and residuals using augment
+ssl_boot <- ssl_models |>
+  mutate(tbl = map(model, augment)) |> 
+  select(sitename, tbl)|> 
+  unnest(cols=c(tbl)) |> 
+  janitor::clean_names() |> 
+  ungroup() |>
+  I()
+ssl_boot
+```
+
+
+## residual bootstrapping {.small}
+
+```{r collapse=TRUE}
+# we'll do resampling from the residuals for each year within each rookery
+# rather than getting complicated with nested lists, we'll use sample_frac() to do the resamples
+tosample <- ssl_boot |> 
+  select(sitename, resid) |> 
+  group_by(sitename)
+resamples <-
+   map_dfr(seq_len(nboot), ~slice_sample(tosample, prop = 1, replace = TRUE)) |>
+   ungroup() |> 
+   mutate(replicate = rep(1:nboot, each = nrow(tosample)))
+resamples
+```
+
+---
+
+`resamples` contains our bootstraps.
+Let's append them to the data frame so we can compute the new data and re-fit the models for each case.  
+
+```{r collapse=TRUE}
+ssl_bootmod <- map_dfr(seq_len(nboot), ~I(ssl_boot)) |>
+  select(-resid, -sitename) |> 
+  bind_cols(resamples) |> 
+  mutate(log_count = fitted + resid) |> 
+  group_by(sitename, replicate) |> 
+  nest() # now have a data frame with a row for each site & replicate
+ssl_bootmod
+```
+
+---
+
+```{r collapse=TRUE}
+ssl_bootmod <- ssl_bootmod |>
+  mutate(model = map(data, ~lm(log_count ~ year2, data = .))) |>  #same code as before to run the models
+  mutate(coef = map(model, coef)) |> 
+  mutate(slope = map_dbl(coef, pluck, 2)) |> 
+    ungroup()
+ssl_bootmod
+```
+
+---
+
+```{r collapse=TRUE}
+ssl_bootslopes <- ssl_bootmod |>
+  group_by(sitename) |> #pull out summaries of the distribution for the slope estimates for plotting
+  summarize(med = median(slope),
+            lower = quantile(slope, 0.025),
+            upper = quantile(slope, 0.975)) |> 
+  I()
+ssl_bootslopes
+```
+
+---
+
+::: {.panel-tabset}
+### Plot
+```{r echo=FALSE}
+p1 <- ggplot(ssl_bootslopes) +
+  aes(x = fct_reorder(sitename, med), y = med) +
+  geom_point() +
+  geom_errorbar(aes(ymin=lower, ymax=upper), width= 0.2) + #add the bootstrap confidence interval
+  coord_flip() +
+  theme_minimal() +
+  labs(y = "slope",
+       x = "") +
+  NULL #})
+p1
+```
+### Code
+```{r echo=TRUE}
+p1 <- ggplot(ssl_bootslopes) +
+  aes(x = fct_reorder(sitename, med), y = med) +
+  geom_point() +
+  geom_errorbar(aes(ymin=lower, ymax=upper), width= 0.2) + #add the bootstrap confidence interval
+  coord_flip() +
+  theme_minimal() +
+  labs(y = "slope",
+       x = "") +
+  NULL #})
+p1
+```
+:::
+
+
+<!-- ## Problem 3   -->
+
+<!-- We are interested in creating a standardized time series of CPUE for a fishery, by 'removing' the effect of variables that affect catch rates such that we have an index of abundance.   -->
+
+<!-- We have many possible variables.   -->
+
+<!-- We would like to compare models that use different combinations of these variables.   -->
+
+<!-- Let's look at spring survey data for black sea bass.   -->
+<!-- We'll fit a few GAMs of catch per tow with different numbers of covariates.   -->
+<!-- ```{r} -->
+<!-- bsb <- read_csv("../data/neus_bts.csv") |>  -->
+<!--   filter(comname == "BLACK SEA BASS", -->
+<!--          #biomass > 0, -->
+<!--          season == "SPRING", -->
+<!--          depth <= 200) -->
+<!-- bsb -->
+
+<!-- # make a list of model formulae using accumulate -->
+<!-- terms <- rev(names(bsb)[c(5:8)]) -->
+<!-- parts <- str_c("s(",terms,")") -->
+<!-- forms <- map(accumulate(parts, paste, sep = " + ", .init = "biomass ~ factor(year)"), as.formula) -->
+
+<!-- #use modelr::fitwith to fit the gam function for each of the model formulae -->
+<!-- bsb_gams <- enframe(forms, name = "id", value = "formula") |> -->
+<!--   mutate(model = modelr::fit_with(bsb, mgcv::gam, .formulas = forms, .family=tw()), -->
+<!--          aic = map_dbl(model, AIC)) #, -->
+<!--          #p1 = map(model, gratia::draw)) -->
+<!--          #p1 = map(model, plot, pages=1, all.terms = TRUE, shade.col = gray(0.8), shade = TRUE)) -->
+<!-- bsb_gams2 <- bsb_gams |>  -->
+<!--   slice(which.min(bsb_gams$aic)) |>  -->
+<!--   I() -->
+<!-- plot(bsb_gams2$model[[1]], pages=1,  -->
+<!--      all.terms = TRUE, shade.col = gray(0.8), shade = TRUE) -->
+
+<!-- ``` -->
+
+
+## `accumulate()` {.small}
+
+We sometimes like to use the output of one iteration as input to the next.  _e.g._ model population dynamics over time, iterated function is annual population update.  
+
+$$N_{t+1} = \lambda N_{t} - h_{t}$$
+
+Can achieve this using `accumulate()`.  
+
+```{r warning = FALSE}
+pop_update <- function(N, h=0, lambda = 1.05) lambda*N - h
+h <- rep(10,10)
+initN <- 100
+accumulate(h, pop_update, .init = initN, lambda = 1.05)
+```
+
+```{r, warning = FALSE}
+accumulate(letters[1:10], paste, sep = " + ")
+```
+
+
+## Population projections {.smaller}
+
+Status for endangered species are often based on a risk evaluation of population projections. We want to project population dynamics forward in time given uncertainty in future dynamics. We want to do this lots of times to quantify the risk of extinction.  
+
+Current (2022) estimates of the North Atlantic Right Whale population are 340 individuals. The population has been declining on average around 3% per year since 2011. What is the year in which the probability that the right whale population drops below 100 individuals is at least 50% (`P(N<100)>=0.5`)?  
+
+```{r}
+nsim <- 100
+nyr <- 100
+initN <- 340
+sd_proc <- 0.1
+lambda <- 0.97
+growth_rates <- map(seq_len(nsim), ~rlnorm(nyr,log(lambda),sd_proc))
+
+# population model
+pop_update <- function(N, growth_rate = 1) N*growth_rate
+
+# population projection for each time series of process errors
+pop_proj <- tibble(sim = seq_len(nsim)) |>
+  mutate(popsize = map(growth_rates,~accumulate(., pop_update, 
+                                                .init = initN))) |>
+  unnest(cols = c(popsize)) |>
+  mutate(year = rep(2022:2122, nsim))
+pop_proj
+```
+
+---
+
+::: {.panel-tabset}
+### Plot
+```{r echo=FALSE}
+pop_proj |>
+  ggplot() +
+  aes(x = year,
+      y = popsize,
+      group = sim) +
+  geom_line(alpha = 0.3, col=gray(0.5)) +
+  theme_minimal()
+```
+### Code
+```{r eval=FALSE}
+pop_proj |>
+  ggplot() +
+  aes(x = year,
+      y = popsize,
+      group = sim) +
+  geom_line(alpha = 0.3, col=gray(0.5)) +
+  theme_minimal()
+```
+:::
+
+---
+
+::: {.panel-tabset}
+### Plot
+```{r echo = FALSE}
+library(ggdist)
+pop_proj |>
+  group_by(year) |>
+  median_qi(popsize, .width = c(.25, .5, .95)) |>
+  ggplot() +
+  aes(x = year,
+      y = popsize,
+      ymin = .lower,
+      ymax = .upper) +
+  geom_lineribbon() +
+  scale_fill_brewer() +
+  theme_minimal()
+```
+
+### Code
+```{r eval = FALSE}
+library(ggdist)
+pop_proj |>
+  group_by(year) |>
+  median_qi(popsize, .width = c(.25, .5, .95)) |>
+  ggplot() +
+  aes(x = year,
+      y = popsize,
+      ymin = .lower,
+      ymax = .upper) +
+  geom_lineribbon() +
+  scale_fill_brewer() +
+  theme_minimal()
+```
+:::
+
+---
+
+```{r}
+below_thresh <- pop_proj |>
+  group_by(year) |>
+  summarize(prob_100 = mean(popsize<100))
+yr_crash <- filter(below_thresh, prob_100 > 0.5) |> slice(1)
+yr_crash
+below_thresh
+
+```
+
+---
+
+:::{.panel-tabset}
+### Plot
+```{r echo=FALSE}
+library(ggrepel)
+below_thresh |>
+  ggplot() +
+  aes(x = year,
+      y = prob_100) +
+  geom_point() +
+  geom_line() +
+  labs(x = "year",
+       y = "probability < 100 animals") +
+  ylim(0,1) +
+  theme_minimal() +
+  geom_vline(data = yr_crash, aes(xintercept = year), lty = 2) +
+  geom_hline(data = yr_crash, aes(yintercept = prob_100), lty = 2) +
+  geom_label_repel(data = yr_crash, aes(label = year), nudge_x = 6)
+```
+### Code
+```{r eval=FALSE}
+library(ggrepel)
+below_thresh |>
+  ggplot() +
+  aes(x = year,
+      y = prob_100) +
+  geom_point() +
+  geom_line() +
+  labs(x = "year",
+       y = "probability < 100 animals") +
+  ylim(0,1) +
+  theme_minimal() +
+  geom_vline(data = yr_crash, aes(xintercept = year), lty = 2) +
+  geom_hline(data = yr_crash, aes(yintercept = prob_100), lty = 2) +
+  geom_label_repel(data = yr_crash, aes(label = year), nudge_x = 6)
+```
+:::
+
+## The `while` loop  
+
+Occasionally we don’t know how many times to execute the loop.  
+
+Can use a `while` loop, which executes a series of statements for as long as some condition remains true.
+
+The general syntax is:
+  
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=FALSE}
+while (condition) {
+  #statements
+}
+```
+
+
+## The `while` loop  
+
+If there are 7,500 snow leopards in year 2023 and they are declining at 5% per year, in what year will they fall below 500 individuals?
+
+```{r prompt=FALSE,comment='',collapse=TRUE}
+leopard.loop <- function(N, year=2023) {
+  while (N>=500) {
+    N <- N*0.95
+    year <- year+1
+  }
+  return(year)
+}
+leopard.loop(N=7500)
+```
+
+Pro-tip: when you end up in an infinite loop with no stopping point, press `<ESC>` to stop it running!
+
+
+## Exercise 3: Snow Lepoards
+
+Assume that the annual growth rate of the snow leopard population is lognormally distributed with a mean of 0.95 and log-standard deviation of 0.1.   
+
+Use a `while` loop (hint: re-use the code on the previous slide and add the annual growth rate change to the population update equation), and plot a distribution over 1,000 simulations of the year in which the population falls below 500 animals.  
+
+<!-- ```{r prompt=FALSE,comment='',collapse=TRUE} -->
+<!-- leopard.loop <- function(N, year=2023) { -->
+<!--   while (N>=500) { -->
+<!--     N <- N*0.95*rlnorm(1,0,0.1) -->
+<!--     year <- year+1 -->
+<!--   } -->
+<!--   return(year) -->
+<!-- } -->
+<!-- leopard.loop(N=7500) -->
+<!-- ``` -->
+
+
+## Notes on `for` loops  {.small}
+
+`for()` loops are used in `R` code much less often than in compiled languages.  
+
+Code that takes a ‘whole object’ view is likely to be both clearer and faster in `R`.  
+
+Other looping facilities include `repeat`, `apply`, `tapply`, `lapply`, `sapply`.  
+
+The `break` statement can be used to terminate any loop, possibly abnormally.  
+This is the only way to terminate repeat loops.  
+
+The `next` statement can be used to discontinue one particular cycle and skip to the “next”.  
+
+
+## Improving speed of loops {.smaller}
+
+Looping over very large data sets can sometimes become slow in `R`. Overcome by:
+
+1. create storage objects apriori (don't grow objects). 
+2. eliminate certain operations in loops or  
+3. avoidg loops over the data-intensive dimension in an object altogether.   
+
+- the latter can be achieved by performing mainly vector-to-vecor or matrix-to-matrix computations (often > 100x faster than `for()` or `apply()` or `map()`).  
+ 
+Make use of existing speed-optimized `R` functions (e.g.: `rowSums`, `rowMeans`, `table`) or write your own fast functions.  
+
+```{r prompt=FALSE,comment='',collapse=TRUE}
+xdat <- matrix(rnorm(1000000), 100000, 10)
+system.time(x_mean <- apply(xdat, 1, mean))
+system.time(x_mean <- rowMeans(xdat))
+```
+
+
+<!-- ## Lab exercise X/N {.small} -->
+
+<!-- ```{r collapse = TRUE} -->
+<!-- set.seed(24601) -->
+<!-- xdat <- matrix(rnorm(1000000), nrow = 100000, ncol = 10) -->
+<!-- ``` -->
+
+<!-- Use `system.time()` to compare the speed for calculating the standard deviation of each row of the matrix `xdat` using:   -->
+<!-- a. a `for()` loop   -->
+<!-- b. `apply()`   -->
+<!-- c. `map()` -->
+<!-- d. vector-based calculations (_hint_ use `rowSums` and `rowMeans`)   -->
+
+<!-- ```{r} -->
+<!-- countdown(minutes = 8, font_size = "2em") -->
+<!-- ``` -->
+
+
+## Lab Exercise 4/4 {.smaller}
+
+`data/eukaryotes.tsv` contains a NCBI Eukaryotic genome dataset, with basic information about the genomic content of all eukaryotes that were uploaded to the NCBI Genome database.  
+It contains accession numbers, information about the quality of the genome and stats such a average genome size and GC-content.  
+Use `glimpse()` and other data exploration to get familiar with the data. Then use `map_*` functions to answer the following:  
+
+1. How many different organisms are there in the dataset?  
+2. How many different institutes (centers) submitted a genome?  
+3. The data seem to be grouped in groups. How many groups are there?  
+4. How many sub groups are there?  
+5. How many different organisms are there per group?
+6. How many different institutes (centers) submitted a genome per group?
+7. How many sub groups are there per group?
+
+
+## Lab Exercise 4 continued... {.small}
+
+We might hypothesisze that "The bigger the size of a genome, the higher the number of proteins".  
+
+8. Fit a linear model of `log10_proteins ~ log10_size_mb` for each group.  
+9. Extract the `R^2` for each model and print these for each group.  
+10. Assess the validity of your modeling approach.  
+11. Obtain and plot predictions for each group for genome sizes 0.5, 123, and 500 MB.  
+12. How do you interpret the results in terms of the original hypothesis?  
+
+_BONUS_ use residual bootstrapping to obtain distributions for the predictions made in part `11`.  

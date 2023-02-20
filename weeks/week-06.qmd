@@ -1,0 +1,29 @@
+---
+title: "Week 6"
+subtitle: "Iteration, Generalized Additive Modeling"
+editor: visual
+---
+
+**NO CLASS ON TUESDAY THIS WEEK AS THE UNIVERSITY IS ON A MONDAY SCHEDULE**
+
+## Prepare
+
+📖 Thu: Read Chapter 7 Zuur et al. 2007.
+
+## Participate
+
+⌨️ [Lab 6 - Iteration](../labs/lab-06.html) (just the exercise)
+
+-   Data sets for the lab can be found in the [class-data folder](#class-data).
+
+🖥️ [Lecture 10 - Generalized Additive Models](../lectures/lec-10.pdf)
+
+## Practice
+
+Lab 6 exercise is due before lab on Wednesday Mar 01.
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/ "Course schedule") ⏎
+:::

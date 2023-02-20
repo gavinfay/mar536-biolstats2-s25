@@ -3197,5 +3197,257 @@
     "title": "Course Data Sets",
     "section": "",
     "text": "A folder with all our class data sets from labs and lecture examples can be found here."
+  },
+  {
+    "objectID": "labs/lab-06.html#lab-schedule",
+    "href": "labs/lab-06.html#lab-schedule",
+    "title": "MAR 536 Lab 6",
+    "section": "Lab schedule",
+    "text": "Lab schedule\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Simulation, Resampling\n2/22: Iteration\n3/01: Creating functions, debugging\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling"
+  },
+  {
+    "objectID": "labs/lab-06.html#acknowledgements",
+    "href": "labs/lab-06.html#acknowledgements",
+    "title": "MAR 536 Lab 6",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\n\nDan Ovando\nMaia Kapur\nMine Çetinkaya-Rundel\n\nAlison Hill\nMegsie Siple\nSander Quyts"
+  },
+  {
+    "objectID": "labs/lab-06.html#reducing-code-duplication",
+    "href": "labs/lab-06.html#reducing-code-duplication",
+    "title": "MAR 536 Lab 6",
+    "section": "Reducing code duplication",
+    "text": "Reducing code duplication\n\nEasier to see the intent of your code, eyes are drawn to what’s different, not what stays the same.\nEasier to respond to changes, only need to make changes in one place, rather than every place you copied-and-pasted.\nLikely to have fewer bugs because each line of code is used in more places.\n\nHow? Iteration (today) & Functions (next wk)"
+  },
+  {
+    "objectID": "labs/lab-06.html#iteration",
+    "href": "labs/lab-06.html#iteration",
+    "title": "MAR 536 Lab 6",
+    "section": "Iteration",
+    "text": "Iteration\nWhen you need to do the same thing to multiple inputs: repeating the same operation on different columns, or on different datasets.\nTwo main paradigms:\n1. imperative programming\n2. functional programming"
+  },
+  {
+    "objectID": "labs/lab-06.html#pivot-tables-loops",
+    "href": "labs/lab-06.html#pivot-tables-loops",
+    "title": "MAR 536 Lab 6",
+    "section": "Pivot tables & loops",
+    "text": "Pivot tables & loops\n\nlibrary(palmerpenguins)\nfor (species in unique(penguins$species)) {\n  mean_bodymass <-\n      mean(penguins$body_mass_g[penguins$species == species],\n           na.rm = TRUE)\n  cat(i, mean_bodymass, \"\\n\")\n}\n\n\nwith(penguins,tapply(body_mass_g, species, mean, na.rm = TRUE))   \n\n\naggregate(penguins$body_mass_g, \n          by=list(penguins$species), \n          mean, na.rm = TRUE)\n\n\npenguins |> \n  group_by(species) |> \n  summarize(mean_bodymass = mean(body_mass_g, na.rm = TRUE))"
+  },
+  {
+    "objectID": "labs/lab-06.html#looping",
+    "href": "labs/lab-06.html#looping",
+    "title": "MAR 536 Lab 6",
+    "section": "Looping",
+    "text": "Looping\nVector operations can do many things and are quick.\nBut sometimes we need to do more.\nLoops in R are of this form:\n\nfor (i in set) {\n  #do something\n}\n\nThis is a very flexible structure, try the following:\n\nfor (i in seq(from=1,to=5,by=1)) { print(i) }\nfor (i in 1:100) { print(i) }\nfor (i in c(\"1\",\"N\",\"L\")) { print(i) }"
+  },
+  {
+    "objectID": "labs/lab-06.html#looping-through-species",
+    "href": "labs/lab-06.html#looping-through-species",
+    "title": "MAR 536 Lab 6",
+    "section": "Looping through species",
+    "text": "Looping through species\nImagine we need to calculate the mean flipper and bill lengths for every species in the palmerpenguins data set.\n\nfor (species in unique(penguins$species)) {\n  mean_flipper_length <-\n      mean(penguins$flipper_length_mm[penguins$species == species])   \n  mean_bill_length <-\n      mean(penguins$bill_length_mm[penguins$species == species])   \n  cat(species, mean_flipper_length, mean_bill_length, \"\\n\")\n}\n\nNB: We already know better ways to do this using summarize()."
+  },
+  {
+    "objectID": "labs/lab-06.html#common-way-to-use-loops",
+    "href": "labs/lab-06.html#common-way-to-use-loops",
+    "title": "MAR 536 Lab 6",
+    "section": "Common way to use loops",
+    "text": "Common way to use loops\n\n#define the elements to loop over\nspecies <- sort(unique(penguins$species))\n\n#define how many times to do the loop\nnspecies <- length(species)\n\n#create a place to store results\nmean_mass <- vector(length=nspecies)\n\n#get loopy\nfor (isp in 1:nspecies) {\n  species.data <- penguins[penguins$species==species[isp], ]\n  mean_mass[isp] <- mean(species.data$body_mass_g, na.rm = TRUE)\n  print(mean_mass[isp])\n  cat(\"Running species \", isp,\"\\n\")\n}\n\nA lot of this code is book-keeping rather than the thing we want to do."
+  },
+  {
+    "objectID": "labs/lab-06.html#purrr",
+    "href": "labs/lab-06.html#purrr",
+    "title": "MAR 536 Lab 6",
+    "section": "purrr",
+    "text": "purrr\nfor loops are simple, but they require lots of code that is mostly book-keeping.\nAttention is then on this rather than the action the code is doing.\nFunctional programming abstracts the book-keeping of the loop to keep attention on the code that matters.\nSeries of apply functions in base R. (apply, tapply, sapply, lapply)\nThese all have slightly differences about how they are used.\npurrr package is the tidyverse solution to the apply functions."
+  },
+  {
+    "objectID": "labs/lab-06.html#basics-of-purrr",
+    "href": "labs/lab-06.html#basics-of-purrr",
+    "title": "MAR 536 Lab 6",
+    "section": "Basics of purrr",
+    "text": "Basics of purrr\nThe map function is the workhorse of purrr.\ne.g. \n\nshades <- colors()[1:5]  \nfor (i in seq_along(shades)) { \n  print(shades[i])  \n}\n## [1] \"white\"\n## [1] \"aliceblue\"\n## [1] \"antiquewhite\"\n## [1] \"antiquewhite1\"\n## [1] \"antiquewhite2\"\n\n\na <-  map(shades, print)\n## [1] \"white\"\n## [1] \"aliceblue\"\n## [1] \"antiquewhite\"\n## [1] \"antiquewhite1\"\n## [1] \"antiquewhite2\""
+  },
+  {
+    "objectID": "labs/lab-06.html#map",
+    "href": "labs/lab-06.html#map",
+    "title": "MAR 536 Lab 6",
+    "section": "map",
+    "text": "map\nBasic syntax:\n\nmap(\"Lists to apply function to\",  \n    \"Function to apply across lists\",\n    \"Additional parameters\")\n\nmap by default returns a list. However we can specify the type of output:\nmap_dbl returns real numbers\nmap_lgl returns logicals\nmap_chr returns characters\nmap_int returns integers\nmap_df returns a dataframe\n\ncheatsheat: github.com/rstudio/cheatsheets/blob/master/purrr.pdf"
+  },
+  {
+    "objectID": "labs/lab-06.html#shortcuts",
+    "href": "labs/lab-06.html#shortcuts",
+    "title": "MAR 536 Lab 6",
+    "section": "Shortcuts",
+    "text": "Shortcuts\n\nmodels <- penguins %>% \n  split(.$species) %>% \n  map(function(df) lm(body_mass_g ~ flipper_length_mm, data = df))\n\nThe syntax for creating an anonymous function in R is quite verbose so purrr provides a convenient shortcut: a one-sided formula.\n\nmodels <- penguins %>%\n  split(.$species) %>% \n  map(~lm(body_mass_g ~ flipper_length_mm, data = .))\n  #The 1st ~ is shorthand for a function\n  #The '.' shows where the stuff passed to map gets used."
+  },
+  {
+    "objectID": "labs/lab-06.html#shortcuts-2",
+    "href": "labs/lab-06.html#shortcuts-2",
+    "title": "MAR 536 Lab 6",
+    "section": "Shortcuts 2",
+    "text": "Shortcuts 2\nExtracting summary statistics\n\nmodels |>\n  map(summary) |> \n  map_dbl(pluck, \"r.squared\")\n\n\nmodels |>\n  map(summary) |> #run 'summary() for each model\n  map_dbl(~.$r.squared) # find the R-squared\n\nExtracting named components is a common operation, so can use a string instead.\n\nmodels |>\n  map(summary) |> #run 'summary() for each model\n  map_dbl(\"r.squared\") #find the R-squared"
+  },
+  {
+    "objectID": "labs/lab-06.html#exercise-1",
+    "href": "labs/lab-06.html#exercise-1",
+    "title": "MAR 536 Lab 6",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nWrite code that uses one of the map functions to:\n\nCompute the mean of every numeric column in palmerpenguins::penguins.\n\n\n\n\n\nDetermine the type of each column in nycflights13::flights.\n\n\n\n\n\nCompute the number of unique values in each column of palmerpenguins::penguins.\n\n\n\n\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "labs/lab-06.html#exercise-2-crab-surveys",
+    "href": "labs/lab-06.html#exercise-2-crab-surveys",
+    "title": "MAR 536 Lab 6",
+    "section": "Exercise 2: Crab surveys",
+    "text": "Exercise 2: Crab surveys\nWe have data from several years of crab surveys.\nThe data for each year is contained in separate “.csv” files.\nWe would like to read these data into R, and combine them into a single data frame so we can inspect and plot them.\n\nWrite code to read these data into R, and combine them into a single dataframe.\nb-d. Then produce 3 plots (of your choice) summarizing the full dataset. Include “b”, “c”, and “d” in the title of your plots.\n\nFor hints see next slide."
+  },
+  {
+    "objectID": "labs/lab-06.html#extending-to-multiple-input-lists",
+    "href": "labs/lab-06.html#extending-to-multiple-input-lists",
+    "title": "MAR 536 Lab 6",
+    "section": "Extending to multiple input lists",
+    "text": "Extending to multiple input lists\nmap2 allows you to map over two sets of inputs.\n\nmap2(list1, list2, ~function(.x,.y), ...)\n\ne.g. generate 3 sets of 5 normal random variables, with the means & standard deviations different in each set.\n\nmu <- list(5, 10, -3)\nsigma <- list(1, 5, 10)\nmap2(mu, sigma, rnorm, n = 5) |> str()\n## List of 3\n##  $ : num [1:5] 4.32 6.18 4.5 3.78 5.4\n##  $ : num [1:5] 12.75 -3.27 16.7 8.7 10.68\n##  $ : num [1:5] 4.58 -1.27 -7.98 17.46 -13.13"
+  },
+  {
+    "objectID": "labs/lab-06.html#more-than-2-inputs-use-pmap",
+    "href": "labs/lab-06.html#more-than-2-inputs-use-pmap",
+    "title": "MAR 536 Lab 6",
+    "section": "More than 2 inputs, use pmap",
+    "text": "More than 2 inputs, use pmap\ne.g. same problem as previous, but now n varies in each set.\n\nn <- list(1, 3, 5)\nmu <- list(5, 10, -3)\nsigma <- list(1, 5, 10)\n\nargs1 <- list(mean = mu, sd = sigma, n = n)\nargs1 |>\n  pmap(rnorm) |>\n  str()\n## List of 3\n##  $ : num 5.57\n##  $ : num [1:3] 8.87 9.04 19.99\n##  $ : num [1:5] 4.779 -17.532 -17.462 0.708 -3.537\n\nSafest to use named arguments with pmap, as it will do positional matching if not."
+  },
+  {
+    "objectID": "labs/lab-06.html#debugging-using-safely",
+    "href": "labs/lab-06.html#debugging-using-safely",
+    "title": "MAR 536 Lab 6",
+    "section": "Debugging using safely",
+    "text": "Debugging using safely\nHandling errors can be tricky to diagnose with map.\nIt’s not as obvious when/where things break.\nCan use safely(). e.g. \n\nsafe_log <- safely(log, otherwise = NA_real_) \n#safe_log return a NA if log() returns error, plus error msg.  \nlist(\"a\", 10, 100) |>\n  map(safe_log) |>  #<<\n  transpose() |>\n  simplify_all()\n## $result\n## [1]       NA 2.302585 4.605170\n## \n## $error\n## $error[[1]]\n## <simpleError in .Primitive(\"log\")(x, base): non-numeric argument to mathematical function>\n## \n## $error[[2]]\n## NULL\n## \n## $error[[3]]\n## NULL"
+  },
+  {
+    "objectID": "labs/lab-06.html#lab-exercise-3",
+    "href": "labs/lab-06.html#lab-exercise-3",
+    "title": "MAR 536 Lab 6",
+    "section": "Lab exercise 3",
+    "text": "Lab exercise 3\nCreate a data frame of samples from the palmerpenguins::penguins dataset, that contains 3 Adelies, 6 Gentoos, and 4 Chinstraps.\n(your new data frame will have 13 rows, with 3, 6, and 4 of the three species) (hint: use a nested dataframe, map2(), and slice_sample())"
+  },
+  {
+    "objectID": "labs/lab-06.html#steller-sea-lion-pups-revisited",
+    "href": "labs/lab-06.html#steller-sea-lion-pups-revisited",
+    "title": "MAR 536 Lab 6",
+    "section": "Steller sea lion pups revisited",
+    "text": "Steller sea lion pups revisited\nWe have data on Steller sea lion pup counts over time at a bunch of rookeries in Alaska.\n\nThe number of data points for each rookery is not the same.\nWe want to investigate the annual trend in counts for each rookery.\nWe want to plot the slopes of the regressions using a histogram.\nWe want to obtain confidence intervals of the slope estimates using bootstrapping."
+  },
+  {
+    "objectID": "labs/lab-06.html#residual-bootstrapping",
+    "href": "labs/lab-06.html#residual-bootstrapping",
+    "title": "MAR 536 Lab 6",
+    "section": "residual bootstrapping",
+    "text": "residual bootstrapping\nresample residuals from the original models to obtain bootstrapped confidence intervals of the slopes.\n\nnboot <- 100\n# first extract a table of fitted values and residuals using augment\nssl_boot <- ssl_models |>\n  mutate(tbl = map(model, augment)) |> \n  select(sitename, tbl)\nssl_boot\n## # A tibble: 53 × 2\n## # Groups:   sitename [53]\n##    sitename             tbl              \n##    <chr>                <list>           \n##  1 ADAK/LAKE POINT      <tibble [7 × 8]> \n##  2 ADUGAK               <tibble [8 × 8]> \n##  3 AGATTU/CAPE SABAK    <tibble [10 × 8]>\n##  4 AGATTU/GILLON POINT  <tibble [8 × 8]> \n##  5 AKUN/BILLINGS HEAD   <tibble [7 × 8]> \n##  6 AKUTAN/CAPE MORGAN   <tibble [8 × 8]> \n##  7 AMCHITKA/COLUMN ROCK <tibble [5 × 8]> \n##  8 ATKINS               <tibble [9 × 8]> \n##  9 ATTU/CAPE WRANGELL   <tibble [8 × 8]> \n## 10 AYUGADAK             <tibble [7 × 8]> \n## # … with 43 more rows"
+  },
+  {
+    "objectID": "labs/lab-06.html#residual-bootstrapping-1",
+    "href": "labs/lab-06.html#residual-bootstrapping-1",
+    "title": "MAR 536 Lab 6",
+    "section": "residual bootstrapping",
+    "text": "residual bootstrapping\n\nnboot <- 100\n# first extract a table of fitted values and residuals using augment\nssl_boot <- ssl_models |>\n  mutate(tbl = map(model, augment)) |> \n  select(sitename, tbl)|> \n  unnest(cols=c(tbl)) |> \n  janitor::clean_names() |> \n  ungroup() |>\n  I()\nssl_boot\n## # A tibble: 372 × 9\n##    sitename       log_count year2 fitted    resid   hat  sigma  cooksd std_resid\n##    <chr>              <dbl> <dbl>  <dbl>    <dbl> <dbl>  <dbl>   <dbl>     <dbl>\n##  1 ADAK/LAKE POI…      5.89     2   5.90 -0.00375 0.452 0.0868 0.00176   -0.0653\n##  2 ADAK/LAKE POI…      5.86     4   5.85  0.00614 0.277 0.0868 0.00166    0.0929\n##  3 ADAK/LAKE POI…      5.74     5   5.83 -0.0888  0.216 0.0709 0.231     -1.29  \n##  4 ADAK/LAKE POI…      5.82     9   5.74  0.0886  0.155 0.0722 0.141      1.24  \n##  5 ADAK/LAKE POI…      5.76    10   5.71  0.0509  0.184 0.0821 0.0595     0.726 \n##  6 ADAK/LAKE POI…      5.73    11   5.69  0.0454  0.232 0.0829 0.0673     0.667 \n##  7 ADAK/LAKE POI…      5.52    14   5.62 -0.0985  0.483 0.0533 1.46      -1.76  \n##  8 ADUGAK              5.03     0   4.99  0.0416  0.412 0.0857 0.155      0.666 \n##  9 ADUGAK              5.08     2   5.09 -0.0172  0.269 0.0886 0.0112    -0.247 \n## 10 ADUGAK              5.12     4   5.20 -0.0778  0.175 0.0804 0.118     -1.05  \n## # … with 362 more rows"
+  },
+  {
+    "objectID": "labs/lab-06.html#residual-bootstrapping-2",
+    "href": "labs/lab-06.html#residual-bootstrapping-2",
+    "title": "MAR 536 Lab 6",
+    "section": "residual bootstrapping",
+    "text": "residual bootstrapping\n\n# we'll do resampling from the residuals for each year within each rookery\n# rather than getting complicated with nested lists, we'll use sample_frac() to do the resamples\ntosample <- ssl_boot |> \n  select(sitename, resid) |> \n  group_by(sitename)\nresamples <-\n   map_dfr(seq_len(nboot), ~slice_sample(tosample, prop = 1, replace = TRUE)) |>\n   ungroup() |> \n   mutate(replicate = rep(1:nboot, each = nrow(tosample)))\nresamples\n## # A tibble: 37,200 × 3\n##    sitename           resid replicate\n##    <chr>              <dbl>     <int>\n##  1 ADAK/LAKE POINT -0.0888          1\n##  2 ADAK/LAKE POINT  0.00614         1\n##  3 ADAK/LAKE POINT -0.00375         1\n##  4 ADAK/LAKE POINT  0.00614         1\n##  5 ADAK/LAKE POINT  0.0886          1\n##  6 ADAK/LAKE POINT  0.0454          1\n##  7 ADAK/LAKE POINT  0.0509          1\n##  8 ADUGAK           0.0416          1\n##  9 ADUGAK          -0.0272          1\n## 10 ADUGAK           0.0416          1\n## # … with 37,190 more rows"
+  },
+  {
+    "objectID": "labs/lab-06.html#accumulate",
+    "href": "labs/lab-06.html#accumulate",
+    "title": "MAR 536 Lab 6",
+    "section": "accumulate()",
+    "text": "accumulate()\nWe sometimes like to use the output of one iteration as input to the next. e.g. model population dynamics over time, iterated function is annual population update.\n\\[N_{t+1} = \\lambda N_{t} - h_{t}\\]\nCan achieve this using accumulate().\n\npop_update <- function(N, h=0, lambda = 1.05) lambda*N - h\nh <- rep(10,10)\ninitN <- 100\naccumulate(h, pop_update, .init = initN, lambda = 1.05)\n##  [1] 100.00000  95.00000  89.75000  84.23750  78.44938  72.37184  65.99044\n##  [8]  59.28996  52.25446  44.86718  37.11054\n\n\naccumulate(letters[1:10], paste, sep = \" + \")\n##  [1] \"a\"                                    \n##  [2] \"a + b\"                                \n##  [3] \"a + b + c\"                            \n##  [4] \"a + b + c + d\"                        \n##  [5] \"a + b + c + d + e\"                    \n##  [6] \"a + b + c + d + e + f\"                \n##  [7] \"a + b + c + d + e + f + g\"            \n##  [8] \"a + b + c + d + e + f + g + h\"        \n##  [9] \"a + b + c + d + e + f + g + h + i\"    \n## [10] \"a + b + c + d + e + f + g + h + i + j\""
+  },
+  {
+    "objectID": "labs/lab-06.html#population-projections",
+    "href": "labs/lab-06.html#population-projections",
+    "title": "MAR 536 Lab 6",
+    "section": "Population projections",
+    "text": "Population projections\nStatus for endangered species are often based on a risk evaluation of population projections.\nWe want to project population dynamics forward in time given uncertainty in future dynamics. We want to do this lots of times to quantify the risk of extinction.\nCurrent (2022) estimates of the North Atlantic Right Whale population are 340 individuals. The population has been declining on average around 3% per year since 2011. What is the year in which the probability that the right whale population drops below 100 individuals is at least 50% (P(N<100)>=0.5)?\n\nnsim <- 100\nnyr <- 100\ninitN <- 340\nsd_proc <- 0.1\nlambda <- 0.97\ngrowth_rates <- map(seq_len(nsim), ~rlnorm(nyr,log(lambda),sd_proc))\n\n# population model\npop_update <- function(N, growth_rate = 1) N*growth_rate\n\n# population projection for each time series of process errors\npop_proj <- tibble(sim = seq_len(nsim)) |>\n  mutate(popsize = map(growth_rates,~accumulate(., pop_update, \n                                                .init = initN))) |>\n  unnest(cols = c(popsize)) |>\n  mutate(year = rep(2022:2122, nsim))\npop_proj\n## # A tibble: 10,100 × 3\n##      sim popsize  year\n##    <int>   <dbl> <int>\n##  1     1    340   2022\n##  2     1    326.  2023\n##  3     1    346.  2024\n##  4     1    358.  2025\n##  5     1    365.  2026\n##  6     1    351.  2027\n##  7     1    339.  2028\n##  8     1    308.  2029\n##  9     1    308.  2030\n## 10     1    275.  2031\n## # … with 10,090 more rows"
+  },
+  {
+    "objectID": "labs/lab-06.html#the-while-loop",
+    "href": "labs/lab-06.html#the-while-loop",
+    "title": "MAR 536 Lab 6",
+    "section": "The while loop",
+    "text": "The while loop\nOccasionally we don’t know how many times to execute the loop.\nCan use a while loop, which executes a series of statements for as long as some condition remains true.\nThe general syntax is:\n\nwhile (condition) {\n  #statements\n}"
+  },
+  {
+    "objectID": "labs/lab-06.html#the-while-loop-1",
+    "href": "labs/lab-06.html#the-while-loop-1",
+    "title": "MAR 536 Lab 6",
+    "section": "The while loop",
+    "text": "The while loop\nIf there are 7,500 snow leopards in year 2023 and they are declining at 5% per year, in what year will they fall below 500 individuals?\n\nleopard.loop <- function(N, year=2023) {\n  while (N>=500) {\n    N <- N*0.95\n    year <- year+1\n  }\n  return(year)\n}\nleopard.loop(N=7500)\n[1] 2076\n\nPro-tip: when you end up in an infinite loop with no stopping point, press <ESC> to stop it running!"
+  },
+  {
+    "objectID": "labs/lab-06.html#exercise-4-snow-lepoards",
+    "href": "labs/lab-06.html#exercise-4-snow-lepoards",
+    "title": "MAR 536 Lab 6",
+    "section": "Exercise 4: Snow Lepoards",
+    "text": "Exercise 4: Snow Lepoards\nAssume that the annual growth rate of the snow leopard population is lognormally distributed with a mean of 0.95 and log-standard deviation of 0.1.\nUse a while loop (hint: re-use the code on the previous slide and add the annual growth rate change to the population update equation), and plot a distribution over 1,000 simulations of the year in which the population falls below 500 animals."
+  },
+  {
+    "objectID": "labs/lab-06.html#notes-on-for-loops",
+    "href": "labs/lab-06.html#notes-on-for-loops",
+    "title": "MAR 536 Lab 6",
+    "section": "Notes on for loops",
+    "text": "Notes on for loops\nfor() loops are used in R code much less often than in compiled languages.\nCode that takes a ‘whole object’ view is likely to be both clearer and faster in R.\nOther looping facilities include repeat, apply, tapply, lapply, sapply.\nThe break statement can be used to terminate any loop, possibly abnormally.\nThis is the only way to terminate repeat loops.\nThe next statement can be used to discontinue one particular cycle and skip to the “next”."
+  },
+  {
+    "objectID": "labs/lab-06.html#improving-speed-of-loops",
+    "href": "labs/lab-06.html#improving-speed-of-loops",
+    "title": "MAR 536 Lab 6",
+    "section": "Improving speed of loops",
+    "text": "Improving speed of loops\nLooping over very large data sets can sometimes become slow in R.\nOvercome by:\n\ncreate storage objects apriori (don’t grow objects).\neliminate certain operations in loops or\n\navoidg loops over the data-intensive dimension in an object altogether.\n\n\nthe latter can be achieved by performing mainly vector-to-vecor or matrix-to-matrix computations (often > 100x faster than for() or apply() or map()).\n\nMake use of existing speed-optimized R functions (e.g.: rowSums, rowMeans, table) or write your own fast functions.\n\nxdat <- matrix(rnorm(1000000), 100000, 10)\nsystem.time(x_mean <- apply(xdat, 1, mean))\n   user  system elapsed \n  0.639   0.007   0.682 \nsystem.time(x_mean <- rowMeans(xdat))\n   user  system elapsed \n  0.005   0.001   0.006"
+  },
+  {
+    "objectID": "labs/lab-06.html#lab-exercise-55",
+    "href": "labs/lab-06.html#lab-exercise-55",
+    "title": "MAR 536 Lab 6",
+    "section": "Lab Exercise 5/5",
+    "text": "Lab Exercise 5/5\ndata/eukaryotes.tsv contains a NCBI Eukaryotic genome dataset, with basic information about the genomic content of all eukaryotes that were uploaded to the NCBI Genome database.\nIt contains accession numbers, information about the quality of the genome and stats such a average genome size and GC-content.\nUse glimpse() and other data exploration to get familiar with the data. Then use map_* functions to answer the following:\n\nHow many different organisms are there in the dataset?\n\nHow many different institutes (centers) submitted a genome?\n\nThe data seem to be grouped in groups. How many groups are there?\n\nHow many sub groups are there?\n\nHow many different organisms are there per group?\nHow many different institutes (centers) submitted a genome per group?\nHow many sub groups are there per group?\n\nWe might hypothesisze that “The bigger the size of a genome, the higher the number of proteins”.\n\nFit a linear model of log10_proteins ~ log10_size_mb for each group.\n\nExtract the R^2 for each model and print these for each group.\n\nAssess the validity of your modeling approach.\n\nObtain and plot predictions for each group for genome sizes 0.5, 123, and 500 MB.\n\nHow do you interpret the results in terms of the original hypothesis? BONUS use residual bootstrapping to obtain distributions for the predictions made in part 11.\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
+  },
+  {
+    "objectID": "labs/lab-06.html#purrrmap",
+    "href": "labs/lab-06.html#purrrmap",
+    "title": "MAR 536 Lab 6",
+    "section": "purrr::map",
+    "text": "purrr::map\n\ncheatsheat: github.com/rstudio/cheatsheets/blob/master/purrr.pdf"
+  },
+  {
+    "objectID": "labs/lab-06.html#exercise-2",
+    "href": "labs/lab-06.html#exercise-2",
+    "title": "MAR 536 Lab 6",
+    "section": "Exercise 2",
+    "text": "Exercise 2\n\nCreate a data frame of samples from the palmerpenguins::penguins dataset, that contains 3 Adelies, 6 Gentoos, and 4 Chinstraps.\n(your new data frame will have 13 rows, with 3, 6, and 4 of the three species) (hint: use a nested dataframe, map2(), and slice_sample())\nMultiple files.\n\nWe have data from several years of crab surveys.\nThe data for each year is contained in separate “.csv” files.\nWe would like to read these data into R, and combine them into a single data frame so we can inspect and plot them.\n\nWrite code to read these data into R, and combine them into a single dataframe.\n\nb-d. Then produce 3 plots (of your choice) summarizing the full dataset. Include “b”, “c”, and “d” in the title of your plots.\nFor hints see next slide."
+  },
+  {
+    "objectID": "labs/lab-06.html#exercise-3-snow-lepoards",
+    "href": "labs/lab-06.html#exercise-3-snow-lepoards",
+    "title": "MAR 536 Lab 6",
+    "section": "Exercise 3: Snow Lepoards",
+    "text": "Exercise 3: Snow Lepoards\nAssume that the annual growth rate of the snow leopard population is lognormally distributed with a mean of 0.95 and log-standard deviation of 0.1.\nUse a while loop (hint: re-use the code on the previous slide and add the annual growth rate change to the population update equation), and plot a distribution over 1,000 simulations of the year in which the population falls below 500 animals."
+  },
+  {
+    "objectID": "labs/lab-06.html#lab-exercise-44",
+    "href": "labs/lab-06.html#lab-exercise-44",
+    "title": "MAR 536 Lab 6",
+    "section": "Lab Exercise 4/4",
+    "text": "Lab Exercise 4/4\ndata/eukaryotes.tsv contains a NCBI Eukaryotic genome dataset, with basic information about the genomic content of all eukaryotes that were uploaded to the NCBI Genome database.\nIt contains accession numbers, information about the quality of the genome and stats such a average genome size and GC-content.\nUse glimpse() and other data exploration to get familiar with the data. Then use map_* functions to answer the following:\n\nHow many different organisms are there in the dataset?\n\nHow many different institutes (centers) submitted a genome?\n\nThe data seem to be grouped in groups. How many groups are there?\n\nHow many sub groups are there?\n\nHow many different organisms are there per group?\nHow many different institutes (centers) submitted a genome per group?\nHow many sub groups are there per group?"
+  },
+  {
+    "objectID": "labs/lab-06.html#lab-exercise-4-continued",
+    "href": "labs/lab-06.html#lab-exercise-4-continued",
+    "title": "MAR 536 Lab 6",
+    "section": "Lab Exercise 4 continued…",
+    "text": "Lab Exercise 4 continued…\nWe might hypothesisze that “The bigger the size of a genome, the higher the number of proteins”.\n\nFit a linear model of log10_proteins ~ log10_size_mb for each group.\n\nExtract the R^2 for each model and print these for each group.\n\nAssess the validity of your modeling approach.\n\nObtain and plot predictions for each group for genome sizes 0.5, 123, and 500 MB.\n\nHow do you interpret the results in terms of the original hypothesis?\n\nBONUS use residual bootstrapping to obtain distributions for the predictions made in part 11.\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   }
 ]
