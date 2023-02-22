@@ -851,11 +851,11 @@ leopard.loop(N=7500)
 Pro-tip: when you end up in an infinite loop with no stopping point, press `<ESC>` to stop it running!
 
 
-## Exercise 3: Snow Lepoards
+<!-- ## Exercise 3: Snow Lepoards -->
 
-Assume that the annual growth rate of the snow leopard population is lognormally distributed with a mean of 0.95 and log-standard deviation of 0.1.   
+<!-- Assume that the annual growth rate of the snow leopard population is lognormally distributed with a mean of 0.95 and log-standard deviation of 0.1.    -->
 
-Use a `while` loop (hint: re-use the code on the previous slide and add the annual growth rate change to the population update equation), and plot a distribution over 1,000 simulations of the year in which the population falls below 500 animals.  
+<!-- Use a `while` loop (hint: re-use the code on the previous slide and add the annual growth rate change to the population update equation), and plot a distribution over 1,000 simulations of the year in which the population falls below 500 animals.   -->
 
 <!-- ```{r prompt=FALSE,comment='',collapse=TRUE} -->
 <!-- leopard.loop <- function(N, year=2023) { -->
@@ -920,7 +920,7 @@ system.time(x_mean <- rowMeans(xdat))
 <!-- ``` -->
 
 
-## Lab Exercise 4/4 {.smaller}
+## Lab Exercise 3/3 {.smaller}
 
 `data/eukaryotes.tsv` contains a NCBI Eukaryotic genome dataset, with basic information about the genomic content of all eukaryotes that were uploaded to the NCBI Genome database.  
 It contains accession numbers, information about the quality of the genome and stats such a average genome size and GC-content.  
@@ -935,7 +935,7 @@ Use `glimpse()` and other data exploration to get familiar with the data. Then u
 7. How many sub groups are there per group?
 
 
-## Lab Exercise 4 continued... {.small}
+## Lab Exercise 3 continued... {.small}
 
 We might hypothesisze that "The bigger the size of a genome, the higher the number of proteins".  
 
