@@ -1068,14 +1068,14 @@
     "href": "labs/lab-06.html#extending-to-multiple-input-lists",
     "title": "MAR 536 Lab 6",
     "section": "Extending to multiple input lists",
-    "text": "Extending to multiple input lists\nmap2 allows you to map over two sets of inputs.\n\nmap2(list1, list2, ~function(.x,.y), ...)\n\ne.g. generate 3 sets of 5 normal random variables, with the means & standard deviations different in each set.\n\nmu <- list(5, 10, -3)\nsigma <- list(1, 5, 10)\nmap2(mu, sigma, rnorm, n = 5) |> str()\n## List of 3\n##  $ : num [1:5] 4.78 3.52 5.13 4.07 5.37\n##  $ : num [1:5] 9.19 3 5.49 17.36 11.51\n##  $ : num [1:5] 3.03 -11.75 8.77 -5.52 1.46"
+    "text": "Extending to multiple input lists\nmap2 allows you to map over two sets of inputs.\n\nmap2(list1, list2, ~function(.x,.y), ...)\n\ne.g. generate 3 sets of 5 normal random variables, with the means & standard deviations different in each set.\n\nmu <- list(5, 10, -3)\nsigma <- list(1, 5, 10)\nmap2(mu, sigma, rnorm, n = 5) |> str()\n## List of 3\n##  $ : num [1:5] 4.75 4.82 3.29 3.01 5.22\n##  $ : num [1:5] 10.32 13.04 13.4 11.85 -1.36\n##  $ : num [1:5] -4.21 3.92 -22.05 -4.95 -2.14"
   },
   {
     "objectID": "labs/lab-06.html#more-than-2-inputs-use-pmap",
     "href": "labs/lab-06.html#more-than-2-inputs-use-pmap",
     "title": "MAR 536 Lab 6",
     "section": "More than 2 inputs, use pmap",
-    "text": "More than 2 inputs, use pmap\ne.g. same problem as previous, but now n varies in each set.\n\nn <- list(1, 3, 5)\nmu <- list(5, 10, -3)\nsigma <- list(1, 5, 10)\n\nargs1 <- list(mean = mu, sd = sigma, n = n)\nargs1 |>\n  pmap(rnorm) |>\n  str()\n## List of 3\n##  $ : num 3.63\n##  $ : num [1:3] 8.13 3.64 4.3\n##  $ : num [1:5] 17.45 -0.46 1.11 -6.99 10.42\n\nSafest to use named arguments with pmap, as it will do positional matching if not."
+    "text": "More than 2 inputs, use pmap\ne.g. same problem as previous, but now n varies in each set.\n\nn <- list(1, 3, 5)\nmu <- list(5, 10, -3)\nsigma <- list(1, 5, 10)\n\nargs1 <- list(mean = mu, sd = sigma, n = n)\nargs1 |>\n  pmap(rnorm) |>\n  str()\n## List of 3\n##  $ : num 5.12\n##  $ : num [1:3] 15.4 13.5 15.8\n##  $ : num [1:5] -8.56 2.01 3.12 -6.61 13.05\n\nSafest to use named arguments with pmap, as it will do positional matching if not."
   },
   {
     "objectID": "labs/lab-06.html#debugging-using-safely",
@@ -1117,7 +1117,7 @@
     "href": "labs/lab-06.html#residual-bootstrapping-2",
     "title": "MAR 536 Lab 6",
     "section": "residual bootstrapping",
-    "text": "residual bootstrapping\n\n# we'll do resampling from the residuals for each year within each rookery\n# rather than getting complicated with nested lists, we'll use sample_frac() to do the resamples\ntosample <- ssl_boot |> \n  select(sitename, resid) |> \n  group_by(sitename)\nresamples <-\n   map_dfr(seq_len(nboot), ~slice_sample(tosample, prop = 1, replace = TRUE)) |>\n   ungroup() |> \n   mutate(replicate = rep(1:nboot, each = nrow(tosample)))\nresamples\n## # A tibble: 37,200 × 3\n##    sitename           resid replicate\n##    <chr>              <dbl>     <int>\n##  1 ADAK/LAKE POINT  0.0454          1\n##  2 ADAK/LAKE POINT  0.0454          1\n##  3 ADAK/LAKE POINT  0.0886          1\n##  4 ADAK/LAKE POINT  0.0886          1\n##  5 ADAK/LAKE POINT -0.00375         1\n##  6 ADAK/LAKE POINT  0.00614         1\n##  7 ADAK/LAKE POINT  0.0509          1\n##  8 ADUGAK           0.0416          1\n##  9 ADUGAK          -0.0172          1\n## 10 ADUGAK           0.0416          1\n## # … with 37,190 more rows"
+    "text": "residual bootstrapping\n\n# we'll do resampling from the residuals for each year within each rookery\n# rather than getting complicated with nested lists, we'll use sample_frac() to do the resamples\ntosample <- ssl_boot |> \n  select(sitename, resid) |> \n  group_by(sitename)\nresamples <-\n   map_dfr(seq_len(nboot), ~slice_sample(tosample, prop = 1, replace = TRUE)) |>\n   ungroup() |> \n   mutate(replicate = rep(1:nboot, each = nrow(tosample)))\nresamples\n## # A tibble: 37,200 × 3\n##    sitename           resid replicate\n##    <chr>              <dbl>     <int>\n##  1 ADAK/LAKE POINT  0.00614         1\n##  2 ADAK/LAKE POINT  0.0454          1\n##  3 ADAK/LAKE POINT  0.0454          1\n##  4 ADAK/LAKE POINT -0.00375         1\n##  5 ADAK/LAKE POINT  0.0886          1\n##  6 ADAK/LAKE POINT  0.0509          1\n##  7 ADAK/LAKE POINT  0.00614         1\n##  8 ADUGAK          -0.0272          1\n##  9 ADUGAK          -0.0778          1\n## 10 ADUGAK          -0.0193          1\n## # … with 37,190 more rows"
   },
   {
     "objectID": "labs/lab-06.html#accumulate",
@@ -1131,7 +1131,7 @@
     "href": "labs/lab-06.html#population-projections",
     "title": "MAR 536 Lab 6",
     "section": "Population projections",
-    "text": "Population projections\nStatus for endangered species are often based on a risk evaluation of population projections. We want to project population dynamics forward in time given uncertainty in future dynamics. We want to do this lots of times to quantify the risk of extinction.\nCurrent (2022) estimates of the North Atlantic Right Whale population are 340 individuals. The population has been declining on average around 3% per year since 2011. What is the year in which the probability that the right whale population drops below 100 individuals is at least 50% (P(N<100)>=0.5)?\n\nnsim <- 100\nnyr <- 100\ninitN <- 340\nsd_proc <- 0.1\nlambda <- 0.97\ngrowth_rates <- map(seq_len(nsim), ~rlnorm(nyr,log(lambda),sd_proc))\n\n# population model\npop_update <- function(N, growth_rate = 1) N*growth_rate\n\n# population projection for each time series of process errors\npop_proj <- tibble(sim = seq_len(nsim)) |>\n  mutate(popsize = map(growth_rates,~accumulate(., pop_update, \n                                                .init = initN))) |>\n  unnest(cols = c(popsize)) |>\n  mutate(year = rep(2022:2122, nsim))\npop_proj\n## # A tibble: 10,100 × 3\n##      sim popsize  year\n##    <int>   <dbl> <int>\n##  1     1    340   2022\n##  2     1    316.  2023\n##  3     1    308.  2024\n##  4     1    359.  2025\n##  5     1    360.  2026\n##  6     1    369.  2027\n##  7     1    354.  2028\n##  8     1    429.  2029\n##  9     1    444.  2030\n## 10     1    456.  2031\n## # … with 10,090 more rows"
+    "text": "Population projections\nStatus for endangered species are often based on a risk evaluation of population projections. We want to project population dynamics forward in time given uncertainty in future dynamics. We want to do this lots of times to quantify the risk of extinction.\nCurrent (2022) estimates of the North Atlantic Right Whale population are 340 individuals. The population has been declining on average around 3% per year since 2011. What is the year in which the probability that the right whale population drops below 100 individuals is at least 50% (P(N<100)>=0.5)?\n\nnsim <- 100\nnyr <- 100\ninitN <- 340\nsd_proc <- 0.1\nlambda <- 0.97\ngrowth_rates <- map(seq_len(nsim), ~rlnorm(nyr,log(lambda),sd_proc))\n\n# population model\npop_update <- function(N, growth_rate = 1) N*growth_rate\n\n# population projection for each time series of process errors\npop_proj <- tibble(sim = seq_len(nsim)) |>\n  mutate(popsize = map(growth_rates,~accumulate(., pop_update, \n                                                .init = initN))) |>\n  unnest(cols = c(popsize)) |>\n  mutate(year = rep(2022:2122, nsim))\npop_proj\n## # A tibble: 10,100 × 3\n##      sim popsize  year\n##    <int>   <dbl> <int>\n##  1     1    340   2022\n##  2     1    320.  2023\n##  3     1    329.  2024\n##  4     1    376.  2025\n##  5     1    336.  2026\n##  6     1    374.  2027\n##  7     1    352.  2028\n##  8     1    430.  2029\n##  9     1    427.  2030\n## 10     1    438.  2031\n## # … with 10,090 more rows"
   },
   {
     "objectID": "labs/lab-06.html#the-while-loop",
@@ -1148,13 +1148,6 @@
     "text": "The while loop\nIf there are 7,500 snow leopards in year 2023 and they are declining at 5% per year, in what year will they fall below 500 individuals?\n\nleopard.loop <- function(N, year=2023) {\n  while (N>=500) {\n    N <- N*0.95\n    year <- year+1\n  }\n  return(year)\n}\nleopard.loop(N=7500)\n[1] 2076\n\nPro-tip: when you end up in an infinite loop with no stopping point, press <ESC> to stop it running!"
   },
   {
-    "objectID": "labs/lab-06.html#exercise-3-snow-lepoards",
-    "href": "labs/lab-06.html#exercise-3-snow-lepoards",
-    "title": "MAR 536 Lab 6",
-    "section": "Exercise 3: Snow Lepoards",
-    "text": "Exercise 3: Snow Lepoards\nAssume that the annual growth rate of the snow leopard population is lognormally distributed with a mean of 0.95 and log-standard deviation of 0.1.\nUse a while loop (hint: re-use the code on the previous slide and add the annual growth rate change to the population update equation), and plot a distribution over 1,000 simulations of the year in which the population falls below 500 animals."
-  },
-  {
     "objectID": "labs/lab-06.html#notes-on-for-loops",
     "href": "labs/lab-06.html#notes-on-for-loops",
     "title": "MAR 536 Lab 6",
@@ -1166,21 +1159,21 @@
     "href": "labs/lab-06.html#improving-speed-of-loops",
     "title": "MAR 536 Lab 6",
     "section": "Improving speed of loops",
-    "text": "Improving speed of loops\nLooping over very large data sets can sometimes become slow in R. Overcome by:\n\ncreate storage objects apriori (don’t grow objects).\neliminate certain operations in loops or\n\navoidg loops over the data-intensive dimension in an object altogether.\n\n\nthe latter can be achieved by performing mainly vector-to-vecor or matrix-to-matrix computations (often > 100x faster than for() or apply() or map()).\n\nMake use of existing speed-optimized R functions (e.g.: rowSums, rowMeans, table) or write your own fast functions.\n\nxdat <- matrix(rnorm(1000000), 100000, 10)\nsystem.time(x_mean <- apply(xdat, 1, mean))\n   user  system elapsed \n  0.856   0.012   1.301 \nsystem.time(x_mean <- rowMeans(xdat))\n   user  system elapsed \n  0.005   0.000   0.005"
+    "text": "Improving speed of loops\nLooping over very large data sets can sometimes become slow in R. Overcome by:\n\ncreate storage objects apriori (don’t grow objects).\neliminate certain operations in loops or\n\navoidg loops over the data-intensive dimension in an object altogether.\n\n\nthe latter can be achieved by performing mainly vector-to-vecor or matrix-to-matrix computations (often > 100x faster than for() or apply() or map()).\n\nMake use of existing speed-optimized R functions (e.g.: rowSums, rowMeans, table) or write your own fast functions.\n\nxdat <- matrix(rnorm(1000000), 100000, 10)\nsystem.time(x_mean <- apply(xdat, 1, mean))\n   user  system elapsed \n  0.922   0.019   1.895 \nsystem.time(x_mean <- rowMeans(xdat))\n   user  system elapsed \n  0.004   0.000   0.005"
   },
   {
-    "objectID": "labs/lab-06.html#lab-exercise-44",
-    "href": "labs/lab-06.html#lab-exercise-44",
+    "objectID": "labs/lab-06.html#lab-exercise-33",
+    "href": "labs/lab-06.html#lab-exercise-33",
     "title": "MAR 536 Lab 6",
-    "section": "Lab Exercise 4/4",
-    "text": "Lab Exercise 4/4\ndata/eukaryotes.tsv contains a NCBI Eukaryotic genome dataset, with basic information about the genomic content of all eukaryotes that were uploaded to the NCBI Genome database.\nIt contains accession numbers, information about the quality of the genome and stats such a average genome size and GC-content.\nUse glimpse() and other data exploration to get familiar with the data. Then use map_* functions to answer the following:\n\nHow many different organisms are there in the dataset?\n\nHow many different institutes (centers) submitted a genome?\n\nThe data seem to be grouped in groups. How many groups are there?\n\nHow many sub groups are there?\n\nHow many different organisms are there per group?\nHow many different institutes (centers) submitted a genome per group?\nHow many sub groups are there per group?"
+    "section": "Lab Exercise 3/3",
+    "text": "Lab Exercise 3/3\ndata/eukaryotes.tsv contains a NCBI Eukaryotic genome dataset, with basic information about the genomic content of all eukaryotes that were uploaded to the NCBI Genome database.\nIt contains accession numbers, information about the quality of the genome and stats such a average genome size and GC-content.\nUse glimpse() and other data exploration to get familiar with the data. Then use map_* functions to answer the following:\n\nHow many different organisms are there in the dataset?\n\nHow many different institutes (centers) submitted a genome?\n\nThe data seem to be grouped in groups. How many groups are there?\n\nHow many sub groups are there?\n\nHow many different organisms are there per group?\nHow many different institutes (centers) submitted a genome per group?\nHow many sub groups are there per group?"
   },
   {
-    "objectID": "labs/lab-06.html#lab-exercise-4-continued",
-    "href": "labs/lab-06.html#lab-exercise-4-continued",
+    "objectID": "labs/lab-06.html#lab-exercise-3-continued",
+    "href": "labs/lab-06.html#lab-exercise-3-continued",
     "title": "MAR 536 Lab 6",
-    "section": "Lab Exercise 4 continued…",
-    "text": "Lab Exercise 4 continued…\nWe might hypothesisze that “The bigger the size of a genome, the higher the number of proteins”.\n\nFit a linear model of log10_proteins ~ log10_size_mb for each group.\n\nExtract the R^2 for each model and print these for each group.\n\nAssess the validity of your modeling approach.\n\nObtain and plot predictions for each group for genome sizes 0.5, 123, and 500 MB.\n\nHow do you interpret the results in terms of the original hypothesis?\n\nBONUS use residual bootstrapping to obtain distributions for the predictions made in part 11.\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
+    "section": "Lab Exercise 3 continued…",
+    "text": "Lab Exercise 3 continued…\nWe might hypothesisze that “The bigger the size of a genome, the higher the number of proteins”.\n\nFit a linear model of log10_proteins ~ log10_size_mb for each group.\n\nExtract the R^2 for each model and print these for each group.\n\nAssess the validity of your modeling approach.\n\nObtain and plot predictions for each group for genome sizes 0.5, 123, and 500 MB.\n\nHow do you interpret the results in terms of the original hypothesis?\n\nBONUS use residual bootstrapping to obtain distributions for the predictions made in part 11.\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   },
   {
     "objectID": "labs/lab-03.html",
@@ -1596,18 +1589,11 @@
     "text": "Exercise 2\n\nCreate a data frame of samples from the palmerpenguins::penguins dataset, that contains 3 Adelies, 6 Gentoos, and 4 Chinstraps.\n(your new data frame will have 13 rows, with 3, 6, and 4 of the three species) (hint: use a nested or split dataframe, map2(), and slice_sample())\nWe have data from several years of crab surveys. The data for each year is contained in separate “.csv” files.\n\nWe would like to read these data into R, and combine them into a single data frame so we can inspect and plot them.\n\nWrite code to read these data into R, and combine them into a single dataframe.\n\nb-d. Then produce 3 plots (of your choice) summarizing the full dataset. Include “b”, “c”, and “d” in the title of your plots.\n\nyou can use the following to get an object containing a list of files in a folder\n\n\ndata_path = \"../data/crabs\"  # directory where the files are located\nfiles <- dir(path = data_path, pattern = \"*.csv\",\n             full.names = TRUE) # names of files ending in \".csv\"\nfiles\n##  [1] \"../data/crabs/CRABS_2001.csv\" \"../data/crabs/CRABS_2002.csv\"\n##  [3] \"../data/crabs/CRABS_2003.csv\" \"../data/crabs/CRABS_2004.csv\"\n##  [5] \"../data/crabs/CRABS_2005.csv\" \"../data/crabs/CRABS_2006.csv\"\n##  [7] \"../data/crabs/CRABS_2007.csv\" \"../data/crabs/CRABS_2008.csv\"\n##  [9] \"../data/crabs/CRABS_2009.csv\" \"../data/crabs/CRABS_2010.csv\"\n## [11] \"../data/crabs/CRABS_2011.csv\" \"../data/crabs/CRABS_2012.csv\"\n## [13] \"../data/crabs/CRABS_2013.csv\" \"../data/crabs/CRABS_2014.csv\"\n## [15] \"../data/crabs/CRABS_2015.csv\" \"../data/crabs/CRABS_2016.csv\"\n## [17] \"../data/crabs/CRABS_2017.csv\" \"../data/crabs/CRABS_2018.csv\"\n## [19] \"../data/crabs/CRABS_2019.csv\"\n\n\nlook at the help for ‘dir’ for additional functionality"
   },
   {
-    "objectID": "labs/lab-exercise-06.html#exercise-3-snow-lepoards",
-    "href": "labs/lab-exercise-06.html#exercise-3-snow-lepoards",
+    "objectID": "labs/lab-exercise-06.html#lab-exercise-33---eukaryote-genes",
+    "href": "labs/lab-exercise-06.html#lab-exercise-33---eukaryote-genes",
     "title": "MAR 536 - Spring 2023",
-    "section": "Exercise 3: Snow Lepoards",
-    "text": "Exercise 3: Snow Lepoards\nAssume that the annual growth rate of the snow leopard population is lognormally distributed with a mean of 0.95 and log-standard deviation of 0.1.\nUse a while loop (hint: re-use the code on the previous slide and add the annual growth rate change to the population update equation), and plot a distribution over 1,000 simulations of the year in which the population falls below 500 animals."
-  },
-  {
-    "objectID": "labs/lab-exercise-06.html#lab-exercise-44---eukaryote-genes",
-    "href": "labs/lab-exercise-06.html#lab-exercise-44---eukaryote-genes",
-    "title": "MAR 536 - Spring 2023",
-    "section": "Lab Exercise 4/4 - Eukaryote genes",
-    "text": "Lab Exercise 4/4 - Eukaryote genes\ndata/eukaryotes.tsv contains a NCBI Eukaryotic genome dataset, with basic information about the genomic content of all eukaryotes that were uploaded to the NCBI Genome database.\nIt contains accession numbers, information about the quality of the genome and stats such a average genome size and GC-content.\nUse glimpse() and other data exploration to get familiar with the data. Then use map_* functions to answer the following:\n\nHow many different organisms are there in the dataset?\n\nHow many different institutes (centers) submitted a genome?\n\nThe data seem to be grouped in groups. How many groups are there?\n\nHow many sub groups are there?\n\nHow many different organisms are there per group?\nHow many different institutes (centers) submitted a genome per group?\nHow many sub groups are there per group?\n\nWe might hypothesisze that “The bigger the size of a genome, the higher the number of proteins”.\n\nFit a linear model of log10_proteins ~ log10_size_mb for each group.\n\nExtract the R^2 for each model and print these for each group.\n\nAssess the validity of your modeling approach.\n\nObtain and plot predictions for each group for genome sizes 0.5, 123, and 500 MB.\n\nHow do you interpret the results in terms of the original hypothesis?\n\nBONUS use residual bootstrapping to obtain distributions for the predictions made in part 11."
+    "section": "Lab Exercise 3/3 - Eukaryote genes",
+    "text": "Lab Exercise 3/3 - Eukaryote genes\ndata/eukaryotes.tsv contains a NCBI Eukaryotic genome dataset, with basic information about the genomic content of all eukaryotes that were uploaded to the NCBI Genome database.\nIt contains accession numbers, information about the quality of the genome and stats such a average genome size and GC-content.\nUse glimpse() and other data exploration to get familiar with the data. Then use map_* functions to answer the following:\n\nHow many different organisms are there in the dataset?\n\nHow many different institutes (centers) submitted a genome?\n\nThe data seem to be grouped in groups. How many groups are there?\n\nHow many sub groups are there?\n\nHow many different organisms are there per group?\nHow many different institutes (centers) submitted a genome per group?\nHow many sub groups are there per group?\n\nWe might hypothesisze that “The bigger the size of a genome, the higher the number of proteins”.\n\nFit a linear model of log10_proteins ~ log10_size_mb for each group.\n\nExtract the R^2 for each model and print these for each group.\n\nAssess the validity of your modeling approach.\n\nObtain and plot predictions for each group for genome sizes 0.5, 123, and 500 MB.\n\nHow do you interpret the results in terms of the original hypothesis?\n\nBONUS use residual bootstrapping to obtain distributions for the predictions made in part 11."
   },
   {
     "objectID": "labs/lab-exercise-05.html#r-laboratory-exercise-5",
