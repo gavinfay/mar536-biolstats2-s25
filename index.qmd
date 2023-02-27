@@ -13,18 +13,18 @@ tbl-colwidths: [5,10,30,5,5,5,5,5,5,5]
 This page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses.
 
 ::: column-screen-inset-right
-<table style="width:79%;">
+<table style="width:70%;">
 <colgroup>
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
-<col style="width: 7%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -345,7 +345,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><p>7</p></td>
+<td style="text-align: center;"><p><a href="weeks/week-07.html">7</a></p></td>
 <td><p>Tue, Feb 28</p></td>
 <td><p>Due: Data Exploration Report</p></td>
 <td style="text-align: center;"></td>
@@ -360,8 +360,8 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td><p>Tue, Feb 28</p></td>
 <td><p>Matrix Algebra review</p></td>
-<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
-<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"><p><a href="weeks/week-07.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="lectures/lec-11.pdf"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -398,8 +398,8 @@ This page will contain an outline of the topics, content, and assignments for th
 <td><p>Lab 7 - Functions</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><p><span class="emoji" data-emoji="clipboard">📋</span></p></td>
-<td style="text-align: center;"><p><a href="https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
+<td style="text-align: center;"><p><a href="labs/lab-exercise-07.pdf"><span class="emoji" data-emoji="clipboard">📋</span></a></p></td>
+<td style="text-align: center;"><p><a href="labs/lab-07.html"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -408,8 +408,8 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td><p>Thu, Mar 02</p></td>
 <td><p>Principal Components Analysis</p></td>
-<td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
-<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"><p><a href="weeks/week-07.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="lectures/lec-12.pdf"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>

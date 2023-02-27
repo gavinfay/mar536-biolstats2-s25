@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.505">
+
+  <meta name="dcterms.date" content="2023-03-01">
+  <title>MAR 536 - Spring 2023 - MAR 536 Lab 7: Functions</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+<meta property="og:title" content="MAR 536 - Spring 2023 - MAR 536 Lab 7: Functions">
+<meta property="og:site-name" content="MAR 536 - Spring 2023">
+<meta name="twitter:title" content="MAR 536 - Spring 2023 - MAR 536 Lab 7: Functions">
+<meta name="twitter:image" content="https://gavinfay.github.io/mar536-biolstats2-s23/labs/images/twitter-card.png">
+<meta name="twitter:creator" content="@gavin_fay">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="center">
+  <h1 class="title">MAR 536 Lab 7: Functions</h1>
+  <p class="date">2023-03-01</p>
+</section>
+
+<section id="recommended-reading" class="slide level2">
+<h2>Recommended reading</h2>
+<p>An introduction to R (Venables et al.)<br>
+– <a href="http://cran.r-project.org/doc/manuals/R-intro.pdf" class="uri">http://cran.r-project.org/doc/manuals/R-intro.pdf</a><br>
+- Today’s material: Chapter 10</p>
+<p>Advanced R (Wickham)<br>
+- Chapter 6, 9</p>
+</section>
+<section id="functions" class="slide level2 small">
+<h2>Functions</h2>
+<p><code>R</code> allows the user to create objects of mode <em>function</em>.</p>
+<p>Most of the functions supplied as part of <code>R</code> are themselves written in <code>R</code> and do not differ from user written functions.</p>
+<p>A function is defined by an assignment of the form:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>fn_name <span class="ot">&lt;-</span> <span class="cf">function</span>(arg_1, arg_2, ...) expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <em>expression</em> is usually a grouped expression, that uses the <em>arguments</em> to calculate a value.</p>
+<p>The value of the expression is the value returned for the function.</p>
+<p>A call to the function takes the form:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">fn_name</span>(expr_1, expr2, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="scripts-vs-functions" class="slide level2">
+<h2>Scripts vs Functions</h2>
+<p><code>R</code> scripts/markdown files containing lots of lines of code are fine for one-off analyses, but tedious if repeating the same analysis on many datasets.</p>
+<p>Instead use functions to code commonly performed tasks.</p>
+<p>Allows you to avoid global variables that can be accessed and changed anywhere.</p>
+<p>To avoid duplicating code: if you have multiple copies of almost identical code, put it into a function.</p>
+</section>
+<section id="scripts-vs-functions-1" class="slide level2">
+<h2>Scripts vs Functions</h2>
+<p>You can create a function when <code>R</code> does not have a built-in function for your needs.</p>
+<p>When running an analysis over and over again, you can just call the function (one line) instead of running many lines of code.</p>
+<p>“…learning to write useful functions is one of the main ways to make your use of <code>R</code> comfortable and productive.”<br>
+(<em>Venables et al.&nbsp;R manual</em>)</p>
+</section>
+<section id="a-simple-function-cv" class="slide level2 small">
+<h2>A simple function: cv()</h2>
+<p>There is no <code>R</code> function for the CV, or coefficient of variation (standard deviation divided by the mean)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>cv <span class="ot">&lt;-</span> <span class="cf">function</span>(xvec) { </span>
+<span id="cb3-2"><a href="#cb3-2"></a>   cv_value <span class="ot">&lt;-</span> <span class="fu">sd</span>(xvec)<span class="sc">/</span><span class="fu">mean</span>(xvec) </span>
+<span id="cb3-3"><a href="#cb3-3"></a>   <span class="fu">return</span>(cv_value) </span>
+<span id="cb3-4"><a href="#cb3-4"></a>} </span>
+<span id="cb3-5"><a href="#cb3-5"></a>values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">mean=</span><span class="dv">5</span>, <span class="at">sd=</span><span class="dv">2</span>) </span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="fu">cv</span>(values) </span>
+<span id="cb3-7"><a href="#cb3-7"></a>[<span class="dv">1</span>] <span class="fl">0.3966093</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Available objects</em><br>
+Only the new function <code>cv()</code> and the object values are available in the workspace (they are global).<br>
+Object <code>cv_value</code> (defined inside the function) is encapsulated within the function <code>cv()</code> and not available outside it.<br>
+Well-designed functions only receive inputs through their arguments.</p>
+</section>
+<section id="optional-arguments" class="slide level2 small">
+<h2>Optional arguments</h2>
+<p>If <code>xvec</code> includes NAs the function won’t work, instead, add an optional argument.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>cv_new <span class="ot">&lt;-</span> <span class="cf">function</span>(xvec, <span class="at">na.rm =</span> <span class="cn">FALSE</span>) {  </span>
+<span id="cb4-2"><a href="#cb4-2"></a>   cv_value <span class="ot">&lt;-</span> <span class="fu">sd</span>(xvec, <span class="at">na.rm =</span> na.rm)<span class="sc">/</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>               <span class="fu">mean</span>(xvec, <span class="at">na.rm =</span> na.rm) </span>
+<span id="cb4-4"><a href="#cb4-4"></a>   <span class="fu">return</span>(cv_value) </span>
+<span id="cb4-5"><a href="#cb4-5"></a>} </span>
+<span id="cb4-6"><a href="#cb4-6"></a>values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">mean=</span><span class="dv">5</span>, <span class="at">sd=</span><span class="dv">2</span>)</span>
+<span id="cb4-7"><a href="#cb4-7"></a>values[<span class="dv">100</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span> </span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">cv_new</span>(values)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>[<span class="dv">1</span>] <span class="cn">NA</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="fu">cv_new</span>(values[<span class="sc">-</span><span class="dv">100</span>])</span>
+<span id="cb4-11"><a href="#cb4-11"></a>[<span class="dv">1</span>] <span class="fl">0.3973516</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="fu">cv_new</span>(values, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb4-13"><a href="#cb4-13"></a>[<span class="dv">1</span>] <span class="fl">0.3973516</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Some built-in <code>R</code> functions (e.g.&nbsp;<code>lm()</code>) have many optional arguments.<br>
+<code>qnorm(0.25,0,1)</code>, <code>qnorm(x = 0.25)</code>, and <code>qnorm(0.25,sd=1)</code> all return the same result.</p>
+</section>
+<section id="lab-exercise-14" class="slide level2 small">
+<h2>Lab exercise 1/4</h2>
+<p>Create a function <code>wtlen()</code> with three arguments: a vector of lengths, and values <code>a</code> and <code>b</code>.<br>
+The function should return the weights of the fishes using the weight-length equation: <span class="math inline">\(W = aL^b\)</span><br>
+Use the function to calculate the weight (in g) of fish of length 100, 200, 300 cm for:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Species</th>
+<th>a</th>
+<th>b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><em>Mola mola</em></td>
+<td>0.0454</td>
+<td>3.05</td>
+</tr>
+<tr class="even">
+<td><em>Regalecus glesne</em></td>
+<td>0.0039</td>
+<td>2.90</td>
+</tr>
+</tbody>
+</table>
+<p>i.e.&nbsp;you can run your function twice, once with the paramters for <em>Mola</em> &amp; once for <em>Regalecus</em>.</p>
+</section>
+<section id="properties-of-functions" class="slide level2">
+<h2>Properties of functions</h2>
+<p>Functions:<br>
+- Have a name<br>
+- Are provided with input (“passed” some input)<br>
+- Do something<br>
+- Return something for later use</p>
+<p>Functions can call other functions.<br>
+A program is a collection of functions.<br>
+Functions can be re-used.<br>
+A good function is general, carefully written, and well documented.</p>
+</section>
+<section id="help-with-functions" class="slide level2">
+<h2>Help with functions</h2>
+<p>Type <code>ls()</code> at the prompt in the console to see all of your current objects, including functions.</p>
+<p>Type the name of a function to see how it was created, e.g.&nbsp;<code>lm</code></p>
+<p>To copy and then change the source code of a built-in function in <code>R</code>, use the edit function, e.g.&nbsp;<code>edit(lm)</code></p>
+<p><code>R</code> contains numerous functions, the trick is finding the right one and being able to understand the documentation.</p>
+</section>
+<section id="outputs-of-functions" class="slide level2 small">
+<h2>Outputs of functions</h2>
+<p>The command <code>return(my_object)</code> makes the object <code>my_object</code> available to whatever called the function.</p>
+<p>If the function is called from the console, <code>return(my_object)</code> prints out the object.</p>
+<p>Replacing <code>return(my_object)</code> with <code>invisible(my_object)</code> returns the value without printing out the object.</p>
+<p>What is the most common function that returns invisibly?<br>
+(<em>Hint</em>: you use it on nearly every line of code)</p>
+<p>Functions do not have to return anything.</p>
+<p>You can pass and return all sorts of things: a single number, a vector of numbers, a character, a boolean value, and even another function (!)</p>
+</section>
+<section id="outputting-many-values-from-a-function" class="slide level2 small">
+<h2>Outputting many values from a function</h2>
+<p>Achieved by returning a list object.<br>
+(e.g.&nbsp;value returned by <code>lm()</code>)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>compute_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(xvec) {</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  ave <span class="ot">&lt;-</span> <span class="fu">mean</span>(xvec)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  var <span class="ot">&lt;-</span> <span class="fu">var</span>(xvec)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  cv <span class="ot">&lt;-</span> <span class="fu">cv_new</span>(xvec)  <span class="co"># call to our own function    </span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">cat</span>(ave, var, cv, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>) </span>
+<span id="cb5-6"><a href="#cb5-6"></a>  out <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ave =</span> ave, <span class="at">var =</span> var, </span>
+<span id="cb5-7"><a href="#cb5-7"></a>              <span class="at">sd =</span> <span class="fu">sqrt</span>(var), <span class="at">cv =</span> cv)</span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb5-9"><a href="#cb5-9"></a>}</span>
+<span id="cb5-10"><a href="#cb5-10"></a>values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">mean=</span><span class="dv">5</span>, <span class="at">sd=</span><span class="dv">2</span>)</span>
+<span id="cb5-11"><a href="#cb5-11"></a>values_summary <span class="ot">&lt;-</span> <span class="fu">compute_stats</span>(values) </span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="fl">4.958735</span> <span class="fl">4.0205</span> <span class="fl">0.4043609</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="lab-exercise-24" class="slide level2 small">
+<h2>Lab exercise 2/4</h2>
+<p>Write a function <code>cor_vec()</code> which takes two vectors <code>X</code> and <code>Y</code> which:<br>
+1. Centers both vectors (subtract their respective means) so they average 0<br>
+2. Plots <code>X</code> versus <code>Y</code><br>
+3. Returns the correlation between <code>X</code> and <code>Y</code>.</p>
+<p>Apply your function to the following data set:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">set.seed</span>(<span class="dv">66</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>xx <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>yy <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="sc">+</span> xx<span class="sc">*</span><span class="fl">0.5</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="fu">length</span>(xx), <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Add <code>, ...</code> to your function’s argument list and to the call to your plot’s <code>geom_()</code> command.<br>
+The <code>...</code> stands for any parameter.<br>
+Call the function with parameters that change the color &amp; size of points.</p>
+</section>
+<section id="scope-where-is-an-object-visible" class="slide level2 small">
+<h2>Scope: where is an object visible?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb7-2"><a href="#cb7-2"></a>x1 <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>func1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y) {</span>
+<span id="cb7-4"><a href="#cb7-4"></a>   <span class="fu">print</span>(x)</span>
+<span id="cb7-5"><a href="#cb7-5"></a>   <span class="fu">print</span>(y)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>   <span class="fu">print</span>(x1)</span>
+<span id="cb7-7"><a href="#cb7-7"></a>}</span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="fu">func1</span>(<span class="at">x=</span><span class="dv">5</span>, <span class="at">y=</span><span class="dv">6</span>) </span>
+<span id="cb7-9"><a href="#cb7-9"></a>[<span class="dv">1</span>] <span class="dv">5</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>[<span class="dv">1</span>] <span class="dv">6</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>[<span class="dv">1</span>] <span class="dv">10</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="fu">print</span>(x) </span>
+<span id="cb7-13"><a href="#cb7-13"></a>Error <span class="cf">in</span> <span class="fu">print</span>(x)<span class="sc">:</span> object <span class="st">'x'</span> not found</span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="fu">print</span>(y) </span>
+<span id="cb7-15"><a href="#cb7-15"></a>Error <span class="cf">in</span> <span class="fu">print</span>(y)<span class="sc">:</span> object <span class="st">'y'</span> not found</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Scoping rule: if there is a local variable and a global variable with the same name, <code>R</code> will use the local variable.</p>
+</section>
+<section id="first-rule-of-good-programming" class="slide level2">
+<h2>First rule of good programming</h2>
+<p>AVOID GLOBAL VARIABLES [whenever possible]</p>
+<p>Each function should be self-contained.</p>
+<p>All inputs passed as parameters.</p>
+<p>All outputs returned using <code>return()</code> or <code>invisible()</code>.</p>
+<!---
+## Nothing to see here  
+
+\begingroup
+\fontsize{10}{11}\selectfont
+
+::: {.cell}
+
+```{.r .cell-code}
+rm(list=ls()) #clear everything
+x1 <- 10
+func1 <- function(x) {
+   x1 <<- x
+   return(x1)
+}
+func1(x=5) 
+[1] 5
+print(x1) 
+[1] 5
+```
+:::
+
+\endgroup
+
+The `<<-` means change the value of the global variable.  
+__NEVER__ use this.  
+
+Scoping rule: if there is a local variable and a global variable with the same name, `R` will use the local variable.  
+--->
+</section>
+<section id="lab-exercise-34" class="slide level2 small">
+<h2>Lab exercise 3/4</h2>
+<p>Write a function which:<br>
+1. Takes a file name and two numbers (the defaults for the two numbers should be 1 and 2),<br>
+2. Reads in a table of data (assume that the file is comma delimited),<br>
+3. Plots the columns represented by the two numbers against each other.</p>
+<p><em>Hints:</em><br>
+Use the read_csv() function.<br>
+Use print() to check the values of intermediate results (to see if your function is working).<br>
+Use the <code>hake.csv</code> file we used previously to check your program.</p>
+</section>
+<section id="dynamic-lookup" class="slide level2 smaller">
+<h2>Dynamic lookup</h2>
+<p><code>R</code> looks for values when the function is run, not when it’s created.<br>
+The output of a function can be different depending on objects outside its environment:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>() x</span>
+<span id="cb8-2"><a href="#cb8-2"></a>x <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="fu">f</span>()</span>
+<span id="cb8-4"><a href="#cb8-4"></a>[<span class="dv">1</span>] <span class="dv">15</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>x <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="fu">f</span>()</span>
+<span id="cb8-7"><a href="#cb8-7"></a>[<span class="dv">1</span>] <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We generally want to avoid this behavior - function is not self-contained.<br>
+Detect using <code>findGlobals()</code> function from package <code>codetools</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>() x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>codetools<span class="sc">::</span><span class="fu">findGlobals</span>(f)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>[<span class="dv">1</span>] <span class="st">"+"</span> <span class="st">"x"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>All of the standard operators in <code>R</code> are in fact functions.<br>
+You can therefore override them with your own alternatives.<br>
+- may or may not be a good April Fool’s joke if your colleague leaves their computer unlocked.</p>
+</section>
+<section id="arguments" class="slide level2 small">
+<h2>Arguments</h2>
+<p>Arguments can be specified by position, by complete name, or by partial name.<br>
+Avoid using positional matching for less commonly used arguments.<br>
+Calling a function given a list of arguments using <code>do.call()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>args <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">do.call</span>(mean, <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb10-3"><a href="#cb10-3"></a>[<span class="dv">1</span>] <span class="fl">5.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Determine if an argument was supplied or not using <code>missing()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>i <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) <span class="fu">c</span>(<span class="fu">missing</span>(a), <span class="fu">missing</span>(b))</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">i</span>()</span>
+<span id="cb11-3"><a href="#cb11-3"></a>[<span class="dv">1</span>] <span class="cn">TRUE</span> <span class="cn">TRUE</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">i</span>(<span class="at">a =</span> <span class="dv">1</span>)</span>
+<span id="cb11-5"><a href="#cb11-5"></a>[<span class="dv">1</span>] <span class="cn">FALSE</span>  <span class="cn">TRUE</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="fu">i</span>(<span class="at">b =</span> <span class="dv">2</span>)</span>
+<span id="cb11-7"><a href="#cb11-7"></a>[<span class="dv">1</span>]  <span class="cn">TRUE</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="infix-functions" class="slide level2">
+<h2>infix functions</h2>
+<p>Most functions in <code>R</code> are <em>prefix</em> functions, the function name comes before the arguments.</p>
+<p>Can also have <em>infix</em> arguments where function comes between the arguments, like <code>+</code> or <code>-</code>.</p>
+<p>All user-created infix functions must start and end with <code>%</code></p>
+<p>e.g.&nbsp;new function to paste together two strings</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="st">`</span><span class="at">%+%</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) <span class="fu">paste</span>(a, b, <span class="at">sep =</span> <span class="st">""</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="st">"new"</span> <span class="sc">%+%</span> <span class="st">"string"</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>[<span class="dv">1</span>] <span class="st">"newstring"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>NB: when creating, function name has to be put in backticks.</p>
+</section>
+<section id="debugging-defensive-programming" class="slide level2">
+<h2>Debugging + defensive programming</h2>
+<p>What happens when something goes wrong with your <code>R</code> code?</p>
+
+<img data-src="../images/opinions/dogtears.png" class="r-stretch"></section>
+<section id="debugging-defensive-programming-1" class="slide level2 small">
+<h2>Debugging + defensive programming</h2>
+<p>What happens when something goes wrong with your <code>R</code> code?</p>
+<p>What do you do? What tools do you have to address the problem?</p>
+<p>Debugging is the art and science of fixing unexpected problems in your code.</p>
+<p><strong>Read the error message!</strong></p>
+<p>Useful functions include <code>traceback()</code> and <code>browser()</code>. Also interactive tools in RStudio.</p>
+</section>
+<section id="debugging-defensive-programming-2" class="slide level2 small">
+<h2>Debugging + defensive programming</h2>
+<p>Not all problems are unexpected, you can often anticipate potential problems.</p>
+<p>“Finding your bug is a process of confirming the many things that you believe are true - until you find one which is not true.”<br>
+(Norm Matloff)</p>
+<p>Add statements to your function that stop the calculations and return messages when function assumptions are not met.</p>
+<p>You can debug with just <code>print()</code>, there are times when additional help is welcome.</p>
+</section>
+<section id="debugging-procedure" class="slide level2 small">
+<h2>Debugging procedure</h2>
+<p>Realize that you have a bug.<br>
+- (the first step is admitting you have a problem….)</p>
+<p>Make it repeatable.<br>
+- once found, need to be able to reproduce it on command.<br>
+- slowly whittle down to the smallest snippet that still causes the error.<br>
+- binary search is useful for this. (repeatedly remove half the code).<br>
+- if generating the bug takes time, figure out how to get it faster (create minimal example).<br>
+- during this you’ll discover similar inputs that don’t trigger the bug. <strong>WRITE THESE DOWN.</strong></p>
+</section>
+<section id="debugging-procedure-1" class="slide level2 small">
+<h2>Debugging procedure</h2>
+<p>Figure out where the bug is.<br>
+- Use helpful tools to try and identify the offending line of code.<br>
+- Generate hypotheses, design experiments to test them, record results.<br>
+- A systematic approach will often end up saving you time.</p>
+<p>Fix it and test it.<br>
+- Figure out how to fix it and to check that the fix worked.<br>
+- Carefully record the correct output, and check against the inputs that previously failed.</p>
+</section>
+<section id="lab-exercise-44" class="slide level2 small">
+<h2>Lab exercise 4/4</h2>
+<p>Write a function (or set of functions) that:<br>
+a. takes two vectors of data,<br>
+b. produces a scatterplot of one vector vs the other,<br>
+c.&nbsp;adds a title that is a species name,<br>
+d.&nbsp;performs a regression if there is enough data,<br>
+e. adds the estimated regression line to the plot, and<br>
+f.&nbsp;returns the coefficients of the regression.</p>
+<p>Add an argument that determines whether the regression should be based on the logs of the input vectors.</p>
+<p><em>Hint</em> Test your functions with some dummy data. Reuse code from earlier today and from other labs.</p>
+<p>Apply your function(s) to the <code>Laengelmavesi2</code> data.</p>
+
+
+<img src="../images/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<p><a href="https://gavinfay.github.io/mar536-biolstats2-s23">gavinfay.github.io/mar536-biolstats2-s23</a></p>
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="../site_libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'multiplex': {"secret":null,"id":"4b55e7a588bd6927","url":"https://reveal-multiplex.glitch.me/"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          // dispatch for htmlwidgets
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for reveal
+        if (window.Reveal) {
+          window.Reveal.addEventListener("slidechanged", function(event) {
+            fireSlideChanged(event.previousSlide, event.currentSlide);
+          });
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        setTimeout(function() {
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          let href = ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+        tippyHover(ref, function() {
+          var popup = window.document.createElement('div');
+          cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    });
+    </script>
+    
+
+</body></html>

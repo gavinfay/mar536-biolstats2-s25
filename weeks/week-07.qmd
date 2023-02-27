@@ -1,0 +1,31 @@
+---
+title: "Week 7"
+subtitle: "Principal Component Analysis, Writing your own functions"
+editor: visual
+---
+
+**Take-home MIDTERM distributed this week.**
+
+## Prepare
+
+📖 Tue + Thu: Read Chapter 12 Zuur et al. 2007.
+
+## Participate
+
+🖥️ [Lecture 11 - Matrix Algebra Review](../lectures/lec-11.pdf)
+
+⌨️ [Lab 7 - Functions](../labs/lab-07.html) (just the [exercises](../labs/lab-exercise-07.pdf))
+
+-   Data sets for the lab can be found in the [class-data folder](#class-data).
+
+🖥️ [Lecture 12 - Principal Component Analysis](../lectures/lec-12.pdf)
+
+## Practice
+
+Lab 7 exercise is due before lab on Wednesday Mar 22.
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/ "Course schedule") ⏎
+:::
