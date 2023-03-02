@@ -1,0 +1,415 @@
+---
+title: "MAR 536 Lab 7: Functions"
+date: "2023-03-01"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+logo: "../images/logo.png"
+format:
+  revealjs:
+    theme: slides.scss
+    multiplex: true
+    transition: fade
+    slide-number: true
+editor: source
+execute:
+  freeze: auto
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+#devtools::install_github("gadenbuie/countdown")
+library(countdown)
+library(tidyverse)
+#install.packages('nycflights13')
+#library(nycflights13)
+```
+
+
+## Recommended reading
+
+An introduction to R (Venables et al.)  
+– <http://cran.r-project.org/doc/manuals/R-intro.pdf>  
+- Today's material: Chapter 10  
+
+Advanced R (Wickham)  
+- Chapter 6, 9  
+  
+
+
+## Functions {.small}
+
+  `R` allows the user to create objects of mode _function_.  
+  
+  Most of the functions supplied as part of `R` are themselves written in `R` and do not differ from user written functions.  
+  
+  A function is defined by an assignment of the form:  
+  
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=FALSE}
+fn_name <- function(arg_1, arg_2, ...) expression
+```
+
+  The _expression_ is usually a grouped expression, that uses the _arguments_ to calculate a value.    
+
+  The value of the expression is the value returned for the function.  
+
+  A call to the function takes the form:  
+  
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=FALSE}
+fn_name(expr_1, expr2, ...)
+```
+ 
+
+## Scripts vs Functions  
+
+`R` scripts/markdown files containing lots of lines of code are fine for one-off analyses, but tedious if repeating the same analysis on many datasets.  
+
+Instead use functions to code commonly performed tasks.  
+
+Allows you to avoid global variables that can be accessed and changed anywhere.  
+
+To avoid duplicating code: if you have multiple copies of almost identical code, put it into a function.  
+
+
+## Scripts vs Functions  
+
+You can create a function when `R` does not have a built-in function for your needs.  
+
+When running an analysis over and over again, you can just call the function (one line) instead of running many lines of code.  
+
+ "...learning to write useful functions is one of the main ways to make your use of `R` comfortable and productive."  
+ (_Venables et al. R manual_)
+
+
+## A simple function: cv()  {.small}
+
+There is no `R` function for the CV, or coefficient of variation (standard deviation divided by the mean)  
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+cv <- function(xvec) { 
+   cv_value <- sd(xvec)/mean(xvec) 
+   return(cv_value) 
+} 
+values <- rnorm(n=1000, mean=5, sd=2) 
+cv(values) 
+```
+
+_Available objects_  
+Only the new function `cv()` and the object values are available in the workspace (they are global).  
+Object `cv_value` (defined inside the function) is encapsulated within the function `cv()` and not available outside it.  
+Well-designed functions only receive inputs through their arguments.  
+
+
+## Optional arguments {.small}
+
+If `xvec` includes NAs the function won’t work, instead, add an optional argument.  
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+cv_new <- function(xvec, na.rm = FALSE) {  
+   cv_value <- sd(xvec, na.rm = na.rm)/
+               mean(xvec, na.rm = na.rm) 
+   return(cv_value) 
+} 
+values <- rnorm(n=1000, mean=5, sd=2)
+values[100] <- NA 
+cv_new(values)
+cv_new(values[-100])
+cv_new(values, na.rm = TRUE) 
+```
+
+Some built-in `R` functions (e.g. `lm()`) have many optional arguments.  
+`qnorm(0.25,0,1)`, `qnorm(x = 0.25)`, and `qnorm(0.25,sd=1)` all return the same result.  
+
+
+## Lab exercise 1/4 {.small}
+
+Create a function `wtlen()` with three arguments: a vector of lengths, and values `a` and `b`.  
+The function should return the weights of the fishes using the weight-length equation: $W = aL^b$  
+Use the function to calculate the weight (in g) of fish of length 100, 200, 300 cm for:   
+
+Species | a | b
+--------|---|----
+_Mola mola_ | 0.0454 | 3.05
+_Regalecus glesne_ | 0.0039 | 2.90
+
+i.e. you can run your function twice, once with the paramters for _Mola_ & once for _Regalecus_.  
+
+## Properties of functions
+
+Functions:  
+- Have a name  
+- Are provided with input (“passed” some input)  
+- Do something  
+- Return something for later use  
+
+Functions can call other functions.  
+A program is a collection of functions.  
+Functions can be re-used.  
+A good function is general, carefully written, and well documented.  
+
+
+##  Help with functions  
+
+Type `ls()` at the prompt in the console to see all of your current objects, including functions.  
+
+Type the name of a function to see how it was created, e.g. `lm`  
+
+To copy and then change the source code of a built-in function in `R`, use the edit function, e.g. `edit(lm)`
+
+`R` contains numerous functions, the trick is finding the right one and being able to understand the documentation.  
+
+
+## Outputs of functions  {.small}
+
+The command `return(my_object)` makes the object `my_object` available to whatever called the function.  
+
+If the function is called from the console, `return(my_object)` prints out the object.  
+
+Replacing `return(my_object)` with `invisible(my_object)` returns the value without printing out the object.  
+
+What is the most common function that returns invisibly?  
+(_Hint_: you use it on nearly every line of code)  
+
+Functions do not have to return anything.  
+
+You can pass and return all sorts of things: a single number, a vector of numbers, a character, a boolean value, and even another function (!)  
+
+
+## Outputting many values from a function {.small}
+
+Achieved by returning a list object.  
+(e.g. value returned by `lm()`)
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+compute_stats <- function(xvec) {
+  ave <- mean(xvec)
+  var <- var(xvec)
+  cv <- cv_new(xvec)  # call to our own function    
+  cat(ave, var, cv, "\n") 
+  out <- list(ave = ave, var = var, 
+              sd = sqrt(var), cv = cv)
+  return(out)
+}
+values <- rnorm(n=1000, mean=5, sd=2)
+values_summary <- compute_stats(values) 
+```
+
+
+## Lab exercise 2/4  {.small}
+
+Write a function `cor_vec()` which takes two vectors `X` and `Y` which:  
+1. Centers both vectors (subtract their respective means) so they average 0  
+2. Plots `X` versus `Y`  
+3. Returns the correlation between `X` and `Y`.  
+
+Apply your function to the following data set:  
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+set.seed(66)
+xx <- seq(from = 1, to = 100, by = 1)
+yy <- 0.2 + xx*0.5 + rnorm(n = length(xx), mean = 0, sd = 5)
+```
+
+Add `, ...` to your function's argument list and to the call to your plot's `geom_()` command.  
+The `...` stands for any parameter.  
+Call the function with parameters that change the color & size of points.  
+
+
+## Scope: where is an object visible? {.small} 
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,error=TRUE}
+rm(list=ls())
+x1 <- 10
+func1 <- function(x,y) {
+   print(x)
+   print(y)
+   print(x1)
+}
+func1(x=5, y=6) 
+print(x) 
+print(y) 
+```
+
+Scoping rule: if there is a local variable and a global variable with the same name, `R` will use the local variable.  
+
+
+##  First rule of good programming  
+
+AVOID GLOBAL VARIABLES [whenever possible]  
+
+Each function should be self-contained.  
+
+All inputs passed as parameters.  
+
+All outputs returned using `return()` or `invisible()`.  
+
+<!---
+## Nothing to see here  
+
+\begingroup
+\fontsize{10}{11}\selectfont
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+rm(list=ls()) #clear everything
+x1 <- 10
+func1 <- function(x) {
+   x1 <<- x
+   return(x1)
+}
+func1(x=5) 
+print(x1) 
+```
+\endgroup
+
+The `<<-` means change the value of the global variable.  
+__NEVER__ use this.  
+
+Scoping rule: if there is a local variable and a global variable with the same name, `R` will use the local variable.  
+--->
+
+## Lab exercise 3/4 {.small}  
+
+Write a function which:  
+1. Takes a file name and two numbers (the defaults for the two numbers should be 1 and 2),  
+2. Reads in a table of data (assume that the file is comma delimited),  
+3. Plots the columns represented by the two numbers against each other.    
+
+_Hints:_  
+Use the read_csv() function.  
+Use print() to check the values of intermediate results (to see if your function is working).  
+Use the `hake.csv` file we used previously to check your program.  
+
+
+
+## Dynamic lookup {.smaller}
+
+`R` looks for values when the function is run, not when it's created.  
+The output of a function can be different depending on objects outside its environment:  
+  
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+f <- function() x
+x <- 15
+f()
+x <- 20
+f()
+```
+
+We generally want to avoid this behavior - function is not self-contained.  
+Detect using `findGlobals()` function from package `codetools`.  
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+f <- function() x + 1
+codetools::findGlobals(f)
+```
+
+All of the standard operators in `R` are in fact functions.  
+You can therefore override them with your own alternatives.  
+- may or may not be a good April Fool's joke if your colleague leaves their computer unlocked.  
+
+
+## Arguments  {.small}
+
+  Arguments can be specified by position, by complete name, or by partial name.  
+  Avoid using positional matching for less commonly used arguments.  
+  Calling a function given a list of arguments using `do.call()`  
+  
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+args <- list(1:10, na.rm = TRUE)
+do.call(mean, list(1:10, na.rm = TRUE))
+```
+
+Determine if an argument was supplied or not using `missing()`.
+
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+i <- function(a, b) c(missing(a), missing(b))
+i()
+i(a = 1)
+i(b = 2)
+```
+
+
+## infix functions  
+
+  Most functions in `R` are _prefix_ functions, the function name comes before the arguments.  
+  
+  Can also have _infix_ arguments where function comes between the arguments, like `+` or `-`.  
+  
+  All user-created infix functions must start and end with `%`  
+  
+  e.g. new function to paste together two strings
+```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE}
+`%+%` <- function(a, b) paste(a, b, sep = "")
+"new" %+% "string"
+```
+
+NB: when creating, function name has to be put in backticks.    
+  
+
+## Debugging + defensive programming
+
+What happens when something goes wrong with your `R` code?  
+
+![](../images/opinions/dogtears.png)
+
+## Debugging + defensive programming {.small}
+
+What happens when something goes wrong with your `R` code?  
+
+What do you do?  What tools do you have to address the problem?  
+
+Debugging is the art and science of fixing unexpected problems in your code.  
+
+__Read the error message!__  
+
+Useful functions include `traceback()` and `browser()`. Also interactive tools in RStudio.  
+
+## Debugging + defensive programming {.small}
+
+Not all problems are unexpected, you can often anticipate potential problems.  
+
+"Finding your bug is a process of confirming the many things that you believe are true - until you find one which is not true."  
+(Norm Matloff)  
+
+Add statements to your function that stop the calculations and return messages when function assumptions are not met.  
+
+You can debug with just `print()`, there are times when additional help is welcome.  
+
+## Debugging procedure  {.small}
+
+Realize that you have a bug.  
+- (the first step is admitting you have a problem....)
+
+Make it repeatable.  
+- once found, need to be able to reproduce it on command.  
+- slowly whittle down to the smallest snippet that still causes the error.  
+- binary search is useful for this.  (repeatedly remove half the code).   
+- if generating the bug takes time, figure out how to get it faster (create minimal example).  
+- during this you'll discover similar inputs that don't trigger the bug.  __WRITE THESE DOWN.__  
+
+
+## Debugging procedure {.small}
+
+Figure out where the bug is.  
+- Use helpful tools to try and identify the offending line of code.  
+- Generate hypotheses, design experiments to test them, record results.  
+- A systematic approach will often end up saving you time.  
+
+Fix it and test it.  
+- Figure out how to fix it and to check that the fix worked.  
+- Carefully record the correct output, and check against the inputs that previously failed.  
+
+
+
+## Lab exercise 4/4 {.small}
+
+Write a function (or set of functions) that:  
+a. takes two vectors of data,  
+b. produces a scatterplot of one vector vs the other,  
+c. adds a title that is a species name,  
+d. performs a regression if there is enough data,  
+e. adds the estimated regression line to the plot, and  
+f. returns the coefficients of the regression.  
+
+Add an argument that determines whether the regression should be based on the logs of the input vectors.  
+
+_Hint_ Test your functions with some dummy data. Reuse code from earlier today and from other labs.  
+
+Apply your function(s) to the `Laengelmavesi2` data.   
+
+

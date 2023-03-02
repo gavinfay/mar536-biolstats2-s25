@@ -409,7 +409,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td><p>Thu, Mar 02</p></td>
 <td><p>Principal Components Analysis</p></td>
 <td style="text-align: center;"><p><a href="weeks/week-07.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="lectures/lec-12.pdf"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><a href="lectures/lec-12.pptx"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>

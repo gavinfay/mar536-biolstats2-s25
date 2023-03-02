@@ -301,13 +301,13 @@ $BA$ is of order $(3,3)$. $AB \neq BA$
 
 ## Matrix Multiplication
 
-Other things to know:  
-Matrix multiplication is associative: $(AB)C = A(BC)$  
-Matrix multiplication is distributive: $A(B+C) = AB + AC$  
-Scalar multiplication commutative, associative, & distributive.  
+Other things to know:\
+Matrix multiplication is associative: $(AB)C = A(BC)$\
+Matrix multiplication is distributive: $A(B+C) = AB + AC$\
+Scalar multiplication commutative, associative, & distributive.
 
-Transpose of a product: $(AB)^{'} = B^{'} A^{'}$  
-Use exponentiation operator to denote repeated multiplication: $A^{3} = A \cdot A \cdot A$  
+Transpose of a product: $(AB)^{'} = B^{'} A^{'}$\
+Use exponentiation operator to denote repeated multiplication: $A^{3} = A \cdot A \cdot A$
 
 ## Matrix multiplication
 
@@ -533,7 +533,7 @@ Eigenvectors are scaled so that $V$ is an orthogonal matrix. Eigenvalues will al
 
 Decomposition of a matrix into eigenvalues and eigenvectors rearranges dimensions in an $n$ dimensional space such that the axes are all perpendicular.
 
-Eigenvalues tell us the proportion of total variability in a matrix associated with its corresponding eigenvector.  
+Eigenvalues tell us the proportion of total variability in a matrix associated with its corresponding eigenvector.\
 i.e. eigenvector corresponding to largest eigenvalue tell us the dimension (axis) that generates the maximum amount of individual variability in the variables.
 
 ## Next Time...

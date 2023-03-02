@@ -190,7 +190,7 @@ These all have slightly differences about how they are used.
 The `map` function is the workhorse of `purrr`.  
 e.g. 
 ```{r}
-shades <- colors()[1:5]  
+shades <- colors()[1:5]
 for (i in seq_along(shades)) { 
   print(shades[i])  
 }
@@ -199,9 +199,6 @@ for (i in seq_along(shades)) {
 ```{r}
 a <-  map(shades, print)
 ```
-
-
-
 
 ## `map` {.small}
 
