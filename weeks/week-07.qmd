@@ -18,7 +18,9 @@ editor: visual
 
 -   Data sets for the lab can be found in the [class-data folder](#class-data).
 
-🖥️ [Lecture 12 - Principal Component Analysis](../lectures/lec-12.pdf)
+🖥️ [Lecture 12 - Principal Component Analysis](../lectures/lec-12.pptx)
+
+-   [PCA with palmerpenguins from Dr. Allison Horst](https://allisonhorst.github.io/palmerpenguins/articles/pca.html)
 
 ## Practice
 

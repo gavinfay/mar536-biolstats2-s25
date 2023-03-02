@@ -1236,7 +1236,7 @@
     "href": "labs/lab-06.html#basics-of-purrr",
     "title": "MAR 536 Lab 6",
     "section": "Basics of purrr",
-    "text": "Basics of purrr\nThe map function is the workhorse of purrr.\ne.g. \n\nshades <- colors()[1:5]  \nfor (i in seq_along(shades)) { \n  print(shades[i])  \n}\n## [1] \"white\"\n## [1] \"aliceblue\"\n## [1] \"antiquewhite\"\n## [1] \"antiquewhite1\"\n## [1] \"antiquewhite2\"\n\n\na <-  map(shades, print)\n## [1] \"white\"\n## [1] \"aliceblue\"\n## [1] \"antiquewhite\"\n## [1] \"antiquewhite1\"\n## [1] \"antiquewhite2\""
+    "text": "Basics of purrr\nThe map function is the workhorse of purrr.\ne.g. \n\nshades <- colors()[1:5]\nfor (i in seq_along(shades)) { \n  print(shades[i])  \n}\n## [1] \"white\"\n## [1] \"aliceblue\"\n## [1] \"antiquewhite\"\n## [1] \"antiquewhite1\"\n## [1] \"antiquewhite2\"\n\n\na <-  map(shades, print)\n## [1] \"white\"\n## [1] \"aliceblue\"\n## [1] \"antiquewhite\"\n## [1] \"antiquewhite1\"\n## [1] \"antiquewhite2\""
   },
   {
     "objectID": "labs/lab-06.html#map",
@@ -1271,14 +1271,14 @@
     "href": "labs/lab-06.html#extending-to-multiple-input-lists",
     "title": "MAR 536 Lab 6",
     "section": "Extending to multiple input lists",
-    "text": "Extending to multiple input lists\nmap2 allows you to map over two sets of inputs.\n\nmap2(list1, list2, ~function(.x,.y), ...)\n\ne.g. generate 3 sets of 5 normal random variables, with the means & standard deviations different in each set.\n\nmu <- list(5, 10, -3)\nsigma <- list(1, 5, 10)\nmap2(mu, sigma, rnorm, n = 5) |> str()\n## List of 3\n##  $ : num [1:5] 4.75 4.82 3.29 3.01 5.22\n##  $ : num [1:5] 10.32 13.04 13.4 11.85 -1.36\n##  $ : num [1:5] -4.21 3.92 -22.05 -4.95 -2.14"
+    "text": "Extending to multiple input lists\nmap2 allows you to map over two sets of inputs.\n\nmap2(list1, list2, ~function(.x,.y), ...)\n\ne.g. generate 3 sets of 5 normal random variables, with the means & standard deviations different in each set.\n\nmu <- list(5, 10, -3)\nsigma <- list(1, 5, 10)\nmap2(mu, sigma, rnorm, n = 5) |> str()\n## List of 3\n##  $ : num [1:5] 4.78 5.28 5.6 4.46 4.92\n##  $ : num [1:5] 9.83 4.23 16.61 6.71 16.3\n##  $ : num [1:5] 2.438 4.681 -3.453 -16.228 0.252"
   },
   {
     "objectID": "labs/lab-06.html#more-than-2-inputs-use-pmap",
     "href": "labs/lab-06.html#more-than-2-inputs-use-pmap",
     "title": "MAR 536 Lab 6",
     "section": "More than 2 inputs, use pmap",
-    "text": "More than 2 inputs, use pmap\ne.g. same problem as previous, but now n varies in each set.\n\nn <- list(1, 3, 5)\nmu <- list(5, 10, -3)\nsigma <- list(1, 5, 10)\n\nargs1 <- list(mean = mu, sd = sigma, n = n)\nargs1 |>\n  pmap(rnorm) |>\n  str()\n## List of 3\n##  $ : num 5.12\n##  $ : num [1:3] 15.4 13.5 15.8\n##  $ : num [1:5] -8.56 2.01 3.12 -6.61 13.05\n\nSafest to use named arguments with pmap, as it will do positional matching if not."
+    "text": "More than 2 inputs, use pmap\ne.g. same problem as previous, but now n varies in each set.\n\nn <- list(1, 3, 5)\nmu <- list(5, 10, -3)\nsigma <- list(1, 5, 10)\n\nargs1 <- list(mean = mu, sd = sigma, n = n)\nargs1 |>\n  pmap(rnorm) |>\n  str()\n## List of 3\n##  $ : num 7.46\n##  $ : num [1:3] 14.17 9.36 4.04\n##  $ : num [1:5] -15.98 -15.89 -17.65 5.46 3.53\n\nSafest to use named arguments with pmap, as it will do positional matching if not."
   },
   {
     "objectID": "labs/lab-06.html#debugging-using-safely",
@@ -1320,7 +1320,7 @@
     "href": "labs/lab-06.html#residual-bootstrapping-2",
     "title": "MAR 536 Lab 6",
     "section": "residual bootstrapping",
-    "text": "residual bootstrapping\n\n# we'll do resampling from the residuals for each year within each rookery\n# rather than getting complicated with nested lists, we'll use sample_frac() to do the resamples\ntosample <- ssl_boot |> \n  select(sitename, resid) |> \n  group_by(sitename)\nresamples <-\n   map_dfr(seq_len(nboot), ~slice_sample(tosample, prop = 1, replace = TRUE)) |>\n   ungroup() |> \n   mutate(replicate = rep(1:nboot, each = nrow(tosample)))\nresamples\n## # A tibble: 37,200 × 3\n##    sitename           resid replicate\n##    <chr>              <dbl>     <int>\n##  1 ADAK/LAKE POINT  0.00614         1\n##  2 ADAK/LAKE POINT  0.0454          1\n##  3 ADAK/LAKE POINT  0.0454          1\n##  4 ADAK/LAKE POINT -0.00375         1\n##  5 ADAK/LAKE POINT  0.0886          1\n##  6 ADAK/LAKE POINT  0.0509          1\n##  7 ADAK/LAKE POINT  0.00614         1\n##  8 ADUGAK          -0.0272          1\n##  9 ADUGAK          -0.0778          1\n## 10 ADUGAK          -0.0193          1\n## # … with 37,190 more rows"
+    "text": "residual bootstrapping\n\n# we'll do resampling from the residuals for each year within each rookery\n# rather than getting complicated with nested lists, we'll use sample_frac() to do the resamples\ntosample <- ssl_boot |> \n  select(sitename, resid) |> \n  group_by(sitename)\nresamples <-\n   map_dfr(seq_len(nboot), ~slice_sample(tosample, prop = 1, replace = TRUE)) |>\n   ungroup() |> \n   mutate(replicate = rep(1:nboot, each = nrow(tosample)))\nresamples\n## # A tibble: 37,200 × 3\n##    sitename          resid replicate\n##    <chr>             <dbl>     <int>\n##  1 ADAK/LAKE POINT  0.0454         1\n##  2 ADAK/LAKE POINT  0.0509         1\n##  3 ADAK/LAKE POINT  0.0509         1\n##  4 ADAK/LAKE POINT  0.0886         1\n##  5 ADAK/LAKE POINT  0.0454         1\n##  6 ADAK/LAKE POINT  0.0509         1\n##  7 ADAK/LAKE POINT -0.0985         1\n##  8 ADUGAK          -0.0384         1\n##  9 ADUGAK          -0.0193         1\n## 10 ADUGAK          -0.0778         1\n## # … with 37,190 more rows"
   },
   {
     "objectID": "labs/lab-06.html#accumulate",
@@ -1334,7 +1334,7 @@
     "href": "labs/lab-06.html#population-projections",
     "title": "MAR 536 Lab 6",
     "section": "Population projections",
-    "text": "Population projections\nStatus for endangered species are often based on a risk evaluation of population projections. We want to project population dynamics forward in time given uncertainty in future dynamics. We want to do this lots of times to quantify the risk of extinction.\nCurrent (2022) estimates of the North Atlantic Right Whale population are 340 individuals. The population has been declining on average around 3% per year since 2011. What is the year in which the probability that the right whale population drops below 100 individuals is at least 50% (P(N<100)>=0.5)?\n\nnsim <- 100\nnyr <- 100\ninitN <- 340\nsd_proc <- 0.1\nlambda <- 0.97\ngrowth_rates <- map(seq_len(nsim), ~rlnorm(nyr,log(lambda),sd_proc))\n\n# population model\npop_update <- function(N, growth_rate = 1) N*growth_rate\n\n# population projection for each time series of process errors\npop_proj <- tibble(sim = seq_len(nsim)) |>\n  mutate(popsize = map(growth_rates,~accumulate(., pop_update, \n                                                .init = initN))) |>\n  unnest(cols = c(popsize)) |>\n  mutate(year = rep(2022:2122, nsim))\npop_proj\n## # A tibble: 10,100 × 3\n##      sim popsize  year\n##    <int>   <dbl> <int>\n##  1     1    340   2022\n##  2     1    320.  2023\n##  3     1    329.  2024\n##  4     1    376.  2025\n##  5     1    336.  2026\n##  6     1    374.  2027\n##  7     1    352.  2028\n##  8     1    430.  2029\n##  9     1    427.  2030\n## 10     1    438.  2031\n## # … with 10,090 more rows"
+    "text": "Population projections\nStatus for endangered species are often based on a risk evaluation of population projections. We want to project population dynamics forward in time given uncertainty in future dynamics. We want to do this lots of times to quantify the risk of extinction.\nCurrent (2022) estimates of the North Atlantic Right Whale population are 340 individuals. The population has been declining on average around 3% per year since 2011. What is the year in which the probability that the right whale population drops below 100 individuals is at least 50% (P(N<100)>=0.5)?\n\nnsim <- 100\nnyr <- 100\ninitN <- 340\nsd_proc <- 0.1\nlambda <- 0.97\ngrowth_rates <- map(seq_len(nsim), ~rlnorm(nyr,log(lambda),sd_proc))\n\n# population model\npop_update <- function(N, growth_rate = 1) N*growth_rate\n\n# population projection for each time series of process errors\npop_proj <- tibble(sim = seq_len(nsim)) |>\n  mutate(popsize = map(growth_rates,~accumulate(., pop_update, \n                                                .init = initN))) |>\n  unnest(cols = c(popsize)) |>\n  mutate(year = rep(2022:2122, nsim))\npop_proj\n## # A tibble: 10,100 × 3\n##      sim popsize  year\n##    <int>   <dbl> <int>\n##  1     1    340   2022\n##  2     1    300.  2023\n##  3     1    294.  2024\n##  4     1    360.  2025\n##  5     1    376.  2026\n##  6     1    386.  2027\n##  7     1    309.  2028\n##  8     1    298.  2029\n##  9     1    230.  2030\n## 10     1    202.  2031\n## # … with 10,090 more rows"
   },
   {
     "objectID": "labs/lab-06.html#the-while-loop",
@@ -1362,7 +1362,7 @@
     "href": "labs/lab-06.html#improving-speed-of-loops",
     "title": "MAR 536 Lab 6",
     "section": "Improving speed of loops",
-    "text": "Improving speed of loops\nLooping over very large data sets can sometimes become slow in R. Overcome by:\n\ncreate storage objects apriori (don’t grow objects).\neliminate certain operations in loops or\n\navoidg loops over the data-intensive dimension in an object altogether.\n\n\nthe latter can be achieved by performing mainly vector-to-vecor or matrix-to-matrix computations (often > 100x faster than for() or apply() or map()).\n\nMake use of existing speed-optimized R functions (e.g.: rowSums, rowMeans, table) or write your own fast functions.\n\nxdat <- matrix(rnorm(1000000), 100000, 10)\nsystem.time(x_mean <- apply(xdat, 1, mean))\n   user  system elapsed \n  0.922   0.019   1.895 \nsystem.time(x_mean <- rowMeans(xdat))\n   user  system elapsed \n  0.004   0.000   0.005"
+    "text": "Improving speed of loops\nLooping over very large data sets can sometimes become slow in R. Overcome by:\n\ncreate storage objects apriori (don’t grow objects).\neliminate certain operations in loops or\n\navoidg loops over the data-intensive dimension in an object altogether.\n\n\nthe latter can be achieved by performing mainly vector-to-vecor or matrix-to-matrix computations (often > 100x faster than for() or apply() or map()).\n\nMake use of existing speed-optimized R functions (e.g.: rowSums, rowMeans, table) or write your own fast functions.\n\nxdat <- matrix(rnorm(1000000), 100000, 10)\nsystem.time(x_mean <- apply(xdat, 1, mean))\n   user  system elapsed \n  1.214   0.029   4.087 \nsystem.time(x_mean <- rowMeans(xdat))\n   user  system elapsed \n  0.005   0.001   0.013"
   },
   {
     "objectID": "labs/lab-06.html#lab-exercise-33",
@@ -2083,7 +2083,7 @@
     "href": "weeks/week-07.html#participate",
     "title": "Week 7",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 11 - Matrix Algebra Review\n⌨️ Lab 7 - Functions (just the exercises)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 12 - Principal Component Analysis"
+    "text": "Participate\n🖥️ Lecture 11 - Matrix Algebra Review\n⌨️ Lab 7 - Functions (just the exercises)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 12 - Principal Component Analysis\n\nPCA with palmerpenguins from Dr. Allison Horst"
   },
   {
     "objectID": "weeks/week-07.html#practice",
@@ -2503,21 +2503,21 @@
     "href": "lectures/lec-11.html#matrix-transposition",
     "title": "Bio Stats II Lecture 11: Matrix Algebra Review",
     "section": "Matrix transposition",
-    "text": "Matrix transposition\nThe transpose of a matrix \\(A\\) is denoted \\(A^T\\) or \\(A'\\). Order subscripts are exchanged.\n\\[Q =\n\\begin{bmatrix}\nq_{1,1} & q_{1,2} \\\\\nq_{2,1} & q_{2,2} \\\\\nq_{3,1} & q_{3,2} \\\\\n\\end{bmatrix} \\quad\nQ^{'} =\n  \\begin{bmatrix}\nq_{1,1} & q_{2,1} & q_{3,1} \\\\\nq_{1,2} & q_{2,2} & q_{3,2} \\\\\n\\end{bmatrix}\n\\] $$w =\n\\[\\begin{bmatrix}\n3 & -2 & 5 & 7 \\\\\n\\end{bmatrix}\n\\quad\\]\nw^{’} =\n\\[\\begin{bmatrix}\n  3 \\\\\n  -2 \\\\\n  5 \\\\\n  7 \\\\\n\\end{bmatrix}\\]\n$$\nA matrix is symmetric if \\(A = A^{'}\\) (all symmetric matrices are square)\nTranspose of a transpose is the original matrix: \\((A^{'})^{'} = A\\)\nFor a scalar \\(k\\), \\((kA)^{'} = kA^{'}\\)"
+    "text": "Matrix transposition\nThe transpose of a matrix \\(A\\) is denoted \\(A^T\\) or \\(A'\\). Order subscripts are exchanged.\n\\[Q =\n\\begin{bmatrix}\nq_{1,1} & q_{1,2} \\\\\nq_{2,1} & q_{2,2} \\\\\nq_{3,1} & q_{3,2} \\\\\n\\end{bmatrix} \\quad\nQ^{'} =\n  \\begin{bmatrix}\nq_{1,1} & q_{2,1} & q_{3,1} \\\\\nq_{1,2} & q_{2,2} & q_{3,2} \\\\\n\\end{bmatrix}\n\\] \\[w =\n\\begin{bmatrix}\n3 & -2 & 5 & 7 \\\\\n\\end{bmatrix}\n\\quad\nw^{'} =\n\\begin{bmatrix}\n  3 \\\\\n  -2 \\\\\n  5 \\\\\n  7 \\\\\n\\end{bmatrix}\\]\nA matrix is symmetric if \\(A = A^{'}\\) (all symmetric matrices are square)\nTranspose of a transpose is the original matrix: \\((A^{'})^{'} = A\\)\nFor a scalar \\(k\\), \\((kA)^{'} = kA^{'}\\)"
   },
   {
     "objectID": "lectures/lec-11.html#multiplication",
     "href": "lectures/lec-11.html#multiplication",
     "title": "Bio Stats II Lecture 11: Matrix Algebra Review",
     "section": "Multiplication",
-    "text": "Multiplication\nscalar multiplication:\n\\[A = \\alpha\n\\begin{bmatrix}\na_{1,1} & a_{1,2} \\\\\na_{2,1} & a_{2,2} \\\\\n\\end{bmatrix}\n=\n  \\begin{bmatrix}\n\\alpha a_{1,1} & \\alpha a_{1,2} \\\\\n\\alpha a_{2,1} & \\alpha a_{2,2} \\\\\n\\end{bmatrix}\n\\] So for: $$A =\n\\[\\begin{bmatrix}\n4 & -8 & 6 \\\\\n2 & -10 & 4 \\\\\n\\end{bmatrix}\n\\quad\\]\nA =\n\\[\\begin{bmatrix}\n2 & -4 & 3 \\\\\n1 & -5 & 2 \\\\\n\\end{bmatrix}\\]\n$$"
+    "text": "Multiplication\nscalar multiplication:\n\\[A = \\alpha\n\\begin{bmatrix}\na_{1,1} & a_{1,2} \\\\\na_{2,1} & a_{2,2} \\\\\n\\end{bmatrix}\n=\n  \\begin{bmatrix}\n\\alpha a_{1,1} & \\alpha a_{1,2} \\\\\n\\alpha a_{2,1} & \\alpha a_{2,2} \\\\\n\\end{bmatrix}\n\\] So for: \\[A =\n  \\begin{bmatrix}\n4 & -8 & 6 \\\\\n2 & -10 & 4 \\\\\n\\end{bmatrix}\n\\quad\n\\frac{1}{2} A =\n  \\begin{bmatrix}\n2 & -4 & 3 \\\\\n1 & -5 & 2 \\\\\n\\end{bmatrix}\n\\]"
   },
   {
     "objectID": "lectures/lec-11.html#matrix-multiplication",
     "href": "lectures/lec-11.html#matrix-multiplication",
     "title": "Bio Stats II Lecture 11: Matrix Algebra Review",
     "section": "Matrix Multiplication",
-    "text": "Matrix Multiplication\nConsider \\(A\\) of order \\((m,n)\\) and \\(B\\) of order \\((n,r)\\).\nProduct \\(AB = C\\) is order \\((m,r)\\) with elements \\(c_{i,j} = \\displaystyle \\sum_{k=1}^n a_{i,k}b_{k,j}\\)\nTo be able to do matrix multiplication, number of columns in first matrix must equal the number of rows in the second matrix.\nLet\n$$A =\n\\[\\begin{bmatrix}\n4 & 2 & 6 \\\\\n2 & -1 & 4 \\\\\n\\end{bmatrix}\n\\quad\\]\nB =\n\\[\\begin{bmatrix}\n2 & -2 \\\\\n1 & -5 \\\\\n3 & 2 \\\\\n\\end{bmatrix}\\]\n$$\n$$ C = AB =\n\\[\\begin{bmatrix}\n4 \\times 2 + 2 \\times 1 + 6 \\times 3 & 4 \\times (-2) + 2 \\times (-5) + 6 \\times 2 \\\\\n2 \\times 2 + (-1) \\times 1 + 4 \\times 3 & 2 \\times (-2) + (-1) \\times (-5) + 4 \\times 2 \\\\\n\\end{bmatrix}\\]\n$$\n\n$$ C = AB =\n\\[\\begin{bmatrix}\n4 \\times 2 + 2 \\times 1 + 6 \\times 3 & 4 \\times (-2) + 2 \\times (-5) + 6 \\times 2 \\\\\n2 \\times 2 + (-1) \\times 1 + 4 \\times 3 & 2 \\times (-2) + (-1) \\times (-5) + 4 \\times 2 \\\\\n\\end{bmatrix}\\]\n$$\n$$=\n\\[\\begin{bmatrix}\n8 + 2 + 18 & -8 -10 + 12 \\\\\n4 -1 + 12 & -4 + 5 + 8 \\\\\n\\end{bmatrix}\\]\n=\n\\[\\begin{bmatrix}\n28 & -6 \\\\\n15 & 9 \\\\\n\\end{bmatrix}\\]\n$$\nMatrix multiplication is not commutative.\n\\(BA\\) is of order \\((3,3)\\). \\(AB \\neq BA\\)"
+    "text": "Matrix Multiplication\nConsider \\(A\\) of order \\((m,n)\\) and \\(B\\) of order \\((n,r)\\).\nProduct \\(AB = C\\) is order \\((m,r)\\) with elements \\(c_{i,j} = \\displaystyle \\sum_{k=1}^n a_{i,k}b_{k,j}\\)\nTo be able to do matrix multiplication, number of columns in first matrix must equal the number of rows in the second matrix.\nLet\n\\[A =\n  \\begin{bmatrix}\n4 & 2 & 6 \\\\\n2 & -1 & 4 \\\\\n\\end{bmatrix}\n\\quad\nB =\n  \\begin{bmatrix}\n2 & -2 \\\\\n1 & -5 \\\\\n3 & 2 \\\\\n\\end{bmatrix}\n\\]\n\\[ C = AB =\n  \\begin{bmatrix}\n4 \\times 2 + 2 \\times 1 + 6 \\times 3 & 4 \\times (-2) + 2 \\times (-5) + 6 \\times 2 \\\\\n2 \\times 2 + (-1) \\times 1 + 4 \\times 3 & 2 \\times (-2) + (-1) \\times (-5) + 4 \\times 2 \\\\\n\\end{bmatrix}\n\\]\n\n\\[ C = AB =\n  \\begin{bmatrix}\n4 \\times 2 + 2 \\times 1 + 6 \\times 3 & 4 \\times (-2) + 2 \\times (-5) + 6 \\times 2 \\\\\n2 \\times 2 + (-1) \\times 1 + 4 \\times 3 & 2 \\times (-2) + (-1) \\times (-5) + 4 \\times 2 \\\\\n\\end{bmatrix}\n\\]\n\\[=\n  \\begin{bmatrix}\n8 + 2 + 18 & -8 -10 + 12 \\\\\n4 -1 + 12 & -4 + 5 + 8 \\\\\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n28 & -6 \\\\\n15 & 9 \\\\\n\\end{bmatrix}\n\\]\nMatrix multiplication is not commutative.\n\\(BA\\) is of order \\((3,3)\\). \\(AB \\neq BA\\)"
   },
   {
     "objectID": "lectures/lec-11.html#matrix-multiplication-1",
@@ -2552,14 +2552,14 @@
     "href": "lectures/lec-11.html#determinant-of-a-matrix",
     "title": "Bio Stats II Lecture 11: Matrix Algebra Review",
     "section": "Determinant of a Matrix",
-    "text": "Determinant of a Matrix\nFor covariance and correlation matrices, the determinant of a matrix (\\(|A|\\) or \\(det(A)\\)) is a scalar sometimes used to express the generalized variance of the matrix.\ne.g. for a 2 x 2 matrix:\n$$|A| =\n\\[\\begin{vmatrix}\n\n\na & b \\\\\nc & d \\\\\n\\end{vmatrix}\\]\n= ad - bc\n$$\nCovariance matrices with small determinants indicate variables are highly correlated. Matrices with large determinants indicate variables that are independent."
+    "text": "Determinant of a Matrix\nFor covariance and correlation matrices, the determinant of a matrix (\\(|A|\\) or \\(det(A)\\)) is a scalar sometimes used to express the generalized variance of the matrix.\ne.g. for a 2 x 2 matrix:\n\\[|A| = \\begin{vmatrix}\na & b \\\\\nc & d \\\\\n\\end{vmatrix}\n= ad - bc\n\\]\nCovariance matrices with small determinants indicate variables are highly correlated. Matrices with large determinants indicate variables that are independent."
   },
   {
     "objectID": "lectures/lec-11.html#trace",
     "href": "lectures/lec-11.html#trace",
     "title": "Bio Stats II Lecture 11: Matrix Algebra Review",
     "section": "Trace",
-    "text": "Trace\nThe trace of a matrix, \\(tr(A)\\), is used for square matrices and is the sum of the diagonal.\n$$tr\n\\[\\begin{pmatrix}\n\n\n2 & -1 & 3 \\\\\n1 & 4 & 2 \\\\\n8 & 0 & -2 \\\\\n\\end{pmatrix}\\]\n= 2 + 4 - 2 = 4\n$$"
+    "text": "Trace\nThe trace of a matrix, \\(tr(A)\\), is used for square matrices and is the sum of the diagonal.\n\\[tr \\begin{pmatrix}\n2 & -1 & 3 \\\\\n1 & 4 & 2 \\\\\n8 & 0 & -2 \\\\\n\\end{pmatrix}\n= 2 + 4 - 2 = 4\n\\]"
   },
   {
     "objectID": "lectures/lec-11.html#useful-matrices",
@@ -2573,21 +2573,21 @@
     "href": "lectures/lec-11.html#regression-using-matrices",
     "title": "Bio Stats II Lecture 11: Matrix Algebra Review",
     "section": "Regression using matrices",
-    "text": "Regression using matrices\nFor regression through the origin (\\(\\hat{y}=bx\\)), the regression coefficient (\\(b\\)) is the ratio of sum-of-products and sum-of-squares for \\(x\\). \\[ b = \\frac{\\displaystyle \\sum_n x_i y_i}{\\displaystyle \\sum_n x_{i}^{2}} \\]\nMore easily calculated as matrix operations. \\(X\\) & \\(Y\\) are data vectors, \\(b\\) is scalar.\n\\[ b = (X^T X)^{-1} X^T Y \\quad , \\quad \\hat{Y} = b X\\]\n$$\n\\[\\begin{bmatrix}\n\n\n\\hat{y_i} \\\\\n\\cdots \\\\\n\\hat{y_n} \\\\\n\\end{bmatrix}\\]\n= b\n\\[\\begin{bmatrix}\nx_i \\\\\n\\cdots \\\\\nx_n \\\\\n\\end{bmatrix}\\]\n$$"
+    "text": "Regression using matrices\nFor regression through the origin (\\(\\hat{y}=bx\\)), the regression coefficient (\\(b\\)) is the ratio of sum-of-products and sum-of-squares for \\(x\\). \\[ b = \\frac{\\displaystyle \\sum_n x_i y_i}{\\displaystyle \\sum_n x_{i}^{2}} \\]\nMore easily calculated as matrix operations. \\(X\\) & \\(Y\\) are data vectors, \\(b\\) is scalar.\n\\[ b = (X^T X)^{-1} X^T Y \\quad , \\quad \\hat{Y} = b X\\]\n\\[ \\begin{bmatrix}\n\\hat{y_i} \\\\\n\\cdots \\\\\n\\hat{y_n} \\\\\n\\end{bmatrix}\n= b \\begin{bmatrix}\nx_i \\\\\n\\cdots \\\\\nx_n \\\\\n\\end{bmatrix}\n\\]"
   },
   {
     "objectID": "lectures/lec-11.html#multiple-regression-with-matrices",
     "href": "lectures/lec-11.html#multiple-regression-with-matrices",
     "title": "Bio Stats II Lecture 11: Matrix Algebra Review",
     "section": "Multiple regression with matrices",
-    "text": "Multiple regression with matrices\nexpand \\(X\\) from univariate vector to multivariate matrix expand \\(b\\) from scalar to vector \\(B\\) of regression coefficients Intercepts are usually as 1st element of \\(B\\), and 1st column of \\(X\\) is all 1’s.\n\\[ B = (X^T X)^{-1} X^T Y \\quad , \\quad \\hat{Y} = X B\\]\n$$\n\\[\\begin{bmatrix}\n\n\n\\hat{y_i} \\\\\n\\cdots \\\\\n\\hat{y_n} \\\\\n\\end{bmatrix}\\]\n=\n\\[\\begin{bmatrix}\nx_{i1} & \\cdots & x_{ip} \\\\\n\\cdots & \\cdots & \\cdots \\\\\nx_{n1} & \\cdots & x_{np} \\\\\n\\end{bmatrix}\n  \\begin{bmatrix}\nb_1 \\\\\n\\cdots \\\\\nb_p \\\\\n\\end{bmatrix}\\]\n$$"
+    "text": "Multiple regression with matrices\nexpand \\(X\\) from univariate vector to multivariate matrix expand \\(b\\) from scalar to vector \\(B\\) of regression coefficients Intercepts are usually as 1st element of \\(B\\), and 1st column of \\(X\\) is all 1’s.\n\\[ B = (X^T X)^{-1} X^T Y \\quad , \\quad \\hat{Y} = X B\\]\n\\[ \\begin{bmatrix}\n\\hat{y_i} \\\\\n\\cdots \\\\\n\\hat{y_n} \\\\\n\\end{bmatrix}\n=\n\\begin{bmatrix}\nx_{i1} & \\cdots & x_{ip} \\\\\n\\cdots & \\cdots & \\cdots \\\\\nx_{n1} & \\cdots & x_{np} \\\\\n\\end{bmatrix}\n  \\begin{bmatrix}\nb_1 \\\\\n\\cdots \\\\\nb_p \\\\\n\\end{bmatrix}\n\\]"
   },
   {
     "objectID": "lectures/lec-11.html#variance-covariance-matrix",
     "href": "lectures/lec-11.html#variance-covariance-matrix",
     "title": "Bio Stats II Lecture 11: Matrix Algebra Review",
     "section": "Variance-Covariance Matrix",
-    "text": "Variance-Covariance Matrix\nVariance is the average sum-of-squares of a variable (corrected for low sample size, n-1). Covariance is average cross-product of 2 variables. Covariance matrix is symmetric: - variance of each variable on the diagonal - paired covariances on the off diagonals\n\\[s_{y_1}^2 = \\frac{\\displaystyle \\sum_n (y_{1i}-\\bar{y}_1)^2}{(n-1)}\\] \\[s_{y_1 y_2} = \\frac{\\displaystyle \\sum_n (y_{1i}-\\bar{y}_1)(y_{2i}-\\bar{y}_2)}{(n-1)}\\]\n$$ C =\n\\[\\begin{bmatrix}\ns_{y_{1}}^2 & \\cdots & s_{y_{1p}} \\\\\n\\cdots & \\cdots & \\cdots \\\\\ns_{y_{p1}} & \\cdots & s_{y_p}^2 \\\\\n\\end{bmatrix}\\]\n$$"
+    "text": "Variance-Covariance Matrix\nVariance is the average sum-of-squares of a variable (corrected for low sample size, n-1). Covariance is average cross-product of 2 variables. Covariance matrix is symmetric: - variance of each variable on the diagonal - paired covariances on the off diagonals\n\\[s_{y_1}^2 = \\frac{\\displaystyle \\sum_n (y_{1i}-\\bar{y}_1)^2}{(n-1)}\\] \\[s_{y_1 y_2} = \\frac{\\displaystyle \\sum_n (y_{1i}-\\bar{y}_1)(y_{2i}-\\bar{y}_2)}{(n-1)}\\]\n\\[ C =\n  \\begin{bmatrix}\ns_{y_{1}}^2 & \\cdots & s_{y_{1p}} \\\\\n\\cdots & \\cdots & \\cdots \\\\\ns_{y_{p1}} & \\cdots & s_{y_p}^2 \\\\\n\\end{bmatrix}\n\\]"
   },
   {
     "objectID": "lectures/lec-11.html#variance-covariance-matrix-1",
