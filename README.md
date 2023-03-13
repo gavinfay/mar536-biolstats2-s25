@@ -1,6 +1,6 @@
 # Website for MAR 536 at University of Massachusetts (Spring 2023)
 
-🔗 https://mar536-biolstats2-s23.github.io/
+🔗 https://gavinfay.github.io/mar536-biolstats2-s23
 
 ## Colors
 
