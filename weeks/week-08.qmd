@@ -1,0 +1,28 @@
+---
+title: "Week 8"
+subtitle: "Mixed Effects Models, Writing your own functions"
+editor: visual
+---
+
+**Take-home MIDTERM due this week (3/16)\
+Mid-semester self-reflection survey on R lab component.**
+
+## Prepare
+
+📖 Tue + Thu: Read Chapter 8 Zuur et al. 2007.
+
+## Participate
+
+🖥️ [Lecture 13 - Linear mixed effects models](../lectures/lec-13.pptx)
+
+⌨️ [Lab 7 - Functions](../labs/lab-07.html) (just the [exercises](../labs/lab-exercise-07.pdf))
+
+-   Data sets for the lab can be found in the [class-data folder](#class-data).
+
+🖥️ [Lecture 14 - more mixed effects](../lectures/lec-13.pptx)
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/ "Course schedule") ⏎
+:::
