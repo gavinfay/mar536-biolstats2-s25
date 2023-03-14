@@ -15,6 +15,8 @@ Mid-semester self-reflection survey on R lab component.**
 
 🖥️ [Lecture 13 - Linear mixed effects models](../lectures/lec-13.pptx)
 
+-   [Rmd with examples from the lecture](../lectures/lecture-13.Rmd)
+
 ⌨️ [Lab 7 - Functions](../labs/lab-07.html) (just the [exercises](../labs/lab-exercise-07.pdf))
 
 -   Data sets for the lab can be found in the [class-data folder](#class-data).
