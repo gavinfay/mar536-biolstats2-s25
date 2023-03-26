@@ -1,0 +1,42 @@
+---
+title: "Week 10"
+subtitle: "Classification"
+editor: visual
+---
+
+**Gavin is still recovering from illness and so there is a slight change in plans. Lecture materials are via recordings, class sessions on Tuesday and Thursday will be question/answer sessions and live walk-through of examples from the lectures. Wednesday's lab will be on using spatial data in R.**
+
+## Prepare
+
+📖 Tue:
+
+-   Reading: Chapter 14 of Zuur et al. 2007
+
+-   [Lecture 16 - Linear Discriminant Analysis](https://www.dropbox.com/s/10cyxwhjrprs6s6/zoom_0.mp4?dl=0) (Recording)
+
+    -   (lecture starts at 15m30s)
+
+    -   [slide deck from recorded lecture](https://docs.google.com/presentation/d/19Yg0ij8pjCcHGFSbu1NskeDeCp0q62X9/edit?usp=share_link&ouid=100082783551785338508&rtpof=true&sd=true)
+
+📖 Thu:
+
+-   Reading: Chapter 9 of Zuur et al. 2007
+-   [Lecture 17 - Trees (Classification/Regression)](https://drive.google.com/file/d/1z6Zg6qVni0Tj25aooGis7KN3sfnSmB1E/view?usp=share_link) (Recording)
+    -   [slide deck from recorded lecture](https://docs.google.com/presentation/d/1vd0PvZEQ2v5l55CJGPuP8ApxdFdthiZi/edit?usp=share_link&ouid=100082783551785338508&rtpof=true&sd=true)
+
+## Participate
+
+🖥️ Linear Discriminant Analysis
+
+-   [Rmd with examples from the lecture](https://drive.google.com/file/d/1zhNw0YcDTH9ufbdhgwbylMsiK9mz-gGl/view?usp=share_link)
+-   Data sets can be found in the [class-data folder](#class-data).
+
+🖥️ Trees
+
+-   Rmd with examples from the lecture
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+Back to [course schedule](/ "Course schedule") ⏎
+:::

@@ -14,6 +14,14 @@ Deliverables include:
 4.  Student **project presentation** with chapter assignment or supplemental reading on the statistical method used in the project. A 10-minute lecture on the method, and demonstration of the method using the project data set. Presentations will be graded based on the instructors' evaluation of accuracy, clarity, and comprehensiveness. Feedback from other students will also be considered in evaluation of presentations (20% of course grade).
 5.  **Project report** (due Apr 25). A written description of the methods and results of the project in the form of a draft scientific manuscript (Introduction, Methods, Results, Discussion). (20% of course grade).
 
+**Project report expectations**
+
+[A rubric for the project report can be found here](documents/MAR536-SPR2023_project-rubric.pdf).
+
+**Project presentation scheduling**
+
+[Go here to complete the survey regarding availability for student presentation time-slots](https://forms.gle/5NWuRvNYJTMUEZVv9).
+
 **Data set ideas**
 
 If you are stuck for a dataset, then there are many open data sets in the ecological and environmental sciences that are published online. Some of these may provide some inspiration for an analysis.
