@@ -31,6 +31,18 @@ editor: visual
 -   [Rmd with examples from the lecture](https://drive.google.com/file/d/1zhNw0YcDTH9ufbdhgwbylMsiK9mz-gGl/view?usp=share_link)
 -   Data sets can be found in the [class-data folder](#class-data).
 
+🖥️ Lab 8 - working with spatial data in R
+
+-   [slide deck for Lab 8 part 1](../labs/lab-08a.html)
+
+    -   [.qmd (code)](https://github.com/gavinfay/mar536-biolstats2-s23/blob/main/labs/lab-08a.qmd)
+
+-   [slide deck for Lab 8 part 2](../labs/lab-08b.html)
+
+    -   [.Rmd (code)](https://github.com/gavinfay/mar536-biolstats2-s23/blob/main/labs/lab-08b.Rmd)
+
+-   [just the lab 8 exercises](../labs/lab-exercise-08.pdf)
+
 🖥️ Trees
 
 -   Rmd with examples from the lecture
