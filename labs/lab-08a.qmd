@@ -1,0 +1,543 @@
+---
+title: "MAR 536 Lab 8: plotting spatial data"
+date: "2023-03-29"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+logo: "../images/logo.png"
+format:
+  revealjs:
+    theme: slides.scss
+    multiplex: true
+    transition: fade
+    slide-number: true
+editor: source
+execute:
+  freeze: auto
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+#devtools::install_github("gadenbuie/countdown")
+library(countdown)
+library(tidyverse)
+#install.packages('nycflights13')
+#library(nycflights13)
+library(readxl)
+```
+
+## Today: Advanced plotting
+- Plot review
+- Layouts & multi-panel plots
+- Mapping
+- Spatial analyses
+
+
+## 3 Things required for ggplots:
+1) Call to ggplot()
+2) Aesthetics using aes()
+3) Geometries e.g. geom_point(), geom_bar(), geom_line(), ect.
+
+## Multi-panel plot options
+ggplot
+
+- `facet_grid()` 
+- `grid` and `gridExtra` packages 
+- `patchwork` package 
+- `par()` 
+- `lattice` package 
+other examples
+- `ggridges`
+- `cowplot`
+
+## facet_grid() example: Laengelmavesi data (lab 2)
+```{r, include=FALSE}
+data <- read_excel("../data/Laengelmavesi2.xlsx") |>
+  mutate(weight = as.numeric(weight))
+plotdat <- data|>
+  group_by(species) |>
+  summarize_if(is.numeric, mean, na.rm = TRUE)
+plotdat
+#data
+```
+## `facet_grid()`
+
+```{r}
+ggplot(data, aes(y=length, col=species)) +
+  geom_boxplot() +
+  facet_grid(cols = vars(species))
+```
+
+## `facet_grid()`
+
+```{r}
+ggplot(data, aes(length, col=species)) +
+  geom_histogram(aes(fill=species)) +
+  facet_grid(rows = vars(species))
+```
+
+## grid and gridExtra examples
+The `gridExtra` package arranges "grobs"
+
+grob = graphical object 
+
+`gridExtra` functions can also arrange gtables and ggplot objects
+
+```{r}
+library(gridExtra)
+library(grid)
+```
+
+
+## Some gapminder example plots to work with:
+```{r}
+library(gapminder)
+library(gghighlight)
+
+plot1 <- filter(gapminder, year == 2007) |>
+  ggplot() + 
+  aes(x = lifeExp) + 
+  geom_histogram(bins = 10, col = "white")
+plot1
+```
+
+## continents with low life expectancy
+```{r}
+plot2 <- ggplot(gapminder) +
+  aes(x=year, 
+      y=lifeExp, 
+      group=country, 
+      color=country) +
+  geom_line() +
+  gghighlight(min(lifeExp) < 30) +
+  facet_wrap(~continent)+
+  theme_minimal() +
+  theme(legend.position = "none")
+plot2
+```
+
+## distribution of life expectancy over years for two countries
+```{r}
+plot3 <- gapminder |>
+  filter(country %in% c("Peru","Iceland")) |>
+ggplot() +
+  aes(x=lifeExp, color = country) +
+  geom_density()
+plot3
+```
+
+## grid and gridExtra examples continued...
+
+Passing plots to `grid.arrange()` and specifying either the number of rows or columns gives a simple layout.
+```{r}
+grid.arrange(plot1, plot2, plot3, nrow = 1)
+```
+
+## grid and gridExtra examples continued... {.small}
+
+Grobs may also be placed in a list and arranged using customized formats using the argument `layout_matrix`.
+```{r}
+# Create a new grob
+newgrob <- textGrob("This is a \n text grob")
+groblist <- list(plot1, plot2, plot3, newgrob)
+# Create a custom layout
+grid.arrange(grobs = groblist,
+             widths = c(2,2,4,1),
+             layout_matrix = rbind(c(2,2,1,1),
+                                   c(2,2,3,4)))
+
+```
+
+## Patchwork
+The `patchwork` package provides a shorthand method to plot multiple ggplot objects together
+```{r}
+library(patchwork)
+plot1 + plot2 + plot3
+```
+
+## Patchwork example continued...
+To structure plot layouts further use the `plot_layout()` function
+```{r}
+plot1 + {plot2 + plot3 + plot_layout(ncol=2, widths = c(3,1))} + plot_layout(ncol = 1)
+```
+
+Note that the {} indicate a nested plot
+
+## Patchwork example continued...
+This package also uses `|` to indicate plots adjacent to one another and `/` to indicate vertical stacking
+```{r}
+(plot1 | plot3) / plot2
+```
+
+For more examples see:
+https://gotellilab.github.io/GotelliLabMeetingHacks/NickGotelli/ggplotPatchwork.html
+
+
+## Exercise 1
+A) Use `patchwork` or `grid`+`gridExtra` to create a 4-panel plot grid with the following characteristics:
+- space for 4 ggplots
+- 2 columns & 3 rows
+- the first column should be twice as wide as the second column
+- the first plot should appear in the entire first column
+- plots 2-4 should fill the second column 
+
+<!-- ## Other examples: cowplot -->
+<!-- Take a look at the `plot_grid()` and `draw_image()` functions -->
+<!-- ```{r} -->
+<!-- library(cowplot) -->
+<!-- plot_grid(plot1, plot2, labels = c("A", "B")) -->
+<!-- ``` -->
+
+<!-- ## Other examples: ggridges -->
+<!-- The `ggridges` package makes it easy to look at distributions over time (in fisheries we often look at abundance by age over time to track year classes) -->
+
+<!-- ```{r, include=FALSE} -->
+<!-- # Students should have their own example of this data from Lab 5 -->
+
+<!-- crabfiles <- dir(path = here::here("../data/crabs"), pattern = "*.csv") -->
+
+<!-- # First 6 files that start with "CRAB_" have a different structure that we don't want -->
+<!-- crabfiles <- crabfiles[-1:-6] -->
+
+<!-- crabfiles <- paste(here::here("../data/crabs"), crabfiles, sep="/") -->
+<!-- tempDat <- lapply(crabfiles, read.csv) # Read in data -->
+<!-- crabDat1 <- rbind_list(tempDat) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- library(ggridges) -->
+
+<!-- crabDat1 %>% group_by(year) %>% -->
+<!--   ggplot(., aes(x=temperature, y=year, group = year)) + -->
+<!--   geom_density_ridges2() +  -->
+<!--   ggtitle("Annual Temperatures") -->
+<!-- ``` -->
+
+
+## Mapping
+There are `n` (where `n` is large) ways to produce maps using `R`.  
+
+Many of these are beyond this course and delve into the dark abstractedly projected rabbithole that is cartography.  
+
+However, we can produce very nice looking maps in R quite easily.  
+(because learning GIS can be hard)  
+
+Using `{ggplot2}` and the `{sf}` package.
+
+We can also use `{sf}` to do lots of spatial data operations & analyses, all within R. 
+
+## Country coastlines
+The package `{rnaturalearth}` provides a map of countries of the entire world.  
+```{r}
+library("rnaturalearth")
+library("rnaturalearthdata")
+#library("rnaturalearthhires") # for scale = large
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+```
+
+## simple map
+
+```{r}
+ggplot(data = world) +
+    geom_sf()
+```
+
+## map color
+
+```{r}
+ggplot(data = world) + 
+    geom_sf(color = "black", fill = "lightgreen")
+```
+
+## chloropleth maps
+
+plotting a data variable with our geometries
+```{r}
+ggplot(data = world) +
+    geom_sf(aes(fill = pop_est)) +
+    scale_fill_viridis_c(option = "plasma", trans = "sqrt")
+```
+
+## Projection and extent
+
+`coord_sf()` deals with the coordinate system
+Used to change the map projections, and the _extent_. e.g.
+```{r}
+ggplot(data = world) +
+    geom_sf() +
+    coord_sf(xlim = c(-102.15, -74.12), ylim = c(7.65, 33.97), expand = FALSE)
+```
+
+## census data example
+
+```{r}
+library(tidycensus)
+#options(tigris_use_cache = TRUE)
+
+age_data <- get_acs(
+  geography = "tract",
+  variables = "B19013_001", #"B01002_001",
+  state = "MA",
+  geometry = TRUE
+)
+ggplot(age_data, aes(fill = estimate)) + 
+  geom_sf(color = NA) + 
+  theme_void() + 
+  scale_fill_viridis_c(option = "magma") + 
+  labs(title = "Massachusetts median income",
+       subtitle = "2017-2021 ACS",
+       fill = "Estimate")
+```
+
+## looking at the `sf` object
+
+```{r}
+age_data
+```
+
+
+## just for Bristol County
+```{r}
+age_data <- get_acs(
+  geography = "tract",
+  variables = "B19013_001",  #for median age = "B01002_001",
+  state = "MA",
+  county = "Bristol",
+  geometry = TRUE
+)
+
+ggplot(age_data, aes(fill = estimate)) + 
+  geom_sf(color = NA) + 
+  theme_void() + 
+  scale_fill_viridis_c(option = "magma") + 
+  labs(title = "Bristol County median income",
+       subtitle = "2017-2021 ACS",
+       fill = "Estimate")
+```
+
+
+
+<!-- Packages of interest:   -->
+<!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=FALSE} -->
+<!-- library(maps)    #contains functions to make maps -->
+<!-- library(mapdata) # mapping data -->
+<!-- library(mapproj) # functions to deal with projections -->
+<!-- library(maptools) # more useful spatial functions -->
+<!-- library(scales) # for transparent colors -->
+<!-- ``` -->
+
+<!-- ## Mapping continued... -->
+<!-- Mapping using `ggplot()` relies on plotting polygons and shapefiles -->
+
+<!-- There are many packages that provide shapefiles, including `ggplot` -->
+<!-- ```{r} -->
+<!-- # Examples for mapping: -->
+
+<!-- # Polygons -->
+<!-- states <- map_data("state") -->
+<!-- NEUS <- subset(states, region %in% c("massachusetts", "new hampshire", "vermont", "maine", "rhode island", "connecticut")) -->
+<!-- World <- map_data("world") -->
+
+<!-- # Example data for maps -->
+<!-- dat <- data.frame( -->
+<!--   longpt = c(-70.3 , -72.9, -71.0), -->
+<!--   latpt = c(43.7, 41.3, 42.3), -->
+<!--   names = c("Portland", "New Haven","Boston"), -->
+<!--   imagecol = rep("http://pngriver.com/wp-content/uploads/2018/03/Download-Cute-Starfish-PNG-Clipart-For-Designing-Purpose.png",3), -->
+<!--   stringsAsFactors = FALSE, -->
+<!--   year = c(1,2,3) -->
+<!-- )  -->
+<!-- ``` -->
+
+
+<!-- ## Simple mapping examples -->
+<!-- ```{r} -->
+<!-- # Start with a world map -->
+<!-- ggplot() + -->
+<!--   geom_polygon(data = World,  -->
+<!--                aes(x=long, y = lat, group = group),  -->
+<!--                fill = "white",  -->
+<!--                color="black") + -->
+<!--   coord_map(xlim = c(-180,180)) # Here xlim removes horizontal lines due to bug -->
+<!-- ``` -->
+
+<!-- ## Mapping continued... -->
+<!-- Restrict the geographic region using `coord_fixed()` -->
+<!-- ```{r} -->
+<!-- ggplot() + -->
+<!--   geom_polygon(data = World,  -->
+<!--                aes(x=long, y = lat, group = group),  -->
+<!--                fill = "white",  -->
+<!--                color="black")  +  -->
+<!--   geom_point(data = dat, aes(x = longpt, y = latpt), color = "red", size = 1) + -->
+<!--   coord_fixed(xlim = c(-175, -55),  ylim = c(9, 80), ratio = 1.2) # Limits lat/long coordinates plotted -->
+<!-- ``` -->
+
+<!-- ## Mapping continued... -->
+<!-- Alternatively plot only specific polygons (here states). `geom_image()` could  -->
+<!-- ```{r} -->
+<!-- library(ggimage) -->
+<!-- NEUS_plot <- ggplot() + -->
+<!--   geom_polygon(data = NEUS,  -->
+<!--                aes(x=long, y = lat, group = group),  -->
+<!--                fill = "grey",  -->
+<!--                color="black") +  -->
+<!--   #geom_point(data = dat, aes(x = longpt, y = latpt), color = "blue", size = 3) +  -->
+<!--   #geom_image(data=dat, mapping = aes(x = longpt, y = latpt, image = imagecol), size = 0.12)   # if size = is inside aes() then you will get an error that "col" argument isn't provided -->
+<!--   theme(panel.background = element_rect(fill = "steelblue")) + -->
+<!-- NEUS_plot -->
+<!-- ``` -->
+
+<!-- Note: without specifying the coordinate system the states don't look right. -->
+
+<!-- ## Mapping continued... -->
+<!-- Plots and images may be layered. -->
+
+<!-- To create an inset map, turn the inset region into a grob. -->
+<!-- ```{r} -->
+<!-- Region <- data.frame(long = c(-72, -72, -64, -64, -72), -->
+<!--                      lat = c(41, 48, 48, 41, 41)) -->
+<!-- NorthAmerica <- ggplotGrob(ggplot() + -->
+<!--                              geom_polygon(data = World,  -->
+<!--                                           aes(x=long, y = lat, group = group),  -->
+<!--                                           fill = "grey",  -->
+<!--                                           color="black") +  -->
+<!--                              coord_fixed(xlim = c(-125, -55),  ylim = c(25, 55), ratio = 1.2) + # Limits lat/long coordinates plotted -->
+<!--                              geom_path(data = Region, aes(x = long, y = lat), size = 0.8, color = "blue")  +  -->
+<!--                              theme_bw() + -->
+<!--                              theme(line = element_blank(), text = element_blank(), panel.border = element_rect(colour = "black", fill = NULL, size = 2), panel.background = element_rect(fill = "white"), plot.background = element_rect(fill = "transparent", colour = NA)) -->
+<!-- ) -->
+<!-- ``` -->
+
+<!-- ## Mapping continued... -->
+<!-- Then build the larger map -->
+<!-- ```{r} -->
+<!-- GOM <- ggplot() + -->
+<!--   geom_polygon(data = World,  -->
+<!--                aes(x=long, y = lat, group = group),  -->
+<!--                fill = "grey",  -->
+<!--                color="black") +  -->
+<!--   coord_fixed(xlim = c(-72, -64),  ylim = c(41, 48), ratio = 1.2) + # could use world high res data instead -->
+<!--   theme_minimal() -->
+<!-- GOM -->
+<!-- ``` -->
+
+<!-- ## Mapping continued... -->
+<!-- Finally, combine the larger map and the inset grob.  -->
+
+<!-- `xmin`/`xmax` and `ymin`/`ymax` define the position of the inset map. -->
+<!-- ```{r} -->
+<!-- FinalPlot <- GOM + -->
+<!--   annotation_custom(grob = NorthAmerica, xmin = -68, xmax = -63.3, -->
+<!--                     ymin = 45.5, ymax = 49.2) # Determines placement & size of incert -->
+<!-- FinalPlot -->
+<!-- ``` -->
+
+## Exercise 2 {.small}
+Use `ggplot` to create a map of Cape Cod with the following features:
+
+- Longitudes should range from $-71^{\circ}\text{W}$ to $-69^{\circ}\text{W}$
+- Latitudes should range from $41.25^{\circ}\text{N}$ to $43^{\circ}\text{N}$
+- Label axes
+- Color land
+- Add points indicating the locations of Woods Hole, Chatham, and Provincetown 
+- BONUS Change the map projection
+
+For coastline use:
+```{r eval=FALSE}
+library("rnaturalearthhires") # for scale = large
+world <- ne_countries(scale = "large", returnclass = "sf")
+```
+<!-- ## Mapping continued... topography -->
+<!-- Shapefiles & polygons may also be used to map physical features like topography and bathymetry. -->
+
+<!-- The `marmap` package provides access to NOAA data. -->
+<!-- ```{r} -->
+<!-- library(marmap) -->
+<!-- Bathy <- getNOAA.bathy(lon1 = -75, lon2 = -62, -->
+<!--                        lat1 = 39, lat2 = 48, resolution = 1) -->
+<!-- # convert data to matrix: -->
+<!-- Bathy_Final <- as.matrix(Bathy) -->
+<!-- class(Bathy_Final) <- "matrix" -->
+
+<!-- # now reshape it to long format and plot -->
+<!-- BathyData <- Bathy_Final %>% -->
+<!--   as.data.frame() %>% -->
+<!--   rownames_to_column(var = "lon") %>% -->
+<!--   pivot_longer(names_to = "lat", cols = -1) %>% -->
+<!--   mutate_all(funs(as.numeric))  -->
+<!-- head(BathyData) -->
+<!-- ``` -->
+
+<!-- ## Mapping continued... -->
+<!-- ```{r} -->
+<!-- BathyData %>% -->
+<!--   ggplot()+ -->
+<!--   geom_contour(aes(x = lon, y = lat, z = value),  -->
+<!--                bins = 50, colour = "black") + # bins determine # of contours (try 50 vs. 100) -->
+<!--   geom_polygon(data = World,  -->
+<!--                aes(x=long, y = lat, group = group),  -->
+<!--                fill = "grey",  -->
+<!--                color="black") +  -->
+<!--   coord_fixed(xlim = c(-74, -64),  ylim = c(40, 47.3), ratio = 1.2)  + -->
+<!--   theme(panel.background = element_rect(fill = "lightskyblue1"), line = element_blank()) # Change background color and remove grid from theme -->
+<!-- ``` -->
+
+<!-- ## Mapping continued... -->
+<!-- Bathymetric lines may also be color-differentiated -->
+<!-- ```{r} -->
+<!-- library(metR) -->
+<!-- BathyData %>% -->
+<!--   ggplot()+ -->
+<!--   geom_contour_fill(aes(x = lon, y = lat, z = value),  -->
+<!--                     breaks = c(0, -50, -100, -200, -300, -400, -500, -600)) + # breaks determine # of contours  -->
+<!--   geom_polygon(data = World,  -->
+<!--                aes(x=long, y = lat, group = group),  -->
+<!--                fill = "grey",  -->
+<!--                color="black") +  -->
+<!--   coord_fixed(xlim = c(-74, -64),  ylim = c(40, 47.3), ratio = 1.2)  + -->
+<!--   theme(panel.background = element_rect(fill = "lightskyblue1"), line = element_blank()) # Change background color and remove grid from theme -->
+
+<!-- ``` -->
+
+<!-- # Exercise 3 -->
+<!-- Add bathymetric contours to the Cape Cod plot from exercise 2. -->
+
+<!-- Hint: play around with the bins/breaks so you can see contours close to the Cape Cod shoreline -->
+
+
+
+
+<!-- ## Mapping continued... more shapefiles -->
+<!-- Alternatively, many government agencies have shapefiles relevant to their operation. -->
+
+<!-- The `sf` (simple features) package is a powerful tool to plot and manipulate complex shapefiles -->
+
+<!-- e.g. Shellfish harvest area polygons available through state website: -->
+<!-- https://docs.digital.mass.gov/dataset/massgis-data-designated-shellfish-growing-areas -->
+<!-- ```{r} -->
+<!-- library(sf) -->
+<!-- # Read in the .shp file using the sf package -->
+<!-- shellfish <- st_read(dsn = "../data/shellfish_mngmt_dsga/DSGA_POLY.shp") -->
+<!-- head(st_coordinates(shellfish)) # Note lat/long not in typical format (here spherical coordinates) -->
+
+<!-- # Transform the coordinates to projected coordinates -->
+<!-- shellfish_trans <- st_transform(shellfish, "+proj=longlat +ellps=WGS84 +datum=WGS84") -->
+<!-- head(st_coordinates(shellfish_trans)) # See transformed -->
+
+<!-- ``` -->
+<!-- **Be careful to ensure that your projected coordinates match across plots!!!** -->
+
+<!-- ## Mapping continued... more shapefiles -->
+<!-- In addition to the shapes, shapefiles often include attributes that provide additional information about the shape. -->
+
+<!-- ```{r} -->
+<!-- ggplot() +  -->
+<!--   geom_sf(data = shellfish_trans, aes(fill = ACRES), color="black") +  -->
+<!--   theme_minimal()  -->
+<!-- ``` -->
+
+<!-- Note: Here I used the `sf` package to transform the lat/long but I still used ggplot to produce the map. Alternatively you can plot directly using `sf` -->
+
+<!-- ## More shapefile resources -->
+<!-- - https://rpubs.com/huanfaChen/ggplotShapefile -->
+<!-- - transform lat/long: https://gis.stackexchange.com/questions/296170/r-shapefile-transform-longitude-latitude-coordinates -->
+<!-- - https://ggplot2.tidyverse.org/reference/ggsf.html -->

@@ -1,0 +1,107 @@
+---
+title: "lda"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(MASS)
+library(klaR)
+##partimat()
+```
+
+## DFA of two groups via matrices
+
+```{r}
+  Y <- as.data.frame(list(Species=factor(rep(1:2,each=3)),
+                          Var1 = c(2,3,3,4,4,5),
+                          Var2 = c(3,6,8,4,5,7),
+                          Var3 = c(10,15,21,1,2,3)))
+print(Y)
+```
+
+## within groups
+
+```{r}
+Y1 <- Y[1:3,-1]
+Y2 <- Y[-(1:3),-1]
+colMeans(Y[,-1])
+colMeans(Y1)
+colMeans(Y2)
+```
+
+## within group variance covariance
+
+```{r}
+S1 <- t(scale(Y1,scale=FALSE)) %*% scale(Y1,scale=FALSE)
+S2 <- t(scale(Y2,scale=FALSE)) %*% scale(Y2,scale=FALSE)
+S1
+S2
+```
+
+## pooled within-groups variance-covariance
+
+```{r}
+CW <- (S1 + S2) / (nrow(S1)+nrow(S2)-2)
+CW
+```
+
+## eigenanalysis of CW
+
+```{r}
+#eigenvalues
+L <- eigen(CW)$values
+L
+L/sum(L)
+#eigenvectors
+V <- eigen(CW)$vectors
+V
+```
+
+## Discriminant function scores
+
+```{r}
+F <- as.matrix(Y[,-1]) %*% V
+F
+```
+
+## Using `lda()`
+
+```{r}
+lda1 <- lda(Species~.,data=Y)
+```
+
+## Iris data
+
+```{r}
+iris
+lda2 <- lda(Species~.,data=iris)
+lda2
+
+predict(lda2)
+
+plot(lda2)
+
+plot(lda2,dimen=1)
+
+partimat(Species~.,data=iris,method="lda")
+
+
+
+```
+
+## Sparrows
+
+```{r}
+
+sparrow <-read.table("../../data/SparrowDA.txt", header = T)
+sparrow <- sparrow[,-(9:10)]
+sparrow[,1:8] <- scale(sparrow[,1:8])
+
+discrim2<-lda(observer ~ ., data = sparrow)
+discrim2
+# Coefficients of linear discriminants for LD1: 
+# give coefficients of first dicriminant function (14.4)
+#partimat(observer~.,data=sparrow,method="lda")
+```

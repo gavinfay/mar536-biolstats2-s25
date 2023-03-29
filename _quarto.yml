@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "*.Rmd"
+    - "!labs/lab-08b.Rmd"
 
 website:
   page-navigation: true
