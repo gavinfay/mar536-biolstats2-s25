@@ -1,11 +1,21 @@
 <!-- ################################### -->
+
 <!-- #### MAR 536 Biol. Stats II -->
+
 <!-- # Spring 2023 -->
+
 <!-- # Lecture 13 -->
+
 <!-- # 14 March 2023 -->
+
 <!-- # Instructor: Gavin Fay, gfay@umassd.edu -->
+
 <!-- ################################### -->
 
+```{r}
+library(tidyverse)
+library(lattice)
+```
 
 ### STREAMS EXAMPLE
 
@@ -18,18 +28,15 @@ streams.lm2 <- lm(Density ~ factor(Stream) - 1, data = Streams)
 streams.lme1 <- lmer(Density ~ 1 + (1 | Stream), data = Streams, REML=FALSE)
 ```
 
-
 ```{r}
 #help function for lme()
 ?(lmer)
 ```
 
-
 ```{r}
 #summary of results
 summary(streams.lme1)
 ```
-
 
 ```{r}
 #compare residuals among models
@@ -47,7 +54,6 @@ mtext(side=3,"lmer, random stream effect",line=2)
 abline(h=0)
 ```
 
-
 ```{r}
 # plot the fitted values
 # library(lattice)
@@ -64,8 +70,10 @@ lme1_results |>
   facet_wrap(~stream)
 ```
 
-
 ```{r}
+# alternative using lme
+library(nlme)
+streams.lme1 <- lme(Density~1,random=~1|Stream,data=Streams,meth="ML")
 # diagnostic plots of residuals, random effects
 par(mfrow=c(2,3))
 # QQ plot
@@ -87,7 +95,6 @@ qqline(re)
 hist(streams.lme1$coefficients$random$Stream/re.sigma,xlab="random effects",main="")
 ```
 
-
 ```{r}
 ### RIKZ Species Richness
 RIKZ <- readRDS("../data/RIKZ.rds")
@@ -104,8 +111,11 @@ AIC(m1,m5,m6)
 xyplot(Richness~NAP|factor(Beach),data=RIKZ)
 plot(m6,Richness~fitted(.)|factor(Beach),abline = c(0,1))
 
-xyplot(resid(m1,type="pearson")~fitted(m1)|factor(Beach),abline=0,pch=16,ylab="stdized residuals")
+xyplot(resid(m1,type="pearson")~fitted(m1)|factor(RIKZ$Beach),abline=0,pch=16,ylab="stdized residuals")
 
+library(nlme)
+m5<-lme(Richness~NAP ,random= ~ 1 | factor(Beach), data = RIKZ, method="REML")
+m6<-lme(Richness~NAP ,random= ~ NAP | factor(Beach), data = RIKZ, method="REML")
 
 plot(m6,form=resid(.,type="p")~fitted(.)|factor(Beach),abline=0,pch=16)
 
@@ -113,10 +123,6 @@ plot(m5,form=resid(.,type="p")~fitted(.)|factor(Beach),abline=0,pch=16)
 
 
 #      Output for model 6 with random slope and intercept, page 129
-RIKZ <- read.table(file = "RIKZ.txt", header = TRUE)
-RIKZ$Richness <- rowSums(RIKZ[, 2:76] > 0)
-library(nlme)
-m6<-lme(Richness~NAP ,random= ~ NAP | factor(Beach), data = RIKZ, method="REML")
 summary(m6)
 anova(m6)
 #I am not sure why these results are slightly different from those in the book
@@ -126,7 +132,6 @@ plot(m6)
 #      Model selection (comparing models 5 and 6), page 130
 anova(m5, m6)
 ```
-
 
 ```{r}
 ###### Weight-Length relationships ######
@@ -149,7 +154,6 @@ wtlen.lme3 <- lmer(LogWt~LogLen + (1+LogLen|Subject),
                   data=WtLen,REML = FALSE)
 ```
 
-
 ```{r}
 library(lattice)
 xyplot(LogWt~LogLen|factor(Subject),data=WtLen)
@@ -158,4 +162,3 @@ xyplot(Weight~Length|factor(Subject),data=WtLen)
 
 
 ```
-

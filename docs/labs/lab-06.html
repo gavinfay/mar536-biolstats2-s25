@@ -5,12 +5,13 @@
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.505">
+  <meta name="generator" content="quarto-1.5.56">
 
   <meta name="dcterms.date" content="2023-02-22">
-  <title>MAR 536 - Spring 2023 - MAR 536 Lab 6</title>
+  <title>MAR 536 - Spring 2025 – MAR 536 Lab 6</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -19,12 +20,18 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -35,7 +42,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -53,41 +60,42 @@
       }
     pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
     div.sourceCode
-      {   }
+      { color: #003b4f; background-color: #f1f3f5; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
     code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -130,44 +138,44 @@
     font-weight: 400;
   }
 
-  .callout.callout-captioned.callout-style-simple .callout-body {
+  .callout.callout-titled.callout-style-simple .callout-body {
     margin-top: 0.2em;
   }
 
-  .callout:not(.callout-captioned) .callout-body {
+  .callout:not(.callout-titled) .callout-body {
       display: flex;
   }
 
-  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
     padding-left: 1.6em;
   }
 
-  .callout.callout-captioned .callout-header {
+  .callout.callout-titled .callout-header {
     padding-top: 0.2em;
     margin-bottom: -0.2em;
   }
 
-  .callout.callout-captioned .callout-caption  p {
+  .callout.callout-titled .callout-title  p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
   }
     
-  .callout.callout-captioned.callout-style-simple .callout-content  p {
+  .callout.callout-titled.callout-style-simple .callout-content  p {
     margin-top: 0;
   }
 
-  .callout.callout-captioned.callout-style-default .callout-content  p {
+  .callout.callout-titled.callout-style-default .callout-content  p {
     margin-top: 0.7em;
   }
 
-  .callout.callout-style-simple div.callout-caption {
+  .callout.callout-style-simple div.callout-title {
     border-bottom: none;
     font-size: .9rem;
     font-weight: 600;
     opacity: 75%;
   }
 
-  .callout.callout-style-default  div.callout-caption {
+  .callout.callout-style-default  div.callout-title {
     border-bottom: none;
     font-weight: 600;
     opacity: 85%;
@@ -199,7 +207,7 @@
     background-size: 0.9rem 0.9rem;
   }
 
-  .callout-caption {
+  .callout-title {
     display: flex
   }
     
@@ -212,16 +220,17 @@
     display: none !important;
   }
 
-  .callout.callout-captioned .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
-  .callout.callout-captioned .callout-icon::before {
+  .callout.callout-titled .callout-icon::before {
     margin-top: .5rem;
     padding-right: .5rem;
   }
 
-  .callout:not(.callout-captioned) .callout-icon::before {
+  .callout:not(.callout-titled) .callout-icon::before {
     margin-top: 1rem;
     padding-right: .5rem;
   }
@@ -236,7 +245,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
   }
 
-  div.callout-note.callout-style-default .callout-caption {
+  div.callout-note.callout-style-default .callout-title {
     background-color: #dae6fb
   }
 
@@ -248,7 +257,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
   }
 
-  div.callout-important.callout-style-default .callout-caption {
+  div.callout-important.callout-style-default .callout-title {
     background-color: #f7dddc
   }
 
@@ -260,7 +269,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
   }
 
-  div.callout-warning.callout-style-default .callout-caption {
+  div.callout-warning.callout-style-default .callout-title {
     background-color: #fcefdc
   }
 
@@ -272,7 +281,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
   }
 
-  div.callout-tip.callout-style-default .callout-caption {
+  div.callout-tip.callout-style-default .callout-title {
     background-color: #ccf1e3
   }
 
@@ -284,7 +293,7 @@
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
   }
 
-  div.callout-caution.callout-style-default .callout-caption {
+  div.callout-caution.callout-style-default .callout-title {
     background-color: #ffe5d0
   }
 
@@ -378,22 +387,21 @@
   </style>
   <link href="../site_libs/countdown-0.4.0/countdown.css" rel="stylesheet">
   <script src="../site_libs/countdown-0.4.0/countdown.js"></script>
-<meta property="og:title" content="MAR 536 - Spring 2023 - MAR 536 Lab 6">
-<meta property="og:site-name" content="MAR 536 - Spring 2023">
-<meta name="twitter:title" content="MAR 536 - Spring 2023 - MAR 536 Lab 6">
-<meta name="twitter:image" content="https://gavinfay.github.io/mar536-biolstats2-s23/labs/images/twitter-card.png">
-<meta name="twitter:creator" content="@gavin_fay">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="MAR 536 Lab 6 – MAR 536 - Spring 2025">
+<meta property="og:site_name" content="MAR 536 - Spring 2025">
 </head>
-<body>
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="center">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">MAR 536 Lab 6</h1>
+
+<div class="quarto-title-authors">
+</div>
+
   <p class="date">2023-02-22</p>
 </section>
-
 <section id="lab-schedule" class="slide level2">
 <h2>Lab schedule</h2>
 <p>1/18: Introduction to R and R Studio, working with data<br>
@@ -409,13 +417,13 @@
 <section id="acknowledgements" class="slide level2">
 <h2>Acknowledgements</h2>
 <ul>
-<li><a href="%22https://twitter.com/DanOvand0%22">Dan Ovando</a></li>
-<li><a href="%22https://twitter.com/KapurMaia%22">Maia Kapur</a></li>
-<li><a href="%22https://twitter.com/minebocek%22">Mine Çetinkaya-Rundel</a><br>
+<li><a href="&quot;https://twitter.com/DanOvand0&quot;">Dan Ovando</a></li>
+<li><a href="&quot;https://twitter.com/KapurMaia&quot;">Maia Kapur</a></li>
+<li><a href="&quot;https://twitter.com/minebocek&quot;">Mine Çetinkaya-Rundel</a><br>
 </li>
-<li><a href="%22https://twitter.com/apreshill%22">Alison Hill</a></li>
-<li><a href="%22https://twitter.com/margaretsiple%22">Megsie Siple</a></li>
-<li><a href="%22https://sanderwuyts.com/en/home-2/%22">Sander Quyts</a></li>
+<li><a href="&quot;https://twitter.com/apreshill&quot;">Alison Hill</a></li>
+<li><a href="&quot;https://twitter.com/margaretsiple&quot;">Megsie Siple</a></li>
+<li><a href="&quot;https://sanderwuyts.com/en/home-2/&quot;">Sander Quyts</a></li>
 </ul>
 </section>
 <section id="reducing-code-duplication" class="slide level2">
@@ -437,26 +445,26 @@
 <section id="pivot-tables-loops" class="slide level2">
 <h2>Pivot tables &amp; loops</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="cf">for</span> (species <span class="cf">in</span> <span class="fu">unique</span>(penguins<span class="sc">$</span>species)) {</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  mean_bodymass <span class="ot">&lt;-</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>      <span class="fu">mean</span>(penguins<span class="sc">$</span>body_mass_g[penguins<span class="sc">$</span>species <span class="sc">==</span> species],</span>
-<span id="cb1-5"><a href="#cb1-5"></a>           <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a>  <span class="fu">cat</span>(i, mean_bodymass, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-2"><a></a><span class="cf">for</span> (species <span class="cf">in</span> <span class="fu">unique</span>(penguins<span class="sc">$</span>species)) {</span>
+<span id="cb1-3"><a></a>  mean_bodymass <span class="ot">&lt;-</span></span>
+<span id="cb1-4"><a></a>      <span class="fu">mean</span>(penguins<span class="sc">$</span>body_mass_g[penguins<span class="sc">$</span>species <span class="sc">==</span> species],</span>
+<span id="cb1-5"><a></a>           <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-6"><a></a>  <span class="fu">cat</span>(i, mean_bodymass, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb1-7"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">with</span>(penguins,<span class="fu">tapply</span>(body_mass_g, species, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">with</span>(penguins,<span class="fu">tapply</span>(body_mass_g, species, mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">aggregate</span>(penguins<span class="sc">$</span>body_mass_g, </span>
-<span id="cb3-2"><a href="#cb3-2"></a>          <span class="at">by=</span><span class="fu">list</span>(penguins<span class="sc">$</span>species), </span>
-<span id="cb3-3"><a href="#cb3-3"></a>          mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">aggregate</span>(penguins<span class="sc">$</span>body_mass_g, </span>
+<span id="cb3-2"><a></a>          <span class="at">by=</span><span class="fu">list</span>(penguins<span class="sc">$</span>species), </span>
+<span id="cb3-3"><a></a>          mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">summarize</span>(<span class="at">mean_bodymass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb4-3"><a></a>  <span class="fu">summarize</span>(<span class="at">mean_bodymass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="looping" class="slide level2">
@@ -465,50 +473,50 @@
 But sometimes we need to do more.</p>
 <p>Loops in <code>R</code> are of this form:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="cf">for</span> (i <span class="cf">in</span> set) {</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="co">#do something</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="cf">for</span> (i <span class="cf">in</span> set) {</span>
+<span id="cb5-2"><a></a>  <span class="co">#do something</span></span>
+<span id="cb5-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is a very flexible structure, try the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">5</span>,<span class="at">by=</span><span class="dv">1</span>)) { <span class="fu">print</span>(i) }</span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) { <span class="fu">print</span>(i) }</span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"1"</span>,<span class="st">"N"</span>,<span class="st">"L"</span>)) { <span class="fu">print</span>(i) }  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">1</span>,<span class="at">to=</span><span class="dv">5</span>,<span class="at">by=</span><span class="dv">1</span>)) { <span class="fu">print</span>(i) }</span>
+<span id="cb6-2"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) { <span class="fu">print</span>(i) }</span>
+<span id="cb6-3"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"1"</span>,<span class="st">"N"</span>,<span class="st">"L"</span>)) { <span class="fu">print</span>(i) }  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="looping-through-species" class="slide level2">
 <h2>Looping through species</h2>
 <p>Imagine we need to calculate the mean flipper and bill lengths for every species in the <code>palmerpenguins</code> data set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="cf">for</span> (species <span class="cf">in</span> <span class="fu">unique</span>(penguins<span class="sc">$</span>species)) {</span>
-<span id="cb7-2"><a href="#cb7-2"></a>  mean_flipper_length <span class="ot">&lt;-</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>      <span class="fu">mean</span>(penguins<span class="sc">$</span>flipper_length_mm[penguins<span class="sc">$</span>species <span class="sc">==</span> species])   </span>
-<span id="cb7-4"><a href="#cb7-4"></a>  mean_bill_length <span class="ot">&lt;-</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>      <span class="fu">mean</span>(penguins<span class="sc">$</span>bill_length_mm[penguins<span class="sc">$</span>species <span class="sc">==</span> species])   </span>
-<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">cat</span>(species, mean_flipper_length, mean_bill_length, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="cf">for</span> (species <span class="cf">in</span> <span class="fu">unique</span>(penguins<span class="sc">$</span>species)) {</span>
+<span id="cb7-2"><a></a>  mean_flipper_length <span class="ot">&lt;-</span></span>
+<span id="cb7-3"><a></a>      <span class="fu">mean</span>(penguins<span class="sc">$</span>flipper_length_mm[penguins<span class="sc">$</span>species <span class="sc">==</span> species])   </span>
+<span id="cb7-4"><a></a>  mean_bill_length <span class="ot">&lt;-</span></span>
+<span id="cb7-5"><a></a>      <span class="fu">mean</span>(penguins<span class="sc">$</span>bill_length_mm[penguins<span class="sc">$</span>species <span class="sc">==</span> species])   </span>
+<span id="cb7-6"><a></a>  <span class="fu">cat</span>(species, mean_flipper_length, mean_bill_length, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb7-7"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>NB: We already know better ways to do this using <code>summarize()</code>.</p>
 </section>
 <section id="common-way-to-use-loops" class="slide level2">
 <h2>Common way to use loops</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">#define the elements to loop over</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>species <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(penguins<span class="sc">$</span>species))</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#define how many times to do the loop</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>nspecies <span class="ot">&lt;-</span> <span class="fu">length</span>(species)</span>
-<span id="cb8-6"><a href="#cb8-6"></a></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#create a place to store results</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a>mean_mass <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length=</span>nspecies)</span>
-<span id="cb8-9"><a href="#cb8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#get loopy</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="cf">for</span> (isp <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nspecies) {</span>
-<span id="cb8-12"><a href="#cb8-12"></a>  species.data <span class="ot">&lt;-</span> penguins[penguins<span class="sc">$</span>species<span class="sc">==</span>species[isp], ]</span>
-<span id="cb8-13"><a href="#cb8-13"></a>  mean_mass[isp] <span class="ot">&lt;-</span> <span class="fu">mean</span>(species.data<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">print</span>(mean_mass[isp])</span>
-<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">cat</span>(<span class="st">"Running species "</span>, isp,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb8-16"><a href="#cb8-16"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="co">#define the elements to loop over</span></span>
+<span id="cb8-2"><a></a>species <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(penguins<span class="sc">$</span>species))</span>
+<span id="cb8-3"><a></a></span>
+<span id="cb8-4"><a></a><span class="co">#define how many times to do the loop</span></span>
+<span id="cb8-5"><a></a>nspecies <span class="ot">&lt;-</span> <span class="fu">length</span>(species)</span>
+<span id="cb8-6"><a></a></span>
+<span id="cb8-7"><a></a><span class="co">#create a place to store results</span></span>
+<span id="cb8-8"><a></a>mean_mass <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="at">length=</span>nspecies)</span>
+<span id="cb8-9"><a></a></span>
+<span id="cb8-10"><a></a><span class="co">#get loopy</span></span>
+<span id="cb8-11"><a></a><span class="cf">for</span> (isp <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nspecies) {</span>
+<span id="cb8-12"><a></a>  species.data <span class="ot">&lt;-</span> penguins[penguins<span class="sc">$</span>species<span class="sc">==</span>species[isp], ]</span>
+<span id="cb8-13"><a></a>  mean_mass[isp] <span class="ot">&lt;-</span> <span class="fu">mean</span>(species.data<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-14"><a></a>  <span class="fu">print</span>(mean_mass[isp])</span>
+<span id="cb8-15"><a></a>  <span class="fu">cat</span>(<span class="st">"Running species "</span>, isp,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb8-16"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A lot of this code is book-keeping rather than the thing we want to do.</p>
 </section>
@@ -526,32 +534,32 @@ These all have slightly differences about how they are used.</p>
 <p>The <code>map</code> function is the workhorse of <code>purrr</code>.<br>
 e.g.&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>shades <span class="ot">&lt;-</span> <span class="fu">colors</span>()[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(shades)) { </span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">print</span>(shades[i])  </span>
-<span id="cb9-4"><a href="#cb9-4"></a>}</span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="do">## [1] "white"</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="do">## [1] "aliceblue"</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="do">## [1] "antiquewhite"</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="do">## [1] "antiquewhite1"</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="do">## [1] "antiquewhite2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>shades <span class="ot">&lt;-</span> <span class="fu">colors</span>()[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb9-2"><a></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(shades)) { </span>
+<span id="cb9-3"><a></a>  <span class="fu">print</span>(shades[i])  </span>
+<span id="cb9-4"><a></a>}</span>
+<span id="cb9-5"><a></a><span class="do">## [1] "white"</span></span>
+<span id="cb9-6"><a></a><span class="do">## [1] "aliceblue"</span></span>
+<span id="cb9-7"><a></a><span class="do">## [1] "antiquewhite"</span></span>
+<span id="cb9-8"><a></a><span class="do">## [1] "antiquewhite1"</span></span>
+<span id="cb9-9"><a></a><span class="do">## [1] "antiquewhite2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>a <span class="ot">&lt;-</span>  <span class="fu">map</span>(shades, print)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="do">## [1] "white"</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="do">## [1] "aliceblue"</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="do">## [1] "antiquewhite"</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="do">## [1] "antiquewhite1"</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="do">## [1] "antiquewhite2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>a <span class="ot">&lt;-</span>  <span class="fu">map</span>(shades, print)</span>
+<span id="cb10-2"><a></a><span class="do">## [1] "white"</span></span>
+<span id="cb10-3"><a></a><span class="do">## [1] "aliceblue"</span></span>
+<span id="cb10-4"><a></a><span class="do">## [1] "antiquewhite"</span></span>
+<span id="cb10-5"><a></a><span class="do">## [1] "antiquewhite1"</span></span>
+<span id="cb10-6"><a></a><span class="do">## [1] "antiquewhite2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="map" class="slide level2 small">
 <h2><code>map</code></h2>
 <p>Basic syntax:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">map</span>(<span class="st">"Lists to apply function to"</span>,  </span>
-<span id="cb11-2"><a href="#cb11-2"></a>    <span class="st">"Function to apply across lists"</span>,</span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="st">"Additional parameters"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">map</span>(<span class="st">"Lists to apply function to"</span>,  </span>
+<span id="cb11-2"><a></a>    <span class="st">"Function to apply across lists"</span>,</span>
+<span id="cb11-3"><a></a>    <span class="st">"Additional parameters"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>map</code> by default returns a list. However we can specify the type of output:</p>
 <p><code>map_dbl</code> returns real numbers<br>
@@ -565,37 +573,37 @@ e.g.&nbsp;</p>
 <section id="shortcuts" class="slide level2">
 <h2>Shortcuts</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>models <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">split</span>(.<span class="sc">$</span>species) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">map</span>(<span class="cf">function</span>(df) <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>models <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a></a>  <span class="fu">split</span>(.<span class="sc">$</span>species) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a></a>  <span class="fu">map</span>(<span class="cf">function</span>(df) <span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The syntax for creating an anonymous function in R is quite verbose so purrr provides a convenient shortcut: a one-sided formula.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>models <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">split</span>(.<span class="sc">$</span>species) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> .))</span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="co">#The 1st ~ is shorthand for a function</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="co">#The '.' shows where the stuff passed to map gets used.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>models <span class="ot">&lt;-</span> penguins <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">split</span>(.<span class="sc">$</span>species) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a></a>  <span class="fu">map</span>(<span class="sc">~</span><span class="fu">lm</span>(body_mass_g <span class="sc">~</span> flipper_length_mm, <span class="at">data =</span> .))</span>
+<span id="cb13-4"><a></a>  <span class="co">#The 1st ~ is shorthand for a function</span></span>
+<span id="cb13-5"><a></a>  <span class="co">#The '.' shows where the stuff passed to map gets used.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="shortcuts-2" class="slide level2">
 <h2>Shortcuts 2</h2>
 <p>Extracting summary statistics</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>models <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">map</span>(summary) <span class="sc">|&gt;</span> </span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">map_dbl</span>(pluck, <span class="st">"r.squared"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>models <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">map</span>(summary) <span class="sc">|&gt;</span> </span>
+<span id="cb14-3"><a></a>  <span class="fu">map_dbl</span>(pluck, <span class="st">"r.squared"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>models <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">map</span>(summary) <span class="sc">|&gt;</span> <span class="co">#run 'summary() for each model</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span>.<span class="sc">$</span>r.squared) <span class="co"># find the R-squared</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>models <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">map</span>(summary) <span class="sc">|&gt;</span> <span class="co">#run 'summary() for each model</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span>.<span class="sc">$</span>r.squared) <span class="co"># find the R-squared</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Extracting named components is a common operation, so can use a string instead.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>models <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">map</span>(summary) <span class="sc">|&gt;</span> <span class="co">#run 'summary() for each model</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">map_dbl</span>(<span class="st">"r.squared"</span>) <span class="co">#find the R-squared </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>models <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">map</span>(summary) <span class="sc">|&gt;</span> <span class="co">#run 'summary() for each model</span></span>
+<span id="cb16-3"><a></a>  <span class="fu">map_dbl</span>(<span class="st">"r.squared"</span>) <span class="co">#find the R-squared </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-1" class="slide level2">
@@ -622,7 +630,7 @@ e.g.&nbsp;</p>
 <!-- ``` -->
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_0cc190da" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_abd5846d" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -633,17 +641,17 @@ e.g.&nbsp;</p>
 <h2>Extending to multiple input lists</h2>
 <p><code>map2</code> allows you to map over two sets of inputs.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">map2</span>(list1, list2, <span class="sc">~</span><span class="cf">function</span>(.x,.y), ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">map2</span>(list1, list2, <span class="sc">~</span><span class="cf">function</span>(.x,.y), ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>e.g.&nbsp;generate 3 sets of 5 normal random variables, with the means &amp; standard deviations different in each set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="sc">-</span><span class="dv">3</span>)</span>
-<span id="cb18-2"><a href="#cb18-2"></a>sigma <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">map2</span>(mu, sigma, rnorm, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">str</span>()</span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="do">## List of 3</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="do">##  $ : num [1:5] 4.78 5.28 5.6 4.46 4.92</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="do">##  $ : num [1:5] 9.83 4.23 16.61 6.71 16.3</span></span>
-<span id="cb18-7"><a href="#cb18-7"></a><span class="do">##  $ : num [1:5] 2.438 4.681 -3.453 -16.228 0.252</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>mu <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="sc">-</span><span class="dv">3</span>)</span>
+<span id="cb18-2"><a></a>sigma <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb18-3"><a></a><span class="fu">map2</span>(mu, sigma, rnorm, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> <span class="fu">str</span>()</span>
+<span id="cb18-4"><a></a><span class="do">## List of 3</span></span>
+<span id="cb18-5"><a></a><span class="do">##  $ : num [1:5] 4.54 4.97 5.57 3.39 5</span></span>
+<span id="cb18-6"><a></a><span class="do">##  $ : num [1:5] 11.28 9.39 4.62 13.42 3.85</span></span>
+<span id="cb18-7"><a></a><span class="do">##  $ : num [1:5] -5.07 -5.9 -7.1 -21.36 -8.55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="figs/map2.png" class="r-stretch"></section>
@@ -651,18 +659,18 @@ e.g.&nbsp;</p>
 <h2>More than 2 inputs, use <code>pmap</code></h2>
 <p>e.g.&nbsp;same problem as previous, but now n varies in each set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>n <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
-<span id="cb19-2"><a href="#cb19-2"></a>mu <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="sc">-</span><span class="dv">3</span>)</span>
-<span id="cb19-3"><a href="#cb19-3"></a>sigma <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
-<span id="cb19-4"><a href="#cb19-4"></a></span>
-<span id="cb19-5"><a href="#cb19-5"></a>args1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">n =</span> n)</span>
-<span id="cb19-6"><a href="#cb19-6"></a>args1 <span class="sc">|&gt;</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">pmap</span>(rnorm) <span class="sc">|&gt;</span></span>
-<span id="cb19-8"><a href="#cb19-8"></a>  <span class="fu">str</span>()</span>
-<span id="cb19-9"><a href="#cb19-9"></a><span class="do">## List of 3</span></span>
-<span id="cb19-10"><a href="#cb19-10"></a><span class="do">##  $ : num 7.46</span></span>
-<span id="cb19-11"><a href="#cb19-11"></a><span class="do">##  $ : num [1:3] 14.17 9.36 4.04</span></span>
-<span id="cb19-12"><a href="#cb19-12"></a><span class="do">##  $ : num [1:5] -15.98 -15.89 -17.65 5.46 3.53</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>n <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span>
+<span id="cb19-2"><a></a>mu <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="sc">-</span><span class="dv">3</span>)</span>
+<span id="cb19-3"><a></a>sigma <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>)</span>
+<span id="cb19-4"><a></a></span>
+<span id="cb19-5"><a></a>args1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">mean =</span> mu, <span class="at">sd =</span> sigma, <span class="at">n =</span> n)</span>
+<span id="cb19-6"><a></a>args1 <span class="sc">|&gt;</span></span>
+<span id="cb19-7"><a></a>  <span class="fu">pmap</span>(rnorm) <span class="sc">|&gt;</span></span>
+<span id="cb19-8"><a></a>  <span class="fu">str</span>()</span>
+<span id="cb19-9"><a></a><span class="do">## List of 3</span></span>
+<span id="cb19-10"><a></a><span class="do">##  $ : num 4.91</span></span>
+<span id="cb19-11"><a></a><span class="do">##  $ : num [1:3] 15.43 14.02 4.27</span></span>
+<span id="cb19-12"><a></a><span class="do">##  $ : num [1:5] 4.542 -0.992 -9.346 2.794 -11.452</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Safest to use named arguments with <code>pmap</code>, as it will do positional matching if not.</p>
 
@@ -673,24 +681,24 @@ e.g.&nbsp;</p>
 It’s not as obvious when/where things break.</p>
 <p>Can use <code>safely()</code>. e.g.&nbsp;</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>safe_log <span class="ot">&lt;-</span> <span class="fu">safely</span>(log, <span class="at">otherwise =</span> <span class="cn">NA_real_</span>) </span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="co">#safe_log return a NA if log() returns error, plus error msg.  </span></span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="fu">list</span>(<span class="st">"a"</span>, <span class="dv">10</span>, <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">map</span>(safe_log) <span class="sc">|&gt;</span>  <span class="co">#&lt;&lt;</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">transpose</span>() <span class="sc">|&gt;</span></span>
-<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">simplify_all</span>()</span>
-<span id="cb20-7"><a href="#cb20-7"></a><span class="do">## $result</span></span>
-<span id="cb20-8"><a href="#cb20-8"></a><span class="do">## [1]       NA 2.302585 4.605170</span></span>
-<span id="cb20-9"><a href="#cb20-9"></a><span class="do">## </span></span>
-<span id="cb20-10"><a href="#cb20-10"></a><span class="do">## $error</span></span>
-<span id="cb20-11"><a href="#cb20-11"></a><span class="do">## $error[[1]]</span></span>
-<span id="cb20-12"><a href="#cb20-12"></a><span class="do">## &lt;simpleError in .Primitive("log")(x, base): non-numeric argument to mathematical function&gt;</span></span>
-<span id="cb20-13"><a href="#cb20-13"></a><span class="do">## </span></span>
-<span id="cb20-14"><a href="#cb20-14"></a><span class="do">## $error[[2]]</span></span>
-<span id="cb20-15"><a href="#cb20-15"></a><span class="do">## NULL</span></span>
-<span id="cb20-16"><a href="#cb20-16"></a><span class="do">## </span></span>
-<span id="cb20-17"><a href="#cb20-17"></a><span class="do">## $error[[3]]</span></span>
-<span id="cb20-18"><a href="#cb20-18"></a><span class="do">## NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>safe_log <span class="ot">&lt;-</span> <span class="fu">safely</span>(log, <span class="at">otherwise =</span> <span class="cn">NA_real_</span>) </span>
+<span id="cb20-2"><a></a><span class="co">#safe_log return a NA if log() returns error, plus error msg.  </span></span>
+<span id="cb20-3"><a></a><span class="fu">list</span>(<span class="st">"a"</span>, <span class="dv">10</span>, <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a></a>  <span class="fu">map</span>(safe_log) <span class="sc">|&gt;</span>  <span class="co">#&lt;&lt;</span></span>
+<span id="cb20-5"><a></a>  <span class="fu">transpose</span>() <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a></a>  <span class="fu">simplify_all</span>()</span>
+<span id="cb20-7"><a></a><span class="do">## $result</span></span>
+<span id="cb20-8"><a></a><span class="do">## [1]       NA 2.302585 4.605170</span></span>
+<span id="cb20-9"><a></a><span class="do">## </span></span>
+<span id="cb20-10"><a></a><span class="do">## $error</span></span>
+<span id="cb20-11"><a></a><span class="do">## $error[[1]]</span></span>
+<span id="cb20-12"><a></a><span class="do">## &lt;simpleError in .Primitive("log")(x, base): non-numeric argument to mathematical function&gt;</span></span>
+<span id="cb20-13"><a></a><span class="do">## </span></span>
+<span id="cb20-14"><a></a><span class="do">## $error[[2]]</span></span>
+<span id="cb20-15"><a></a><span class="do">## NULL</span></span>
+<span id="cb20-16"><a></a><span class="do">## </span></span>
+<span id="cb20-17"><a></a><span class="do">## $error[[3]]</span></span>
+<span id="cb20-18"><a></a><span class="do">## NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exercise-2" class="slide level2 small">
@@ -733,24 +741,27 @@ It’s not as obvious when/where things break.</p>
 
 <p><em>Hints for exercise 2:</em></p>
 <ul>
-<li>you can use the following to get an object containing a list of files in a folder<br>
-::: {.cell}</li>
+<li>you can use the following to get an object containing a list of files in a folder</li>
 </ul>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>data_path <span class="ot">=</span> <span class="st">"../data/crabs"</span>  <span class="co"># directory where the files are located</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">path =</span> data_path, <span class="at">pattern =</span> <span class="st">"*.csv"</span>,</span>
-<span id="cb21-3"><a href="#cb21-3"></a>             <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="co"># names of files ending in ".csv"</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>files</span>
-<span id="cb21-5"><a href="#cb21-5"></a><span class="do">##  [1] "../data/crabs/CRABS_2001.csv" "../data/crabs/CRABS_2002.csv"</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="do">##  [3] "../data/crabs/CRABS_2003.csv" "../data/crabs/CRABS_2004.csv"</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a><span class="do">##  [5] "../data/crabs/CRABS_2005.csv" "../data/crabs/CRABS_2006.csv"</span></span>
-<span id="cb21-8"><a href="#cb21-8"></a><span class="do">##  [7] "../data/crabs/CRABS_2007.csv" "../data/crabs/CRABS_2008.csv"</span></span>
-<span id="cb21-9"><a href="#cb21-9"></a><span class="do">##  [9] "../data/crabs/CRABS_2009.csv" "../data/crabs/CRABS_2010.csv"</span></span>
-<span id="cb21-10"><a href="#cb21-10"></a><span class="do">## [11] "../data/crabs/CRABS_2011.csv" "../data/crabs/CRABS_2012.csv"</span></span>
-<span id="cb21-11"><a href="#cb21-11"></a><span class="do">## [13] "../data/crabs/CRABS_2013.csv" "../data/crabs/CRABS_2014.csv"</span></span>
-<span id="cb21-12"><a href="#cb21-12"></a><span class="do">## [15] "../data/crabs/CRABS_2015.csv" "../data/crabs/CRABS_2016.csv"</span></span>
-<span id="cb21-13"><a href="#cb21-13"></a><span class="do">## [17] "../data/crabs/CRABS_2017.csv" "../data/crabs/CRABS_2018.csv"</span></span>
-<span id="cb21-14"><a href="#cb21-14"></a><span class="do">## [19] "../data/crabs/CRABS_2019.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: - look at the help for ‘dir’ for additional functionality</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>data_path <span class="ot">=</span> <span class="st">"../data/crabs"</span>  <span class="co"># directory where the files are located</span></span>
+<span id="cb21-2"><a></a>files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="at">path =</span> data_path, <span class="at">pattern =</span> <span class="st">"*.csv"</span>,</span>
+<span id="cb21-3"><a></a>             <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="co"># names of files ending in ".csv"</span></span>
+<span id="cb21-4"><a></a>files</span>
+<span id="cb21-5"><a></a><span class="do">##  [1] "../data/crabs/CRABS_2001.csv" "../data/crabs/CRABS_2002.csv"</span></span>
+<span id="cb21-6"><a></a><span class="do">##  [3] "../data/crabs/CRABS_2003.csv" "../data/crabs/CRABS_2004.csv"</span></span>
+<span id="cb21-7"><a></a><span class="do">##  [5] "../data/crabs/CRABS_2005.csv" "../data/crabs/CRABS_2006.csv"</span></span>
+<span id="cb21-8"><a></a><span class="do">##  [7] "../data/crabs/CRABS_2007.csv" "../data/crabs/CRABS_2008.csv"</span></span>
+<span id="cb21-9"><a></a><span class="do">##  [9] "../data/crabs/CRABS_2009.csv" "../data/crabs/CRABS_2010.csv"</span></span>
+<span id="cb21-10"><a></a><span class="do">## [11] "../data/crabs/CRABS_2011.csv" "../data/crabs/CRABS_2012.csv"</span></span>
+<span id="cb21-11"><a></a><span class="do">## [13] "../data/crabs/CRABS_2013.csv" "../data/crabs/CRABS_2014.csv"</span></span>
+<span id="cb21-12"><a></a><span class="do">## [15] "../data/crabs/CRABS_2015.csv" "../data/crabs/CRABS_2016.csv"</span></span>
+<span id="cb21-13"><a></a><span class="do">## [17] "../data/crabs/CRABS_2017.csv" "../data/crabs/CRABS_2018.csv"</span></span>
+<span id="cb21-14"><a></a><span class="do">## [19] "../data/crabs/CRABS_2019.csv"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>look at the help for ‘dir’ for additional functionality</li>
+</ul>
 </section>
 <section id="steller-sea-lion-pups-revisited" class="slide level2 small">
 <h2>Steller sea lion pups revisited</h2>
@@ -764,83 +775,83 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>ssl <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/SSLpupcounts.csv"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">slice</span>(ssl,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="do">## # A tibble: 3 × 43</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="do">##   sitename `1961` `1965` `1967` `1968` `1971` `1973` `1975` `1976` `1978` `1979`</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="do">##   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="do">## 1 ADAK/LA…     NA     NA     NA     NA     NA     NA     NA     NA     NA     20</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a><span class="do">## 2 ADUGAK       NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
-<span id="cb22-8"><a href="#cb22-8"></a><span class="do">## 3 AGATTU       NA     NA     NA     NA     NA     NA     NA     NA     NA    183</span></span>
-<span id="cb22-9"><a href="#cb22-9"></a><span class="do">## # … with 32 more variables: `1981` &lt;dbl&gt;, `1982` &lt;dbl&gt;, `1984` &lt;dbl&gt;,</span></span>
-<span id="cb22-10"><a href="#cb22-10"></a><span class="do">## #   `1985` &lt;dbl&gt;, `1986` &lt;dbl&gt;, `1987` &lt;dbl&gt;, `1988` &lt;dbl&gt;, `1989` &lt;dbl&gt;,</span></span>
-<span id="cb22-11"><a href="#cb22-11"></a><span class="do">## #   `1990` &lt;dbl&gt;, `1991` &lt;dbl&gt;, `1992` &lt;dbl&gt;, `1993` &lt;dbl&gt;, `1994` &lt;dbl&gt;,</span></span>
-<span id="cb22-12"><a href="#cb22-12"></a><span class="do">## #   `1995` &lt;dbl&gt;, `1996` &lt;dbl&gt;, `1997` &lt;dbl&gt;, `1998` &lt;dbl&gt;, `2000` &lt;dbl&gt;,</span></span>
-<span id="cb22-13"><a href="#cb22-13"></a><span class="do">## #   `2001` &lt;dbl&gt;, `2002` &lt;dbl&gt;, `2003` &lt;dbl&gt;, `2004` &lt;dbl&gt;, `2005` &lt;dbl&gt;,</span></span>
-<span id="cb22-14"><a href="#cb22-14"></a><span class="do">## #   `2007` &lt;dbl&gt;, `2008` &lt;dbl&gt;, `2009` &lt;dbl&gt;, `2010` &lt;dbl&gt;, `2011` &lt;dbl&gt;,</span></span>
-<span id="cb22-15"><a href="#cb22-15"></a><span class="do">## #   `2012` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2015` &lt;dbl&gt;</span></span>
-<span id="cb22-16"><a href="#cb22-16"></a>ssl_long <span class="ot">&lt;-</span> ssl <span class="sc">|&gt;</span> </span>
-<span id="cb22-17"><a href="#cb22-17"></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"year"</span>,</span>
-<span id="cb22-18"><a href="#cb22-18"></a>               <span class="at">values_to =</span> <span class="st">"count"</span>,</span>
-<span id="cb22-19"><a href="#cb22-19"></a>               <span class="sc">-</span>sitename) <span class="sc">|&gt;</span> </span>
-<span id="cb22-20"><a href="#cb22-20"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb22-21"><a href="#cb22-21"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(year)) <span class="sc">|&gt;</span> </span>
-<span id="cb22-22"><a href="#cb22-22"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>,</span>
-<span id="cb22-23"><a href="#cb22-23"></a>         count <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-24"><a href="#cb22-24"></a>  <span class="fu">mutate</span>(<span class="at">log_count =</span> <span class="fu">log</span>(count),</span>
-<span id="cb22-25"><a href="#cb22-25"></a>         <span class="at">year2 =</span> year<span class="dv">-2000</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb22-26"><a href="#cb22-26"></a>  <span class="fu">I</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>ssl <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/SSLpupcounts.csv"</span>)</span>
+<span id="cb22-2"><a></a><span class="fu">slice</span>(ssl,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb22-3"><a></a><span class="do">## # A tibble: 3 × 43</span></span>
+<span id="cb22-4"><a></a><span class="do">##   sitename `1961` `1965` `1967` `1968` `1971` `1973` `1975` `1976` `1978` `1979`</span></span>
+<span id="cb22-5"><a></a><span class="do">##   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb22-6"><a></a><span class="do">## 1 ADAK/LA…     NA     NA     NA     NA     NA     NA     NA     NA     NA     20</span></span>
+<span id="cb22-7"><a></a><span class="do">## 2 ADUGAK       NA     NA     NA     NA     NA     NA     NA     NA     NA     NA</span></span>
+<span id="cb22-8"><a></a><span class="do">## 3 AGATTU       NA     NA     NA     NA     NA     NA     NA     NA     NA    183</span></span>
+<span id="cb22-9"><a></a><span class="do">## # ℹ 32 more variables: `1981` &lt;dbl&gt;, `1982` &lt;dbl&gt;, `1984` &lt;dbl&gt;, `1985` &lt;dbl&gt;,</span></span>
+<span id="cb22-10"><a></a><span class="do">## #   `1986` &lt;dbl&gt;, `1987` &lt;dbl&gt;, `1988` &lt;dbl&gt;, `1989` &lt;dbl&gt;, `1990` &lt;dbl&gt;,</span></span>
+<span id="cb22-11"><a></a><span class="do">## #   `1991` &lt;dbl&gt;, `1992` &lt;dbl&gt;, `1993` &lt;dbl&gt;, `1994` &lt;dbl&gt;, `1995` &lt;dbl&gt;,</span></span>
+<span id="cb22-12"><a></a><span class="do">## #   `1996` &lt;dbl&gt;, `1997` &lt;dbl&gt;, `1998` &lt;dbl&gt;, `2000` &lt;dbl&gt;, `2001` &lt;dbl&gt;,</span></span>
+<span id="cb22-13"><a></a><span class="do">## #   `2002` &lt;dbl&gt;, `2003` &lt;dbl&gt;, `2004` &lt;dbl&gt;, `2005` &lt;dbl&gt;, `2007` &lt;dbl&gt;,</span></span>
+<span id="cb22-14"><a></a><span class="do">## #   `2008` &lt;dbl&gt;, `2009` &lt;dbl&gt;, `2010` &lt;dbl&gt;, `2011` &lt;dbl&gt;, `2012` &lt;dbl&gt;,</span></span>
+<span id="cb22-15"><a></a><span class="do">## #   `2013` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2015` &lt;dbl&gt;</span></span>
+<span id="cb22-16"><a></a>ssl_long <span class="ot">&lt;-</span> ssl <span class="sc">|&gt;</span> </span>
+<span id="cb22-17"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb22-18"><a></a>               <span class="at">values_to =</span> <span class="st">"count"</span>,</span>
+<span id="cb22-19"><a></a>               <span class="sc">-</span>sitename) <span class="sc">|&gt;</span> </span>
+<span id="cb22-20"><a></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb22-21"><a></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(year)) <span class="sc">|&gt;</span> </span>
+<span id="cb22-22"><a></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>,</span>
+<span id="cb22-23"><a></a>         count <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-24"><a></a>  <span class="fu">mutate</span>(<span class="at">log_count =</span> <span class="fu">log</span>(count),</span>
+<span id="cb22-25"><a></a>         <span class="at">year2 =</span> year<span class="dv">-2000</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb22-26"><a></a>  <span class="fu">I</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>ssl_models <span class="ot">&lt;-</span> ssl_long <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">group_by</span>(sitename) <span class="sc">|&gt;</span> </span>
-<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">nest</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(log_count <span class="sc">~</span> year2, <span class="at">data =</span> .))) <span class="sc">|&gt;</span> </span>
-<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">mutate</span>(<span class="at">results =</span> <span class="fu">map</span>(model, tidy))</span>
-<span id="cb23-6"><a href="#cb23-6"></a>ssl_models</span>
-<span id="cb23-7"><a href="#cb23-7"></a><span class="do">## # A tibble: 53 × 4</span></span>
-<span id="cb23-8"><a href="#cb23-8"></a><span class="do">## # Groups:   sitename [53]</span></span>
-<span id="cb23-9"><a href="#cb23-9"></a><span class="do">##    sitename             data              model  results         </span></span>
-<span id="cb23-10"><a href="#cb23-10"></a><span class="do">##    &lt;chr&gt;                &lt;list&gt;            &lt;list&gt; &lt;list&gt;          </span></span>
-<span id="cb23-11"><a href="#cb23-11"></a><span class="do">##  1 ADAK/LAKE POINT      &lt;tibble [7 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
-<span id="cb23-12"><a href="#cb23-12"></a><span class="do">##  2 ADUGAK               &lt;tibble [8 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
-<span id="cb23-13"><a href="#cb23-13"></a><span class="do">##  3 AGATTU/CAPE SABAK    &lt;tibble [10 × 4]&gt; &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
-<span id="cb23-14"><a href="#cb23-14"></a><span class="do">##  4 AGATTU/GILLON POINT  &lt;tibble [8 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
-<span id="cb23-15"><a href="#cb23-15"></a><span class="do">##  5 AKUN/BILLINGS HEAD   &lt;tibble [7 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
-<span id="cb23-16"><a href="#cb23-16"></a><span class="do">##  6 AKUTAN/CAPE MORGAN   &lt;tibble [8 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
-<span id="cb23-17"><a href="#cb23-17"></a><span class="do">##  7 AMCHITKA/COLUMN ROCK &lt;tibble [5 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
-<span id="cb23-18"><a href="#cb23-18"></a><span class="do">##  8 ATKINS               &lt;tibble [9 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
-<span id="cb23-19"><a href="#cb23-19"></a><span class="do">##  9 ATTU/CAPE WRANGELL   &lt;tibble [8 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
-<span id="cb23-20"><a href="#cb23-20"></a><span class="do">## 10 AYUGADAK             &lt;tibble [7 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
-<span id="cb23-21"><a href="#cb23-21"></a><span class="do">## # … with 43 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>ssl_models <span class="ot">&lt;-</span> ssl_long <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a></a>  <span class="fu">group_by</span>(sitename) <span class="sc">|&gt;</span> </span>
+<span id="cb23-3"><a></a>  <span class="fu">nest</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb23-4"><a></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(log_count <span class="sc">~</span> year2, <span class="at">data =</span> .))) <span class="sc">|&gt;</span> </span>
+<span id="cb23-5"><a></a>  <span class="fu">mutate</span>(<span class="at">results =</span> <span class="fu">map</span>(model, tidy))</span>
+<span id="cb23-6"><a></a>ssl_models</span>
+<span id="cb23-7"><a></a><span class="do">## # A tibble: 53 × 4</span></span>
+<span id="cb23-8"><a></a><span class="do">## # Groups:   sitename [53]</span></span>
+<span id="cb23-9"><a></a><span class="do">##    sitename             data              model  results         </span></span>
+<span id="cb23-10"><a></a><span class="do">##    &lt;chr&gt;                &lt;list&gt;            &lt;list&gt; &lt;list&gt;          </span></span>
+<span id="cb23-11"><a></a><span class="do">##  1 ADAK/LAKE POINT      &lt;tibble [7 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
+<span id="cb23-12"><a></a><span class="do">##  2 ADUGAK               &lt;tibble [8 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
+<span id="cb23-13"><a></a><span class="do">##  3 AGATTU/CAPE SABAK    &lt;tibble [10 × 4]&gt; &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
+<span id="cb23-14"><a></a><span class="do">##  4 AGATTU/GILLON POINT  &lt;tibble [8 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
+<span id="cb23-15"><a></a><span class="do">##  5 AKUN/BILLINGS HEAD   &lt;tibble [7 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
+<span id="cb23-16"><a></a><span class="do">##  6 AKUTAN/CAPE MORGAN   &lt;tibble [8 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
+<span id="cb23-17"><a></a><span class="do">##  7 AMCHITKA/COLUMN ROCK &lt;tibble [5 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
+<span id="cb23-18"><a></a><span class="do">##  8 ATKINS               &lt;tibble [9 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
+<span id="cb23-19"><a></a><span class="do">##  9 ATTU/CAPE WRANGELL   &lt;tibble [8 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
+<span id="cb23-20"><a></a><span class="do">## 10 AYUGADAK             &lt;tibble [7 × 4]&gt;  &lt;lm&gt;   &lt;tibble [2 × 5]&gt;</span></span>
+<span id="cb23-21"><a></a><span class="do">## # ℹ 43 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>ssl_slopes <span class="ot">&lt;-</span> ssl_models <span class="sc">|&gt;</span> </span>
-<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">select</span>(sitename, results) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">unnest</span>() <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"year2"</span>)</span>
-<span id="cb24-5"><a href="#cb24-5"></a>ssl_slopes</span>
-<span id="cb24-6"><a href="#cb24-6"></a><span class="do">## # A tibble: 53 × 6</span></span>
-<span id="cb24-7"><a href="#cb24-7"></a><span class="do">## # Groups:   sitename [53]</span></span>
-<span id="cb24-8"><a href="#cb24-8"></a><span class="do">##    sitename             term  estimate std.error statistic    p.value</span></span>
-<span id="cb24-9"><a href="#cb24-9"></a><span class="do">##    &lt;chr&gt;                &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb24-10"><a href="#cb24-10"></a><span class="do">##  1 ADAK/LAKE POINT      year2  -0.0232   0.00738     -3.14 0.0256    </span></span>
-<span id="cb24-11"><a href="#cb24-11"></a><span class="do">##  2 ADUGAK               year2   0.0517   0.00633      8.17 0.000181  </span></span>
-<span id="cb24-12"><a href="#cb24-12"></a><span class="do">##  3 AGATTU/CAPE SABAK    year2  -0.112    0.00877    -12.8  0.00000133</span></span>
-<span id="cb24-13"><a href="#cb24-13"></a><span class="do">##  4 AGATTU/GILLON POINT  year2  -0.0733   0.0168      -4.35 0.00482   </span></span>
-<span id="cb24-14"><a href="#cb24-14"></a><span class="do">##  5 AKUN/BILLINGS HEAD   year2   0.0851   0.0190       4.49 0.00648   </span></span>
-<span id="cb24-15"><a href="#cb24-15"></a><span class="do">##  6 AKUTAN/CAPE MORGAN   year2   0.0399   0.00602      6.63 0.000566  </span></span>
-<span id="cb24-16"><a href="#cb24-16"></a><span class="do">##  7 AMCHITKA/COLUMN ROCK year2  -0.107    0.0333      -3.21 0.0488    </span></span>
-<span id="cb24-17"><a href="#cb24-17"></a><span class="do">##  8 ATKINS               year2   0.0315   0.0207       1.52 0.172     </span></span>
-<span id="cb24-18"><a href="#cb24-18"></a><span class="do">##  9 ATTU/CAPE WRANGELL   year2  -0.0715   0.0176      -4.06 0.00667   </span></span>
-<span id="cb24-19"><a href="#cb24-19"></a><span class="do">## 10 AYUGADAK             year2  -0.0525   0.0163      -3.22 0.0234    </span></span>
-<span id="cb24-20"><a href="#cb24-20"></a><span class="do">## # … with 43 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>ssl_slopes <span class="ot">&lt;-</span> ssl_models <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a></a>  <span class="fu">select</span>(sitename, results) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a></a>  <span class="fu">unnest</span>() <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"year2"</span>)</span>
+<span id="cb24-5"><a></a>ssl_slopes</span>
+<span id="cb24-6"><a></a><span class="do">## # A tibble: 53 × 6</span></span>
+<span id="cb24-7"><a></a><span class="do">## # Groups:   sitename [53]</span></span>
+<span id="cb24-8"><a></a><span class="do">##    sitename             term  estimate std.error statistic    p.value</span></span>
+<span id="cb24-9"><a></a><span class="do">##    &lt;chr&gt;                &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb24-10"><a></a><span class="do">##  1 ADAK/LAKE POINT      year2  -0.0232   0.00738     -3.14 0.0256    </span></span>
+<span id="cb24-11"><a></a><span class="do">##  2 ADUGAK               year2   0.0517   0.00633      8.17 0.000181  </span></span>
+<span id="cb24-12"><a></a><span class="do">##  3 AGATTU/CAPE SABAK    year2  -0.112    0.00877    -12.8  0.00000133</span></span>
+<span id="cb24-13"><a></a><span class="do">##  4 AGATTU/GILLON POINT  year2  -0.0733   0.0168      -4.35 0.00482   </span></span>
+<span id="cb24-14"><a></a><span class="do">##  5 AKUN/BILLINGS HEAD   year2   0.0851   0.0190       4.49 0.00648   </span></span>
+<span id="cb24-15"><a></a><span class="do">##  6 AKUTAN/CAPE MORGAN   year2   0.0399   0.00602      6.63 0.000566  </span></span>
+<span id="cb24-16"><a></a><span class="do">##  7 AMCHITKA/COLUMN ROCK year2  -0.107    0.0333      -3.21 0.0488    </span></span>
+<span id="cb24-17"><a></a><span class="do">##  8 ATKINS               year2   0.0315   0.0207       1.52 0.172     </span></span>
+<span id="cb24-18"><a></a><span class="do">##  9 ATTU/CAPE WRANGELL   year2  -0.0715   0.0176      -4.06 0.00667   </span></span>
+<span id="cb24-19"><a></a><span class="do">## 10 AYUGADAK             year2  -0.0525   0.0163      -3.22 0.0234    </span></span>
+<span id="cb24-20"><a></a><span class="do">## # ℹ 43 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
@@ -851,17 +862,21 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <div id="tabset-1-1">
 <div class="cell">
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="lab-06_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ssl_slopes) <span class="sc">+</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> estimate) <span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a>  <span class="fu">geom_histogram</span>(<span class="at">col=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb25-5"><a href="#cb25-5"></a>plot1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ssl_slopes) <span class="sc">+</span></span>
+<span id="cb25-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> estimate) <span class="sc">+</span></span>
+<span id="cb25-3"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">col=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb25-5"><a></a>plot1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -875,18 +890,22 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <div id="tabset-2-1">
 <div class="cell">
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="lab-06_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 <div id="tabset-2-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ssl_slopes) <span class="sc">+</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(sitename, estimate), <span class="at">y=</span> estimate) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb26-6"><a href="#cb26-6"></a>plot2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ssl_slopes) <span class="sc">+</span></span>
+<span id="cb26-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(sitename, estimate), <span class="at">y=</span> estimate) <span class="sc">+</span></span>
+<span id="cb26-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb26-5"><a></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb26-6"><a></a>plot2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -896,164 +915,164 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <h2>residual bootstrapping</h2>
 <p>resample residuals from the original models to obtain bootstrapped confidence intervals of the slopes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>nboot <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="co"># first extract a table of fitted values and residuals using augment</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a>ssl_boot <span class="ot">&lt;-</span> ssl_models <span class="sc">|&gt;</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">mutate</span>(<span class="at">tbl =</span> <span class="fu">map</span>(model, augment)) <span class="sc">|&gt;</span> </span>
-<span id="cb27-5"><a href="#cb27-5"></a>  <span class="fu">select</span>(sitename, tbl)</span>
-<span id="cb27-6"><a href="#cb27-6"></a>ssl_boot</span>
-<span id="cb27-7"><a href="#cb27-7"></a><span class="do">## # A tibble: 53 × 2</span></span>
-<span id="cb27-8"><a href="#cb27-8"></a><span class="do">## # Groups:   sitename [53]</span></span>
-<span id="cb27-9"><a href="#cb27-9"></a><span class="do">##    sitename             tbl              </span></span>
-<span id="cb27-10"><a href="#cb27-10"></a><span class="do">##    &lt;chr&gt;                &lt;list&gt;           </span></span>
-<span id="cb27-11"><a href="#cb27-11"></a><span class="do">##  1 ADAK/LAKE POINT      &lt;tibble [7 × 8]&gt; </span></span>
-<span id="cb27-12"><a href="#cb27-12"></a><span class="do">##  2 ADUGAK               &lt;tibble [8 × 8]&gt; </span></span>
-<span id="cb27-13"><a href="#cb27-13"></a><span class="do">##  3 AGATTU/CAPE SABAK    &lt;tibble [10 × 8]&gt;</span></span>
-<span id="cb27-14"><a href="#cb27-14"></a><span class="do">##  4 AGATTU/GILLON POINT  &lt;tibble [8 × 8]&gt; </span></span>
-<span id="cb27-15"><a href="#cb27-15"></a><span class="do">##  5 AKUN/BILLINGS HEAD   &lt;tibble [7 × 8]&gt; </span></span>
-<span id="cb27-16"><a href="#cb27-16"></a><span class="do">##  6 AKUTAN/CAPE MORGAN   &lt;tibble [8 × 8]&gt; </span></span>
-<span id="cb27-17"><a href="#cb27-17"></a><span class="do">##  7 AMCHITKA/COLUMN ROCK &lt;tibble [5 × 8]&gt; </span></span>
-<span id="cb27-18"><a href="#cb27-18"></a><span class="do">##  8 ATKINS               &lt;tibble [9 × 8]&gt; </span></span>
-<span id="cb27-19"><a href="#cb27-19"></a><span class="do">##  9 ATTU/CAPE WRANGELL   &lt;tibble [8 × 8]&gt; </span></span>
-<span id="cb27-20"><a href="#cb27-20"></a><span class="do">## 10 AYUGADAK             &lt;tibble [7 × 8]&gt; </span></span>
-<span id="cb27-21"><a href="#cb27-21"></a><span class="do">## # … with 43 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>nboot <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb27-2"><a></a><span class="co"># first extract a table of fitted values and residuals using augment</span></span>
+<span id="cb27-3"><a></a>ssl_boot <span class="ot">&lt;-</span> ssl_models <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a></a>  <span class="fu">mutate</span>(<span class="at">tbl =</span> <span class="fu">map</span>(model, augment)) <span class="sc">|&gt;</span> </span>
+<span id="cb27-5"><a></a>  <span class="fu">select</span>(sitename, tbl)</span>
+<span id="cb27-6"><a></a>ssl_boot</span>
+<span id="cb27-7"><a></a><span class="do">## # A tibble: 53 × 2</span></span>
+<span id="cb27-8"><a></a><span class="do">## # Groups:   sitename [53]</span></span>
+<span id="cb27-9"><a></a><span class="do">##    sitename             tbl              </span></span>
+<span id="cb27-10"><a></a><span class="do">##    &lt;chr&gt;                &lt;list&gt;           </span></span>
+<span id="cb27-11"><a></a><span class="do">##  1 ADAK/LAKE POINT      &lt;tibble [7 × 8]&gt; </span></span>
+<span id="cb27-12"><a></a><span class="do">##  2 ADUGAK               &lt;tibble [8 × 8]&gt; </span></span>
+<span id="cb27-13"><a></a><span class="do">##  3 AGATTU/CAPE SABAK    &lt;tibble [10 × 8]&gt;</span></span>
+<span id="cb27-14"><a></a><span class="do">##  4 AGATTU/GILLON POINT  &lt;tibble [8 × 8]&gt; </span></span>
+<span id="cb27-15"><a></a><span class="do">##  5 AKUN/BILLINGS HEAD   &lt;tibble [7 × 8]&gt; </span></span>
+<span id="cb27-16"><a></a><span class="do">##  6 AKUTAN/CAPE MORGAN   &lt;tibble [8 × 8]&gt; </span></span>
+<span id="cb27-17"><a></a><span class="do">##  7 AMCHITKA/COLUMN ROCK &lt;tibble [5 × 8]&gt; </span></span>
+<span id="cb27-18"><a></a><span class="do">##  8 ATKINS               &lt;tibble [9 × 8]&gt; </span></span>
+<span id="cb27-19"><a></a><span class="do">##  9 ATTU/CAPE WRANGELL   &lt;tibble [8 × 8]&gt; </span></span>
+<span id="cb27-20"><a></a><span class="do">## 10 AYUGADAK             &lt;tibble [7 × 8]&gt; </span></span>
+<span id="cb27-21"><a></a><span class="do">## # ℹ 43 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="residual-bootstrapping-1" class="slide level2 small">
 <h2>residual bootstrapping</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>nboot <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="co"># first extract a table of fitted values and residuals using augment</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a>ssl_boot <span class="ot">&lt;-</span> ssl_models <span class="sc">|&gt;</span></span>
-<span id="cb28-4"><a href="#cb28-4"></a>  <span class="fu">mutate</span>(<span class="at">tbl =</span> <span class="fu">map</span>(model, augment)) <span class="sc">|&gt;</span> </span>
-<span id="cb28-5"><a href="#cb28-5"></a>  <span class="fu">select</span>(sitename, tbl)<span class="sc">|&gt;</span> </span>
-<span id="cb28-6"><a href="#cb28-6"></a>  <span class="fu">unnest</span>(<span class="at">cols=</span><span class="fu">c</span>(tbl)) <span class="sc">|&gt;</span> </span>
-<span id="cb28-7"><a href="#cb28-7"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb28-8"><a href="#cb28-8"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb28-9"><a href="#cb28-9"></a>  <span class="fu">I</span>()</span>
-<span id="cb28-10"><a href="#cb28-10"></a>ssl_boot</span>
-<span id="cb28-11"><a href="#cb28-11"></a><span class="do">## # A tibble: 372 × 9</span></span>
-<span id="cb28-12"><a href="#cb28-12"></a><span class="do">##    sitename       log_count year2 fitted    resid   hat  sigma  cooksd std_resid</span></span>
-<span id="cb28-13"><a href="#cb28-13"></a><span class="do">##    &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb28-14"><a href="#cb28-14"></a><span class="do">##  1 ADAK/LAKE POI…      5.89     2   5.90 -0.00375 0.452 0.0868 0.00176   -0.0653</span></span>
-<span id="cb28-15"><a href="#cb28-15"></a><span class="do">##  2 ADAK/LAKE POI…      5.86     4   5.85  0.00614 0.277 0.0868 0.00166    0.0929</span></span>
-<span id="cb28-16"><a href="#cb28-16"></a><span class="do">##  3 ADAK/LAKE POI…      5.74     5   5.83 -0.0888  0.216 0.0709 0.231     -1.29  </span></span>
-<span id="cb28-17"><a href="#cb28-17"></a><span class="do">##  4 ADAK/LAKE POI…      5.82     9   5.74  0.0886  0.155 0.0722 0.141      1.24  </span></span>
-<span id="cb28-18"><a href="#cb28-18"></a><span class="do">##  5 ADAK/LAKE POI…      5.76    10   5.71  0.0509  0.184 0.0821 0.0595     0.726 </span></span>
-<span id="cb28-19"><a href="#cb28-19"></a><span class="do">##  6 ADAK/LAKE POI…      5.73    11   5.69  0.0454  0.232 0.0829 0.0673     0.667 </span></span>
-<span id="cb28-20"><a href="#cb28-20"></a><span class="do">##  7 ADAK/LAKE POI…      5.52    14   5.62 -0.0985  0.483 0.0533 1.46      -1.76  </span></span>
-<span id="cb28-21"><a href="#cb28-21"></a><span class="do">##  8 ADUGAK              5.03     0   4.99  0.0416  0.412 0.0857 0.155      0.666 </span></span>
-<span id="cb28-22"><a href="#cb28-22"></a><span class="do">##  9 ADUGAK              5.08     2   5.09 -0.0172  0.269 0.0886 0.0112    -0.247 </span></span>
-<span id="cb28-23"><a href="#cb28-23"></a><span class="do">## 10 ADUGAK              5.12     4   5.20 -0.0778  0.175 0.0804 0.118     -1.05  </span></span>
-<span id="cb28-24"><a href="#cb28-24"></a><span class="do">## # … with 362 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>nboot <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb28-2"><a></a><span class="co"># first extract a table of fitted values and residuals using augment</span></span>
+<span id="cb28-3"><a></a>ssl_boot <span class="ot">&lt;-</span> ssl_models <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a></a>  <span class="fu">mutate</span>(<span class="at">tbl =</span> <span class="fu">map</span>(model, augment)) <span class="sc">|&gt;</span> </span>
+<span id="cb28-5"><a></a>  <span class="fu">select</span>(sitename, tbl)<span class="sc">|&gt;</span> </span>
+<span id="cb28-6"><a></a>  <span class="fu">unnest</span>(<span class="at">cols=</span><span class="fu">c</span>(tbl)) <span class="sc">|&gt;</span> </span>
+<span id="cb28-7"><a></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb28-8"><a></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb28-9"><a></a>  <span class="fu">I</span>()</span>
+<span id="cb28-10"><a></a>ssl_boot</span>
+<span id="cb28-11"><a></a><span class="do">## # A tibble: 372 × 9</span></span>
+<span id="cb28-12"><a></a><span class="do">##    sitename       log_count year2 fitted    resid   hat  sigma  cooksd std_resid</span></span>
+<span id="cb28-13"><a></a><span class="do">##    &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb28-14"><a></a><span class="do">##  1 ADAK/LAKE POI…      5.89     2   5.90 -0.00375 0.452 0.0868 0.00176   -0.0653</span></span>
+<span id="cb28-15"><a></a><span class="do">##  2 ADAK/LAKE POI…      5.86     4   5.85  0.00614 0.277 0.0868 0.00166    0.0929</span></span>
+<span id="cb28-16"><a></a><span class="do">##  3 ADAK/LAKE POI…      5.74     5   5.83 -0.0888  0.216 0.0709 0.231     -1.29  </span></span>
+<span id="cb28-17"><a></a><span class="do">##  4 ADAK/LAKE POI…      5.82     9   5.74  0.0886  0.155 0.0722 0.141      1.24  </span></span>
+<span id="cb28-18"><a></a><span class="do">##  5 ADAK/LAKE POI…      5.76    10   5.71  0.0509  0.184 0.0821 0.0595     0.726 </span></span>
+<span id="cb28-19"><a></a><span class="do">##  6 ADAK/LAKE POI…      5.73    11   5.69  0.0454  0.232 0.0829 0.0673     0.667 </span></span>
+<span id="cb28-20"><a></a><span class="do">##  7 ADAK/LAKE POI…      5.52    14   5.62 -0.0985  0.483 0.0533 1.46      -1.76  </span></span>
+<span id="cb28-21"><a></a><span class="do">##  8 ADUGAK              5.03     0   4.99  0.0416  0.412 0.0857 0.155      0.666 </span></span>
+<span id="cb28-22"><a></a><span class="do">##  9 ADUGAK              5.08     2   5.09 -0.0172  0.269 0.0886 0.0112    -0.247 </span></span>
+<span id="cb28-23"><a></a><span class="do">## 10 ADUGAK              5.12     4   5.20 -0.0778  0.175 0.0804 0.118     -1.05  </span></span>
+<span id="cb28-24"><a></a><span class="do">## # ℹ 362 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="residual-bootstrapping-2" class="slide level2 small">
 <h2>residual bootstrapping</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># we'll do resampling from the residuals for each year within each rookery</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="co"># rather than getting complicated with nested lists, we'll use sample_frac() to do the resamples</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a>tosample <span class="ot">&lt;-</span> ssl_boot <span class="sc">|&gt;</span> </span>
-<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">select</span>(sitename, resid) <span class="sc">|&gt;</span> </span>
-<span id="cb29-5"><a href="#cb29-5"></a>  <span class="fu">group_by</span>(sitename)</span>
-<span id="cb29-6"><a href="#cb29-6"></a>resamples <span class="ot">&lt;-</span></span>
-<span id="cb29-7"><a href="#cb29-7"></a>   <span class="fu">map_dfr</span>(<span class="fu">seq_len</span>(nboot), <span class="sc">~</span><span class="fu">slice_sample</span>(tosample, <span class="at">prop =</span> <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb29-8"><a href="#cb29-8"></a>   <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb29-9"><a href="#cb29-9"></a>   <span class="fu">mutate</span>(<span class="at">replicate =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>nboot, <span class="at">each =</span> <span class="fu">nrow</span>(tosample)))</span>
-<span id="cb29-10"><a href="#cb29-10"></a>resamples</span>
-<span id="cb29-11"><a href="#cb29-11"></a><span class="do">## # A tibble: 37,200 × 3</span></span>
-<span id="cb29-12"><a href="#cb29-12"></a><span class="do">##    sitename          resid replicate</span></span>
-<span id="cb29-13"><a href="#cb29-13"></a><span class="do">##    &lt;chr&gt;             &lt;dbl&gt;     &lt;int&gt;</span></span>
-<span id="cb29-14"><a href="#cb29-14"></a><span class="do">##  1 ADAK/LAKE POINT  0.0454         1</span></span>
-<span id="cb29-15"><a href="#cb29-15"></a><span class="do">##  2 ADAK/LAKE POINT  0.0509         1</span></span>
-<span id="cb29-16"><a href="#cb29-16"></a><span class="do">##  3 ADAK/LAKE POINT  0.0509         1</span></span>
-<span id="cb29-17"><a href="#cb29-17"></a><span class="do">##  4 ADAK/LAKE POINT  0.0886         1</span></span>
-<span id="cb29-18"><a href="#cb29-18"></a><span class="do">##  5 ADAK/LAKE POINT  0.0454         1</span></span>
-<span id="cb29-19"><a href="#cb29-19"></a><span class="do">##  6 ADAK/LAKE POINT  0.0509         1</span></span>
-<span id="cb29-20"><a href="#cb29-20"></a><span class="do">##  7 ADAK/LAKE POINT -0.0985         1</span></span>
-<span id="cb29-21"><a href="#cb29-21"></a><span class="do">##  8 ADUGAK          -0.0384         1</span></span>
-<span id="cb29-22"><a href="#cb29-22"></a><span class="do">##  9 ADUGAK          -0.0193         1</span></span>
-<span id="cb29-23"><a href="#cb29-23"></a><span class="do">## 10 ADUGAK          -0.0778         1</span></span>
-<span id="cb29-24"><a href="#cb29-24"></a><span class="do">## # … with 37,190 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># we'll do resampling from the residuals for each year within each rookery</span></span>
+<span id="cb29-2"><a></a><span class="co"># rather than getting complicated with nested lists, we'll use sample_frac() to do the resamples</span></span>
+<span id="cb29-3"><a></a>tosample <span class="ot">&lt;-</span> ssl_boot <span class="sc">|&gt;</span> </span>
+<span id="cb29-4"><a></a>  <span class="fu">select</span>(sitename, resid) <span class="sc">|&gt;</span> </span>
+<span id="cb29-5"><a></a>  <span class="fu">group_by</span>(sitename)</span>
+<span id="cb29-6"><a></a>resamples <span class="ot">&lt;-</span></span>
+<span id="cb29-7"><a></a>   <span class="fu">map_dfr</span>(<span class="fu">seq_len</span>(nboot), <span class="sc">~</span><span class="fu">slice_sample</span>(tosample, <span class="at">prop =</span> <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb29-8"><a></a>   <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb29-9"><a></a>   <span class="fu">mutate</span>(<span class="at">replicate =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>nboot, <span class="at">each =</span> <span class="fu">nrow</span>(tosample)))</span>
+<span id="cb29-10"><a></a>resamples</span>
+<span id="cb29-11"><a></a><span class="do">## # A tibble: 37,200 × 3</span></span>
+<span id="cb29-12"><a></a><span class="do">##    sitename           resid replicate</span></span>
+<span id="cb29-13"><a></a><span class="do">##    &lt;chr&gt;              &lt;dbl&gt;     &lt;int&gt;</span></span>
+<span id="cb29-14"><a></a><span class="do">##  1 ADAK/LAKE POINT  0.0886          1</span></span>
+<span id="cb29-15"><a></a><span class="do">##  2 ADAK/LAKE POINT  0.00614         1</span></span>
+<span id="cb29-16"><a></a><span class="do">##  3 ADAK/LAKE POINT  0.0454          1</span></span>
+<span id="cb29-17"><a></a><span class="do">##  4 ADAK/LAKE POINT -0.0888          1</span></span>
+<span id="cb29-18"><a></a><span class="do">##  5 ADAK/LAKE POINT  0.0509          1</span></span>
+<span id="cb29-19"><a></a><span class="do">##  6 ADAK/LAKE POINT  0.0454          1</span></span>
+<span id="cb29-20"><a></a><span class="do">##  7 ADAK/LAKE POINT  0.0454          1</span></span>
+<span id="cb29-21"><a></a><span class="do">##  8 ADUGAK           0.168           1</span></span>
+<span id="cb29-22"><a></a><span class="do">##  9 ADUGAK          -0.0193          1</span></span>
+<span id="cb29-23"><a></a><span class="do">## 10 ADUGAK           0.0416          1</span></span>
+<span id="cb29-24"><a></a><span class="do">## # ℹ 37,190 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
 
 <p><code>resamples</code> contains our bootstraps. Let’s append them to the data frame so we can compute the new data and re-fit the models for each case.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>ssl_bootmod <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="fu">seq_len</span>(nboot), <span class="sc">~</span><span class="fu">I</span>(ssl_boot)) <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>resid, <span class="sc">-</span>sitename) <span class="sc">|&gt;</span> </span>
-<span id="cb30-3"><a href="#cb30-3"></a>  <span class="fu">bind_cols</span>(resamples) <span class="sc">|&gt;</span> </span>
-<span id="cb30-4"><a href="#cb30-4"></a>  <span class="fu">mutate</span>(<span class="at">log_count =</span> fitted <span class="sc">+</span> resid) <span class="sc">|&gt;</span> </span>
-<span id="cb30-5"><a href="#cb30-5"></a>  <span class="fu">group_by</span>(sitename, replicate) <span class="sc">|&gt;</span> </span>
-<span id="cb30-6"><a href="#cb30-6"></a>  <span class="fu">nest</span>() <span class="co"># now have a data frame with a row for each site &amp; replicate</span></span>
-<span id="cb30-7"><a href="#cb30-7"></a>ssl_bootmod</span>
-<span id="cb30-8"><a href="#cb30-8"></a><span class="do">## # A tibble: 5,300 × 3</span></span>
-<span id="cb30-9"><a href="#cb30-9"></a><span class="do">## # Groups:   sitename, replicate [5,300]</span></span>
-<span id="cb30-10"><a href="#cb30-10"></a><span class="do">##    sitename             replicate data             </span></span>
-<span id="cb30-11"><a href="#cb30-11"></a><span class="do">##    &lt;chr&gt;                    &lt;int&gt; &lt;list&gt;           </span></span>
-<span id="cb30-12"><a href="#cb30-12"></a><span class="do">##  1 ADAK/LAKE POINT              1 &lt;tibble [7 × 8]&gt; </span></span>
-<span id="cb30-13"><a href="#cb30-13"></a><span class="do">##  2 ADUGAK                       1 &lt;tibble [8 × 8]&gt; </span></span>
-<span id="cb30-14"><a href="#cb30-14"></a><span class="do">##  3 AGATTU/CAPE SABAK            1 &lt;tibble [10 × 8]&gt;</span></span>
-<span id="cb30-15"><a href="#cb30-15"></a><span class="do">##  4 AGATTU/GILLON POINT          1 &lt;tibble [8 × 8]&gt; </span></span>
-<span id="cb30-16"><a href="#cb30-16"></a><span class="do">##  5 AKUN/BILLINGS HEAD           1 &lt;tibble [7 × 8]&gt; </span></span>
-<span id="cb30-17"><a href="#cb30-17"></a><span class="do">##  6 AKUTAN/CAPE MORGAN           1 &lt;tibble [8 × 8]&gt; </span></span>
-<span id="cb30-18"><a href="#cb30-18"></a><span class="do">##  7 AMCHITKA/COLUMN ROCK         1 &lt;tibble [5 × 8]&gt; </span></span>
-<span id="cb30-19"><a href="#cb30-19"></a><span class="do">##  8 ATKINS                       1 &lt;tibble [9 × 8]&gt; </span></span>
-<span id="cb30-20"><a href="#cb30-20"></a><span class="do">##  9 ATTU/CAPE WRANGELL           1 &lt;tibble [8 × 8]&gt; </span></span>
-<span id="cb30-21"><a href="#cb30-21"></a><span class="do">## 10 AYUGADAK                     1 &lt;tibble [7 × 8]&gt; </span></span>
-<span id="cb30-22"><a href="#cb30-22"></a><span class="do">## # … with 5,290 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>ssl_bootmod <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="fu">seq_len</span>(nboot), <span class="sc">~</span><span class="fu">I</span>(ssl_boot)) <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>resid, <span class="sc">-</span>sitename) <span class="sc">|&gt;</span> </span>
+<span id="cb30-3"><a></a>  <span class="fu">bind_cols</span>(resamples) <span class="sc">|&gt;</span> </span>
+<span id="cb30-4"><a></a>  <span class="fu">mutate</span>(<span class="at">log_count =</span> fitted <span class="sc">+</span> resid) <span class="sc">|&gt;</span> </span>
+<span id="cb30-5"><a></a>  <span class="fu">group_by</span>(sitename, replicate) <span class="sc">|&gt;</span> </span>
+<span id="cb30-6"><a></a>  <span class="fu">nest</span>() <span class="co"># now have a data frame with a row for each site &amp; replicate</span></span>
+<span id="cb30-7"><a></a>ssl_bootmod</span>
+<span id="cb30-8"><a></a><span class="do">## # A tibble: 5,300 × 3</span></span>
+<span id="cb30-9"><a></a><span class="do">## # Groups:   sitename, replicate [5,300]</span></span>
+<span id="cb30-10"><a></a><span class="do">##    sitename             replicate data             </span></span>
+<span id="cb30-11"><a></a><span class="do">##    &lt;chr&gt;                    &lt;int&gt; &lt;list&gt;           </span></span>
+<span id="cb30-12"><a></a><span class="do">##  1 ADAK/LAKE POINT              1 &lt;tibble [7 × 8]&gt; </span></span>
+<span id="cb30-13"><a></a><span class="do">##  2 ADUGAK                       1 &lt;tibble [8 × 8]&gt; </span></span>
+<span id="cb30-14"><a></a><span class="do">##  3 AGATTU/CAPE SABAK            1 &lt;tibble [10 × 8]&gt;</span></span>
+<span id="cb30-15"><a></a><span class="do">##  4 AGATTU/GILLON POINT          1 &lt;tibble [8 × 8]&gt; </span></span>
+<span id="cb30-16"><a></a><span class="do">##  5 AKUN/BILLINGS HEAD           1 &lt;tibble [7 × 8]&gt; </span></span>
+<span id="cb30-17"><a></a><span class="do">##  6 AKUTAN/CAPE MORGAN           1 &lt;tibble [8 × 8]&gt; </span></span>
+<span id="cb30-18"><a></a><span class="do">##  7 AMCHITKA/COLUMN ROCK         1 &lt;tibble [5 × 8]&gt; </span></span>
+<span id="cb30-19"><a></a><span class="do">##  8 ATKINS                       1 &lt;tibble [9 × 8]&gt; </span></span>
+<span id="cb30-20"><a></a><span class="do">##  9 ATTU/CAPE WRANGELL           1 &lt;tibble [8 × 8]&gt; </span></span>
+<span id="cb30-21"><a></a><span class="do">## 10 AYUGADAK                     1 &lt;tibble [7 × 8]&gt; </span></span>
+<span id="cb30-22"><a></a><span class="do">## # ℹ 5,290 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>ssl_bootmod <span class="ot">&lt;-</span> ssl_bootmod <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(log_count <span class="sc">~</span> year2, <span class="at">data =</span> .))) <span class="sc">|&gt;</span>  <span class="co">#same code as before to run the models</span></span>
-<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">mutate</span>(<span class="at">coef =</span> <span class="fu">map</span>(model, coef)) <span class="sc">|&gt;</span> </span>
-<span id="cb31-4"><a href="#cb31-4"></a>  <span class="fu">mutate</span>(<span class="at">slope =</span> <span class="fu">map_dbl</span>(coef, pluck, <span class="dv">2</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb31-5"><a href="#cb31-5"></a>    <span class="fu">ungroup</span>()</span>
-<span id="cb31-6"><a href="#cb31-6"></a>ssl_bootmod</span>
-<span id="cb31-7"><a href="#cb31-7"></a><span class="do">## # A tibble: 5,300 × 6</span></span>
-<span id="cb31-8"><a href="#cb31-8"></a><span class="do">##    sitename             replicate data              model  coef        slope</span></span>
-<span id="cb31-9"><a href="#cb31-9"></a><span class="do">##    &lt;chr&gt;                    &lt;int&gt; &lt;list&gt;            &lt;list&gt; &lt;list&gt;      &lt;dbl&gt;</span></span>
-<span id="cb31-10"><a href="#cb31-10"></a><span class="do">##  1 ADAK/LAKE POINT              1 &lt;tibble [7 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -0.0309</span></span>
-<span id="cb31-11"><a href="#cb31-11"></a><span class="do">##  2 ADUGAK                       1 &lt;tibble [8 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt;  0.0674</span></span>
-<span id="cb31-12"><a href="#cb31-12"></a><span class="do">##  3 AGATTU/CAPE SABAK            1 &lt;tibble [10 × 8]&gt; &lt;lm&gt;   &lt;dbl [2]&gt; -0.117 </span></span>
-<span id="cb31-13"><a href="#cb31-13"></a><span class="do">##  4 AGATTU/GILLON POINT          1 &lt;tibble [8 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -0.107 </span></span>
-<span id="cb31-14"><a href="#cb31-14"></a><span class="do">##  5 AKUN/BILLINGS HEAD           1 &lt;tibble [7 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt;  0.0956</span></span>
-<span id="cb31-15"><a href="#cb31-15"></a><span class="do">##  6 AKUTAN/CAPE MORGAN           1 &lt;tibble [8 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt;  0.0360</span></span>
-<span id="cb31-16"><a href="#cb31-16"></a><span class="do">##  7 AMCHITKA/COLUMN ROCK         1 &lt;tibble [5 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -0.0443</span></span>
-<span id="cb31-17"><a href="#cb31-17"></a><span class="do">##  8 ATKINS                       1 &lt;tibble [9 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt;  0.0457</span></span>
-<span id="cb31-18"><a href="#cb31-18"></a><span class="do">##  9 ATTU/CAPE WRANGELL           1 &lt;tibble [8 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -0.0630</span></span>
-<span id="cb31-19"><a href="#cb31-19"></a><span class="do">## 10 AYUGADAK                     1 &lt;tibble [7 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -0.0833</span></span>
-<span id="cb31-20"><a href="#cb31-20"></a><span class="do">## # … with 5,290 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>ssl_bootmod <span class="ot">&lt;-</span> ssl_bootmod <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(log_count <span class="sc">~</span> year2, <span class="at">data =</span> .))) <span class="sc">|&gt;</span>  <span class="co">#same code as before to run the models</span></span>
+<span id="cb31-3"><a></a>  <span class="fu">mutate</span>(<span class="at">coef =</span> <span class="fu">map</span>(model, coef)) <span class="sc">|&gt;</span> </span>
+<span id="cb31-4"><a></a>  <span class="fu">mutate</span>(<span class="at">slope =</span> <span class="fu">map_dbl</span>(coef, pluck, <span class="dv">2</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb31-5"><a></a>    <span class="fu">ungroup</span>()</span>
+<span id="cb31-6"><a></a>ssl_bootmod</span>
+<span id="cb31-7"><a></a><span class="do">## # A tibble: 5,300 × 6</span></span>
+<span id="cb31-8"><a></a><span class="do">##    sitename             replicate data              model  coef        slope</span></span>
+<span id="cb31-9"><a></a><span class="do">##    &lt;chr&gt;                    &lt;int&gt; &lt;list&gt;            &lt;list&gt; &lt;list&gt;      &lt;dbl&gt;</span></span>
+<span id="cb31-10"><a></a><span class="do">##  1 ADAK/LAKE POINT              1 &lt;tibble [7 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -0.0254</span></span>
+<span id="cb31-11"><a></a><span class="do">##  2 ADUGAK                       1 &lt;tibble [8 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt;  0.0473</span></span>
+<span id="cb31-12"><a></a><span class="do">##  3 AGATTU/CAPE SABAK            1 &lt;tibble [10 × 8]&gt; &lt;lm&gt;   &lt;dbl [2]&gt; -0.114 </span></span>
+<span id="cb31-13"><a></a><span class="do">##  4 AGATTU/GILLON POINT          1 &lt;tibble [8 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -0.0596</span></span>
+<span id="cb31-14"><a></a><span class="do">##  5 AKUN/BILLINGS HEAD           1 &lt;tibble [7 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt;  0.0907</span></span>
+<span id="cb31-15"><a></a><span class="do">##  6 AKUTAN/CAPE MORGAN           1 &lt;tibble [8 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt;  0.0352</span></span>
+<span id="cb31-16"><a></a><span class="do">##  7 AMCHITKA/COLUMN ROCK         1 &lt;tibble [5 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -0.125 </span></span>
+<span id="cb31-17"><a></a><span class="do">##  8 ATKINS                       1 &lt;tibble [9 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt;  0.0256</span></span>
+<span id="cb31-18"><a></a><span class="do">##  9 ATTU/CAPE WRANGELL           1 &lt;tibble [8 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -0.0728</span></span>
+<span id="cb31-19"><a></a><span class="do">## 10 AYUGADAK                     1 &lt;tibble [7 × 8]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -0.0817</span></span>
+<span id="cb31-20"><a></a><span class="do">## # ℹ 5,290 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>ssl_bootslopes <span class="ot">&lt;-</span> ssl_bootmod <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">group_by</span>(sitename) <span class="sc">|&gt;</span> <span class="co">#pull out summaries of the distribution for the slope estimates for plotting</span></span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">summarize</span>(<span class="at">med =</span> <span class="fu">median</span>(slope),</span>
-<span id="cb32-4"><a href="#cb32-4"></a>            <span class="at">lower =</span> <span class="fu">quantile</span>(slope, <span class="fl">0.025</span>),</span>
-<span id="cb32-5"><a href="#cb32-5"></a>            <span class="at">upper =</span> <span class="fu">quantile</span>(slope, <span class="fl">0.975</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb32-6"><a href="#cb32-6"></a>  <span class="fu">I</span>()</span>
-<span id="cb32-7"><a href="#cb32-7"></a>ssl_bootslopes</span>
-<span id="cb32-8"><a href="#cb32-8"></a><span class="do">## # A tibble: 53 × 4</span></span>
-<span id="cb32-9"><a href="#cb32-9"></a><span class="do">##    sitename                 med    lower   upper</span></span>
-<span id="cb32-10"><a href="#cb32-10"></a><span class="do">##    &lt;chr&gt;                  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span></span>
-<span id="cb32-11"><a href="#cb32-11"></a><span class="do">##  1 ADAK/LAKE POINT      -0.0226 -0.0344  -0.0108</span></span>
-<span id="cb32-12"><a href="#cb32-12"></a><span class="do">##  2 ADUGAK                0.0514  0.0420   0.0626</span></span>
-<span id="cb32-13"><a href="#cb32-13"></a><span class="do">##  3 AGATTU/CAPE SABAK    -0.112  -0.124   -0.0998</span></span>
-<span id="cb32-14"><a href="#cb32-14"></a><span class="do">##  4 AGATTU/GILLON POINT  -0.0730 -0.0980  -0.0445</span></span>
-<span id="cb32-15"><a href="#cb32-15"></a><span class="do">##  5 AKUN/BILLINGS HEAD    0.0810  0.0530   0.113 </span></span>
-<span id="cb32-16"><a href="#cb32-16"></a><span class="do">##  6 AKUTAN/CAPE MORGAN    0.0395  0.0303   0.0490</span></span>
-<span id="cb32-17"><a href="#cb32-17"></a><span class="do">##  7 AMCHITKA/COLUMN ROCK -0.106  -0.152   -0.0426</span></span>
-<span id="cb32-18"><a href="#cb32-18"></a><span class="do">##  8 ATKINS                0.0309  0.00741  0.0602</span></span>
-<span id="cb32-19"><a href="#cb32-19"></a><span class="do">##  9 ATTU/CAPE WRANGELL   -0.0735 -0.103   -0.0466</span></span>
-<span id="cb32-20"><a href="#cb32-20"></a><span class="do">## 10 AYUGADAK             -0.0563 -0.0812  -0.0309</span></span>
-<span id="cb32-21"><a href="#cb32-21"></a><span class="do">## # … with 43 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>ssl_bootslopes <span class="ot">&lt;-</span> ssl_bootmod <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a></a>  <span class="fu">group_by</span>(sitename) <span class="sc">|&gt;</span> <span class="co">#pull out summaries of the distribution for the slope estimates for plotting</span></span>
+<span id="cb32-3"><a></a>  <span class="fu">summarize</span>(<span class="at">med =</span> <span class="fu">median</span>(slope),</span>
+<span id="cb32-4"><a></a>            <span class="at">lower =</span> <span class="fu">quantile</span>(slope, <span class="fl">0.025</span>),</span>
+<span id="cb32-5"><a></a>            <span class="at">upper =</span> <span class="fu">quantile</span>(slope, <span class="fl">0.975</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb32-6"><a></a>  <span class="fu">I</span>()</span>
+<span id="cb32-7"><a></a>ssl_bootslopes</span>
+<span id="cb32-8"><a></a><span class="do">## # A tibble: 53 × 4</span></span>
+<span id="cb32-9"><a></a><span class="do">##    sitename                 med    lower   upper</span></span>
+<span id="cb32-10"><a></a><span class="do">##    &lt;chr&gt;                  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb32-11"><a></a><span class="do">##  1 ADAK/LAKE POINT      -0.0244 -0.0357  -0.0116</span></span>
+<span id="cb32-12"><a></a><span class="do">##  2 ADUGAK                0.0522  0.0438   0.0601</span></span>
+<span id="cb32-13"><a></a><span class="do">##  3 AGATTU/CAPE SABAK    -0.112  -0.127   -0.0952</span></span>
+<span id="cb32-14"><a></a><span class="do">##  4 AGATTU/GILLON POINT  -0.0712 -0.0981  -0.0413</span></span>
+<span id="cb32-15"><a></a><span class="do">##  5 AKUN/BILLINGS HEAD    0.0829  0.0564   0.114 </span></span>
+<span id="cb32-16"><a></a><span class="do">##  6 AKUTAN/CAPE MORGAN    0.0398  0.0292   0.0513</span></span>
+<span id="cb32-17"><a></a><span class="do">##  7 AMCHITKA/COLUMN ROCK -0.115  -0.160   -0.0712</span></span>
+<span id="cb32-18"><a></a><span class="do">##  8 ATKINS                0.0344 -0.00692  0.0647</span></span>
+<span id="cb32-19"><a></a><span class="do">##  9 ATTU/CAPE WRANGELL   -0.0730 -0.0993  -0.0418</span></span>
+<span id="cb32-20"><a></a><span class="do">## 10 AYUGADAK             -0.0560 -0.0823  -0.0278</span></span>
+<span id="cb32-21"><a></a><span class="do">## # ℹ 43 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
@@ -1064,24 +1083,32 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <div id="tabset-3-1">
 <div class="cell">
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="lab-06_files/figure-revealjs/unnamed-chunk-36-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 <div id="tabset-3-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ssl_bootslopes) <span class="sc">+</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(sitename, med), <span class="at">y =</span> med) <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>lower, <span class="at">ymax=</span>upper), <span class="at">width=</span> <span class="fl">0.2</span>) <span class="sc">+</span> <span class="co">#add the bootstrap confidence interval</span></span>
-<span id="cb33-5"><a href="#cb33-5"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb33-6"><a href="#cb33-6"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb33-7"><a href="#cb33-7"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"slope"</span>,</span>
-<span id="cb33-8"><a href="#cb33-8"></a>       <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb33-9"><a href="#cb33-9"></a>  <span class="cn">NULL</span> <span class="co">#})</span></span>
-<span id="cb33-10"><a href="#cb33-10"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ssl_bootslopes) <span class="sc">+</span></span>
+<span id="cb33-2"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(sitename, med), <span class="at">y =</span> med) <span class="sc">+</span></span>
+<span id="cb33-3"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb33-4"><a></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin=</span>lower, <span class="at">ymax=</span>upper), <span class="at">width=</span> <span class="fl">0.2</span>) <span class="sc">+</span> <span class="co">#add the bootstrap confidence interval</span></span>
+<span id="cb33-5"><a></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb33-6"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb33-7"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"slope"</span>,</span>
+<span id="cb33-8"><a></a>       <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb33-9"><a></a>  <span class="cn">NULL</span> <span class="co">#})</span></span>
+<span id="cb33-10"><a></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="lab-06_files/figure-revealjs/unnamed-chunk-37-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1123,25 +1150,25 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <p><span class="math display">\[N_{t+1} = \lambda N_{t} - h_{t}\]</span></p>
 <p>Can achieve this using <code>accumulate()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>pop_update <span class="ot">&lt;-</span> <span class="cf">function</span>(N, <span class="at">h=</span><span class="dv">0</span>, <span class="at">lambda =</span> <span class="fl">1.05</span>) lambda<span class="sc">*</span>N <span class="sc">-</span> h</span>
-<span id="cb34-2"><a href="#cb34-2"></a>h <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">10</span>,<span class="dv">10</span>)</span>
-<span id="cb34-3"><a href="#cb34-3"></a>initN <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="fu">accumulate</span>(h, pop_update, <span class="at">.init =</span> initN, <span class="at">lambda =</span> <span class="fl">1.05</span>)</span>
-<span id="cb34-5"><a href="#cb34-5"></a><span class="do">##  [1] 100.00000  95.00000  89.75000  84.23750  78.44938  72.37184  65.99044</span></span>
-<span id="cb34-6"><a href="#cb34-6"></a><span class="do">##  [8]  59.28996  52.25446  44.86718  37.11054</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>pop_update <span class="ot">&lt;-</span> <span class="cf">function</span>(N, <span class="at">h=</span><span class="dv">0</span>, <span class="at">lambda =</span> <span class="fl">1.05</span>) lambda<span class="sc">*</span>N <span class="sc">-</span> h</span>
+<span id="cb34-2"><a></a>h <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">10</span>,<span class="dv">10</span>)</span>
+<span id="cb34-3"><a></a>initN <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb34-4"><a></a><span class="fu">accumulate</span>(h, pop_update, <span class="at">.init =</span> initN, <span class="at">lambda =</span> <span class="fl">1.05</span>)</span>
+<span id="cb34-5"><a></a><span class="do">##  [1] 100.00000  95.00000  89.75000  84.23750  78.44938  72.37184  65.99044</span></span>
+<span id="cb34-6"><a></a><span class="do">##  [8]  59.28996  52.25446  44.86718  37.11054</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">accumulate</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], paste, <span class="at">sep =</span> <span class="st">" + "</span>)</span>
-<span id="cb35-2"><a href="#cb35-2"></a><span class="do">##  [1] "a"                                    </span></span>
-<span id="cb35-3"><a href="#cb35-3"></a><span class="do">##  [2] "a + b"                                </span></span>
-<span id="cb35-4"><a href="#cb35-4"></a><span class="do">##  [3] "a + b + c"                            </span></span>
-<span id="cb35-5"><a href="#cb35-5"></a><span class="do">##  [4] "a + b + c + d"                        </span></span>
-<span id="cb35-6"><a href="#cb35-6"></a><span class="do">##  [5] "a + b + c + d + e"                    </span></span>
-<span id="cb35-7"><a href="#cb35-7"></a><span class="do">##  [6] "a + b + c + d + e + f"                </span></span>
-<span id="cb35-8"><a href="#cb35-8"></a><span class="do">##  [7] "a + b + c + d + e + f + g"            </span></span>
-<span id="cb35-9"><a href="#cb35-9"></a><span class="do">##  [8] "a + b + c + d + e + f + g + h"        </span></span>
-<span id="cb35-10"><a href="#cb35-10"></a><span class="do">##  [9] "a + b + c + d + e + f + g + h + i"    </span></span>
-<span id="cb35-11"><a href="#cb35-11"></a><span class="do">## [10] "a + b + c + d + e + f + g + h + i + j"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">accumulate</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], paste, <span class="at">sep =</span> <span class="st">" + "</span>)</span>
+<span id="cb35-2"><a></a><span class="do">##  [1] "a"                                    </span></span>
+<span id="cb35-3"><a></a><span class="do">##  [2] "a + b"                                </span></span>
+<span id="cb35-4"><a></a><span class="do">##  [3] "a + b + c"                            </span></span>
+<span id="cb35-5"><a></a><span class="do">##  [4] "a + b + c + d"                        </span></span>
+<span id="cb35-6"><a></a><span class="do">##  [5] "a + b + c + d + e"                    </span></span>
+<span id="cb35-7"><a></a><span class="do">##  [6] "a + b + c + d + e + f"                </span></span>
+<span id="cb35-8"><a></a><span class="do">##  [7] "a + b + c + d + e + f + g"            </span></span>
+<span id="cb35-9"><a></a><span class="do">##  [8] "a + b + c + d + e + f + g + h"        </span></span>
+<span id="cb35-10"><a></a><span class="do">##  [9] "a + b + c + d + e + f + g + h + i"    </span></span>
+<span id="cb35-11"><a></a><span class="do">## [10] "a + b + c + d + e + f + g + h + i + j"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="population-projections" class="slide level2 smaller">
@@ -1149,37 +1176,37 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <p>Status for endangered species are often based on a risk evaluation of population projections. We want to project population dynamics forward in time given uncertainty in future dynamics. We want to do this lots of times to quantify the risk of extinction.</p>
 <p>Current (2022) estimates of the North Atlantic Right Whale population are 340 individuals. The population has been declining on average around 3% per year since 2011. What is the year in which the probability that the right whale population drops below 100 individuals is at least 50% (<code>P(N&lt;100)&gt;=0.5</code>)?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a>nyr <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a>initN <span class="ot">&lt;-</span> <span class="dv">340</span></span>
-<span id="cb36-4"><a href="#cb36-4"></a>sd_proc <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
-<span id="cb36-5"><a href="#cb36-5"></a>lambda <span class="ot">&lt;-</span> <span class="fl">0.97</span></span>
-<span id="cb36-6"><a href="#cb36-6"></a>growth_rates <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="fu">seq_len</span>(nsim), <span class="sc">~</span><span class="fu">rlnorm</span>(nyr,<span class="fu">log</span>(lambda),sd_proc))</span>
-<span id="cb36-7"><a href="#cb36-7"></a></span>
-<span id="cb36-8"><a href="#cb36-8"></a><span class="co"># population model</span></span>
-<span id="cb36-9"><a href="#cb36-9"></a>pop_update <span class="ot">&lt;-</span> <span class="cf">function</span>(N, <span class="at">growth_rate =</span> <span class="dv">1</span>) N<span class="sc">*</span>growth_rate</span>
-<span id="cb36-10"><a href="#cb36-10"></a></span>
-<span id="cb36-11"><a href="#cb36-11"></a><span class="co"># population projection for each time series of process errors</span></span>
-<span id="cb36-12"><a href="#cb36-12"></a>pop_proj <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">sim =</span> <span class="fu">seq_len</span>(nsim)) <span class="sc">|&gt;</span></span>
-<span id="cb36-13"><a href="#cb36-13"></a>  <span class="fu">mutate</span>(<span class="at">popsize =</span> <span class="fu">map</span>(growth_rates,<span class="sc">~</span><span class="fu">accumulate</span>(., pop_update, </span>
-<span id="cb36-14"><a href="#cb36-14"></a>                                                <span class="at">.init =</span> initN))) <span class="sc">|&gt;</span></span>
-<span id="cb36-15"><a href="#cb36-15"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(popsize)) <span class="sc">|&gt;</span></span>
-<span id="cb36-16"><a href="#cb36-16"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">rep</span>(<span class="dv">2022</span><span class="sc">:</span><span class="dv">2122</span>, nsim))</span>
-<span id="cb36-17"><a href="#cb36-17"></a>pop_proj</span>
-<span id="cb36-18"><a href="#cb36-18"></a><span class="do">## # A tibble: 10,100 × 3</span></span>
-<span id="cb36-19"><a href="#cb36-19"></a><span class="do">##      sim popsize  year</span></span>
-<span id="cb36-20"><a href="#cb36-20"></a><span class="do">##    &lt;int&gt;   &lt;dbl&gt; &lt;int&gt;</span></span>
-<span id="cb36-21"><a href="#cb36-21"></a><span class="do">##  1     1    340   2022</span></span>
-<span id="cb36-22"><a href="#cb36-22"></a><span class="do">##  2     1    300.  2023</span></span>
-<span id="cb36-23"><a href="#cb36-23"></a><span class="do">##  3     1    294.  2024</span></span>
-<span id="cb36-24"><a href="#cb36-24"></a><span class="do">##  4     1    360.  2025</span></span>
-<span id="cb36-25"><a href="#cb36-25"></a><span class="do">##  5     1    376.  2026</span></span>
-<span id="cb36-26"><a href="#cb36-26"></a><span class="do">##  6     1    386.  2027</span></span>
-<span id="cb36-27"><a href="#cb36-27"></a><span class="do">##  7     1    309.  2028</span></span>
-<span id="cb36-28"><a href="#cb36-28"></a><span class="do">##  8     1    298.  2029</span></span>
-<span id="cb36-29"><a href="#cb36-29"></a><span class="do">##  9     1    230.  2030</span></span>
-<span id="cb36-30"><a href="#cb36-30"></a><span class="do">## 10     1    202.  2031</span></span>
-<span id="cb36-31"><a href="#cb36-31"></a><span class="do">## # … with 10,090 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>nsim <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb36-2"><a></a>nyr <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb36-3"><a></a>initN <span class="ot">&lt;-</span> <span class="dv">340</span></span>
+<span id="cb36-4"><a></a>sd_proc <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb36-5"><a></a>lambda <span class="ot">&lt;-</span> <span class="fl">0.97</span></span>
+<span id="cb36-6"><a></a>growth_rates <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="fu">seq_len</span>(nsim), <span class="sc">~</span><span class="fu">rlnorm</span>(nyr,<span class="fu">log</span>(lambda),sd_proc))</span>
+<span id="cb36-7"><a></a></span>
+<span id="cb36-8"><a></a><span class="co"># population model</span></span>
+<span id="cb36-9"><a></a>pop_update <span class="ot">&lt;-</span> <span class="cf">function</span>(N, <span class="at">growth_rate =</span> <span class="dv">1</span>) N<span class="sc">*</span>growth_rate</span>
+<span id="cb36-10"><a></a></span>
+<span id="cb36-11"><a></a><span class="co"># population projection for each time series of process errors</span></span>
+<span id="cb36-12"><a></a>pop_proj <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">sim =</span> <span class="fu">seq_len</span>(nsim)) <span class="sc">|&gt;</span></span>
+<span id="cb36-13"><a></a>  <span class="fu">mutate</span>(<span class="at">popsize =</span> <span class="fu">map</span>(growth_rates,<span class="sc">~</span><span class="fu">accumulate</span>(., pop_update, </span>
+<span id="cb36-14"><a></a>                                                <span class="at">.init =</span> initN))) <span class="sc">|&gt;</span></span>
+<span id="cb36-15"><a></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(popsize)) <span class="sc">|&gt;</span></span>
+<span id="cb36-16"><a></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">rep</span>(<span class="dv">2022</span><span class="sc">:</span><span class="dv">2122</span>, nsim))</span>
+<span id="cb36-17"><a></a>pop_proj</span>
+<span id="cb36-18"><a></a><span class="do">## # A tibble: 10,100 × 3</span></span>
+<span id="cb36-19"><a></a><span class="do">##      sim popsize  year</span></span>
+<span id="cb36-20"><a></a><span class="do">##    &lt;int&gt;   &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb36-21"><a></a><span class="do">##  1     1    340   2022</span></span>
+<span id="cb36-22"><a></a><span class="do">##  2     1    354.  2023</span></span>
+<span id="cb36-23"><a></a><span class="do">##  3     1    373.  2024</span></span>
+<span id="cb36-24"><a></a><span class="do">##  4     1    412.  2025</span></span>
+<span id="cb36-25"><a></a><span class="do">##  5     1    386.  2026</span></span>
+<span id="cb36-26"><a></a><span class="do">##  6     1    342.  2027</span></span>
+<span id="cb36-27"><a></a><span class="do">##  7     1    351.  2028</span></span>
+<span id="cb36-28"><a></a><span class="do">##  8     1    332.  2029</span></span>
+<span id="cb36-29"><a></a><span class="do">##  9     1    374.  2030</span></span>
+<span id="cb36-30"><a></a><span class="do">## 10     1    374.  2031</span></span>
+<span id="cb36-31"><a></a><span class="do">## # ℹ 10,090 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
@@ -1190,19 +1217,23 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <div id="tabset-4-1">
 <div class="cell">
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="lab-06_files/figure-revealjs/unnamed-chunk-41-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 <div id="tabset-4-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>pop_proj <span class="sc">|&gt;</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year,</span>
-<span id="cb37-4"><a href="#cb37-4"></a>      <span class="at">y =</span> popsize,</span>
-<span id="cb37-5"><a href="#cb37-5"></a>      <span class="at">group =</span> sim) <span class="sc">+</span></span>
-<span id="cb37-6"><a href="#cb37-6"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">col=</span><span class="fu">gray</span>(<span class="fl">0.5</span>)) <span class="sc">+</span></span>
-<span id="cb37-7"><a href="#cb37-7"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>pop_proj <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb37-3"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> year,</span>
+<span id="cb37-4"><a></a>      <span class="at">y =</span> popsize,</span>
+<span id="cb37-5"><a></a>      <span class="at">group =</span> sim) <span class="sc">+</span></span>
+<span id="cb37-6"><a></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">col=</span><span class="fu">gray</span>(<span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb37-7"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1216,24 +1247,28 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <div id="tabset-5-1">
 <div class="cell">
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="lab-06_files/figure-revealjs/unnamed-chunk-43-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 <div id="tabset-5-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(ggdist)</span>
-<span id="cb38-2"><a href="#cb38-2"></a>pop_proj <span class="sc">|&gt;</span></span>
-<span id="cb38-3"><a href="#cb38-3"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb38-4"><a href="#cb38-4"></a>  <span class="fu">median_qi</span>(popsize, <span class="at">.width =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">5</span>, .<span class="dv">95</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb38-5"><a href="#cb38-5"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb38-6"><a href="#cb38-6"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year,</span>
-<span id="cb38-7"><a href="#cb38-7"></a>      <span class="at">y =</span> popsize,</span>
-<span id="cb38-8"><a href="#cb38-8"></a>      <span class="at">ymin =</span> .lower,</span>
-<span id="cb38-9"><a href="#cb38-9"></a>      <span class="at">ymax =</span> .upper) <span class="sc">+</span></span>
-<span id="cb38-10"><a href="#cb38-10"></a>  <span class="fu">geom_lineribbon</span>() <span class="sc">+</span></span>
-<span id="cb38-11"><a href="#cb38-11"></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
-<span id="cb38-12"><a href="#cb38-12"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="fu">library</span>(ggdist)</span>
+<span id="cb38-2"><a></a>pop_proj <span class="sc">|&gt;</span></span>
+<span id="cb38-3"><a></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb38-4"><a></a>  <span class="fu">median_qi</span>(popsize, <span class="at">.width =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">5</span>, .<span class="dv">95</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb38-5"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb38-6"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> year,</span>
+<span id="cb38-7"><a></a>      <span class="at">y =</span> popsize,</span>
+<span id="cb38-8"><a></a>      <span class="at">ymin =</span> .lower,</span>
+<span id="cb38-9"><a></a>      <span class="at">ymax =</span> .upper) <span class="sc">+</span></span>
+<span id="cb38-10"><a></a>  <span class="fu">geom_lineribbon</span>() <span class="sc">+</span></span>
+<span id="cb38-11"><a></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
+<span id="cb38-12"><a></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1242,30 +1277,30 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>below_thresh <span class="ot">&lt;-</span> pop_proj <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb39-3"><a href="#cb39-3"></a>  <span class="fu">summarize</span>(<span class="at">prob_100 =</span> <span class="fu">mean</span>(popsize<span class="sc">&lt;</span><span class="dv">100</span>))</span>
-<span id="cb39-4"><a href="#cb39-4"></a>yr_crash <span class="ot">&lt;-</span> <span class="fu">filter</span>(below_thresh, prob_100 <span class="sc">&gt;</span> <span class="fl">0.5</span>) <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span>
-<span id="cb39-5"><a href="#cb39-5"></a>yr_crash</span>
-<span id="cb39-6"><a href="#cb39-6"></a><span class="do">## # A tibble: 1 × 2</span></span>
-<span id="cb39-7"><a href="#cb39-7"></a><span class="do">##    year prob_100</span></span>
-<span id="cb39-8"><a href="#cb39-8"></a><span class="do">##   &lt;int&gt;    &lt;dbl&gt;</span></span>
-<span id="cb39-9"><a href="#cb39-9"></a><span class="do">## 1  2059     0.54</span></span>
-<span id="cb39-10"><a href="#cb39-10"></a>below_thresh</span>
-<span id="cb39-11"><a href="#cb39-11"></a><span class="do">## # A tibble: 101 × 2</span></span>
-<span id="cb39-12"><a href="#cb39-12"></a><span class="do">##     year prob_100</span></span>
-<span id="cb39-13"><a href="#cb39-13"></a><span class="do">##    &lt;int&gt;    &lt;dbl&gt;</span></span>
-<span id="cb39-14"><a href="#cb39-14"></a><span class="do">##  1  2022        0</span></span>
-<span id="cb39-15"><a href="#cb39-15"></a><span class="do">##  2  2023        0</span></span>
-<span id="cb39-16"><a href="#cb39-16"></a><span class="do">##  3  2024        0</span></span>
-<span id="cb39-17"><a href="#cb39-17"></a><span class="do">##  4  2025        0</span></span>
-<span id="cb39-18"><a href="#cb39-18"></a><span class="do">##  5  2026        0</span></span>
-<span id="cb39-19"><a href="#cb39-19"></a><span class="do">##  6  2027        0</span></span>
-<span id="cb39-20"><a href="#cb39-20"></a><span class="do">##  7  2028        0</span></span>
-<span id="cb39-21"><a href="#cb39-21"></a><span class="do">##  8  2029        0</span></span>
-<span id="cb39-22"><a href="#cb39-22"></a><span class="do">##  9  2030        0</span></span>
-<span id="cb39-23"><a href="#cb39-23"></a><span class="do">## 10  2031        0</span></span>
-<span id="cb39-24"><a href="#cb39-24"></a><span class="do">## # … with 91 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a>below_thresh <span class="ot">&lt;-</span> pop_proj <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a></a>  <span class="fu">summarize</span>(<span class="at">prob_100 =</span> <span class="fu">mean</span>(popsize<span class="sc">&lt;</span><span class="dv">100</span>))</span>
+<span id="cb39-4"><a></a>yr_crash <span class="ot">&lt;-</span> <span class="fu">filter</span>(below_thresh, prob_100 <span class="sc">&gt;</span> <span class="fl">0.5</span>) <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span>
+<span id="cb39-5"><a></a>yr_crash</span>
+<span id="cb39-6"><a></a><span class="do">## # A tibble: 1 × 2</span></span>
+<span id="cb39-7"><a></a><span class="do">##    year prob_100</span></span>
+<span id="cb39-8"><a></a><span class="do">##   &lt;int&gt;    &lt;dbl&gt;</span></span>
+<span id="cb39-9"><a></a><span class="do">## 1  2059     0.53</span></span>
+<span id="cb39-10"><a></a>below_thresh</span>
+<span id="cb39-11"><a></a><span class="do">## # A tibble: 101 × 2</span></span>
+<span id="cb39-12"><a></a><span class="do">##     year prob_100</span></span>
+<span id="cb39-13"><a></a><span class="do">##    &lt;int&gt;    &lt;dbl&gt;</span></span>
+<span id="cb39-14"><a></a><span class="do">##  1  2022     0   </span></span>
+<span id="cb39-15"><a></a><span class="do">##  2  2023     0   </span></span>
+<span id="cb39-16"><a></a><span class="do">##  3  2024     0   </span></span>
+<span id="cb39-17"><a></a><span class="do">##  4  2025     0   </span></span>
+<span id="cb39-18"><a></a><span class="do">##  5  2026     0   </span></span>
+<span id="cb39-19"><a></a><span class="do">##  6  2027     0   </span></span>
+<span id="cb39-20"><a></a><span class="do">##  7  2028     0   </span></span>
+<span id="cb39-21"><a></a><span class="do">##  8  2029     0   </span></span>
+<span id="cb39-22"><a></a><span class="do">##  9  2030     0   </span></span>
+<span id="cb39-23"><a></a><span class="do">## 10  2031     0.01</span></span>
+<span id="cb39-24"><a></a><span class="do">## # ℹ 91 more rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
@@ -1276,26 +1311,30 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <div id="tabset-6-1">
 <div class="cell">
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="lab-06_files/figure-revealjs/unnamed-chunk-46-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
 <div id="tabset-6-2">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">library</span>(ggrepel)</span>
-<span id="cb40-2"><a href="#cb40-2"></a>below_thresh <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="#cb40-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb40-4"><a href="#cb40-4"></a>  <span class="fu">aes</span>(<span class="at">x =</span> year,</span>
-<span id="cb40-5"><a href="#cb40-5"></a>      <span class="at">y =</span> prob_100) <span class="sc">+</span></span>
-<span id="cb40-6"><a href="#cb40-6"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb40-7"><a href="#cb40-7"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb40-8"><a href="#cb40-8"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"year"</span>,</span>
-<span id="cb40-9"><a href="#cb40-9"></a>       <span class="at">y =</span> <span class="st">"probability &lt; 100 animals"</span>) <span class="sc">+</span></span>
-<span id="cb40-10"><a href="#cb40-10"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb40-11"><a href="#cb40-11"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb40-12"><a href="#cb40-12"></a>  <span class="fu">geom_vline</span>(<span class="at">data =</span> yr_crash, <span class="fu">aes</span>(<span class="at">xintercept =</span> year), <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb40-13"><a href="#cb40-13"></a>  <span class="fu">geom_hline</span>(<span class="at">data =</span> yr_crash, <span class="fu">aes</span>(<span class="at">yintercept =</span> prob_100), <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb40-14"><a href="#cb40-14"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> yr_crash, <span class="fu">aes</span>(<span class="at">label =</span> year), <span class="at">nudge_x =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb40-2"><a></a>below_thresh <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb40-4"><a></a>  <span class="fu">aes</span>(<span class="at">x =</span> year,</span>
+<span id="cb40-5"><a></a>      <span class="at">y =</span> prob_100) <span class="sc">+</span></span>
+<span id="cb40-6"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-7"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb40-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"year"</span>,</span>
+<span id="cb40-9"><a></a>       <span class="at">y =</span> <span class="st">"probability &lt; 100 animals"</span>) <span class="sc">+</span></span>
+<span id="cb40-10"><a></a>  <span class="fu">ylim</span>(<span class="dv">0</span>,<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb40-11"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb40-12"><a></a>  <span class="fu">geom_vline</span>(<span class="at">data =</span> yr_crash, <span class="fu">aes</span>(<span class="at">xintercept =</span> year), <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb40-13"><a></a>  <span class="fu">geom_hline</span>(<span class="at">data =</span> yr_crash, <span class="fu">aes</span>(<span class="at">yintercept =</span> prob_100), <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb40-14"><a></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> yr_crash, <span class="fu">aes</span>(<span class="at">label =</span> year), <span class="at">nudge_x =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1307,24 +1346,24 @@ We want to obtain confidence intervals of the slope estimates using bootstrappin
 <p>Can use a <code>while</code> loop, which executes a series of statements for as long as some condition remains true.</p>
 <p>The general syntax is:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="cf">while</span> (condition) {</span>
-<span id="cb41-2"><a href="#cb41-2"></a>  <span class="co">#statements</span></span>
-<span id="cb41-3"><a href="#cb41-3"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="cf">while</span> (condition) {</span>
+<span id="cb41-2"><a></a>  <span class="co">#statements</span></span>
+<span id="cb41-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="the-while-loop-1" class="slide level2">
 <h2>The <code>while</code> loop</h2>
 <p>If there are 7,500 snow leopards in year 2023 and they are declining at 5% per year, in what year will they fall below 500 individuals?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>leopard.loop <span class="ot">&lt;-</span> <span class="cf">function</span>(N, <span class="at">year=</span><span class="dv">2023</span>) {</span>
-<span id="cb42-2"><a href="#cb42-2"></a>  <span class="cf">while</span> (N<span class="sc">&gt;=</span><span class="dv">500</span>) {</span>
-<span id="cb42-3"><a href="#cb42-3"></a>    N <span class="ot">&lt;-</span> N<span class="sc">*</span><span class="fl">0.95</span></span>
-<span id="cb42-4"><a href="#cb42-4"></a>    year <span class="ot">&lt;-</span> year<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb42-5"><a href="#cb42-5"></a>  }</span>
-<span id="cb42-6"><a href="#cb42-6"></a>  <span class="fu">return</span>(year)</span>
-<span id="cb42-7"><a href="#cb42-7"></a>}</span>
-<span id="cb42-8"><a href="#cb42-8"></a><span class="fu">leopard.loop</span>(<span class="at">N=</span><span class="dv">7500</span>)</span>
-<span id="cb42-9"><a href="#cb42-9"></a>[<span class="dv">1</span>] <span class="dv">2076</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a>leopard.loop <span class="ot">&lt;-</span> <span class="cf">function</span>(N, <span class="at">year=</span><span class="dv">2023</span>) {</span>
+<span id="cb42-2"><a></a>  <span class="cf">while</span> (N<span class="sc">&gt;=</span><span class="dv">500</span>) {</span>
+<span id="cb42-3"><a></a>    N <span class="ot">&lt;-</span> N<span class="sc">*</span><span class="fl">0.95</span></span>
+<span id="cb42-4"><a></a>    year <span class="ot">&lt;-</span> year<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb42-5"><a></a>  }</span>
+<span id="cb42-6"><a></a>  <span class="fu">return</span>(year)</span>
+<span id="cb42-7"><a></a>}</span>
+<span id="cb42-8"><a></a><span class="fu">leopard.loop</span>(<span class="at">N=</span><span class="dv">7500</span>)</span>
+<span id="cb42-9"><a></a>[<span class="dv">1</span>] <span class="dv">2076</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pro-tip: when you end up in an infinite loop with no stopping point, press <code>&lt;ESC&gt;</code> to stop it running!</p>
 <!-- ## Exercise 3: Snow Lepoards -->
@@ -1364,13 +1403,13 @@ This is the only way to terminate repeat loops.</p>
 </ul>
 <p>Make use of existing speed-optimized <code>R</code> functions (e.g.: <code>rowSums</code>, <code>rowMeans</code>, <code>table</code>) or write your own fast functions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>xdat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">1000000</span>), <span class="dv">100000</span>, <span class="dv">10</span>)</span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="fu">system.time</span>(x_mean <span class="ot">&lt;-</span> <span class="fu">apply</span>(xdat, <span class="dv">1</span>, mean))</span>
-<span id="cb43-3"><a href="#cb43-3"></a>   user  system elapsed </span>
-<span id="cb43-4"><a href="#cb43-4"></a>  <span class="fl">1.214</span>   <span class="fl">0.029</span>   <span class="fl">4.087</span> </span>
-<span id="cb43-5"><a href="#cb43-5"></a><span class="fu">system.time</span>(x_mean <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(xdat))</span>
-<span id="cb43-6"><a href="#cb43-6"></a>   user  system elapsed </span>
-<span id="cb43-7"><a href="#cb43-7"></a>  <span class="fl">0.005</span>   <span class="fl">0.001</span>   <span class="fl">0.013</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a>xdat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">1000000</span>), <span class="dv">100000</span>, <span class="dv">10</span>)</span>
+<span id="cb43-2"><a></a><span class="fu">system.time</span>(x_mean <span class="ot">&lt;-</span> <span class="fu">apply</span>(xdat, <span class="dv">1</span>, mean))</span>
+<span id="cb43-3"><a></a>   user  system elapsed </span>
+<span id="cb43-4"><a></a>  <span class="fl">0.200</span>   <span class="fl">0.001</span>   <span class="fl">0.201</span> </span>
+<span id="cb43-5"><a></a><span class="fu">system.time</span>(x_mean <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(xdat))</span>
+<span id="cb43-6"><a></a>   user  system elapsed </span>
+<span id="cb43-7"><a></a>      <span class="dv">0</span>       <span class="dv">0</span>       <span class="dv">0</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- ## Lab exercise X/N {.small} -->
 <!-- ```{r collapse = TRUE} -->
@@ -1421,9 +1460,11 @@ Use <code>glimpse()</code> and other data exploration to get familiar with the d
 </ol>
 <p><em>BONUS</em> use residual bootstrapping to obtain distributions for the predictions made in part <code>11</code>.</p>
 
-
-<img src="../images/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<div class="quarto-auto-generated-content">
+<p><img src="../images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
 <p><a href="https://gavinfay.github.io/mar536-biolstats2-s23">gavinfay.github.io/mar536-biolstats2-s23</a></p>
+</div>
 </div>
 </section>
     </div>
@@ -1454,13 +1495,12 @@ Use <code>glimpse()</code> and other data exploration to get familiar with the d
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'multiplex': {"secret":null,"id":"cfd962082b0aa40d","url":"https://reveal-multiplex.glitch.me/"},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'multiplex': {"secret":null,"id":"e6581bd071cde3bb","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1646,12 +1686,15 @@ Use <code>glimpse()</code> and other data exploration to get familiar with the d
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -1662,13 +1705,6 @@ Use <code>glimpse()</code> and other data exploration to get familiar with the d
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy
@@ -1684,16 +1720,37 @@ Use <code>glimpse()</code> and other data exploration to get familiar with the d
 
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
       const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
       tabsets.forEach(function(tabset) {
         const tabby = new Tabby('#' + tabset.id);
       });
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        target: function(trigger) {
-          return trigger.previousElementSibling;
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
         }
-      });
-      clipboard.on('success', function(e) {
+        return false;
+      }
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1702,17 +1759,73 @@ Use <code>glimpse()</code> and other data exploration to get familiar with the d
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
         button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
         setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
           button.setAttribute("title", currentTitle);
           button.classList.remove('code-copy-button-checked');
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
-      function tippyHover(el, contentFn) {
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/gavinfay\.github\.io\/mar536-biolstats2-s25");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1721,9 +1834,18 @@ Use <code>glimpse()</code> and other data exploration to get familiar with the d
           },
           interactive: true,
           interactiveBorder: 10,
-          theme: 'quarto-reveal',
-          placement: 'bottom-start'
+          theme: 'light-border',
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1732,31 +1854,54 @@ Use <code>glimpse()</code> and other data exploration to get familiar with the d
       for (var i=0; i<noterefs.length; i++) {
         const ref = noterefs[i];
         tippyHover(ref, function() {
-          let href = ref.getAttribute('href');
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
       var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
       for (var i=0; i<bibliorefs.length; i++) {
         const ref = bibliorefs[i];
-        const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-        tippyHover(ref, function() {
-          var popup = window.document.createElement('div');
-          cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
-            }
-            popup.appendChild(citeDiv);
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
-          return popup.innerHTML;
-        });
+        }
       }
     });
     </script>
