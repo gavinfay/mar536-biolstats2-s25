@@ -3,6 +3,7 @@ title: 'Bio Stats II : Lecture 2, Probability'
 subtitle: "Bolker 2008, Chapter 4"
 author: "Gavin Fay"
 date: "01/23/2025"
+output_format: "pdf"
 output:
   beamer_presentation:
     colortheme: seagull

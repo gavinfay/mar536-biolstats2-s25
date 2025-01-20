@@ -3,8 +3,8 @@ project:
   output-dir: docs
   render:
     - "*.qmd"
-    - "lec-02.Rmd"
     - "!labs/lab-08b.Rmd"
+    - "LICENSE.md"
 
 website:
   page-navigation: true
