@@ -1,0 +1,64 @@
+---
+title: 'Biological Stats 2: Lab 1'
+author: "Dr. Gavin Fay"
+date: "01/22/2025"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s25](https://gavinfay.github.io/mar536-biolstats2-s25)"
+logo: "../images/logo.png"
+format: 
+  pdf
+editor: visual
+execute:
+  freeze: auto
+---
+
+Start a new project. (call it biostats2 or something similar)\
+Open a new R markdown file. Save it. (name it lastname_lab1.Rmd or something similar)\
+At the top of the script, add comments with your name and lab 1.\
+Work in pairs or individually.\
+Submit your .Rmd file via myCourses before class on Tuesday next week.
+
+## Lab exercise 1/4 {.small}
+
+Write code that evaluates the following when run. $$7 + 5(4+3)$$ $$e^{-5(0.2+0.15)}$$ $$\frac{\sqrt{1+2(3+2)}}{\ln(3^2+2)}$$
+
+## Lab exercise 2/4 {.small}
+
+(Instructions also in lab-exercise-01.pdf)
+
+Create vectors using `seq()`, `rep()`, and mathematical operators. Only use `c()` when absolutely necessary.\
+*hint* Remember you can get help on a function by typing `?functionname`
+
+-   Positive integers from 1 to 99\
+-   Odd integers between 1 and 99\
+-   The numbers 1,1,1, 2,2,2, 3,3,3\
+-   The numbers -5,-4,-3,-5,-4,-3,-5,-4,-3\
+-   The fractions 1, 1/2, 1/3, 1/4, ..., 1/10\
+-   The cubes 1, 8, 27, 64, 125, 216
+
+## Lab exercise 3/4 {.smaller}
+
+Complete the following using the vector `y`:
+
+`y <- c(3,2,15,-1,22,1,9,17,5)`
+
+-   Display the first and last values.\
+-   Find the last value for a vector of any length.\
+-   Display the values that are greater than the mean of `y`.\
+-   Display the positions (indices) of the values greater than the mean.\
+-   Are all the values positive?\
+-   Are any of the values equal to the mean?\
+-   Are any of the values equal to the median?
+
+## Lab exercise 4/4 (data frames using `hills`) {.smaller}
+
+1.  Display the first 5 rows of the `hills` dataframe.\
+2.  Find the fastest time.\
+3.  Display the hill races (and distance, climbs, and times) with the 3 fastest times.\
+4.  Extract and display the record time for Cairngorm.\
+5.  Find how many hill races have a climb greater than the mean.\
+6.  Display the names of the hill races that have a climb greater than the mean.\
+7.  Display the names and times of the races that are at least 10 miles long and have a climb greater than 4000 feet.\
+8.  Find the standard deviation of the record times for all races except for the highest climb, the Bens of Jura.\
+9.  Display the range (minimum and maximum) of the average speed for the races.\
+10. Find the race that had the fastest average speed.\
+11. **BONUS** Find the mean of the record times for races whose names start with letters A through K.
