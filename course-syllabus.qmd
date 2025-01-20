@@ -2,26 +2,22 @@
 title: "Syllabus"
 ---
 
-[**Click here**](/documents/MAR536_BiolStats2_syllabus_SPR2023_20230204.pdf "PDF of syllabus") **to download a PDF copy of the syllabus. *(****last updated 2023-02-04)*
+[**Click here**](/documents/MAR536_BiolStats2_syllabus_SPR2025_2025-01-17.pdf "PDF of syllabus") **to download a PDF copy of the syllabus. *(****last updated 2025-01-17)*
 
 ## Course info
 
 Instructor: [Gavin Fay](mailto:gfay@umassd.edu), Associate Professor, Fisheries Oceanography
 
-Lab teaching assistant: [Luca McGinnis](mailto:lmcginnis@umassd.edu), MS student, Fisheries Oceanography
-
 Student Hours:
 
--   Gavin: By appointment on Zoom ([via Office365 Bookings](https://outlook.office.com/bookwithme/user/ded429378fe24c0883115356eebffada@umassd.edu/?getrequesturl=https%3a%2f%2foutlook.office.com%2fows%2fOID%3a771a3530-7a11-48a2-93cd-cb373df869c3%40328d6c0d-0f2f-4b76-9310-9762ba1c3e2d%2fbeta%2fBookWithMe%2fCheckBookable%3fbookingcode%3dc463371a-c312-4cb7-a5b2-bb8a1420a302%26itemid%3dAX6-infHA02tfGB7iNKhyQ2%26authtoken%3deyJhbGciOiJSUzI1NiIsImtpZCI6ImgxZnNhMERJT3laRkhLZWlETC9PTEl3N3FtTT0iLCJ0eXAiOiJKV1QiLCJ4NXQiOiJwTExVSVlnV2IyTVZ5NTNrMEY0MFJ5R3JGTmMifQ.eyJvaWQiOiI3NzFhMzUzMC03YTExLTQ4YTItOTNjZC1jYjM3M2RmODY5YzMiLCJ2ZXIiOiJSZXNvdXJjZUxvb3BiYWNrLlVzZXIuVjEiLCJzY3AiOiJPcGVuQm9vay1JbnRlcm5hbC5SZWFkV3JpdGUiLCJyc2NvcGVsZW4iOiIyMTgiLCJyZXNvdXJjZV9zY29wZSI6IntcIlVSTFwiOlwiekRidXVDV2liRDNiQllTT3Fsb24wbmpsUFVKT0VwQkpSZEdJYTVkaGZGQT1cIn0iLCJjb3JyaWQiOiJmZDVkZWRlYi1jMDdkLTQyNTUtYTk4My1jZDI0OGZkYzAxNTYiLCJhcHBpZCI6IjE1N2NkZmJmLTczOTgtNGE1Ni05NmMzLWU5M2U5YWIzMDliNSIsImFwcGlkYWNyIjoiMCIsInRpZCI6IjMyOGQ2YzBkLTBmMmYtNGI3Ni05MzEwLTk3NjJiYTFjM2UyZCIsImlhdCI6MTY3NTE5NTEzMCwibmJmIjoxNjc1MTk1MTMwLCJleHAiOjE2ODI5NzExMzAsImlzcyI6Imh0dHBzOi8vcmVzb3VyY2Uuc2VsZi8iLCJhdWQiOiJodHRwczovL291dGxvb2sub2ZmaWNlLmNvbSJ9.Qei6orkx-bcuoCodwXO0aI5NbeVef1LZEpmkx5hvf35g7rlODgFWHse1kGnpEoNd7TpVOH0jyR9J-_Xo-gtAl0q9KFwrN-kaUm675Dn9ADgtR_eePl7Dx1o62UxKPg9Ecp79s9pt0f-lyM24n_YJzkcT6rm5tgRquICuqtXJPBSGJ7AMuW36HdybgavZpgh8TX-2QrWvC3QFettGVoU6q24A4gvc3hv9xf-7vFfytZP6sES6rkGB_pjQXfDin7b8jVyl9wxuihq4l-JLakp5dXe5EQdNp9upnfFN49W8OUSFp437ht9EU0x7C8iLaiq33cx686jiPX46VgSCYtufrQ&anonymous&ep=mlink))
+-   R open office: Mon 1-3, SMAST-E 235
 
-    -   Mon 4-6, Tue 1-3, Fri 10:30-12
+-   By appointment: Tue 4-5, Thu 1-3
 
--   Lucy: Thu 1-3, SMAST-E 245
-
-|          | Day       | Time                | Location             |
-|----------|-----------|---------------------|----------------------|
-| Lectures | Tue & Thu | 10:30 am - 11:30 am | SMAST-East 102 + 103 |
-| Labs     | Wed       | 10:30 am - 12:00 pm | SMAST-East 102 + 103 |
+|          | Day       | Time                | Location       |
+|----------|-----------|---------------------|----------------|
+| Lectures | Tue & Thu | 10:00 am - 11:00 am | SMAST-East 102 |
+| Labs     | Wed       | 10:00 am - 11:30 pm | SMAST-East 102 |
 
 ## Course Description
 
@@ -37,9 +33,9 @@ Statistical analysis of ecological data. This course provides guided learning in
 
 -   Experience in statistical programming
 
-### COVID-19
+### 
 
-We are in the middle of a global pandemic and things are not normal. I want you to succeed in this course and will do what I can to help support your being able to meet our learning objectives. Please communicate with me if there are additional things I can do to help support you. I will not ask you to disclose information related to your reasons for such requests outside of what is needed to provide possible solutions.
+World events, including COVID-19, and other shared and non-visible topics, continue to create uncertainty. These and other topics (both shared and non visible) will at times create stress within our learning community. I want you to succeed in this course and will do what I can to help support your being able to meet our learning objectives. Please communicate with me if there are additional things I can do to help support you.
 
 ### Code of Conduct
 
@@ -63,29 +59,30 @@ Students should have taken an introductory graduate statistics course (e.g. MAR 
 
 ## Evaluation procedures
 
-1.  An advanced statistical analysis of data relevant to the student's graduate research topic, including a detailed report and oral presentation (55% of course grade). Elements include:
+1.  An advanced statistical analysis of data relevant to the student's graduate research topic, including a detailed report and oral presentation (60% of course grade). Elements include:
 
 <!-- -->
 
-i.  1-2 sentence project topic idea due Jan 26 (1% of course grade).
+i.  1-2 sentence project topic idea due Jan 30 (1% of course grade).
 
-ii. Brief (1-2 page) description of the topic including a statement of the problem, proposed statistical method, and supplemental reference(s) is due Feb 09 (4% of course grade).
+ii. Brief (1-2 page) description of the topic including a statement of the problem, proposed statistical method, and supplemental reference(s) is due Feb 13 (4% of course grade).
 
-iii. Data exploration report containing data summaries and visualizations of the dataset to be used in the project, including observations of implications of data structure for the analyses to be conducted. Due Feb 28. (10% of course grade).
+iii. Data exploration report containing data summaries and visualizations of the dataset to be used in the project, including observations of implications of data structure for the analyses to be conducted, and brief in-class update. Due Feb 27. (10% of course grade).
 
-iv. Student project presentation with chapter assignment or supplemental reading on the statistical method used in the project. A 10-minute lecture on the method, and demonstration of the method using the project dataset. Presentations will be graded based on the instructors' evaluation of accuracy, clarity, and comprehensiveness. Feedback from other students will also be considered in evaluation of presentations (20% of course grade).
+iv. In-class verbal update (3 minute presentation) on project progress on Apr 1. (5% of
+    course grade).
 
-v.  Project report (due Apr 25). A written description of the methods and results of the project in the form of a draft scientific manuscript (Introduction, Methods, Results, Discussion). (20% of course grade).
+v.  Student project presentation with chapter assignment or supplemental reading on the statistical method used in the project. A 10-minute lecture on the method, and demonstration of the method using the project dataset. Presentations will be graded based on the instructors' evaluation of accuracy, clarity, and comprehensiveness. Feedback from other students will also be considered in evaluation of presentations (20% of course grade).
+
+vi. Project report (due May 02). A written description of the methods and results of the project in the form of a draft scientific manuscript (Introduction, Methods, Results, Discussion). (20% of course grade).
 
 <!-- -->
 
-2.  Mid-term examination on statistical concepts and literacy (20% of course grade). Take home exam. Exam distributed Feb 28. Due Mar 16.
+2.  Mid-term examination on statistical concepts and literacy (20% of course grade). Take home exam. Exam distributed Mar 4. Due Mar 20.
 
-3.  Participation in class discussions (5% of course grade). Attendance at all lectures and labs is the best way to understand topics and assignments, but is not required for evaluation.
+3.  Computer lab exercises (20% of course grade). Completion of short laboratory exercises using R. Lab exercises are due before lab session the following week. Individual weekly exercises will not be assigned numeric grades, assessment of the R lab component will take the form of i) completion of the exercises and ii) two self-reflection statements in the middle and at the end of the course asking students to assess their learning in R and ability to use these tools to address data-related and scientific questions. Additionally, the instructor and teaching assistant will provide general and specific feedback on R lab components and coding.
 
-4.  Computer lab exercises (20% of course grade). Completion of short laboratory exercises using R. Lab exercises are due before lab session the following week. Individual weekly exercises will not be assigned numeric grades, assessment of the R lab component will take the form of i) completion of the exercises and ii) two self-reflection statements in the middle and at the end of the course asking students to assess their learning in R and ability to use these tools to address data-related and scientific questions. Additionally, the instructor and teaching assistant will provide general and specific feedback on R lab components and coding.
-
-5.  Extra credit: An additional 1% towards the total course grade can be obtained by students contributing to the #TidyTuesday, a public weekly data project in R from the R4DS online learning community (https://github.com/rfordatascience/tidytuesday). To obtain course credit, students should send Gavin Fay and Lucy McGinnis an email containing a visualization of analysis of one Tidy Tuesday data set, and a link to a repository containing code that reproduces the analysis and visualization (sharing of work with the #RStats community via Twitter or Mastodon is encouraged but not required for course credit).
+4.  Extra credit: An additional 1% towards the total course grade can be obtained by students contributing to the #TidyTuesday, a public weekly data project in R from the R4DS online learning community (https://github.com/rfordatascience/tidytuesday). To obtain course credit, students should send Gavin Fay an email containing a visualization of analysis of one Tidy Tuesday data set, and a link to a repository containing code that reproduces the analysis and visualization (sharing of work with the #RStats community via Slack or other social media is encouraged but not required for course credit).
 
 ## Class Policies
 
@@ -95,13 +92,13 @@ v.  Project report (due Apr 25). A written description of the methods and result
 
 3.  This 4-credit class involves four hours per week of in-class work and an average of eight hours per week of out-of-class work is expected.
 
-4.  Assignment submissions should be made via a myCourses website. Students are responsible for all official correspondence sent to their umassd.edu e-mail address.
+4.  University policy on academic dishonesty, including plagiarism, applies (see: <https://www.umassd.edu/studentaffairs/studenthandbook/academic-regulations-and-procedures/>).
 
-5.  This course, including student participation, will be recorded on video by the instructor and will be available to students in the course for viewing remotely and after each session. As the Zoom recordings will contain student work, please do not share videos beyond the course attendees without the explicit permission of the instructor. Other course materials will be publicly available online.
+5.  Assignment submissions should be made via a myCourses website. Students are responsible for all official correspondence sent to their umassd.edu e-mail address.
 
-6.  If you have read this far, please use google search to find a picture or gif of an animal that best reflects your opinion of statistics, and send it to Gavin Fay attached to an email with the subject line "Here is a statistical opinion", worth an extra 5 points on the midterm.
+6.  This course, including student participation, will be recorded on video by the instructor and will be available to students in the course for viewing remotely and after each session. As the Zoom recordings will contain student work, please do not share videos beyond the course attendees without the explicit permission of the instructor. Other course materials will be publicly available online.
 
-7.  University policy on academic dishonesty, including plagiarism, applies (see: <https://www.umassd.edu/studentaffairs/studenthandbook/academic-regulations-and-procedures/>).
+7.  If you have read this far, please use google search to find a picture or gif of an animal that best reflects your opinion of statistics, and send it to Gavin Fay attached to an email with the subject line "Here is a statistical opinion", worth an extra 5 points on the midterm.
 
 8.  Available academic support services are available at: [www.umassd.edu/nfi/teaching-and-advising/course-syllabus/sample-disability-statement](https://www.umassd.edu/studentaffairs/studenthandbook/academic-regulations-and-procedures/)
 
@@ -117,19 +114,9 @@ Class will take place in a SMAST-East classroom; individual laptop computers wil
 
 ### Required Software:
 
-R (free download at <http://r-project.org>, students should also install Rstudio, an integrated development environment for R, free download at <https://posit.co/download/rstudio-desktop/>). I will walk through installation and use of this software during our first lab session. It is recommended to update your version of both R and RStudio for the course (I will be using R version 4.2.2). Web browser access to R sessions will also be provided through a cloud-based instance of RStudio via posit.cloud.
+R (free download at <http://r-project.org>, students should also install Rstudio, an integrated development environment for R, free download at <https://posit.co/download/rstudio-desktop/>). I will walk through installation and use of this software during our first lab session. It is recommended to update your version of both R and RStudio for the course. Web browser access to R sessions will also be provided through a cloud-based instance of RStudio via posit.cloud.
 
-While there is no official textbook for the course, we will be assigning readings from the following textbooks.
-
--   [R for Data Science](https://r4ds.had.co.nz/) by Garret Grolemund and Hadley Wickham
-
--   [Introduction to Modern Statistics](https://openintro-ims.netlify.app/) by Mine Çetinkaya-Rundel and Johanna Hardin
-
--   [Tidy modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge
-
--   [Beyond Multiple Linear Regression](https://bookdown.org/roback/bookdown-BeyondMLR/) by Paul Roback and Julie Legler
-
-### Course Materials
+### Course Materials:
 
 Materials will be distributed through a dedicated course website and RStudio Cloud project. All lectures and labs will be recorded using Zoom.
 
@@ -143,9 +130,7 @@ I will draw from several sources. The primary text we will use is:
 
 Zuur, A.F., Ieno, E.N. and Smith, G.M. (2007). Analysing Ecological Data. Springer. 700p. Series: Statistics for Biology and Health. (available free ebook available through the UMass Amherst library system, or hard copy \~\$100 online).
 
-[Support website for book, including data & R code](https://www.highstat.com/index.php/books2?view=article&id=16&catid=18)
-
-The form for students to request access to UMass Amherst ebook collection is available at: <https://www.umass.edu/it/accounts/courtesy-accounts-non-employees-non-students-nens>
+[Support website for book, including data & R code](https://www.highstat.com/index.php/books2)
 
 ### Supplementary Texts
 
@@ -153,15 +138,14 @@ The form for students to request access to UMass Amherst ebook collection is ava
 
 Bolker, B.M. 2008. Ecological Models and Data in R. Princeton University Press. (http://ms.mcmaster.ca/\~bolker/emdbook/index.html, http://emdbolker.wikidot.com/)
 
-Ismay, C. and Kim, A.Y., 2019. Statistical Inference via Data Science: A ModernDive into R and the Tidyverse. CRC Press.
+Ismay, C. and Kim, A.Y., 2025. Statistical Inference via Data Science: A ModernDive into R and the Tidyverse. CRC Press. <https://moderndive.com/v2/>
 
-James, G., Wittem, D., Hastie, T., and Tibshirani, R. (2014). An Introduction to Statistical Learning With Applications in R. Springer. (ebook available online)
+James, G., Wittem, D., Hastie, T., and Tibshirani, R. (2023). An Introduction to Statistical
+Learning, with Applications in R. 2nd edition. Springer. (ebook freely available online at <https://www.statlearning.com/>)
 
-    Support website for book (http://www-bcf.usc.edu/\~gareth/ISL/)
+McElreath, R., 2018. Statistical rethinking: A Bayesian course with examples in R and Stan. Chapman and Hall/CRC. ([https://xcelab.net/rm/](https://xcelab.net/rm/)))
 
-McElreath, R., 2018. Statistical rethinking: A Bayesian course with examples in R and Stan. Chapman and Hall/CRC.
-
-Wickham, H. and Grolemund, G., 2016. R for data science. O'Reilly. (http://r4ds.had.co.nz/)
+Wickham, H., Cetinkaya-Rundel, M., and Grolemund, G., 2023. R for data science. O’Reilly. (<https://r4ds.hadley.nz/>)
 
 ## Title IX statement
 
@@ -175,8 +159,9 @@ For confidential counseling support and assistance, please go to <http://www.uma
 
 ## Important dates
 
--   **January 17:** Classes begin
--   **January 24:** Drop/add ends
--   **March 6-10:** Spring break, no classes are held
+-   **January 21:** Classes begin
+-   **January 28:** Drop/add ends
+-   **March 10-14:** Spring break, no classes are held
+-   **April 11**: Last day to withdraw from a class
 
-Click [here](https://www.umassd.edu/academiccalendar/academic-calendar-2022-2023/) for the full UMass Dartmouth academic calendar.
+Click [here](https://www.umassd.edu/academiccalendar/) for the full UMass Dartmouth academic calendar.

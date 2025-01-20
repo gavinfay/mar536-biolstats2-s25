@@ -1,8 +1,8 @@
 ---
 title: 'Biological Stats 2: Lab 1'
 author: "Dr. Gavin Fay"
-date: "01/18/2023"
-footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+date: "01/22/2025"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s25](https://gavinfay.github.io/mar536-biolstats2-s25)"
 logo: "../images/logo.png"
 format: 
   revealjs: 
@@ -28,15 +28,15 @@ library(countdown)
 
 ## Lab schedule
 
-**1/18: Introduction to R and R Studio, working with data**\
-1/25: Intro to Visualization\
-2/01: Probability, linear modeling\
-2/08: Data wrangling, model summaries\
-2/15: Iteration\
-2/22: Creating functions, debugging\
-3/01: Simulation, Resampling\
-3/15: Flex: more modeling (brms, glmmTMB)\
-3/29: Spatial data or tidymodeling
+**1/22: Introduction to R and R Studio, working with data**\
+1/29: Visualizing data\
+2/05: Probability, linear modeling\
+2/12: Data wrangling, model summaries\
+2/19: Simulation, Resampling\
+2/26: Iteration\
+3/05: Creating functions, debugging\
+3/19: Flex: automated reporting & Quarto\
+4/02: working with Spatial data
 
 ## Format for lab component
 
@@ -132,7 +132,7 @@ Long-term goals:
 
 ## R and RStudio {.small}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r echo=FALSE, out.width="25%"}
 knitr::include_graphics("img/r-logo.png")
@@ -151,7 +151,7 @@ knitr::include_graphics("img/RStudio-Logo-Flat.png")
 -   RStudio is a convenient interface for R called an **IDE** (integrated development environment), e.g. *"I write R code in the RStudio IDE"*
 -   RStudio is not a requirement for programming with R, but it's very commonly used by R programmers and data scientists
 :::
-:::
+:::::
 
 ## Using R today: RStudio Cloud
 
@@ -205,7 +205,7 @@ library(package_name)
 
 ## tidyverse
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r echo=FALSE, out.width="99%"}
 knitr::include_graphics("img/tidyverse.png")
@@ -218,7 +218,7 @@ knitr::include_graphics("img/tidyverse.png")
 -   The **tidyverse** is an opinionated collection of R packages designed for data science
 -   All packages share an underlying philosophy and a common grammar
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -279,7 +279,7 @@ Or...
 
 ## rmarkdown {.small}
 
-::: columns
+::::: columns
 ::: {.column width="70%"}
 [rmarkdown.rstudio.com](https://rmarkdown.rstudio.com/)
 
@@ -292,7 +292,7 @@ Or...
 knitr::include_graphics("img/rmarkdown.png")
 ```
 :::
-:::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -358,7 +358,7 @@ Read function documentation and explore behavior by running examples!
 
 ## R Markdown help
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 R Markdown Cheat Sheet\
 `Help -> Cheatsheets`\
@@ -376,7 +376,7 @@ Markdown Quick Reference\
 knitr::include_graphics("img/md-cheatsheet.png")
 ```
 :::
-:::
+:::::
 
 ## Projects in RStudio {.small}
 
@@ -799,12 +799,12 @@ Some advanced functions are cleaner and do things more quickly.\
 
 ## Next time...
 
-1/18: Introduction to R and R Studio, working with data\
-**1/25: Intro to Vizualization**\
-2/01: Probability, linear modeling\
-2/08: Data wrangling, model summaries\
-2/15: Iteration\
-2/22: Creating functions, debugging\
-3/01: Simulation, Resampling\
-3/15: Flex: more modeling (brms, glmmTMB)\
-3/29: Spatial data or tidymodeling
+1/22: Introduction to R and R Studio, working with data\
+**1/29: Visualizing data**\
+2/05: Probability, linear modeling\
+2/12: Data wrangling, model summaries\
+2/19: Simulation, Resampling\
+2/26: Iteration\
+3/05: Creating functions, debugging\
+3/19: Flex: automated reporting & Quarto\
+4/02: working with Spatial data

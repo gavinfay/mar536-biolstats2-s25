@@ -3,27 +3,24 @@ project:
   output-dir: docs
   render:
     - "*.qmd"
-    - "*.Rmd"
+    - "lec-02.Rmd"
     - "!labs/lab-08b.Rmd"
 
 website:
   page-navigation: true
-  title: "MAR 536 - Spring 2023"
-  description: "Homepage for MAR 536 - Biological Statistics II at UMass Dartmouth, Spring 2023."
-  site-url: "https://gavinfay.github.io/mar536-biolstats2-s23"
+  title: "MAR 536 - Spring 2025"
+  description: "Homepage for MAR 536 - Biological Statistics II at UMass Dartmouth, Spring 2025."
+  site-url: "https://gavinfay.github.io/mar536-biolstats2-s25"
 
-  repo-url: https://github.com/gavinfay/mar536-biolstats2-s23
+  repo-url: https://github.com/gavinfay/mar536-biolstats2-s25
   repo-actions: [edit, issue]
 
   open-graph: true
 
-  twitter-card:
-    creator: "@gavin_fay"
-    image: "images/twitter-card.png"
 
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2023, Gavin Fay. Website structure & design gratefully inspired/made easy by Mine Çetinkaya-Rundel"
+    left: "&copy; Copyright 2025, Gavin Fay. Website structure & design gratefully inspired/made easy by Mine Çetinkaya-Rundel"
     background: "#D9E3E4"
 
   sidebar:
@@ -33,7 +30,7 @@ website:
     align: center
     tools:
       - icon: github
-        href: https://github.com/gavinfay/mar536-biolstats2-s23
+        href: https://github.com/gavinfay/mar536-biolstats2-s25
         text: "GitHub"
 
     style: "docked"
@@ -74,24 +71,24 @@ website:
         contents:
           - href: weeks/week-01.qmd
             text: "Week 1"
-          - href: weeks/week-02.qmd
-            text: "Week 2"
-          - href: weeks/week-03.qmd
-            text: "Week 3"
-          - href: weeks/week-04.qmd
-            text: "Week 4"
-          - href: weeks/week-05.qmd
-            text: "Week 5"
-          - href: weeks/week-06.qmd
-            text: "Week 6"
-          - href: weeks/week-07.qmd
-            text: "Week 7"
-          - href: weeks/week-08.qmd
-            text: "Week 8"
-          - href: weeks/week-09.qmd
-            text: "Week 9"
-          - href: weeks/week-10.qmd
-            text: "Week 10"
+#          - href: weeks/week-02.qmd
+#            text: "Week 2"
+#          - href: weeks/week-03.qmd
+#            text: "Week 3"
+#          - href: weeks/week-04.qmd
+#            text: "Week 4"
+#          - href: weeks/week-05.qmd
+#            text: "Week 5"
+#          - href: weeks/week-06.qmd
+#            text: "Week 6"
+#          - href: weeks/week-07.qmd
+#            text: "Week 7"
+#          - href: weeks/week-08.qmd
+#            text: "Week 8"
+#          - href: weeks/week-09.qmd
+#            text: "Week 9"
+#          - href: weeks/week-10.qmd
+#            text: "Week 10"
 #          - href: weeks/week-11.qmd
 #            text: "Week 11"
 #          - href: weeks/week-12.qmd

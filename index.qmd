@@ -5,30 +5,28 @@ tbl-colwidths: [5,10,30,5,5,5,5,5,5,5]
 
 ## Course Syllabus
 
-[**Click here**](documents/MAR536_BiolStats2_syllabus_SPR2023_20230204.pdf "PDF of syllabus") **to download a PDF copy of the syllabus.\
-*(****last updated 2023-02-04)*
+[**Click here**](documents/MAR536_BiolStats2_syllabus_SPR2025_2025-01-17.pdf "PDF of syllabus") **to download a PDF copy of the syllabus.\
+*(****last updated 2025-01-17)*
 
 ## Course Schedule
 
 This page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses.
 
-\[**3/08 note**: *change in schedule in week 7 & 8 to accommodate snow day on 2/28*\]
-
-\[**3/19 note**: *change in class format for weeks 9 & 10 (lectures via recordings) to accomodate instructor illness*\]
+\[**notes on changes to schedule will appear below but noted here as well**\]
 
 ::: column-screen-inset-right
-<table style="width:30%;">
+<table style="width:94%;">
 <colgroup>
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
-<col style="width: 2%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 28%" />
+<col style="width: 5%" />
+<col style="width: 7%" />
+<col style="width: 6%" />
+<col style="width: 7%" />
+<col style="width: 6%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -47,7 +45,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><p><a href="/weeks/week-01.html">1</a></p></td>
-<td><p>Tue, Jan 17</p></td>
+<td><p>Tue, Jan 21</p></td>
 <td><p>Introduction</p></td>
 <td style="text-align: center;"><p><a href="/weeks/week-01.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
 <td style="text-align: center;"><p><a href="/lectures/lec-01.pptx" title="Lab slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
@@ -59,7 +57,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td><p>Wed, Jan 18</p></td>
+<td><p>Wed, Jan 22</p></td>
 <td><p>Lab 1 -Intro to R/RStudio</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -71,7 +69,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td><p>Thu, Jan 19</p></td>
+<td><p>Thu, Jan 23</p></td>
 <td><p>Probability review</p></td>
 <td style="text-align: center;"><p><a href="/weeks/week-01.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
 <td style="text-align: center;"><p><a href="/lectures/lec-02.pdf" title="Lecture slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
@@ -83,7 +81,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="even">
 <td style="text-align: center;"><p><a href="/weeks/week-02.html">2</a></p></td>
-<td><p>Tue, Jan 24</p></td>
+<td><p>Tue, Jan 28</p></td>
 <td><p>Data exploration, checking</p></td>
 <td style="text-align: center;"><p><a href="/weeks/week-02.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
 <td style="text-align: center;"><p><a href="/lectures/lec-03.html" title="Lab slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
@@ -95,7 +93,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td><p>Wed, Jan 25</p></td>
+<td><p>Tue, Jan 28</p></td>
 <td><p>Due: Lab 1</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -107,7 +105,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td><p>Wed, Jan 25</p></td>
+<td><p>Wed, Jan 29</p></td>
 <td><p>Lab 2 - Visualizing data</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -119,7 +117,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td><p>Thu, Jan 26</p></td>
+<td><p>Thu, Jan 30</p></td>
 <td><p>Linear regression review</p></td>
 <td style="text-align: center;"><p><a href="/weeks/week-02.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
 <td style="text-align: center;"><p><a href="/lectures/lec-04.pdf" title="Lecture slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
@@ -131,7 +129,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td><p>Thu, Jan 26</p></td>
+<td><p>Thu, Jan 30</p></td>
 <td><p>Due: Project topic</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -143,19 +141,19 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><p><a href="weeks/week-03.html">3</a></p></td>
-<td><p>Tue, Jan 31</p></td>
-<td><p>Lab 3 - Probability &amp; linear modeling</p></td>
+<td><p>Tue, Feb 04</p></td>
+<td><p>Likelihood</p></td>
+<td style="text-align: center;"><p><a href="weeks/week-03.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="lectures/lec-05.pdf"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"><p><a href="labs/lab-exercise-03.pdf"><span class="emoji" data-emoji="clipboard">📋</span></a></p></td>
-<td style="text-align: center;"><p><a href="/labs/lab-03.pdf" title="Lab instructions"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td><p>Wed, Feb 01</p></td>
+<td><p>Tue, Feb 04</p></td>
 <td><p>Due: Lab 2</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -168,33 +166,21 @@ This page will contain an outline of the topics, content, and assignments for th
 <tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Wed,</p>
-<p>Feb 01</p></td>
-<td><p>Linear modeling application</p></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<p>Feb 05</p></td>
+<td><p>Lab 3 - Probability &amp; linear modeling</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
+<td style="text-align: center;"><p><a href="labs/lab-exercise-03.pdf"><span class="emoji" data-emoji="clipboard">📋</span></a></p></td>
+<td style="text-align: center;"><p><a href="/labs/lab-03.pdf" title="Lab instructions"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td><p>Thu, Feb 02</p></td>
-<td><p>Likelihood</p></td>
-<td style="text-align: center;"><p><a href="weeks/week-03.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="lectures/lec-05.pdf"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><p><a href="weeks/week-04.html">4</a></p></td>
-<td><p>Tue, Feb 07</p></td>
+<td><p>Thu, Feb 06</p></td>
 <td><p>Generalized Linear Models</p></td>
-<td style="text-align: center;"><p><a href="weeks/week-04.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="weeks/week-03.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
 <td style="text-align: center;"><p><a href="lectures/lec-06.pptx"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a><br />
 <a href="/lectures/lec-06b.pdf" title="Lab instructions"><span class="emoji" data-emoji="computer">💻</span></a></p></td>
 <td style="text-align: center;"></td>
@@ -203,9 +189,21 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
+<tr class="odd">
+<td style="text-align: center;"><p><a href="weeks/week-04.html">4</a></p></td>
+<td><p>Tue, Feb 11</p></td>
+<td></td>
+<td style="text-align: center;"><p><a href="weeks/week-04.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td><p>Wed, Feb 08</p></td>
+<td><p>Tue, Feb 11</p></td>
 <td><p>Due: Lab 3</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -217,8 +215,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td><p>Wed,</p>
-<p>Feb 08</p></td>
+<td><p>Wed. Feb 12</p></td>
 <td><p>Lab 4 - Data wrangling &amp; model summaries</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -230,7 +227,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td><p>Thu, Feb 09</p></td>
+<td><p>Thu, Feb 13</p></td>
 <td><p>GLMs II (logistic regression)</p></td>
 <td style="text-align: center;"><p><a href="weeks/week-04.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
 <td style="text-align: center;"><p><a href="lectures/lec-07.pptx"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
@@ -242,7 +239,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="odd">
 <td style="text-align: center;"></td>
-<td><p>Thu, Feb 09</p></td>
+<td><p>Thu, Feb 13</p></td>
 <td><p>Due: Project description</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -254,19 +251,7 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="even">
 <td style="text-align: center;"><p><a href="weeks/week-05.html">5</a></p></td>
-<td><p>Tue, Feb 14</p></td>
-<td><p>Resampling methods, cross-validation</p></td>
-<td style="text-align: center;"><p><a href="weeks/week-05.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="lectures/lec-08.pdf"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"></td>
-<td><p>Wed, Feb 15</p></td>
+<td><p>Tue, Feb 18</p></td>
 <td><p>Due: Lab 4</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -276,9 +261,10 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
-<td><p>Wed, Feb 15</p></td>
+<td><p>Wed,</p>
+<p>Feb 19</p></td>
 <td><p>Lab 5 - Simulation</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -288,7 +274,55 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
 <tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Thu, Feb 20</p></td>
+<td><p>Resampling methods, cross-validation</p></td>
+<td style="text-align: center;"><p><a href="weeks/week-05.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="lectures/lec-08.pdf"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><p><a href="weeks/week-06.html">6</a></p></td>
+<td><p>Tue, Feb 25</p></td>
+<td><p>Due: Lab 4</p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><span class="emoji" data-emoji="writing_hand">✍️</span></p></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td><p>Tue, Feb 25</p></td>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Thu, Feb 16</p></td>
 <td><p>Non-linear models, splines</p></td>
@@ -300,8 +334,8 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
-<td style="text-align: center;"><p><a href="weeks/week-06.html">6</a></p></td>
+<tr class="odd">
+<td style="text-align: center;"></td>
 <td><p>Tue, Feb 21</p></td>
 <td><p>No class - Monday schedule</p></td>
 <td style="text-align: center;"></td>
@@ -312,7 +346,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Wed, Feb 22</p></td>
 <td><p>Due: Lab 5</p></td>
@@ -324,7 +358,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Wed, Feb 22</p></td>
 <td><p>Lab 6 - Iteration</p></td>
@@ -336,7 +370,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Thu, Feb 23</p></td>
 <td><p>GAMs</p></td>
@@ -348,7 +382,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><p><a href="weeks/week-07.html">7</a></p></td>
 <td><p>Tue, Feb 28</p></td>
 <td><p>Due: Data Exploration Report</p></td>
@@ -360,7 +394,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Tue, Feb 28</p></td>
 <td><p>Matrix Algebra review</p></td>
@@ -372,7 +406,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Tue, Feb 28</p></td>
 <td><p>Midterm distributed</p></td>
@@ -384,7 +418,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"><p><span class="emoji" data-emoji="white_check_mark">✅</span></p></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Wed, Mar 01</p></td>
 <td><p>Due: Lab 6</p></td>
@@ -396,7 +430,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Wed, Mar 01</p></td>
 <td><p>Lab 7 - Functions</p></td>
@@ -408,7 +442,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Thu, Mar 02</p></td>
 <td><p>Principal Components Analysis</p></td>
@@ -420,7 +454,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><p><strong>SPRING</strong></p></td>
 <td><p><strong>BREAK</strong></p></td>
 <td></td>
@@ -432,7 +466,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><p><a href="weeks/week-08.html">8</a></p></td>
 <td><p>Tue, Mar 14</p></td>
 <td><p>Linear mixed effects model</p></td>
@@ -444,7 +478,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Wed, Mar 15</p></td>
 <td><p>Lab 7 - Functions</p></td>
@@ -456,7 +490,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Thu, Mar 16</p></td>
 <td><p>More mixed effects</p></td>
@@ -468,7 +502,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Thu, Mar 16</p></td>
 <td><p>Due: Midterm</p></td>
@@ -480,7 +514,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"><p><span class="emoji" data-emoji="white_check_mark">✅</span></p></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><p><a href="weeks/week-09.html">9</a></p></td>
 <td><p>Tue, Mar 21</p></td>
 <td><p>Zero-inflated models</p></td>
@@ -492,7 +526,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Wed, Mar 22</p></td>
 <td><p>Due: Lab 7</p></td>
@@ -504,7 +538,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Wed, Mar 22</p></td>
 <td><p>UMASS IMS SYMPOSIUM</p></td>
@@ -516,7 +550,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Thu, Mar 23</p></td>
 <td><p>Spatial GLMMs</p></td>
@@ -528,7 +562,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><p><a href="weeks/week-10.html">10</a></p></td>
 <td><p>Tue, Mar 28</p></td>
 <td><p>Classification / Linear Discriminant Analysis</p></td>
@@ -540,7 +574,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Wed, Mar 29</p></td>
 <td><p>Lab 8</p></td>
@@ -552,7 +586,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Thu, Mar 30</p></td>
 <td><p>Trees</p></td>
@@ -564,7 +598,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><p>11</p></td>
 <td><p>Tue, Apr 04</p></td>
 <td><p>Ordination methods</p></td>
@@ -576,7 +610,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Wed, Apr 05</p></td>
 <td><p>Due: Lab 8</p></td>
@@ -588,7 +622,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Wed, Apr 05</p></td>
 <td><p>Cluster analysis</p></td>
@@ -600,7 +634,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Thu, Apr 06</p></td>
 <td><p>Student presentations</p></td>
@@ -612,7 +646,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"><p>12</p></td>
 <td><p>Tue, Apr 11</p></td>
 <td><p>Student presentations</p></td>
@@ -624,7 +658,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"></td>
 <td><p>Wed, Apr 12</p></td>
 <td><p>Student presentations</p></td>
@@ -636,7 +670,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Thu, Apr 13</p></td>
 <td><p>Student presentations</p></td>
@@ -648,7 +682,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: center;"><p>13</p></td>
 <td><p>Tue, Apr 25</p></td>
 <td><p>Course <a href="lectures/MAR536_Review.pptx">Review</a></p></td>
@@ -660,7 +694,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: center;"></td>
 <td><p>Tue, Apr 25</p></td>
 <td><p>Due: Project Report</p></td>
@@ -680,6 +714,6 @@ This page will contain an outline of the topics, content, and assignments for th
 knitr::knit_exit()
 ```
 
-|      |      |       | Prepare | Slides | AE  |                                                    Labs                                                    | HW  | Exam | Project |
+|   |   |   | Prepare | Slides | AE | Labs | HW | Exam | Project |
 |--------|--------|--------|:------:|:------:|:------:|:------:|:------:|:------:|:------:|
-| Week | Date | Topic |   📖    |   🖥️   | 📋  | [💻](https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786) | ✍️  |  ✅  |   📂    |
+| Week | Date | Topic | 📖 | 🖥️ | 📋 | [💻](https://sakai.duke.edu/samigo-app/servlet/Login?id=6fa7ebf3-01af-42a6-91ba-3e813d3901221641094171786) | ✍️ | ✅ | 📂 |

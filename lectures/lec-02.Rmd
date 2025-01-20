@@ -2,7 +2,7 @@
 title: 'Bio Stats II : Lecture 2, Probability'
 subtitle: "Bolker 2008, Chapter 4"
 author: "Gavin Fay"
-date: "01/19/2023"
+date: "01/23/2025"
 output:
   beamer_presentation:
     colortheme: seagull
@@ -11,9 +11,9 @@ output:
 
 ## This Week...
 
-1/17: Introduction, Statistical Rethinking\
-1/18: Lab 1\
-**1/19: Probability review**
+1/21: Introduction, Statistical Rethinking\
+1/22: Lab 1\
+**1/23: Probability review**
 
 ## Objectives
 
@@ -26,6 +26,7 @@ output:
 - Present delta method for calculating expected value and variance of functions of random variables  
 --->
 ```
+
 ## Why does variability matter?
 
 Variability affects any ecological system.
@@ -154,10 +155,9 @@ Continuous random variables $$\mu = E(X) = \int_{-\infty}^{\infty} x f(x) dx$$
 
 ## Variance of a Random Variable $X$, $E[(X-\mu)^2]$
 
-```{=tex}
 \begingroup
 \fontsize{10}{11}\selectfont
-```
+
 Discrete random variables $$Var(X) = \displaystyle\sum_{i=0}^{\infty}\left(x_i-E(x_i)\right)^2 P(X=x_i)$$ Continuous random variables $$Var(X) = \int_{-\infty}^{\infty} (x_i-E(x_i))^2f(x)dx$$
 
 In general $$Var(X) = E(X^2) - (E(X))^2 = E((X-\mu)^2)$$
@@ -675,6 +675,6 @@ $|\mu$ denotes evaluation of derivative at the values of $\mu$.
 
 ## Next Time...
 
-**1/24: Data exploration, checking**\
-1/25: Lab 2\
-1/26: Linear regression review
+**1/28: Data exploration, checking**\
+1/29: Lab 2\
+1/30: Linear regression review
