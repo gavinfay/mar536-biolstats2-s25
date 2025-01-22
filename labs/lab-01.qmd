@@ -10,6 +10,8 @@ format:
     multiplex: true
     transition: fade
     slide-number: true
+    revealjs-plugins:
+      - drop
 editor: visual
 execute:
   freeze: auto
@@ -48,9 +50,7 @@ library(countdown)
 -   Community support\
     *"Try stuff and see what happens"*
 
-## 
-
-![](figs/WhyR.png)
+## ![](figs/whyR2.png){width="355"}![](img/on-my-own.png){width="336"}
 
 ## 
 
