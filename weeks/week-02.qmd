@@ -1,6 +1,6 @@
 ---
 title: "Week 2"
-subtitle: "Looking at data & regression"
+subtitle: "Looking at data & probability"
 editor: visual
 ---
 
@@ -12,15 +12,15 @@ editor: visual
 
 ## Participate
 
-🖥️ [Lecture 3 - Data exploration, checking](../lectures/lec-03.html)
+🖥️ Tuesday: [Lecture - Data exploration, checking](../lectures/lec-03.html)
 
 -   [Plot description practice](https://docs.google.com/presentation/d/1AJPZuNBhbxAXbOvNYvAp-Kk8VVv4nddPTINrlcxsjkg/edit?usp=sharing) (Acknowledgements: S. Stoudt)
 
-⌨️ [Lab 2 - Data Visualization](../labs/lab-02.html) (just the [exercise](../labs/lab-exercise-02.pdf))
+⌨️ Wednesday: [Lab 2 - Data Visualization](../labs/lab-02.html) (just the [exercise](../labs/lab-exercise-02.pdf))
 
 -   [lake Laengelmavesi fish data](https://github.com/gavinfay/mar536-biolstats2-s23/tree/main/data/Laengelmavesi2.xlsx)
 
-🖥️ [Lecture 2 - Probability review](../lectures/lec-02.pdf)
+🖥️ Thursday: [Lecture - Probability review](../lectures/lec-02.pdf)
 
 ## Practice
 
