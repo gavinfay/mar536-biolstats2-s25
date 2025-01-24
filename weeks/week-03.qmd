@@ -6,6 +6,8 @@ editor: visual
 
 ## Prepare
 
+📖 Read Chapter 5 of Zuur (Tue)
+
 📖 Read Chapters 8 & 11 of "[An introduction to R (Venables et al.)](http://cran.r-project.org/doc/manuals/R-intro.pdf)" (Tue)
 
 📖 Read [Chapter 7 of Hilborn & Mangel 1997](../documents/Hilborn_Mangel_1997_Chapter7.pdf) (Thu)
@@ -17,6 +19,8 @@ editor: visual
 -   [species richness on beaches data (RIKZ.txt, Zuur Chapter 5, 27)](https://github.com/gavinfay/mar536-biolstats2-s23/tree/main/data/RIKZ.txt)
 
 🖥️ Tutorial - data exploration & catch rate model selection for cod (L McGinnis)
+
+🖥️ [Lecture 4 - Regression review](../lectures/lec-04.pdf)
 
 🖥️ [Lecture 5 - Likelihood](../lectures/lec-05.pdf)
 

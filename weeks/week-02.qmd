@@ -8,7 +8,7 @@ editor: visual
 
 📖 Read remaining parts of Chapters 1-4 of Zuur (Tue)
 
-📖 Read Chapter 5 of Zuur (Thu)
+📖 Read/reference [Chapter 4 of Bolker 2008](https://ms.mcmaster.ca/~bolker/emdbook/chap4A.pdf) (Thu)
 
 ## Participate
 
@@ -20,7 +20,7 @@ editor: visual
 
 -   [lake Laengelmavesi fish data](https://github.com/gavinfay/mar536-biolstats2-s23/tree/main/data/Laengelmavesi2.xlsx)
 
-🖥️ [Lecture 4 - Regression review](../lectures/lec-04.pdf)
+🖥️ [Lecture 2 - Probability review](../lectures/lec-02.pdf)
 
 ## Practice
 
