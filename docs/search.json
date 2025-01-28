@@ -186,28 +186,28 @@
     "href": "lectures/lec-03.html#histogram",
     "title": "Biological Stats 2: Lecture 3",
     "section": "Histogram",
-    "text": "Histogram\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
+    "text": "Histogram\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(col = \"white\")\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
   },
   {
     "objectID": "lectures/lec-03.html#histograms-and-binwidth",
     "href": "lectures/lec-03.html#histograms-and-binwidth",
     "title": "Biological Stats 2: Lecture 3",
     "section": "Histograms and binwidth",
-    "text": "Histograms and binwidth\nbinwidth = 1000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 1000)"
+    "text": "Histograms and binwidth\nbinwidth = 1000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 1000, col = \"white\")"
   },
   {
     "objectID": "lectures/lec-03.html#histograms-and-binwidth-1",
     "href": "lectures/lec-03.html#histograms-and-binwidth-1",
     "title": "Biological Stats 2: Lecture 3",
     "section": "Histograms and binwidth",
-    "text": "Histograms and binwidth\nbinwidth = 5000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 5000)"
+    "text": "Histograms and binwidth\nbinwidth = 5000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 5000, col = \"white\")"
   },
   {
     "objectID": "lectures/lec-03.html#histograms-and-binwidth-2",
     "href": "lectures/lec-03.html#histograms-and-binwidth-2",
     "title": "Biological Stats 2: Lecture 3",
     "section": "Histograms and binwidth",
-    "text": "Histograms and binwidth\nbinwidth = 20000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 20000)"
+    "text": "Histograms and binwidth\nbinwidth = 20000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 20000, col = \"white\")"
   },
   {
     "objectID": "lectures/lec-03.html#customizing-histograms",
@@ -466,7 +466,7 @@
     "href": "lectures/lec-03.html#supplemental-reading",
     "title": "Biological Stats 2: Lecture 3",
     "section": "Supplemental Reading",
-    "text": "Supplemental Reading\nIntroduction to Modern Statistics Chap 4-6\nR for Data Science, Chap 3\nCommunicating with Data, Chap 3-4\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
+    "text": "Supplemental Reading\nIntroduction to Modern Statistics Chap 4-6\nR for Data Science, Chap 3\nCommunicating with Data, Chap 3-4\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s25"
   },
   {
     "objectID": "labs/lab-06.html#lab-schedule",

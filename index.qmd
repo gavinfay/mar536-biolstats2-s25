@@ -121,7 +121,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 <td><p>Thu, Jan 30</p></td>
 <td><p>Probability review</p></td>
-<td style="text-align: center;"><p><a href="/weeks/week-01.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="/weeks/week-02.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
 <td style="text-align: center;"><p><a href="/lectures/lec-02.pdf" title="Lecture slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -145,7 +145,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"><p><a href="weeks/week-03.html">3</a></p></td>
 <td><p>Tue, Feb 04</p></td>
 <td><p>Linear regression review</p></td>
-<td style="text-align: center;"><p><a href="/weeks/week-02.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="/weeks/week-03.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
 <td style="text-align: center;"><p><a href="/lectures/lec-04.pdf" title="Lecture slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>

@@ -1,8 +1,8 @@
 ---
 title: 'Biological Stats 2: Lecture 3'
 author: "Dr. Gavin Fay"
-date: "01/24/2023"
-footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+date: "01/28/2025"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s25](https://gavinfay.github.io/mar536-biolstats2-s25)"
 logo: "../images/logo.png"
 format: 
   revealjs: 
@@ -28,6 +28,7 @@ library(magick)
 library(palmerpenguins)
 library(openintro)
 library(GGally)
+library(hexbin)
 loans_full_schema <- loans_full_schema %>%
   mutate(grade = factor(grade, ordered = TRUE))
 loans <- loans_full_schema
@@ -557,7 +558,7 @@ glimpse(loans_full_schema)
 
 ```{r message = TRUE, out.width = "50%", echo = TRUE}
 ggplot(loans, aes(x = loan_amount)) +
-  geom_histogram()
+  geom_histogram(col = "white")
 ```
 
 ------------------------------------------------------------------------
@@ -568,7 +569,7 @@ binwidth = 1000
 
 ```{r out.width = "50%"}
 ggplot(loans, aes(x = loan_amount)) +
-  geom_histogram(binwidth = 1000)
+  geom_histogram(binwidth = 1000, col = "white")
 ```
 
 ## Histograms and binwidth
@@ -577,7 +578,7 @@ binwidth = 5000
 
 ```{r out.width = "50%"}
 ggplot(loans, aes(x = loan_amount)) +
-  geom_histogram(binwidth = 5000)
+  geom_histogram(binwidth = 5000, col = "white")
 ```
 
 ## Histograms and binwidth
@@ -586,7 +587,7 @@ binwidth = 20000
 
 ```{r out.width = "50%"}
 ggplot(loans, aes(x = loan_amount)) +
-  geom_histogram(binwidth = 20000)
+  geom_histogram(binwidth = 20000, col = "white")
 ```
 
 ------------------------------------------------------------------------
