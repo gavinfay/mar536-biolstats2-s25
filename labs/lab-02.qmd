@@ -1,8 +1,8 @@
 ---
 title: "MAR 536: Lab 2"
 subtitle: "Dr. Gavin Fay"
-date: "01/25/2023"
-footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+date: "01/29/2025"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s25](https://gavinfay.github.io/mar536-biolstats2-s25)"
 logo: "../images/logo.png"
 format: 
   revealjs: 
@@ -10,6 +10,8 @@ format:
     multiplex: true
     transition: fade
     slide-number: true
+    revealjs-plugins:
+      - drop    
 editor: source
 execute:
   freeze: auto
@@ -36,15 +38,15 @@ loans <- loans_full_schema
 
 ## Lab schedule
 
-1/18: Introduction to R and R Studio, working with data\
-**1/25: Intro to Visualization**\
-2/01: Probability, linear modeling\
-2/08: Data wrangling, model summaries\
-2/15: Iteration\
-2/22: Creating functions, debugging\
-3/01: Simulation, Resampling\
-3/15: Flex: more modeling (brms, glmmTMB)\
-3/29: Spatial data or tidymodeling
+1/22: Introduction to R and R Studio, working with data\
+**1/29: Visualizing data**\
+2/05: Probability, linear modeling\
+2/12: Data wrangling, model summaries\
+2/19: Simulation, Resampling\
+2/26: Iteration\
+3/05: Creating functions, debugging\
+3/19: Flex: automated reporting & Quarto\
+4/02: working with Spatial data
 
 **Acknowledgements: Mine Çetinkaya-Rundel, Amanda Hart**
 
@@ -151,11 +153,11 @@ So far we have either typed in data values, or used built-in datasets.
 Lots of functions to read data from files, including:  
 
 1. `scan()`
-- flexible, reads data into a vector.
-- very fast, good for large or messy data.  
+- flexible, reads data into a vector
+- very fast, good for large or messy data  
 
 2. `read.table`, `read.csv`
-- easy to use, reads data into a data frame.  
+- easy to use, reads data into a data frame  
 
 3. `read_excel`, `read_csv` (in tidyverse)
 - `library(readxl)` has many functions for reading from MS Excel spreadsheets 
@@ -213,14 +215,14 @@ Read in the data in the 'data' sheet of `Laengelmavesi2.xlsx` and:
 <!--  <https://www.stat.auckland.ac.nz/~paul/RG2e/>   -->
 
   
-## Base graphics: plot()
+<!-- ## Base graphics: plot() -->
 
- `plot()` is the generic function for plotting `R` objects.  
+<!--  `plot()` is the generic function for plotting `R` objects.   -->
 
- - `plot()` is an overloaded function.  
- - what it returns depends on the type of objects that are given to it.  
- - there are versions of `plot` that provide useful outputs for many `R` functions.  
- - e.g. `plot.lm()` is a version that plots typical diagnostics from a linear model object. (but you still just type `plot(myobject)`).  
+<!--  - `plot()` is an overloaded function.   -->
+<!--  - what it returns depends on the type of objects that are given to it.   -->
+<!--  - there are versions of `plot` that provide useful outputs for many `R` functions.   -->
+<!--  - e.g. `plot.lm()` is a version that plots typical diagnostics from a linear model object. (but you still just type `plot(myobject)`).   -->
 
 
 ## Plots are like onions...they have layers {.small}
@@ -416,7 +418,7 @@ ggplot(data = fish_data, mapping = aes(x= length,
          subtitle = "MAR 536 Biological Statistics II, Lab 2",
          x = "Length (cm)",
          y = "Weight (g)",
-         caption = "\nplot created by \n@gavin_fay")
+         caption = "\nplot created by \n@gavinfay")
 ``` 
 
 ----
@@ -431,7 +433,7 @@ ggplot(data = fish_data, mapping = aes(x= length,
          subtitle = "MAR 536 Biological Statistics II, Lab 2",
          x = "Length (cm)",
          y = "Weight (g)",
-         caption = "\nplot created by \n@gavin_fay")
+         caption = "\nplot created by \n@gavinfay")
 ``` 
 
 ## Colors {.small}
@@ -452,7 +454,7 @@ ggplot(data = fish_data, mapping = aes(x= length,
          subtitle = "MAR 536 Biological Statistics II, Lab 2",
          x = "Length (cm)",
          y = "Weight (g)",
-         caption = "\nplot created by \n@gavin_fay")
+         caption = "\nplot created by \n@gavinfay")
 ``` 
  
 ----
@@ -467,7 +469,7 @@ ggplot(data = fish_data, mapping = aes(x= length,
          subtitle = "MAR 536 Biological Statistics II, Lab 2",
          x = "Length (cm)",
          y = "Weight (g)",
-         caption = "\nplot created by \n@gavin_fay")
+         caption = "\nplot created by \n@gavinfay")
 ``` 
 
 ## Map color to a variable
@@ -484,7 +486,7 @@ ggplot(data = fish_data,
          subtitle = "MAR 536 Biological Statistics II, Lab 2",
          x = "Length (cm)",
          y = "Weight (g)",
-         caption = "\nplot created by \n@gavin_fay")
+         caption = "\nplot created by \n@gavinfay")
 ``` 
  
 ----
@@ -499,7 +501,7 @@ ggplot(data = fish_data, mapping = aes(x= length,
          subtitle = "MAR 536 Biological Statistics II, Lab 2",
          x = "Length (cm)",
          y = "Weight (g)",
-         caption = "\nplot created by \n@gavin_fay")
+         caption = "\nplot created by \n@gavinfay")
 ``` 
 
 ## Points {.small}
@@ -517,7 +519,7 @@ ggplot(data = fish_data,
          subtitle = "MAR 536 Biological Statistics II, Lab 2",
          x = "Length (cm)",
          y = "Weight (g)",
-         caption = "\nplot created by \n@gavin_fay")
+         caption = "\nplot created by \n@gavinfay")
 ``` 
  
 ----
@@ -589,6 +591,7 @@ ggplot(gapdata, aes(x = gdpPercap/1000,
          subtitle = "1990 - 2007",
           x = "GDP per capita ($1000s)",
           y = "Life expectancy (yrs)",
+          size = "Population (millions)",
          caption = "Plot created by 'your name here'",
        fill = "Population (m)",
        color = "Continent") +
@@ -666,7 +669,7 @@ glimpse(loans)
 
 ```{r message = TRUE, out.width = "50%", echo = TRUE}
 ggplot(loans, aes(x = loan_amount)) +
-  geom_histogram()
+  geom_histogram(col = "white")
 ```
 
 ------------------------------------------------------------------------
@@ -677,7 +680,7 @@ binwidth = 2000
 
 ```{r out.width = "50%", echo = TRUE}
 ggplot(loans, aes(x = loan_amount)) +
-  geom_histogram(binwidth = 2000)
+  geom_histogram(binwidth = 2000, col = "white")
 ```
 
 
@@ -771,7 +774,7 @@ fish <- read_csv(file="../data/Laengelmavesi.csv")
 ```{r fishwts, prompt=TRUE,comment='',collapse=TRUE,fig.show='hide', echo=TRUE}
 ggplot(fish, aes(x = fct_reorder(species,weight), 
                  y = weight)) +
-  geom_col(fill="steelblue") +
+  geom_col(fill = "steelblue") +
   labs(x = "species")
 ```
 The call to `fct_reorder()` will reorder the species according to a different vector, here the weight.  
@@ -973,7 +976,7 @@ ggplot(loans |> group_by(homeownership, grade) |> count() |>
 Use the data in `Laengelmavesi2.xlsx` to create the following graphs. Make sure to add axis labels and plot titles.    
 
 1. Create boxplots and histograms of the length distributions for each species.  
-2. Plot all the weights vs the lengths. Include enough information that the data for each species can be identified.  
-3. Plot the mean weight of each species as a function of the mean length, with the species names and mean heights also indicated on the plot.  
+2. Plot all the weights vs all the lengths. Include enough information that the data for each species can be identified on the plot.  
+3. Plot the mean weight of each species as a function of their mean lengths, with the species names and mean heights also indicated on the plot.  
 4. Create one plot of the heights as a function of the lengths. Add a line separating fish with height greater than 20cm.  
 5. _bonus_ Add to your plot from step (2) the mean weight and length  for each species.

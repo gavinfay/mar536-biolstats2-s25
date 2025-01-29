@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.56">
 
-  <meta name="dcterms.date" content="2023-01-25">
+  <meta name="dcterms.date" content="2025-01-29">
   <title>MAR 536 - Spring 2025 – MAR 536: Lab 2</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -99,6 +99,7 @@
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-drop/drop-runtime.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -400,19 +401,19 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2023-01-25</p>
+  <p class="date">2025-01-29</p>
 </section>
 <section id="lab-schedule" class="slide level2">
 <h2>Lab schedule</h2>
-<p>1/18: Introduction to R and R Studio, working with data<br>
-<strong>1/25: Intro to Visualization</strong><br>
-2/01: Probability, linear modeling<br>
-2/08: Data wrangling, model summaries<br>
-2/15: Iteration<br>
-2/22: Creating functions, debugging<br>
-3/01: Simulation, Resampling<br>
-3/15: Flex: more modeling (brms, glmmTMB)<br>
-3/29: Spatial data or tidymodeling</p>
+<p>1/22: Introduction to R and R Studio, working with data<br>
+<strong>1/29: Visualizing data</strong><br>
+2/05: Probability, linear modeling<br>
+2/12: Data wrangling, model summaries<br>
+2/19: Simulation, Resampling<br>
+2/26: Iteration<br>
+3/05: Creating functions, debugging<br>
+3/19: Flex: automated reporting &amp; Quarto<br>
+4/02: working with Spatial data</p>
 <p><strong>Acknowledgements: Mine Çetinkaya-Rundel, Amanda Hart</strong></p>
 </section>
 <section id="today" class="slide level2">
@@ -605,14 +606,14 @@ Lots of functions to read data from files, including:</p>
 <li><code>scan()</code></li>
 </ol>
 <ul>
-<li>flexible, reads data into a vector.</li>
-<li>very fast, good for large or messy data.</li>
+<li>flexible, reads data into a vector</li>
+<li>very fast, good for large or messy data</li>
 </ul>
 <ol start="2" type="1">
 <li><code>read.table</code>, <code>read.csv</code></li>
 </ol>
 <ul>
-<li>easy to use, reads data into a data frame.</li>
+<li>easy to use, reads data into a data frame</li>
 </ul>
 <ol start="3" type="1">
 <li><code>read_excel</code>, <code>read_csv</code> (in tidyverse)</li>
@@ -687,19 +688,12 @@ Either to your project directory or create a directory called ‘data’.</p>
 <!--  <https://www.stat.auckland.ac.nz/~paul/RGraphics/rgraphics.html>   -->
 <!--  `R` code available for all plots in 2nd edition:   -->
 <!--  <https://www.stat.auckland.ac.nz/~paul/RG2e/>   -->
-</section>
-<section id="base-graphics-plot" class="slide level2">
-<h2>Base graphics: plot()</h2>
-<p><code>plot()</code> is the generic function for plotting <code>R</code> objects.</p>
-<ul>
-<li><code>plot()</code> is an overloaded function.<br>
-</li>
-<li>what it returns depends on the type of objects that are given to it.<br>
-</li>
-<li>there are versions of <code>plot</code> that provide useful outputs for many <code>R</code> functions.<br>
-</li>
-<li>e.g.&nbsp;<code>plot.lm()</code> is a version that plots typical diagnostics from a linear model object. (but you still just type <code>plot(myobject)</code>).</li>
-</ul>
+<!-- ## Base graphics: plot() -->
+<!--  `plot()` is the generic function for plotting `R` objects.   -->
+<!--  - `plot()` is an overloaded function.   -->
+<!--  - what it returns depends on the type of objects that are given to it.   -->
+<!--  - there are versions of `plot` that provide useful outputs for many `R` functions.   -->
+<!--  - e.g. `plot.lm()` is a version that plots typical diagnostics from a linear model object. (but you still just type `plot(myobject)`).   -->
 </section>
 <section id="plots-are-like-onionsthey-have-layers" class="slide level2 small">
 <h2>Plots are like onions…they have layers</h2>
@@ -868,7 +862,7 @@ To change the default x and y values use <code>xlim</code> and <code>ylim</code>
 <span id="cb14-7"><a></a><span class="sc">+</span>          <span class="at">subtitle =</span> <span class="st">"MAR 536 Biological Statistics II, Lab 2"</span>,</span>
 <span id="cb14-8"><a></a><span class="sc">+</span>          <span class="at">x =</span> <span class="st">"Length (cm)"</span>,</span>
 <span id="cb14-9"><a></a><span class="sc">+</span>          <span class="at">y =</span> <span class="st">"Weight (g)"</span>,</span>
-<span id="cb14-10"><a></a><span class="sc">+</span>          <span class="at">caption =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">plot created by </span><span class="sc">\n</span><span class="st">@gavin_fay"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-10"><a></a><span class="sc">+</span>          <span class="at">caption =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">plot created by </span><span class="sc">\n</span><span class="st">@gavinfay"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
@@ -890,7 +884,7 @@ If you want to map color to a variable then this should be done in the <code>aes
 <span id="cb15-7"><a></a><span class="sc">+</span>          <span class="at">subtitle =</span> <span class="st">"MAR 536 Biological Statistics II, Lab 2"</span>,</span>
 <span id="cb15-8"><a></a><span class="sc">+</span>          <span class="at">x =</span> <span class="st">"Length (cm)"</span>,</span>
 <span id="cb15-9"><a></a><span class="sc">+</span>          <span class="at">y =</span> <span class="st">"Weight (g)"</span>,</span>
-<span id="cb15-10"><a></a><span class="sc">+</span>          <span class="at">caption =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">plot created by </span><span class="sc">\n</span><span class="st">@gavin_fay"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-10"><a></a><span class="sc">+</span>          <span class="at">caption =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">plot created by </span><span class="sc">\n</span><span class="st">@gavinfay"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
@@ -911,7 +905,7 @@ If you want to map color to a variable then this should be done in the <code>aes
 <span id="cb16-9"><a></a><span class="sc">+</span>          <span class="at">subtitle =</span> <span class="st">"MAR 536 Biological Statistics II, Lab 2"</span>,</span>
 <span id="cb16-10"><a></a><span class="sc">+</span>          <span class="at">x =</span> <span class="st">"Length (cm)"</span>,</span>
 <span id="cb16-11"><a></a><span class="sc">+</span>          <span class="at">y =</span> <span class="st">"Weight (g)"</span>,</span>
-<span id="cb16-12"><a></a><span class="sc">+</span>          <span class="at">caption =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">plot created by </span><span class="sc">\n</span><span class="st">@gavin_fay"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-12"><a></a><span class="sc">+</span>          <span class="at">caption =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">plot created by </span><span class="sc">\n</span><span class="st">@gavinfay"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
@@ -934,7 +928,7 @@ If you want to map color to a variable then this should be done in the <code>aes
 <span id="cb17-10"><a></a><span class="sc">+</span>          <span class="at">subtitle =</span> <span class="st">"MAR 536 Biological Statistics II, Lab 2"</span>,</span>
 <span id="cb17-11"><a></a><span class="sc">+</span>          <span class="at">x =</span> <span class="st">"Length (cm)"</span>,</span>
 <span id="cb17-12"><a></a><span class="sc">+</span>          <span class="at">y =</span> <span class="st">"Weight (g)"</span>,</span>
-<span id="cb17-13"><a></a><span class="sc">+</span>          <span class="at">caption =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">plot created by </span><span class="sc">\n</span><span class="st">@gavin_fay"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-13"><a></a><span class="sc">+</span>          <span class="at">caption =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">plot created by </span><span class="sc">\n</span><span class="st">@gavinfay"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section class="slide level2">
@@ -1098,7 +1092,7 @@ $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.1
 <p><code>geom_histogram()</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">ggplot</span>(loans, <span class="fu">aes</span>(<span class="at">x =</span> loan_amount)) <span class="sc">+</span></span>
-<span id="cb22-2"><a></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">col =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
@@ -1110,7 +1104,7 @@ $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.1
 <p>binwidth = 2000</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">ggplot</span>(loans, <span class="fu">aes</span>(<span class="at">x =</span> loan_amount)) <span class="sc">+</span></span>
-<span id="cb24-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-2"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2000</span>, <span class="at">col =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="lab-02_files/figure-revealjs/unnamed-chunk-28-1.png" style="width:50.0%" class="r-stretch"></section>
@@ -1213,7 +1207,7 @@ $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.1
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="sc">&gt;</span> <span class="fu">ggplot</span>(fish, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(species,weight), </span>
 <span id="cb29-2"><a></a><span class="sc">+</span>                  <span class="at">y =</span> weight)) <span class="sc">+</span></span>
-<span id="cb29-3"><a></a><span class="sc">+</span>   <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb29-3"><a></a><span class="sc">+</span>   <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
 <span id="cb29-4"><a></a><span class="sc">+</span>   <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The call to <code>fct_reorder()</code> will reorder the species according to a different vector, here the weight.</p>
@@ -1223,7 +1217,7 @@ $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.1
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">ggplot</span>(fish, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(species,weight), </span>
 <span id="cb30-2"><a></a>                 <span class="at">y =</span> weight)) <span class="sc">+</span></span>
-<span id="cb30-3"><a></a>  <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb30-3"><a></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
 <span id="cb30-4"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
@@ -1386,9 +1380,9 @@ $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.1
 <ol type="1">
 <li>Create boxplots and histograms of the length distributions for each species.<br>
 </li>
-<li>Plot all the weights vs the lengths. Include enough information that the data for each species can be identified.<br>
+<li>Plot all the weights vs all the lengths. Include enough information that the data for each species can be identified on the plot.<br>
 </li>
-<li>Plot the mean weight of each species as a function of the mean length, with the species names and mean heights also indicated on the plot.<br>
+<li>Plot the mean weight of each species as a function of their mean lengths, with the species names and mean heights also indicated on the plot.<br>
 </li>
 <li>Create one plot of the heights as a function of the lengths. Add a line separating fish with height greater than 20cm.<br>
 </li>
@@ -1398,7 +1392,7 @@ $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.1
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p><a href="https://gavinfay.github.io/mar536-biolstats2-s23">gavinfay.github.io/mar536-biolstats2-s23</a></p>
+<p><a href="https://gavinfay.github.io/mar536-biolstats2-s25">gavinfay.github.io/mar536-biolstats2-s25</a></p>
 </div>
 </div>
 </section></section>
@@ -1414,6 +1408,7 @@ $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.1
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/multiplex/socket.io.js"></script>
   <script src="../site_libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-drop/drop-runtime.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1436,6 +1431,7 @@ $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.1
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'multiplex': {"secret":"17374016970506713730","id":"8c6a8409a970b5dc","url":"https://reveal-multiplex.glitch.me/"},
+'drop': {"button":true,"shortcut":"`","engine":"webr","webr":{"packages":[]},"pyodide":{"packages":[]}},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1606,7 +1602,7 @@ $ debt_to_income &lt;dbl&gt; 18.01, 5.04, 21.15, 10.16, 57.96, 6.46, 23.66, 16.1
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealDrop, QuartoSupport,
 
           RevealMath,
           RevealNotes,

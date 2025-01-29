@@ -1169,169 +1169,217 @@
     "text": "Lab exercise 4/4\nWrite a function (or set of functions) that:\na. takes two vectors of data,\nb. produces a scatterplot of one vector vs the other,\nc. adds a title that is a species name,\nd. performs a regression if there is enough data,\ne. adds the estimated regression line to the plot, and\nf. returns the coefficients of the regression.\nAdd an argument that determines whether the regression should be based on the logs of the input vectors.\nHint Test your functions with some dummy data. Reuse code from earlier today and from other labs.\nApply your function(s) to the Laengelmavesi2 data.\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MAR 536: Biological Statistics II",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "Click here to download a PDF copy of the syllabus.\n(last updated 2025-01-17)",
+    "crumbs": [
+      "Course information",
+      "Schedule"
+    ]
   },
   {
-    "objectID": "weeks/week-09.html",
-    "href": "weeks/week-09.html",
-    "title": "Week 9",
+    "objectID": "index.html#course-syllabus",
+    "href": "index.html#course-syllabus",
+    "title": "MAR 536: Biological Statistics II",
     "section": "",
-    "text": "Note that there is no lab on Wednesday due to the UMass Marine Science Symposium (all are welcome to attend).\nGavin is out sick so there is a slight change in plans. Lecture materials are via recordings, class sessions on Tuesday and Thursday will be question/answer sessions and chances to get feedback/help from others on your projects."
+    "text": "Click here to download a PDF copy of the syllabus.\n(last updated 2025-01-17)",
+    "crumbs": [
+      "Course information",
+      "Schedule"
+    ]
   },
   {
-    "objectID": "weeks/week-09.html#prepare",
-    "href": "weeks/week-09.html#prepare",
-    "title": "Week 9",
+    "objectID": "index.html#course-schedule",
+    "href": "index.html#course-schedule",
+    "title": "MAR 536: Biological Statistics II",
+    "section": "Course Schedule",
+    "text": "Course Schedule\nThis page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses.\n[notes on changes to schedule will appear below but noted here as well]\n[2025-01-25: probability review lecture moved to Thu Jan 30, subsequent changes to lecture schedule to come]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\n\n\n\n\nDate\n\n\n\n\nTopic\n\n\n\n\nPrepare\n\n\n\n\nSlides\n\n\n\n\nAE\n\n\n\n\nLab\n\n\n\n\nHW\n\n\n\n\nExam\n\n\n\n\nProject\n\n\n\n\n\n\n\n\n1\n\n\n\n\nTue, Jan 21\n\n\n\n\nIntroduction\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 22\n\n\n\n\nLab 1 -Intro to R/RStudio\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 23\n\n\n\n\nStatistical rethinking, Lab 1 part II\n\n\n\n\n\n\n🖥️\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n\n\nTue, Jan 28\n\n\n\n\nData exploration, checking\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Jan 28\n\n\n\n\nDue: Lab 1\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 29\n\n\n\n\nLab 2 - Visualizing data\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 30\n\n\n\n\nProbability review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 30\n\n\n\n\nDue: Project topic\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n3\n\n\n\n\nTue, Feb 04\n\n\n\n\nLinear regression review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Feb 04\n\n\n\n\nLikelihood\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Feb 04\n\n\n\n\nDue: Lab 2\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed,\n\n\nFeb 05\n\n\n\n\nLab 3 - Probability & linear modeling\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 06\n\n\n\n\nGeneralized Linear Models\n\n\n\n\n📖\n\n\n\n\n🖥️ 💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n\n\nTue, Feb 11\n\n\n\n\nGLMs II (logistic regression)\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Feb 11\n\n\n\n\nDue: Lab 3\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed. Feb 12\n\n\n\n\nLab 4 - Data wrangling & model summaries\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 13\n\n\n\n\nResampling methods, cross-validation\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 13\n\n\n\n\nDue: Project description\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n5\n\n\n\n\nTue, Feb 18\n\n\n\n\nDue: Lab 4\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed,\n\n\nFeb 19\n\n\n\n\nLab 5 - Simulation\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 20\n\n\n\n\nNon-linear models, splines\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n\n\nTue, Feb 25\n\n\n\n\nDue: Lab 4\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Feb 25\n\n\n\n\nGAMs\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Feb 26\n\n\n\n\nLab 6 - Iteration\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 27\n\n\n\n\nProject Updates\n\n\n\n\n📖\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nThu, Feb 27\n\n\n\n\nDue: Data Exploration Report\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n7\n\n\n\n\nTue, Mar 04\n\n\n\n\nMatrix Algebra review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Mar 04\n\n\n\n\nMidterm distributed\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n✅\n\n\n\n\n\n\n\n\n\n\nTue, Mar 04\n\n\n\n\nDue: Lab 6\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Mar 05\n\n\n\n\nLab 7 - Functions\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Mar 06\n\n\n\n\nPrincipal Components Analysis\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSPRING\n\n\n\n\nBREAK\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n\n\nTue, Mar 18\n\n\n\n\nLinear mixed effects model\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Mar 19\n\n\n\n\nLab 8 - Reporting & Quarto\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Mar 20\n\n\n\n\nMore mixed effects\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Mar 20\n\n\n\n\nDue: Midterm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n✅\n\n\n\n\n\n\n\n\n9\n\n\n\n\nTue, Mar 25\n\n\n\n\nZero-inflated models\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Mar 26\n\n\n\n\nUMASS IMS SYMPOSIUM\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Mar 27\n\n\n\n\nSpatial GLMMs\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n\n\nTue, Apr 01\n\n\n\n\nProject updates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nTue, Apr 01\n\n\n\n\nDue: Lab 8\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Apr 02\n\n\n\n\nLab 9 - Spatial data\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Apr 03\n\n\n\n\nGAMs application - guest lecture\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n\n\nTue, Apr 08\n\n\n\n\nClassification / Linear Discriminant Analysis\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Apr 08\n\n\n\n\nDue: Lab 9\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Apr 09\n\n\n\n\nLab - project consult\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nThu, Apr 10\n\n\n\n\nTrees\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12\n\n\n\n\nTue, Apr 15\n\n\n\n\nOrdination methods\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Apr 16\n\n\n\n\nLab - project consult\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nThu, Apr 17\n\n\n\n\nCluster analysis\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n\n\n\n\nTue, Apr 22\n\n\n\n\nStudent presentations\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nThu, Apr 24\n\n\n\n\nStudent presentations\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n14\n\n\n\n\nTue, Apr 29\n\n\n\n\nStudent presentations\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nWed, Apr 30\n\n\n\n\nCourse Review\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFri, May 02\n\n\n\n\nDue: Project Report\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂",
+    "crumbs": [
+      "Course information",
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "weeks/week-10.html",
+    "href": "weeks/week-10.html",
+    "title": "Week 10",
+    "section": "",
+    "text": "Gavin is still recovering from illness and so there is a slight change in plans. Lecture materials are via recordings, class sessions on Tuesday and Thursday will be question/answer sessions and live walk-through of examples from the lectures. Wednesday’s lab will be on using spatial data in R."
+  },
+  {
+    "objectID": "weeks/week-10.html#prepare",
+    "href": "weeks/week-10.html#prepare",
+    "title": "Week 10",
     "section": "Prepare",
-    "text": "Prepare\n📖 Tue:\n\nLecture 14 - Zero inflated models (Recording)\nReading: Chapter 11 of Zuur et al. 2009\n\n📖 Thu:\n\nLecture 15 - Spatial GLM(M)s (Recording - lecture starts ~20 min in)"
+    "text": "Prepare\n📖 Tue:\n\nReading: Chapter 14 of Zuur et al. 2007\nLecture 16 - Linear Discriminant Analysis (Recording)\n\n(lecture starts at 15m30s)\nslide deck from recorded lecture\n\n\n📖 Thu:\n\nReading: Chapter 9 of Zuur et al. 2007\nLecture 17 - Trees (Classification/Regression) (Recording)\n\nslide deck from recorded lecture"
   },
   {
-    "objectID": "weeks/week-09.html#participate",
-    "href": "weeks/week-09.html#participate",
-    "title": "Week 9",
+    "objectID": "weeks/week-10.html#participate",
+    "href": "weeks/week-10.html#participate",
+    "title": "Week 10",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 14 slide deck (from 2020)\n\nRmd with examples from the lecture\nNB: Today I would likely fit the models in the lecture solely using glmmTMB, e.g. using code similar to the owls example below\nOwls example, zero inflation using glmmTMB (Brooks et al. 2017)\n\npaper with rationale for models by Bolker et al. (2012)\n\nData sets can be found in the class-data folder.\n\n🖥️ Lecture 15 slide deck (from 2020)\n\nRmd with examples from the lecture\nNB: In future offerings, I will replace a lot of this material with focus on sdmTMB, which allows us to use the same type of formula syntax we’ve been using. Here’s a bonus lecture on sdmTMB (recording from my Ecosystem models class, lecture by Dr. Eric Ward)\n\n\n\nBack to course schedule ⏎"
+    "text": "Participate\n🖥️ Linear Discriminant Analysis\n\nRmd with examples from the lecture\nData sets can be found in the class-data folder.\n\n🖥️ Lab 8 - working with spatial data in R\n\nslide deck for Lab 8 part 1\n\n.qmd (code)\n\nslide deck for Lab 8 part 2\n\n.Rmd (code)\n\njust the lab 8 exercises\n\n🖥️ Trees\n\nRmd with examples from the lecture\n\n\n\nBack to course schedule ⏎"
   },
   {
-    "objectID": "weeks/week-07.html",
-    "href": "weeks/week-07.html",
-    "title": "Week 7",
+    "objectID": "weeks/week-08.html",
+    "href": "weeks/week-08.html",
+    "title": "Week 8",
     "section": "",
-    "text": "Take-home MIDTERM distributed this week."
+    "text": "Take-home MIDTERM due this week (3/16)\nMid-semester self-reflection survey on R lab component."
   },
   {
-    "objectID": "weeks/week-07.html#prepare",
-    "href": "weeks/week-07.html#prepare",
-    "title": "Week 7",
+    "objectID": "weeks/week-08.html#prepare",
+    "href": "weeks/week-08.html#prepare",
+    "title": "Week 8",
     "section": "Prepare",
-    "text": "Prepare\n📖 Tue + Thu: Read Chapter 12 Zuur et al. 2007."
+    "text": "Prepare\n📖 Tue + Thu: Read Chapter 8 Zuur et al. 2007."
   },
   {
-    "objectID": "weeks/week-07.html#participate",
-    "href": "weeks/week-07.html#participate",
-    "title": "Week 7",
+    "objectID": "weeks/week-08.html#participate",
+    "href": "weeks/week-08.html#participate",
+    "title": "Week 8",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 11 - Matrix Algebra Review\n⌨️ Lab 7 - Functions (just the exercises)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 12 - Principal Component Analysis\n\nPCA with palmerpenguins from Dr. Allison Horst"
+    "text": "Participate\n🖥️ Lecture 13 - Linear mixed effects models\n\nRmd with examples from the lecture\n\n⌨️ Lab 7 - Functions (just the exercises)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 14 - more mixed effects\n\n\nBack to course schedule ⏎"
   },
   {
-    "objectID": "weeks/week-07.html#practice",
-    "href": "weeks/week-07.html#practice",
-    "title": "Week 7",
-    "section": "Practice",
-    "text": "Practice\nLab 7 exercise is due before lab on Wednesday Mar 22.\n\n\nBack to course schedule ⏎"
-  },
-  {
-    "objectID": "weeks/week-05.html",
-    "href": "weeks/week-05.html",
-    "title": "Week 5",
+    "objectID": "weeks/week-06.html",
+    "href": "weeks/week-06.html",
+    "title": "Week 6",
     "section": "",
-    "text": "📖 Tue: Read Chapter 5 of James et al. (Introduction to Statistical Learning with R)\n📖 Thu: Read Chapter 7 of James et al. (Introduction to Statistical Learning with R)"
+    "text": "NO CLASS ON TUESDAY THIS WEEK AS THE UNIVERSITY IS ON A MONDAY SCHEDULE"
   },
   {
-    "objectID": "weeks/week-05.html#prepare",
-    "href": "weeks/week-05.html#prepare",
-    "title": "Week 5",
-    "section": "",
-    "text": "📖 Tue: Read Chapter 5 of James et al. (Introduction to Statistical Learning with R)\n📖 Thu: Read Chapter 7 of James et al. (Introduction to Statistical Learning with R)"
+    "objectID": "weeks/week-06.html#prepare",
+    "href": "weeks/week-06.html#prepare",
+    "title": "Week 6",
+    "section": "Prepare",
+    "text": "Prepare\n📖 Thu: Read Chapter 7 Zuur et al. 2007."
   },
   {
-    "objectID": "weeks/week-05.html#participate",
-    "href": "weeks/week-05.html#participate",
-    "title": "Week 5",
+    "objectID": "weeks/week-06.html#participate",
+    "href": "weeks/week-06.html#participate",
+    "title": "Week 6",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 8 - Resampling\n⌨️ Lab 5 - Simulation (just the exercise)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 9 - Nonlinear models, splines"
+    "text": "Participate\n⌨️ Lab 6 - Iteration (just the exercise)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 10 - Generalized Additive Models"
   },
   {
-    "objectID": "weeks/week-05.html#practice",
-    "href": "weeks/week-05.html#practice",
-    "title": "Week 5",
+    "objectID": "weeks/week-06.html#practice",
+    "href": "weeks/week-06.html#practice",
+    "title": "Week 6",
     "section": "Practice",
-    "text": "Practice\nLab 5 exercise is due before lab on Wednesday Feb 22.\n\n\nBack to course schedule ⏎"
+    "text": "Practice\nLab 6 exercise is due before lab on Wednesday Mar 01.\n\n\nBack to course schedule ⏎"
   },
   {
-    "objectID": "weeks/week-03.html",
-    "href": "weeks/week-03.html",
-    "title": "Week 3",
+    "objectID": "weeks/week-04.html",
+    "href": "weeks/week-04.html",
+    "title": "Week 4",
     "section": "",
-    "text": "📖 Read Chapter 5 of Zuur (Tue)\n📖 Read Chapters 8 & 11 of “An introduction to R (Venables et al.)” (Tue)\n📖 Read Chapter 7 of Hilborn & Mangel 1997 (Thu)"
+    "text": "📖 Read Chapters 6.1 (Tue) & 6.2 (Thu) of Zuur et al. 2007."
   },
   {
-    "objectID": "weeks/week-03.html#prepare",
-    "href": "weeks/week-03.html#prepare",
-    "title": "Week 3",
+    "objectID": "weeks/week-04.html#prepare",
+    "href": "weeks/week-04.html#prepare",
+    "title": "Week 4",
     "section": "",
-    "text": "📖 Read Chapter 5 of Zuur (Tue)\n📖 Read Chapters 8 & 11 of “An introduction to R (Venables et al.)” (Tue)\n📖 Read Chapter 7 of Hilborn & Mangel 1997 (Thu)"
+    "text": "📖 Read Chapters 6.1 (Tue) & 6.2 (Thu) of Zuur et al. 2007."
   },
   {
-    "objectID": "weeks/week-03.html#participate",
-    "href": "weeks/week-03.html#participate",
-    "title": "Week 3",
+    "objectID": "weeks/week-04.html#participate",
+    "href": "weeks/week-04.html#participate",
+    "title": "Week 4",
     "section": "Participate",
-    "text": "Participate\n⌨️ Lab 3 - Probability & Linear Modeling in R (just the exercise)\n\nspecies richness on beaches data (RIKZ.txt, Zuur Chapter 5, 27)\n\n🖥️ Tutorial - data exploration & catch rate model selection for cod (L McGinnis)\n🖥️ Lecture 4 - Regression review\n🖥️ Lecture 5 - Likelihood"
+    "text": "Participate\n🖥️ Lecture 6 - Generalized Linear Models\n\nlecture 6b - R code\n\n⌨️ Lab 4 - Data wrangling & model summaries (just the exercise)\n\nlab4-data\n\n🖥️ Lecture 7 - GLMs II (logistic regression)"
   },
   {
-    "objectID": "weeks/week-03.html#practice",
-    "href": "weeks/week-03.html#practice",
-    "title": "Week 3",
+    "objectID": "weeks/week-04.html#practice",
+    "href": "weeks/week-04.html#practice",
+    "title": "Week 4",
     "section": "Practice",
-    "text": "Practice\nLab 3 exercise is due before lab on Wednesday Feb 8.\n\n\nBack to course schedule ⏎"
+    "text": "Practice\nLab 4 exercise is due before lab on Wednesday Feb 15.\n\n\nBack to course schedule ⏎"
   },
   {
-    "objectID": "weeks/week-01.html",
-    "href": "weeks/week-01.html",
-    "title": "Week 1",
+    "objectID": "weeks/week-02.html",
+    "href": "weeks/week-02.html",
+    "title": "Week 2",
     "section": "",
-    "text": "📖 Read the syllabus\n📖 Read Chapter 1.1-1.2 of McElreath (Tue)",
+    "text": "📖 Read remaining parts of Chapters 1-4 of Zuur (Tue)\n📖 Read/reference Chapter 4 of Bolker 2008 (Thu)",
     "crumbs": [
       "Weekly materials",
-      "Week 1"
+      "Week 2"
     ]
   },
   {
-    "objectID": "weeks/week-01.html#prepare",
-    "href": "weeks/week-01.html#prepare",
-    "title": "Week 1",
+    "objectID": "weeks/week-02.html#prepare",
+    "href": "weeks/week-02.html#prepare",
+    "title": "Week 2",
     "section": "",
-    "text": "📖 Read the syllabus\n📖 Read Chapter 1.1-1.2 of McElreath (Tue)",
+    "text": "📖 Read remaining parts of Chapters 1-4 of Zuur (Tue)\n📖 Read/reference Chapter 4 of Bolker 2008 (Thu)",
     "crumbs": [
       "Weekly materials",
-      "Week 1"
+      "Week 2"
     ]
   },
   {
-    "objectID": "weeks/week-01.html#participate",
-    "href": "weeks/week-01.html#participate",
-    "title": "Week 1",
+    "objectID": "weeks/week-02.html#participate",
+    "href": "weeks/week-02.html#participate",
+    "title": "Week 2",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 1 -Introduction (📋 gapminder data)\n⌨️ Lab 1 -Intro to R (just the exercise)\nThursday - continuing with lecture 1 and lab 1",
+    "text": "Participate\n🖥️ Tuesday: Lecture - Data exploration, checking\n\nPlot description practice (Acknowledgements: S. Stoudt)\n\n⌨️ Wednesday: Lab 2 - Data Visualization (just the exercise)\n\nlake Laengelmavesi fish data\n\n🖥️ Thursday: Lecture - Probability review",
     "crumbs": [
       "Weekly materials",
-      "Week 1"
+      "Week 2"
     ]
   },
   {
-    "objectID": "weeks/week-01.html#practice",
-    "href": "weeks/week-01.html#practice",
-    "title": "Week 1",
+    "objectID": "weeks/week-02.html#practice",
+    "href": "weeks/week-02.html#practice",
+    "title": "Week 2",
     "section": "Practice",
-    "text": "Practice\nLab 1 exercise is due before class on Tuesday Jan 28.\n\n\nBack to course schedule ⏎",
+    "text": "Practice\nYour project topic ideas are due on Thursday Jan 30.\nLab 2 exercise is due before class on Tuesday Feb 4.\n\n\nBack to course schedule ⏎",
     "crumbs": [
       "Weekly materials",
-      "Week 1"
+      "Week 2"
     ]
   },
   {
-    "objectID": "midterm.html",
-    "href": "midterm.html",
-    "title": "Midterm",
+    "objectID": "project-description.html",
+    "href": "project-description.html",
+    "title": "Project description",
     "section": "",
-    "text": "The midterm (20% of course grade) is a take home exam covering core course topics, through (and including) material in week 7 (up to PCA).\nAs detailed on the syllabus this will be distributed Mar 04 and is due Mar 20.\nA practice midterm will be posted here early in the semester.",
+    "text": "Students complete a term project as part of the course. Projects will constitute an advanced statistical analysis of data relevant to the student’s graduate research topic, including a detailed report and oral presentation. The project is worth 60% of the course grade.\nStudents are encouraged to discuss their project ideas with Gavin to identify scope. Note that the project does not have to be related to your graduate research, but many students in previous semesters have found that this is beneficial in developing the basis for their thesis (or a particular chapter). Gavin also has a list of potential student project ideas. Regardless, try to view the project as an analysis that is potentially publishable. Previous published journal articles that were based on MAR 536 student projects include Winton et al. (2018), Silva et al. (2019), Hart & Fay (2020), Silva et al. (2020), Velikaneye & Kozak (2024), Duarte & Cadrin (2024).\nDeliverables include:\n\n1-2 sentence project topic idea due Jan 30 (1% of course grade).\nBrief (1-2 page) project description including a statement of the problem, proposed statistical method, and supplemental reference(s) is due Feb 13 (4% of course grade).\nData exploration report containing data summaries and visualizations of the dataset to be used in the project, including observations of implications of data structure for the analyses to be conducted, and a brief in-class update. Due Feb 27. (10% of course grade).\nIn-class verbal update (3 minute presentation) on project progress. Apr 1. (5% of course grade).\nStudent project presentation with chapter assignment or supplemental reading on the statistical method used in the project. A 10-minute lecture on the method, and demonstration of the method using the project data set. Presentations will be graded based on the instructors’ evaluation of accuracy, clarity, and comprehensiveness. Feedback from other students will also be considered in evaluation of presentations (20% of course grade).\nProject report (due May 02). A written description of the methods and results of the project in the form of a draft scientific manuscript (Introduction, Methods, Results, Discussion). (20% of course grade).\n\nProject report expectations\nA rubric for the project report can be found here.\nProject presentation scheduling\nGo here to complete the survey regarding availability for student presentation time-slots.\nData set ideas\nIf you are stuck for a dataset, then there are many open data sets in the ecological and environmental sciences that are published online. Some of these may provide some inspiration for an analysis.\n\nNOAA Data Explorer\nDOI Data Explorer\nEcological Data Wiki\nDataDryad\nZenodo\nLibguide on ecological datasets from Central Michigan University Library",
     "crumbs": [
-      "Midterm exam"
+      "Projects",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "course-overview.html",
+    "href": "course-overview.html",
+    "title": "MAR 536: Biological Statistics II",
+    "section": "",
+    "text": "Statistical analysis of ecological data. This course provides guided learning in advanced statistical analysis, as applied to ecological research and other fields of marine science. Advanced concepts in probability, statistical model building, hypothesis testing, inference, estimation and prediction, including analyses of example data sets and problems. Students will be required to learn and present topics to the class that are relevant to their graduate research and complete a class project. Course materials will be presented using the statistical programming language R; a computer lab focused on introductory and intermediate R programming will be held for the first half of the semester.",
+    "crumbs": [
+      "Course information",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "LICENSE.html#creative-commons-attribution-sharealike-4.0-international-public-license",
+    "href": "LICENSE.html#creative-commons-attribution-sharealike-4.0-international-public-license",
+    "title": "Attribution-ShareAlike 4.0 International",
+    "section": "Creative Commons Attribution-ShareAlike 4.0 International Public License",
+    "text": "Creative Commons Attribution-ShareAlike 4.0 International Public License\nBy exercising the Licensed Rights (defined below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution-ShareAlike 4.0 International Public License (“Public License”). To the extent this Public License may be interpreted as a contract, You are granted the Licensed Rights in consideration of Your acceptance of these terms and conditions, and the Licensor grants You such rights in consideration of benefits the Licensor receives from making the Licensed Material available under these terms and conditions.\n\nSection 1 – Definitions.\n\nAdapted Material means material subject to Copyright and Similar Rights that is derived from or based upon the Licensed Material and in which the Licensed Material is translated, altered, arranged, transformed, or otherwise modified in a manner requiring permission under the Copyright and Similar Rights held by the Licensor. For purposes of this Public License, where the Licensed Material is a musical work, performance, or sound recording, Adapted Material is always produced where the Licensed Material is synched in timed relation with a moving image.\nAdapter’s License means the license You apply to Your Copyright and Similar Rights in Your contributions to Adapted Material in accordance with the terms and conditions of this Public License.\nBY-SA Compatible License means a license listed at creativecommons.org/compatiblelicenses, approved by Creative Commons as essentially the equivalent of this Public License.\nCopyright and Similar Rights means copyright and/or similar rights closely related to copyright including, without limitation, performance, broadcast, sound recording, and Sui Generis Database Rights, without regard to how the rights are labeled or categorized. For purposes of this Public License, the rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.\nEffective Technological Measures means those measures that, in the absence of proper authority, may not be circumvented under laws fulfilling obligations under Article 11 of the WIPO Copyright Treaty adopted on December 20, 1996, and/or similar international agreements.\nExceptions and Limitations means fair use, fair dealing, and/or any other exception or limitation to Copyright and Similar Rights that applies to Your use of the Licensed Material.\nLicense Elements means the license attributes listed in the name of a Creative Commons Public License. The License Elements of this Public License are Attribution and ShareAlike.\nLicensed Material means the artistic or literary work, database, or other material to which the Licensor applied this Public License.\nLicensed Rights means the rights granted to You subject to the terms and conditions of this Public License, which are limited to all Copyright and Similar Rights that apply to Your use of the Licensed Material and that the Licensor has authority to license.\nLicensor means the individual(s) or entity(ies) granting rights under this Public License.\nShare means to provide material to the public by any means or process that requires permission under the Licensed Rights, such as reproduction, public display, public performance, distribution, dissemination, communication, or importation, and to make material available to the public including in ways that members of the public may access the material from a place and at a time individually chosen by them.\nSui Generis Database Rights means rights other than copyright resulting from Directive 96/9/EC of the European Parliament and of the Council of 11 March 1996 on the legal protection of databases, as amended and/or succeeded, as well as other essentially equivalent rights anywhere in the world.\nYou means the individual or entity exercising the Licensed Rights under this Public License. Your has a corresponding meaning.\n\n\n\nSection 2 – Scope.\n\nLicense grant.\n\nSubject to the terms and conditions of this Public License, the Licensor hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive, irrevocable license to exercise the Licensed Rights in the Licensed Material to:\nA. reproduce and Share the Licensed Material, in whole or in part; and\nB. produce, reproduce, and Share Adapted Material.\nExceptions and Limitations. For the avoidance of doubt, where Exceptions and Limitations apply to Your use, this Public License does not apply, and You do not need to comply with its terms and conditions.\nTerm. The term of this Public License is specified in Section 6(a).\nMedia and formats; technical modifications allowed. The Licensor authorizes You to exercise the Licensed Rights in all media and formats whether now known or hereafter created, and to make technical modifications necessary to do so. The Licensor waives and/or agrees not to assert any right or authority to forbid You from making technical modifications necessary to exercise the Licensed Rights, including technical modifications necessary to circumvent Effective Technological Measures. For purposes of this Public License, simply making modifications authorized by this Section 2(a)(4) never produces Adapted Material.\nDownstream recipients.\nA. Offer from the Licensor – Licensed Material. Every recipient of the Licensed Material automatically receives an offer from the Licensor to exercise the Licensed Rights under the terms and conditions of this Public License.\nB. Additional offer from the Licensor – Adapted Material. Every recipient of Adapted Material from You automatically receives an offer from the Licensor to exercise the Licensed Rights in the Adapted Material under the conditions of the Adapter’s License You apply.\nC. No downstream restrictions. You may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, the Licensed Material if doing so restricts exercise of the Licensed Rights by any recipient of the Licensed Material.\nNo endorsement. Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).\n\nOther rights.\n\nMoral rights, such as the right of integrity, are not licensed under this Public License, nor are publicity, privacy, and/or other similar personality rights; however, to the extent possible, the Licensor waives and/or agrees not to assert any such rights held by the Licensor to the limited extent necessary to allow You to exercise the Licensed Rights, but not otherwise.\nPatent and trademark rights are not licensed under this Public License.\nTo the extent possible, the Licensor waives any right to collect royalties from You for the exercise of the Licensed Rights, whether directly or through a collecting society under any voluntary or waivable statutory or compulsory licensing scheme. In all other cases the Licensor expressly reserves any right to collect such royalties.\n\n\n\n\nSection 3 – License Conditions.\nYour exercise of the Licensed Rights is expressly made subject to the following conditions.\n\nAttribution.\n\nIf You Share the Licensed Material (including in modified form), You must:\nA. retain the following if it is supplied by the Licensor with the Licensed Material:\n\nidentification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor (including by pseudonym if designated);\na copyright notice;\na notice that refers to this Public License;\na notice that refers to the disclaimer of warranties;\na URI or hyperlink to the Licensed Material to the extent reasonably practicable;\n\nB. indicate if You modified the Licensed Material and retain an indication of any previous modifications; and\nC. indicate the Licensed Material is licensed under this Public License, and include the text of, or the URI or hyperlink to, this Public License.\nYou may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.\nIf requested by the Licensor, You must remove any of the information required by Section 3(a)(1)(A) to the extent reasonably practicable.\n\nShareAlike.\n\nIn addition to the conditions in Section 3(a), if You Share Adapted Material You produce, the following conditions also apply.\n\nThe Adapter’s License You apply must be a Creative Commons license with the same License Elements, this version or later, or a BY-SA Compatible License.\nYou must include the text of, or the URI or hyperlink to, the Adapter’s License You apply. You may satisfy this condition in any reasonable manner based on the medium, means, and context in which You Share Adapted Material.\nYou may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, Adapted Material that restrict exercise of the rights granted under the Adapter’s License You apply.\n\n\n\nSection 4 – Sui Generis Database Rights.\nWhere the Licensed Rights include Sui Generis Database Rights that apply to Your use of the Licensed Material:\n\nfor the avoidance of doubt, Section 2(a)(1) grants You the right to extract, reuse, reproduce, and Share all or a substantial portion of the contents of the database;\nif You include all or a substantial portion of the database contents in a database in which You have Sui Generis Database Rights, then the database in which You have Sui Generis Database Rights (but not its individual contents) is Adapted Material, including for purposes of Section 3(b); and\nYou must comply with the conditions in Section 3(a) if You Share all or a substantial portion of the contents of the database.\n\nFor the avoidance of doubt, this Section 4 supplements and does not replace Your obligations under this Public License where the Licensed Rights include other Copyright and Similar Rights.\n\n\nSection 5 – Disclaimer of Warranties and Limitation of Liability.\n\nUnless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You.\nTo the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You.\nThe disclaimer of warranties and limitation of liability provided above shall be interpreted in a manner that, to the extent possible, most closely approximates an absolute disclaimer and waiver of all liability.\n\n\n\nSection 6 – Term and Termination.\n\nThis Public License applies for the term of the Copyright and Similar Rights licensed here. However, if You fail to comply with this Public License, then Your rights under this Public License terminate automatically.\nWhere Your right to use the Licensed Material has terminated under Section 6(a), it reinstates:\n\nautomatically as of the date the violation is cured, provided it is cured within 30 days of Your discovery of the violation; or\nupon express reinstatement by the Licensor.\n\nFor the avoidance of doubt, this Section 6(b) does not affect any right the Licensor may have to seek remedies for Your violations of this Public License.\nFor the avoidance of doubt, the Licensor may also offer the Licensed Material under separate terms or conditions or stop distributing the Licensed Material at any time; however, doing so will not terminate this Public License.\nSections 1, 5, 6, 7, and 8 survive termination of this Public License.\n\n\n\nSection 7 – Other Terms and Conditions.\n\nThe Licensor shall not be bound by any additional or different terms or conditions communicated by You unless expressly agreed.\nAny arrangements, understandings, or agreements regarding the Licensed Material not stated herein are separate from and independent of the terms and conditions of this Public License.\n\n\n\nSection 8 – Interpretation.\n\nFor the avoidance of doubt, this Public License does not, and shall not be interpreted to, reduce, limit, restrict, or impose conditions on any use of the Licensed Material that could lawfully be made without permission under this Public License.\nTo the extent possible, if any provision of this Public License is deemed unenforceable, it shall be automatically reformed to the minimum extent necessary to make it enforceable. If the provision cannot be reformed, it shall be severed from this Public License without affecting the enforceability of the remaining terms and conditions.\nNo term or condition of this Public License will be waived and no failure to comply consented to unless expressly agreed to by the Licensor.\nNothing in this Public License constitutes or may be interpreted as a limitation upon, or waiver of, any privileges and immunities that apply to the Licensor or You, including from the legal processes of any jurisdiction or authority.\n\n\nCreative Commons is not a party to its public licenses. Notwithstanding, Creative Commons may elect to apply one of its public licenses to material it publishes and in those instances will be considered the “Licensor.” The text of the Creative Commons public licenses is dedicated to the public domain under the CC0 Public Domain Dedication. Except for the limited purpose of indicating that material is shared under a Creative Commons public license or as otherwise permitted by the Creative Commons policies published at creativecommons.org/policies, Creative Commons does not authorize the use of the trademark “Creative Commons” or any other trademark or logo of Creative Commons without its prior written consent including, without limitation, in connection with any unauthorized modifications to any of its public licenses or any other arrangements, understandings, or agreements concerning use of licensed material. For the avoidance of doubt, this paragraph does not form part of the public licenses.\nCreative Commons may be contacted at creativecommons.org."
+  },
+  {
+    "objectID": "class-data.html",
+    "href": "class-data.html",
+    "title": "Course Data Sets",
+    "section": "",
+    "text": "A folder with all our class data sets from labs and lecture examples can be found here.",
+    "crumbs": [
+      "Course Data Sets"
     ]
   },
   {
@@ -1445,218 +1493,170 @@
     ]
   },
   {
-    "objectID": "class-data.html",
-    "href": "class-data.html",
-    "title": "Course Data Sets",
+    "objectID": "midterm.html",
+    "href": "midterm.html",
+    "title": "Midterm",
     "section": "",
-    "text": "A folder with all our class data sets from labs and lecture examples can be found here.",
+    "text": "The midterm (20% of course grade) is a take home exam covering core course topics, through (and including) material in week 7 (up to PCA).\nAs detailed on the syllabus this will be distributed Mar 04 and is due Mar 20.\nA practice midterm will be posted here early in the semester.",
     "crumbs": [
-      "Course Data Sets"
+      "Midterm exam"
     ]
   },
   {
-    "objectID": "LICENSE.html#creative-commons-attribution-sharealike-4.0-international-public-license",
-    "href": "LICENSE.html#creative-commons-attribution-sharealike-4.0-international-public-license",
-    "title": "Attribution-ShareAlike 4.0 International",
-    "section": "Creative Commons Attribution-ShareAlike 4.0 International Public License",
-    "text": "Creative Commons Attribution-ShareAlike 4.0 International Public License\nBy exercising the Licensed Rights (defined below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution-ShareAlike 4.0 International Public License (“Public License”). To the extent this Public License may be interpreted as a contract, You are granted the Licensed Rights in consideration of Your acceptance of these terms and conditions, and the Licensor grants You such rights in consideration of benefits the Licensor receives from making the Licensed Material available under these terms and conditions.\n\nSection 1 – Definitions.\n\nAdapted Material means material subject to Copyright and Similar Rights that is derived from or based upon the Licensed Material and in which the Licensed Material is translated, altered, arranged, transformed, or otherwise modified in a manner requiring permission under the Copyright and Similar Rights held by the Licensor. For purposes of this Public License, where the Licensed Material is a musical work, performance, or sound recording, Adapted Material is always produced where the Licensed Material is synched in timed relation with a moving image.\nAdapter’s License means the license You apply to Your Copyright and Similar Rights in Your contributions to Adapted Material in accordance with the terms and conditions of this Public License.\nBY-SA Compatible License means a license listed at creativecommons.org/compatiblelicenses, approved by Creative Commons as essentially the equivalent of this Public License.\nCopyright and Similar Rights means copyright and/or similar rights closely related to copyright including, without limitation, performance, broadcast, sound recording, and Sui Generis Database Rights, without regard to how the rights are labeled or categorized. For purposes of this Public License, the rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.\nEffective Technological Measures means those measures that, in the absence of proper authority, may not be circumvented under laws fulfilling obligations under Article 11 of the WIPO Copyright Treaty adopted on December 20, 1996, and/or similar international agreements.\nExceptions and Limitations means fair use, fair dealing, and/or any other exception or limitation to Copyright and Similar Rights that applies to Your use of the Licensed Material.\nLicense Elements means the license attributes listed in the name of a Creative Commons Public License. The License Elements of this Public License are Attribution and ShareAlike.\nLicensed Material means the artistic or literary work, database, or other material to which the Licensor applied this Public License.\nLicensed Rights means the rights granted to You subject to the terms and conditions of this Public License, which are limited to all Copyright and Similar Rights that apply to Your use of the Licensed Material and that the Licensor has authority to license.\nLicensor means the individual(s) or entity(ies) granting rights under this Public License.\nShare means to provide material to the public by any means or process that requires permission under the Licensed Rights, such as reproduction, public display, public performance, distribution, dissemination, communication, or importation, and to make material available to the public including in ways that members of the public may access the material from a place and at a time individually chosen by them.\nSui Generis Database Rights means rights other than copyright resulting from Directive 96/9/EC of the European Parliament and of the Council of 11 March 1996 on the legal protection of databases, as amended and/or succeeded, as well as other essentially equivalent rights anywhere in the world.\nYou means the individual or entity exercising the Licensed Rights under this Public License. Your has a corresponding meaning.\n\n\n\nSection 2 – Scope.\n\nLicense grant.\n\nSubject to the terms and conditions of this Public License, the Licensor hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive, irrevocable license to exercise the Licensed Rights in the Licensed Material to:\nA. reproduce and Share the Licensed Material, in whole or in part; and\nB. produce, reproduce, and Share Adapted Material.\nExceptions and Limitations. For the avoidance of doubt, where Exceptions and Limitations apply to Your use, this Public License does not apply, and You do not need to comply with its terms and conditions.\nTerm. The term of this Public License is specified in Section 6(a).\nMedia and formats; technical modifications allowed. The Licensor authorizes You to exercise the Licensed Rights in all media and formats whether now known or hereafter created, and to make technical modifications necessary to do so. The Licensor waives and/or agrees not to assert any right or authority to forbid You from making technical modifications necessary to exercise the Licensed Rights, including technical modifications necessary to circumvent Effective Technological Measures. For purposes of this Public License, simply making modifications authorized by this Section 2(a)(4) never produces Adapted Material.\nDownstream recipients.\nA. Offer from the Licensor – Licensed Material. Every recipient of the Licensed Material automatically receives an offer from the Licensor to exercise the Licensed Rights under the terms and conditions of this Public License.\nB. Additional offer from the Licensor – Adapted Material. Every recipient of Adapted Material from You automatically receives an offer from the Licensor to exercise the Licensed Rights in the Adapted Material under the conditions of the Adapter’s License You apply.\nC. No downstream restrictions. You may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, the Licensed Material if doing so restricts exercise of the Licensed Rights by any recipient of the Licensed Material.\nNo endorsement. Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).\n\nOther rights.\n\nMoral rights, such as the right of integrity, are not licensed under this Public License, nor are publicity, privacy, and/or other similar personality rights; however, to the extent possible, the Licensor waives and/or agrees not to assert any such rights held by the Licensor to the limited extent necessary to allow You to exercise the Licensed Rights, but not otherwise.\nPatent and trademark rights are not licensed under this Public License.\nTo the extent possible, the Licensor waives any right to collect royalties from You for the exercise of the Licensed Rights, whether directly or through a collecting society under any voluntary or waivable statutory or compulsory licensing scheme. In all other cases the Licensor expressly reserves any right to collect such royalties.\n\n\n\n\nSection 3 – License Conditions.\nYour exercise of the Licensed Rights is expressly made subject to the following conditions.\n\nAttribution.\n\nIf You Share the Licensed Material (including in modified form), You must:\nA. retain the following if it is supplied by the Licensor with the Licensed Material:\n\nidentification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor (including by pseudonym if designated);\na copyright notice;\na notice that refers to this Public License;\na notice that refers to the disclaimer of warranties;\na URI or hyperlink to the Licensed Material to the extent reasonably practicable;\n\nB. indicate if You modified the Licensed Material and retain an indication of any previous modifications; and\nC. indicate the Licensed Material is licensed under this Public License, and include the text of, or the URI or hyperlink to, this Public License.\nYou may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.\nIf requested by the Licensor, You must remove any of the information required by Section 3(a)(1)(A) to the extent reasonably practicable.\n\nShareAlike.\n\nIn addition to the conditions in Section 3(a), if You Share Adapted Material You produce, the following conditions also apply.\n\nThe Adapter’s License You apply must be a Creative Commons license with the same License Elements, this version or later, or a BY-SA Compatible License.\nYou must include the text of, or the URI or hyperlink to, the Adapter’s License You apply. You may satisfy this condition in any reasonable manner based on the medium, means, and context in which You Share Adapted Material.\nYou may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, Adapted Material that restrict exercise of the rights granted under the Adapter’s License You apply.\n\n\n\nSection 4 – Sui Generis Database Rights.\nWhere the Licensed Rights include Sui Generis Database Rights that apply to Your use of the Licensed Material:\n\nfor the avoidance of doubt, Section 2(a)(1) grants You the right to extract, reuse, reproduce, and Share all or a substantial portion of the contents of the database;\nif You include all or a substantial portion of the database contents in a database in which You have Sui Generis Database Rights, then the database in which You have Sui Generis Database Rights (but not its individual contents) is Adapted Material, including for purposes of Section 3(b); and\nYou must comply with the conditions in Section 3(a) if You Share all or a substantial portion of the contents of the database.\n\nFor the avoidance of doubt, this Section 4 supplements and does not replace Your obligations under this Public License where the Licensed Rights include other Copyright and Similar Rights.\n\n\nSection 5 – Disclaimer of Warranties and Limitation of Liability.\n\nUnless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You.\nTo the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You.\nThe disclaimer of warranties and limitation of liability provided above shall be interpreted in a manner that, to the extent possible, most closely approximates an absolute disclaimer and waiver of all liability.\n\n\n\nSection 6 – Term and Termination.\n\nThis Public License applies for the term of the Copyright and Similar Rights licensed here. However, if You fail to comply with this Public License, then Your rights under this Public License terminate automatically.\nWhere Your right to use the Licensed Material has terminated under Section 6(a), it reinstates:\n\nautomatically as of the date the violation is cured, provided it is cured within 30 days of Your discovery of the violation; or\nupon express reinstatement by the Licensor.\n\nFor the avoidance of doubt, this Section 6(b) does not affect any right the Licensor may have to seek remedies for Your violations of this Public License.\nFor the avoidance of doubt, the Licensor may also offer the Licensed Material under separate terms or conditions or stop distributing the Licensed Material at any time; however, doing so will not terminate this Public License.\nSections 1, 5, 6, 7, and 8 survive termination of this Public License.\n\n\n\nSection 7 – Other Terms and Conditions.\n\nThe Licensor shall not be bound by any additional or different terms or conditions communicated by You unless expressly agreed.\nAny arrangements, understandings, or agreements regarding the Licensed Material not stated herein are separate from and independent of the terms and conditions of this Public License.\n\n\n\nSection 8 – Interpretation.\n\nFor the avoidance of doubt, this Public License does not, and shall not be interpreted to, reduce, limit, restrict, or impose conditions on any use of the Licensed Material that could lawfully be made without permission under this Public License.\nTo the extent possible, if any provision of this Public License is deemed unenforceable, it shall be automatically reformed to the minimum extent necessary to make it enforceable. If the provision cannot be reformed, it shall be severed from this Public License without affecting the enforceability of the remaining terms and conditions.\nNo term or condition of this Public License will be waived and no failure to comply consented to unless expressly agreed to by the Licensor.\nNothing in this Public License constitutes or may be interpreted as a limitation upon, or waiver of, any privileges and immunities that apply to the Licensor or You, including from the legal processes of any jurisdiction or authority.\n\n\nCreative Commons is not a party to its public licenses. Notwithstanding, Creative Commons may elect to apply one of its public licenses to material it publishes and in those instances will be considered the “Licensor.” The text of the Creative Commons public licenses is dedicated to the public domain under the CC0 Public Domain Dedication. Except for the limited purpose of indicating that material is shared under a Creative Commons public license or as otherwise permitted by the Creative Commons policies published at creativecommons.org/policies, Creative Commons does not authorize the use of the trademark “Creative Commons” or any other trademark or logo of Creative Commons without its prior written consent including, without limitation, in connection with any unauthorized modifications to any of its public licenses or any other arrangements, understandings, or agreements concerning use of licensed material. For the avoidance of doubt, this paragraph does not form part of the public licenses.\nCreative Commons may be contacted at creativecommons.org."
-  },
-  {
-    "objectID": "course-overview.html",
-    "href": "course-overview.html",
-    "title": "MAR 536: Biological Statistics II",
+    "objectID": "weeks/week-01.html",
+    "href": "weeks/week-01.html",
+    "title": "Week 1",
     "section": "",
-    "text": "Statistical analysis of ecological data. This course provides guided learning in advanced statistical analysis, as applied to ecological research and other fields of marine science. Advanced concepts in probability, statistical model building, hypothesis testing, inference, estimation and prediction, including analyses of example data sets and problems. Students will be required to learn and present topics to the class that are relevant to their graduate research and complete a class project. Course materials will be presented using the statistical programming language R; a computer lab focused on introductory and intermediate R programming will be held for the first half of the semester.",
-    "crumbs": [
-      "Course information",
-      "Overview"
-    ]
-  },
-  {
-    "objectID": "project-description.html",
-    "href": "project-description.html",
-    "title": "Project description",
-    "section": "",
-    "text": "Students complete a term project as part of the course. Projects will constitute an advanced statistical analysis of data relevant to the student’s graduate research topic, including a detailed report and oral presentation. The project is worth 60% of the course grade.\nStudents are encouraged to discuss their project ideas with Gavin to identify scope. Note that the project does not have to be related to your graduate research, but many students in previous semesters have found that this is beneficial in developing the basis for their thesis (or a particular chapter). Gavin also has a list of potential student project ideas. Regardless, try to view the project as an analysis that is potentially publishable. Previous published journal articles that were based on MAR 536 student projects include Winton et al. (2018), Silva et al. (2019), Hart & Fay (2020), Silva et al. (2020), Velikaneye & Kozak (2024), Duarte & Cadrin (2024).\nDeliverables include:\n\n1-2 sentence project topic idea due Jan 30 (1% of course grade).\nBrief (1-2 page) project description including a statement of the problem, proposed statistical method, and supplemental reference(s) is due Feb 13 (4% of course grade).\nData exploration report containing data summaries and visualizations of the dataset to be used in the project, including observations of implications of data structure for the analyses to be conducted, and a brief in-class update. Due Feb 27. (10% of course grade).\nIn-class verbal update (3 minute presentation) on project progress. Apr 1. (5% of course grade).\nStudent project presentation with chapter assignment or supplemental reading on the statistical method used in the project. A 10-minute lecture on the method, and demonstration of the method using the project data set. Presentations will be graded based on the instructors’ evaluation of accuracy, clarity, and comprehensiveness. Feedback from other students will also be considered in evaluation of presentations (20% of course grade).\nProject report (due May 02). A written description of the methods and results of the project in the form of a draft scientific manuscript (Introduction, Methods, Results, Discussion). (20% of course grade).\n\nProject report expectations\nA rubric for the project report can be found here.\nProject presentation scheduling\nGo here to complete the survey regarding availability for student presentation time-slots.\nData set ideas\nIf you are stuck for a dataset, then there are many open data sets in the ecological and environmental sciences that are published online. Some of these may provide some inspiration for an analysis.\n\nNOAA Data Explorer\nDOI Data Explorer\nEcological Data Wiki\nDataDryad\nZenodo\nLibguide on ecological datasets from Central Michigan University Library",
-    "crumbs": [
-      "Projects",
-      "Description"
-    ]
-  },
-  {
-    "objectID": "weeks/week-02.html",
-    "href": "weeks/week-02.html",
-    "title": "Week 2",
-    "section": "",
-    "text": "📖 Read remaining parts of Chapters 1-4 of Zuur (Tue)\n📖 Read/reference Chapter 4 of Bolker 2008 (Thu)",
+    "text": "📖 Read the syllabus\n📖 Read Chapter 1.1-1.2 of McElreath (Tue)",
     "crumbs": [
       "Weekly materials",
-      "Week 2"
+      "Week 1"
     ]
   },
   {
-    "objectID": "weeks/week-02.html#prepare",
-    "href": "weeks/week-02.html#prepare",
-    "title": "Week 2",
+    "objectID": "weeks/week-01.html#prepare",
+    "href": "weeks/week-01.html#prepare",
+    "title": "Week 1",
     "section": "",
-    "text": "📖 Read remaining parts of Chapters 1-4 of Zuur (Tue)\n📖 Read/reference Chapter 4 of Bolker 2008 (Thu)",
+    "text": "📖 Read the syllabus\n📖 Read Chapter 1.1-1.2 of McElreath (Tue)",
     "crumbs": [
       "Weekly materials",
-      "Week 2"
+      "Week 1"
     ]
   },
   {
-    "objectID": "weeks/week-02.html#participate",
-    "href": "weeks/week-02.html#participate",
-    "title": "Week 2",
+    "objectID": "weeks/week-01.html#participate",
+    "href": "weeks/week-01.html#participate",
+    "title": "Week 1",
     "section": "Participate",
-    "text": "Participate\n🖥️ Tuesday: Lecture - Data exploration, checking\n\nPlot description practice (Acknowledgements: S. Stoudt)\n\n⌨️ Wednesday: Lab 2 - Data Visualization (just the exercise)\n\nlake Laengelmavesi fish data\n\n🖥️ Thursday: Lecture - Probability review",
+    "text": "Participate\n🖥️ Lecture 1 -Introduction (📋 gapminder data)\n⌨️ Lab 1 -Intro to R (just the exercise)\nThursday - continuing with lecture 1 and lab 1",
     "crumbs": [
       "Weekly materials",
-      "Week 2"
+      "Week 1"
     ]
   },
   {
-    "objectID": "weeks/week-02.html#practice",
-    "href": "weeks/week-02.html#practice",
-    "title": "Week 2",
+    "objectID": "weeks/week-01.html#practice",
+    "href": "weeks/week-01.html#practice",
+    "title": "Week 1",
     "section": "Practice",
-    "text": "Practice\nYour project topic ideas are due on Thursday Jan 30.\nLab 2 exercise is due before class on Tuesday Feb 4.\n\n\nBack to course schedule ⏎",
+    "text": "Practice\nLab 1 exercise is due before class on Tuesday Jan 28.\n\n\nBack to course schedule ⏎",
     "crumbs": [
       "Weekly materials",
-      "Week 2"
+      "Week 1"
     ]
   },
   {
-    "objectID": "weeks/week-04.html",
-    "href": "weeks/week-04.html",
-    "title": "Week 4",
+    "objectID": "weeks/week-03.html",
+    "href": "weeks/week-03.html",
+    "title": "Week 3",
     "section": "",
-    "text": "📖 Read Chapters 6.1 (Tue) & 6.2 (Thu) of Zuur et al. 2007."
+    "text": "📖 Read Chapter 5 of Zuur (Tue)\n📖 Read Chapters 8 & 11 of “An introduction to R (Venables et al.)” (Tue)\n📖 Read Chapter 7 of Hilborn & Mangel 1997 (Thu)"
   },
   {
-    "objectID": "weeks/week-04.html#prepare",
-    "href": "weeks/week-04.html#prepare",
-    "title": "Week 4",
+    "objectID": "weeks/week-03.html#prepare",
+    "href": "weeks/week-03.html#prepare",
+    "title": "Week 3",
     "section": "",
-    "text": "📖 Read Chapters 6.1 (Tue) & 6.2 (Thu) of Zuur et al. 2007."
+    "text": "📖 Read Chapter 5 of Zuur (Tue)\n📖 Read Chapters 8 & 11 of “An introduction to R (Venables et al.)” (Tue)\n📖 Read Chapter 7 of Hilborn & Mangel 1997 (Thu)"
   },
   {
-    "objectID": "weeks/week-04.html#participate",
-    "href": "weeks/week-04.html#participate",
-    "title": "Week 4",
+    "objectID": "weeks/week-03.html#participate",
+    "href": "weeks/week-03.html#participate",
+    "title": "Week 3",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 6 - Generalized Linear Models\n\nlecture 6b - R code\n\n⌨️ Lab 4 - Data wrangling & model summaries (just the exercise)\n\nlab4-data\n\n🖥️ Lecture 7 - GLMs II (logistic regression)"
+    "text": "Participate\n⌨️ Lab 3 - Probability & Linear Modeling in R (just the exercise)\n\nspecies richness on beaches data (RIKZ.txt, Zuur Chapter 5, 27)\n\n🖥️ Tutorial - data exploration & catch rate model selection for cod (L McGinnis)\n🖥️ Lecture 4 - Regression review\n🖥️ Lecture 5 - Likelihood"
   },
   {
-    "objectID": "weeks/week-04.html#practice",
-    "href": "weeks/week-04.html#practice",
-    "title": "Week 4",
+    "objectID": "weeks/week-03.html#practice",
+    "href": "weeks/week-03.html#practice",
+    "title": "Week 3",
     "section": "Practice",
-    "text": "Practice\nLab 4 exercise is due before lab on Wednesday Feb 15.\n\n\nBack to course schedule ⏎"
+    "text": "Practice\nLab 3 exercise is due before lab on Wednesday Feb 8.\n\n\nBack to course schedule ⏎"
   },
   {
-    "objectID": "weeks/week-06.html",
-    "href": "weeks/week-06.html",
-    "title": "Week 6",
+    "objectID": "weeks/week-05.html",
+    "href": "weeks/week-05.html",
+    "title": "Week 5",
     "section": "",
-    "text": "NO CLASS ON TUESDAY THIS WEEK AS THE UNIVERSITY IS ON A MONDAY SCHEDULE"
+    "text": "📖 Tue: Read Chapter 5 of James et al. (Introduction to Statistical Learning with R)\n📖 Thu: Read Chapter 7 of James et al. (Introduction to Statistical Learning with R)"
   },
   {
-    "objectID": "weeks/week-06.html#prepare",
-    "href": "weeks/week-06.html#prepare",
-    "title": "Week 6",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Thu: Read Chapter 7 Zuur et al. 2007."
+    "objectID": "weeks/week-05.html#prepare",
+    "href": "weeks/week-05.html#prepare",
+    "title": "Week 5",
+    "section": "",
+    "text": "📖 Tue: Read Chapter 5 of James et al. (Introduction to Statistical Learning with R)\n📖 Thu: Read Chapter 7 of James et al. (Introduction to Statistical Learning with R)"
   },
   {
-    "objectID": "weeks/week-06.html#participate",
-    "href": "weeks/week-06.html#participate",
-    "title": "Week 6",
+    "objectID": "weeks/week-05.html#participate",
+    "href": "weeks/week-05.html#participate",
+    "title": "Week 5",
     "section": "Participate",
-    "text": "Participate\n⌨️ Lab 6 - Iteration (just the exercise)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 10 - Generalized Additive Models"
+    "text": "Participate\n🖥️ Lecture 8 - Resampling\n⌨️ Lab 5 - Simulation (just the exercise)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 9 - Nonlinear models, splines"
   },
   {
-    "objectID": "weeks/week-06.html#practice",
-    "href": "weeks/week-06.html#practice",
-    "title": "Week 6",
+    "objectID": "weeks/week-05.html#practice",
+    "href": "weeks/week-05.html#practice",
+    "title": "Week 5",
     "section": "Practice",
-    "text": "Practice\nLab 6 exercise is due before lab on Wednesday Mar 01.\n\n\nBack to course schedule ⏎"
+    "text": "Practice\nLab 5 exercise is due before lab on Wednesday Feb 22.\n\n\nBack to course schedule ⏎"
   },
   {
-    "objectID": "weeks/week-08.html",
-    "href": "weeks/week-08.html",
-    "title": "Week 8",
+    "objectID": "weeks/week-07.html",
+    "href": "weeks/week-07.html",
+    "title": "Week 7",
     "section": "",
-    "text": "Take-home MIDTERM due this week (3/16)\nMid-semester self-reflection survey on R lab component."
+    "text": "Take-home MIDTERM distributed this week."
   },
   {
-    "objectID": "weeks/week-08.html#prepare",
-    "href": "weeks/week-08.html#prepare",
-    "title": "Week 8",
+    "objectID": "weeks/week-07.html#prepare",
+    "href": "weeks/week-07.html#prepare",
+    "title": "Week 7",
     "section": "Prepare",
-    "text": "Prepare\n📖 Tue + Thu: Read Chapter 8 Zuur et al. 2007."
+    "text": "Prepare\n📖 Tue + Thu: Read Chapter 12 Zuur et al. 2007."
   },
   {
-    "objectID": "weeks/week-08.html#participate",
-    "href": "weeks/week-08.html#participate",
-    "title": "Week 8",
+    "objectID": "weeks/week-07.html#participate",
+    "href": "weeks/week-07.html#participate",
+    "title": "Week 7",
     "section": "Participate",
-    "text": "Participate\n🖥️ Lecture 13 - Linear mixed effects models\n\nRmd with examples from the lecture\n\n⌨️ Lab 7 - Functions (just the exercises)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 14 - more mixed effects\n\n\nBack to course schedule ⏎"
+    "text": "Participate\n🖥️ Lecture 11 - Matrix Algebra Review\n⌨️ Lab 7 - Functions (just the exercises)\n\nData sets for the lab can be found in the class-data folder.\n\n🖥️ Lecture 12 - Principal Component Analysis\n\nPCA with palmerpenguins from Dr. Allison Horst"
   },
   {
-    "objectID": "weeks/week-10.html",
-    "href": "weeks/week-10.html",
-    "title": "Week 10",
+    "objectID": "weeks/week-07.html#practice",
+    "href": "weeks/week-07.html#practice",
+    "title": "Week 7",
+    "section": "Practice",
+    "text": "Practice\nLab 7 exercise is due before lab on Wednesday Mar 22.\n\n\nBack to course schedule ⏎"
+  },
+  {
+    "objectID": "weeks/week-09.html",
+    "href": "weeks/week-09.html",
+    "title": "Week 9",
     "section": "",
-    "text": "Gavin is still recovering from illness and so there is a slight change in plans. Lecture materials are via recordings, class sessions on Tuesday and Thursday will be question/answer sessions and live walk-through of examples from the lectures. Wednesday’s lab will be on using spatial data in R."
+    "text": "Note that there is no lab on Wednesday due to the UMass Marine Science Symposium (all are welcome to attend).\nGavin is out sick so there is a slight change in plans. Lecture materials are via recordings, class sessions on Tuesday and Thursday will be question/answer sessions and chances to get feedback/help from others on your projects."
   },
   {
-    "objectID": "weeks/week-10.html#prepare",
-    "href": "weeks/week-10.html#prepare",
-    "title": "Week 10",
+    "objectID": "weeks/week-09.html#prepare",
+    "href": "weeks/week-09.html#prepare",
+    "title": "Week 9",
     "section": "Prepare",
-    "text": "Prepare\n📖 Tue:\n\nReading: Chapter 14 of Zuur et al. 2007\nLecture 16 - Linear Discriminant Analysis (Recording)\n\n(lecture starts at 15m30s)\nslide deck from recorded lecture\n\n\n📖 Thu:\n\nReading: Chapter 9 of Zuur et al. 2007\nLecture 17 - Trees (Classification/Regression) (Recording)\n\nslide deck from recorded lecture"
+    "text": "Prepare\n📖 Tue:\n\nLecture 14 - Zero inflated models (Recording)\nReading: Chapter 11 of Zuur et al. 2009\n\n📖 Thu:\n\nLecture 15 - Spatial GLM(M)s (Recording - lecture starts ~20 min in)"
   },
   {
-    "objectID": "weeks/week-10.html#participate",
-    "href": "weeks/week-10.html#participate",
-    "title": "Week 10",
+    "objectID": "weeks/week-09.html#participate",
+    "href": "weeks/week-09.html#participate",
+    "title": "Week 9",
     "section": "Participate",
-    "text": "Participate\n🖥️ Linear Discriminant Analysis\n\nRmd with examples from the lecture\nData sets can be found in the class-data folder.\n\n🖥️ Lab 8 - working with spatial data in R\n\nslide deck for Lab 8 part 1\n\n.qmd (code)\n\nslide deck for Lab 8 part 2\n\n.Rmd (code)\n\njust the lab 8 exercises\n\n🖥️ Trees\n\nRmd with examples from the lecture\n\n\n\nBack to course schedule ⏎"
+    "text": "Participate\n🖥️ Lecture 14 slide deck (from 2020)\n\nRmd with examples from the lecture\nNB: Today I would likely fit the models in the lecture solely using glmmTMB, e.g. using code similar to the owls example below\nOwls example, zero inflation using glmmTMB (Brooks et al. 2017)\n\npaper with rationale for models by Bolker et al. (2012)\n\nData sets can be found in the class-data folder.\n\n🖥️ Lecture 15 slide deck (from 2020)\n\nRmd with examples from the lecture\nNB: In future offerings, I will replace a lot of this material with focus on sdmTMB, which allows us to use the same type of formula syntax we’ve been using. Here’s a bonus lecture on sdmTMB (recording from my Ecosystem models class, lecture by Dr. Eric Ward)\n\n\n\nBack to course schedule ⏎"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "MAR 536: Biological Statistics II",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "Click here to download a PDF copy of the syllabus.\n(last updated 2025-01-17)",
-    "crumbs": [
-      "Course information",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "index.html#course-syllabus",
-    "href": "index.html#course-syllabus",
-    "title": "MAR 536: Biological Statistics II",
-    "section": "",
-    "text": "Click here to download a PDF copy of the syllabus.\n(last updated 2025-01-17)",
-    "crumbs": [
-      "Course information",
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "index.html#course-schedule",
-    "href": "index.html#course-schedule",
-    "title": "MAR 536: Biological Statistics II",
-    "section": "Course Schedule",
-    "text": "Course Schedule\nThis page will contain an outline of the topics, content, and assignments for the semester. Note that this schedule will be updated as the semester progresses.\n[notes on changes to schedule will appear below but noted here as well]\n[2025-01-25: probability review lecture moved to Thu Jan 30, subsequent changes to lecture schedule to come]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWeek\n\n\n\n\nDate\n\n\n\n\nTopic\n\n\n\n\nPrepare\n\n\n\n\nSlides\n\n\n\n\nAE\n\n\n\n\nLab\n\n\n\n\nHW\n\n\n\n\nExam\n\n\n\n\nProject\n\n\n\n\n\n\n\n\n1\n\n\n\n\nTue, Jan 21\n\n\n\n\nIntroduction\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 22\n\n\n\n\nLab 1 -Intro to R/RStudio\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 23\n\n\n\n\nStatistical rethinking, Lab 1 part II\n\n\n\n\n\n\n🖥️\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n\n\nTue, Jan 28\n\n\n\n\nData exploration, checking\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Jan 28\n\n\n\n\nDue: Lab 1\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Jan 29\n\n\n\n\nLab 2 - Visualizing data\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 30\n\n\n\n\nProbability review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Jan 30\n\n\n\n\nDue: Project topic\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n3\n\n\n\n\nTue, Feb 04\n\n\n\n\nLinear regression review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Feb 04\n\n\n\n\nLikelihood\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Feb 04\n\n\n\n\nDue: Lab 2\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed,\n\n\nFeb 05\n\n\n\n\nLab 3 - Probability & linear modeling\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 06\n\n\n\n\nGeneralized Linear Models\n\n\n\n\n📖\n\n\n\n\n🖥️ 💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n\n\nTue, Feb 11\n\n\n\n\nGLMs II (logistic regression)\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Feb 11\n\n\n\n\nDue: Lab 3\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed. Feb 12\n\n\n\n\nLab 4 - Data wrangling & model summaries\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 13\n\n\n\n\nResampling methods, cross-validation\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 13\n\n\n\n\nDue: Project description\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n5\n\n\n\n\nTue, Feb 18\n\n\n\n\nDue: Lab 4\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed,\n\n\nFeb 19\n\n\n\n\nLab 5 - Simulation\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 20\n\n\n\n\nNon-linear models, splines\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n\n\nTue, Feb 25\n\n\n\n\nDue: Lab 4\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Feb 25\n\n\n\n\nGAMs\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Feb 26\n\n\n\n\nLab 6 - Iteration\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Feb 27\n\n\n\n\nProject Updates\n\n\n\n\n📖\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nThu, Feb 27\n\n\n\n\nDue: Data Exploration Report\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n7\n\n\n\n\nTue, Mar 04\n\n\n\n\nMatrix Algebra review\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Mar 04\n\n\n\n\nMidterm distributed\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n✅\n\n\n\n\n\n\n\n\n\n\nTue, Mar 04\n\n\n\n\nDue: Lab 6\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Mar 05\n\n\n\n\nLab 7 - Functions\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Mar 06\n\n\n\n\nPrincipal Components Analysis\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSPRING\n\n\n\n\nBREAK\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n\n\nTue, Mar 18\n\n\n\n\nLinear mixed effects model\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Mar 19\n\n\n\n\nLab 8 - Reporting & Quarto\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Mar 20\n\n\n\n\nMore mixed effects\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Mar 20\n\n\n\n\nDue: Midterm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n✅\n\n\n\n\n\n\n\n\n9\n\n\n\n\nTue, Mar 25\n\n\n\n\nZero-inflated models\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Mar 26\n\n\n\n\nUMASS IMS SYMPOSIUM\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Mar 27\n\n\n\n\nSpatial GLMMs\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n\n\nTue, Apr 01\n\n\n\n\nProject updates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nTue, Apr 01\n\n\n\n\nDue: Lab 8\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Apr 02\n\n\n\n\nLab 9 - Spatial data\n\n\n\n\n\n\n\n\n📋\n\n\n\n\n💻\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThu, Apr 03\n\n\n\n\nGAMs application - guest lecture\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n\n\nTue, Apr 08\n\n\n\n\nClassification / Linear Discriminant Analysis\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTue, Apr 08\n\n\n\n\nDue: Lab 9\n\n\n\n\n\n\n\n\n\n\n\n\n✍️\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Apr 09\n\n\n\n\nLab - project consult\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nThu, Apr 10\n\n\n\n\nTrees\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n12\n\n\n\n\nTue, Apr 15\n\n\n\n\nOrdination methods\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWed, Apr 16\n\n\n\n\nLab - project consult\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nThu, Apr 17\n\n\n\n\nCluster analysis\n\n\n\n\n📖\n\n\n\n\n🖥️\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n13\n\n\n\n\nTue, Apr 22\n\n\n\n\nStudent presentations\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nThu, Apr 24\n\n\n\n\nStudent presentations\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n14\n\n\n\n\nTue, Apr 29\n\n\n\n\nStudent presentations\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂\n\n\n\n\n\n\n\n\nWed, Apr 30\n\n\n\n\nCourse Review\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFri, May 02\n\n\n\n\nDue: Project Report\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n📂",
-    "crumbs": [
-      "Course information",
-      "Schedule"
-    ]
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "labs/lab-08a.html#today-advanced-plotting",
@@ -1845,7 +1845,7 @@
     "href": "labs/lab-02.html#lab-schedule",
     "title": "MAR 536: Lab 2",
     "section": "Lab schedule",
-    "text": "Lab schedule\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Iteration\n2/22: Creating functions, debugging\n3/01: Simulation, Resampling\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling\nAcknowledgements: Mine Çetinkaya-Rundel, Amanda Hart"
+    "text": "Lab schedule\n1/22: Introduction to R and R Studio, working with data\n1/29: Visualizing data\n2/05: Probability, linear modeling\n2/12: Data wrangling, model summaries\n2/19: Simulation, Resampling\n2/26: Iteration\n3/05: Creating functions, debugging\n3/19: Flex: automated reporting & Quarto\n4/02: working with Spatial data\nAcknowledgements: Mine Çetinkaya-Rundel, Amanda Hart"
   },
   {
     "objectID": "labs/lab-02.html#today",
@@ -1894,7 +1894,7 @@
     "href": "labs/lab-02.html#reading-in-data",
     "title": "MAR 536: Lab 2",
     "section": "Reading in data",
-    "text": "Reading in data\nSo far we have either typed in data values, or used built-in datasets.\nLots of functions to read data from files, including:\n\nscan()\n\n\nflexible, reads data into a vector.\nvery fast, good for large or messy data.\n\n\nread.table, read.csv\n\n\neasy to use, reads data into a data frame.\n\n\nread_excel, read_csv (in tidyverse)\n\n\nlibrary(readxl) has many functions for reading from MS Excel spreadsheets"
+    "text": "Reading in data\nSo far we have either typed in data values, or used built-in datasets.\nLots of functions to read data from files, including:\n\nscan()\n\n\nflexible, reads data into a vector\nvery fast, good for large or messy data\n\n\nread.table, read.csv\n\n\neasy to use, reads data into a data frame\n\n\nread_excel, read_csv (in tidyverse)\n\n\nlibrary(readxl) has many functions for reading from MS Excel spreadsheets"
   },
   {
     "objectID": "labs/lab-02.html#using-read_excel",
@@ -1909,13 +1909,6 @@
     "title": "MAR 536: Lab 2",
     "section": "Lab exercise 1/3 (Laengelmavesi + penguins)",
     "text": "Lab exercise 1/3 (Laengelmavesi + penguins)\nRead in the data in the ‘data’ sheet of Laengelmavesi2.xlsx and:\n\nDisplay the number of observations for each species of fish. (hint: the function count() will tell you how many rows)\n\nFind the overall mean lengths, weights, and heights of fish in the data.\n\nFind the range of the lengths of Perch.\n\nCalculate the mean length for each species.\n\nbonus With the Pike data, create a new factor for small and large based on the weights.\n\nUse the ggpairs() function in library(GGally) to create a pairs plot for the palmer penguins data. What are five things you learn about the data and the penguins from this view of the data?"
-  },
-  {
-    "objectID": "labs/lab-02.html#base-graphics-plot",
-    "href": "labs/lab-02.html#base-graphics-plot",
-    "title": "MAR 536: Lab 2",
-    "section": "Base graphics: plot()",
-    "text": "Base graphics: plot()\nplot() is the generic function for plotting R objects.\n\nplot() is an overloaded function.\n\nwhat it returns depends on the type of objects that are given to it.\n\nthere are versions of plot that provide useful outputs for many R functions.\n\ne.g. plot.lm() is a version that plots typical diagnostics from a linear model object. (but you still just type plot(myobject))."
   },
   {
     "objectID": "labs/lab-02.html#plots-are-like-onionsthey-have-layers",
@@ -1964,28 +1957,28 @@
     "href": "labs/lab-02.html#axis-limits",
     "title": "MAR 536: Lab 2",
     "section": "Axis limits",
-    "text": "Axis limits\nR chooses x and y limits just larger than the range of the data.\nTo change the default x and y values use xlim and ylim.\n\n&gt; ggplot(data = fish_data, mapping = aes(x= length, \n+                                        y = weight)) + \n+   geom_point() +\n+   xlim(0, 50) +\n+   ylim(0, 800) +\n+   labs(title = \"Laengelmavesi fish\",\n+          subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n+          x = \"Length (cm)\",\n+          y = \"Weight (g)\",\n+          caption = \"\\nplot created by \\n@gavin_fay\")"
+    "text": "Axis limits\nR chooses x and y limits just larger than the range of the data.\nTo change the default x and y values use xlim and ylim.\n\n&gt; ggplot(data = fish_data, mapping = aes(x= length, \n+                                        y = weight)) + \n+   geom_point() +\n+   xlim(0, 50) +\n+   ylim(0, 800) +\n+   labs(title = \"Laengelmavesi fish\",\n+          subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n+          x = \"Length (cm)\",\n+          y = \"Weight (g)\",\n+          caption = \"\\nplot created by \\n@gavinfay\")"
   },
   {
     "objectID": "labs/lab-02.html#colors",
     "href": "labs/lab-02.html#colors",
     "title": "MAR 536: Lab 2",
     "section": "Colors",
-    "text": "Colors\nColors of points, lines, text etc. can all be specified.\nIf you want to map color to a variable then this should be done in the aes().\nColors can be specified as numbers, text string, or hex codes col=1 or col=\"red\"\n\n&gt; ggplot(data = fish_data, mapping = aes(x= length,\n+                                        y = weight)) + \n+   geom_point(col = \"blue\") + # Change point color to blue\n+   xlim(0, 50) +\n+   ylim(0, 800) +\n+   labs(title = \"Laengelmavesi fish\",\n+          subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n+          x = \"Length (cm)\",\n+          y = \"Weight (g)\",\n+          caption = \"\\nplot created by \\n@gavin_fay\")"
+    "text": "Colors\nColors of points, lines, text etc. can all be specified.\nIf you want to map color to a variable then this should be done in the aes().\nColors can be specified as numbers, text string, or hex codes col=1 or col=\"red\"\n\n&gt; ggplot(data = fish_data, mapping = aes(x= length,\n+                                        y = weight)) + \n+   geom_point(col = \"blue\") + # Change point color to blue\n+   xlim(0, 50) +\n+   ylim(0, 800) +\n+   labs(title = \"Laengelmavesi fish\",\n+          subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n+          x = \"Length (cm)\",\n+          y = \"Weight (g)\",\n+          caption = \"\\nplot created by \\n@gavinfay\")"
   },
   {
     "objectID": "labs/lab-02.html#map-color-to-a-variable",
     "href": "labs/lab-02.html#map-color-to-a-variable",
     "title": "MAR 536: Lab 2",
     "section": "Map color to a variable",
-    "text": "Map color to a variable\n\n&gt; ggplot(data = fish_data, \n+        mapping = aes(x= length,\n+                      y = weight, \n+                      col = species)) + # Color by species\n+   geom_point() +\n+   xlim(0, 50) +\n+   ylim(0, 800) +\n+   labs(title = \"Laengelmavesi fish\",\n+          subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n+          x = \"Length (cm)\",\n+          y = \"Weight (g)\",\n+          caption = \"\\nplot created by \\n@gavin_fay\")"
+    "text": "Map color to a variable\n\n&gt; ggplot(data = fish_data, \n+        mapping = aes(x= length,\n+                      y = weight, \n+                      col = species)) + # Color by species\n+   geom_point() +\n+   xlim(0, 50) +\n+   ylim(0, 800) +\n+   labs(title = \"Laengelmavesi fish\",\n+          subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n+          x = \"Length (cm)\",\n+          y = \"Weight (g)\",\n+          caption = \"\\nplot created by \\n@gavinfay\")"
   },
   {
     "objectID": "labs/lab-02.html#points",
     "href": "labs/lab-02.html#points",
     "title": "MAR 536: Lab 2",
     "section": "Points",
-    "text": "Points\nUse the shape and size aesthetics to adjust point type and size\n\n&gt; ggplot(data = fish_data, \n+        mapping = aes(x= length, \n+                      y = weight, \n+                      col = species, \n+                      size = height)) + # Set point size proportional to body height\n+   geom_point(shape = 8) + # Change point type\n+   xlim(0, 50) +\n+   ylim(0, 800) +\n+   labs(title = \"Laengelmavesi fish\",\n+          subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n+          x = \"Length (cm)\",\n+          y = \"Weight (g)\",\n+          caption = \"\\nplot created by \\n@gavin_fay\")"
+    "text": "Points\nUse the shape and size aesthetics to adjust point type and size\n\n&gt; ggplot(data = fish_data, \n+        mapping = aes(x= length, \n+                      y = weight, \n+                      col = species, \n+                      size = height)) + # Set point size proportional to body height\n+   geom_point(shape = 8) + # Change point type\n+   xlim(0, 50) +\n+   ylim(0, 800) +\n+   labs(title = \"Laengelmavesi fish\",\n+          subtitle = \"MAR 536 Biological Statistics II, Lab 2\",\n+          x = \"Length (cm)\",\n+          y = \"Weight (g)\",\n+          caption = \"\\nplot created by \\n@gavinfay\")"
   },
   {
     "objectID": "labs/lab-02.html#faceting-small-multiples",
@@ -2027,14 +2020,14 @@
     "href": "labs/lab-02.html#histograms",
     "title": "MAR 536: Lab 2",
     "section": "Histograms",
-    "text": "Histograms\ngeom_histogram()\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
+    "text": "Histograms\ngeom_histogram()\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(col = \"white\")\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`."
   },
   {
     "objectID": "labs/lab-02.html#histograms-and-binwidth",
     "href": "labs/lab-02.html#histograms-and-binwidth",
     "title": "MAR 536: Lab 2",
     "section": "Histograms and binwidth",
-    "text": "Histograms and binwidth\nbinwidth = 2000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 2000)"
+    "text": "Histograms and binwidth\nbinwidth = 2000\n\nggplot(loans, aes(x = loan_amount)) +\n  geom_histogram(binwidth = 2000, col = \"white\")"
   },
   {
     "objectID": "labs/lab-02.html#customizing-histograms",
@@ -2062,7 +2055,7 @@
     "href": "labs/lab-02.html#bar-plot",
     "title": "MAR 536: Lab 2",
     "section": "Bar plot",
-    "text": "Bar plot\n\n&gt; # Read data from csv file using tidyverse\n&gt; fish &lt;- read_csv(file=\"../data/Laengelmavesi.csv\")\n\n\n&gt; ggplot(fish, aes(x = fct_reorder(species,weight), \n+                  y = weight)) +\n+   geom_col(fill=\"steelblue\") +\n+   labs(x = \"species\")\n\nThe call to fct_reorder() will reorder the species according to a different vector, here the weight."
+    "text": "Bar plot\n\n&gt; # Read data from csv file using tidyverse\n&gt; fish &lt;- read_csv(file=\"../data/Laengelmavesi.csv\")\n\n\n&gt; ggplot(fish, aes(x = fct_reorder(species,weight), \n+                  y = weight)) +\n+   geom_col(fill = \"steelblue\") +\n+   labs(x = \"species\")\n\nThe call to fct_reorder() will reorder the species according to a different vector, here the weight."
   },
   {
     "objectID": "labs/lab-02.html#segmented-bar-plot",
@@ -2090,7 +2083,7 @@
     "href": "labs/lab-02.html#lab-exercise-33-laengelmavesi-revisited",
     "title": "MAR 536: Lab 2",
     "section": "Lab exercise 3/3 (Laengelmavesi revisited)",
-    "text": "Lab exercise 3/3 (Laengelmavesi revisited)\nUse the data in Laengelmavesi2.xlsx to create the following graphs. Make sure to add axis labels and plot titles.\n\nCreate boxplots and histograms of the length distributions for each species.\n\nPlot all the weights vs the lengths. Include enough information that the data for each species can be identified.\n\nPlot the mean weight of each species as a function of the mean length, with the species names and mean heights also indicated on the plot.\n\nCreate one plot of the heights as a function of the lengths. Add a line separating fish with height greater than 20cm.\n\nbonus Add to your plot from step (2) the mean weight and length for each species.\n\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
+    "text": "Lab exercise 3/3 (Laengelmavesi revisited)\nUse the data in Laengelmavesi2.xlsx to create the following graphs. Make sure to add axis labels and plot titles.\n\nCreate boxplots and histograms of the length distributions for each species.\n\nPlot all the weights vs all the lengths. Include enough information that the data for each species can be identified on the plot.\n\nPlot the mean weight of each species as a function of their mean lengths, with the species names and mean heights also indicated on the plot.\n\nCreate one plot of the heights as a function of the lengths. Add a line separating fish with height greater than 20cm.\n\nbonus Add to your plot from step (2) the mean weight and length for each species.\n\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s25"
   },
   {
     "objectID": "labs/lab-04.html#lab-schedule",
