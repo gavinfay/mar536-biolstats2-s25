@@ -692,7 +692,7 @@ Fill with a categorical variable
 
 ### Plot
 
-```{r ref.label = "hist-fill", echo = FALSE, warning = FALSE, out.width = "100%"}
+```{r ref.label = "hist-fill", echo = FALSE, warning = FALSE, out.width = "85%"}
 ```
 
 ### Code
