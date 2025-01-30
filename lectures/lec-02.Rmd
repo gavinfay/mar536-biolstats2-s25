@@ -2,7 +2,7 @@
 title: 'Bio Stats II : Lecture 2, Probability'
 subtitle: "Bolker 2008, Chapter 4"
 author: "Gavin Fay"
-date: "01/23/2025"
+date: "01/30/2025"
 output:
   beamer_presentation:
     colortheme: seagull
@@ -11,9 +11,9 @@ output:
 
 ## This Week...
 
-1/21: Introduction, Statistical Rethinking\
-1/22: Lab 1\
-**1/23: Probability review**
+1/28: Working with data\
+1/29: Lab 2\
+**1/30: Probability review**
 
 ## Objectives
 
@@ -675,6 +675,6 @@ $|\mu$ denotes evaluation of derivative at the values of $\mu$.
 
 ## Next Time...
 
-**1/28: Data exploration, checking**\
-1/29: Lab 2\
-1/30: Linear regression review
+**2/04: Linear regression review**\
+2/05: Lab 3\
+2/06: Likelihood
