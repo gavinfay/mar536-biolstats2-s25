@@ -146,7 +146,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td><p>Tue, Feb 04</p></td>
 <td><p>Linear regression review</p></td>
 <td style="text-align: center;"><p><a href="/weeks/week-03.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="/lectures/lec-04.pdf" title="Lecture slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><a href="/lectures/lec-04-regression.pptx" title="Lecture slides"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>

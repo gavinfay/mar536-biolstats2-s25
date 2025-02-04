@@ -14,7 +14,7 @@ editor: visual
 
 ## Participate
 
-🖥️ (Tuesday) [Lecture 4 - Regression review](../lectures/lec-04.pdf)
+🖥️ (Tuesday) [Lecture 4 - Regression review](../lectures/lec-04-regression.pptx)
 
 ⌨️ [Lab 3 - Probability & Linear Modeling in R](../labs/lab-03.pdf) (just the [exercise](../labs/lab-exercise-03.pdf))
 
@@ -24,7 +24,7 @@ editor: visual
 
 ## Practice
 
-Lab 3 exercise is due before lab on Wednesday Feb 8.
+Lab 3 exercise is due before class on Tuesday Feb 11.
 
 <br><br>
 
