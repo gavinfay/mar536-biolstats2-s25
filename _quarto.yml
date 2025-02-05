@@ -4,6 +4,7 @@ project:
   render:
     - "*.qmd"
     - "!labs/lab-08b.Rmd"
+    - "labs/lab-03.Rmd"
     - "LICENSE.md"
 
 website:
@@ -73,8 +74,8 @@ website:
             text: "Week 1"
           - href: weeks/week-02.qmd
             text: "Week 2"
-#          - href: weeks/week-03.qmd
-#            text: "Week 3"
+          - href: weeks/week-03.qmd
+            text: "Week 3"
 #          - href: weeks/week-04.qmd
 #            text: "Week 4"
 #          - href: weeks/week-05.qmd
