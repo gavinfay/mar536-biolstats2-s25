@@ -1,26 +1,32 @@
 ---
 title: "Week 6"
-subtitle: "Iteration, Generalized Additive Modeling"
+subtitle: "Iteration, Nonlinear modeling"
 editor: visual
 ---
 
-**NO CLASS ON TUESDAY THIS WEEK AS THE UNIVERSITY IS ON A MONDAY SCHEDULE**
+**CLASS ON THURSDAY FEB 27 IS ASYNCHRONOUS TO ALLOW FOR FISHERIES FACULTY SEARCH, WATCH LECTURE IN OWN TIME**
 
 ## Prepare
+
+📖 Tue: Read Chapter 7 of [James et al. (Introduction to Statistical Learning with R)](https://www.statlearning.com/)
 
 📖 Thu: Read Chapter 7 Zuur et al. 2007.
 
 ## Participate
 
-⌨️ [Lab 6 - Iteration](../labs/lab-06.html) (just the exercise)
+🖥️ (Tue) [Lecture 9 - Nonlinear models, splines](../lectures/lec-09.pdf)
+
+⌨️ (Wed) [Lab 6 - Iteration](../labs/lab-06.html) (just the exercise)
 
 -   Data sets for the lab can be found in the [class-data folder](#class-data).
 
-🖥️ [Lecture 10 - Generalized Additive Models](../lectures/lec-10.pdf)
+(Thu) Student Meeting with Fisheries Faculty Search Candidate
+
+🖥️ (Thu) [Lecture 10 - Generalized Additive Models](../lectures/lec-10.pdf) (Watch in own time)
 
 ## Practice
 
-Lab 6 exercise is due before lab on Wednesday Mar 01.
+Lab 6 exercise is due before class on Tuesday Mar 04.
 
 <br><br>
 

@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.56">
 
-  <meta name="dcterms.date" content="2023-02-08">
+  <meta name="dcterms.date" content="2025-02-12">
   <title>MAR 536 - Spring 2025 – MAR 536: Lab 4</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -99,6 +99,7 @@
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-drop/drop-runtime.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -402,19 +403,19 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2023-02-08</p>
+  <p class="date">2025-02-12</p>
 </section>
 <section id="lab-schedule" class="slide level2">
 <h2>Lab schedule</h2>
-<p>1/18: Introduction to R and R Studio, working with data<br>
-1/25: Intro to Visualization<br>
-2/01: Probability, linear modeling<br>
-<strong>2/08: Data wrangling, model summaries</strong><br>
-2/15: Simulation, Resampling<br>
-2/22: Iteration<br>
-3/01: Creating functions, debugging<br>
-3/15: Flex: more modeling (brms, glmmTMB)<br>
-3/29: Spatial data or tidymodeling</p>
+<p>1/22: Introduction to R and R Studio, working with data<br>
+1/29: Visualizing data<br>
+2/05: Probability, linear modeling<br>
+<strong>2/12: Data wrangling, model summaries</strong><br>
+2/19: Simulation, Resampling<br>
+2/26: Iteration<br>
+3/19: Creating functions, debugging<br>
+4/02: working with Spatial data 4/09: Flex: automated reporting &amp; Quarto<br>
+</p>
 <p><strong>Acknowledgements: Mine Çetinkaya-Rundel, Allison Horst</strong></p>
 </section>
 <section id="today" class="slide level2">
@@ -1007,7 +1008,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_b8d79506" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_bfcd12dd" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1940,7 +1941,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p><a href="https://gavinfay.github.io/mar536-biolstats2-s23">gavinfay.github.io/mar536-biolstats2-s23</a></p>
+<p><a href="https://gavinfay.github.io/mar536-biolstats2-s25">gavinfay.github.io/mar536-biolstats2-s25</a></p>
 </div>
 </div>
 </section></section>
@@ -1956,6 +1957,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/multiplex/socket.io.js"></script>
   <script src="../site_libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-drop/drop-runtime.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -1978,6 +1980,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'multiplex': {"secret":null,"id":"eac9dee4d65b2304","url":"https://reveal-multiplex.glitch.me/"},
+'drop': {"button":true,"shortcut":"`","engine":"webr","webr":{"packages":[]},"pyodide":{"packages":[]}},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -2148,7 +2151,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealDrop, QuartoSupport,
 
           RevealMath,
           

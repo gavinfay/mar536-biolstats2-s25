@@ -1,8 +1,8 @@
 ---
 title: "MAR 536: Lab 4"
 subtitle: "Gavin Fay"
-date: "2023-02-08"
-footer:  "[gavinfay.github.io/mar536-biolstats2-s23](https://gavinfay.github.io/mar536-biolstats2-s23)"
+date: "2025-02-12"
+footer:  "[gavinfay.github.io/mar536-biolstats2-s25](https://gavinfay.github.io/mar536-biolstats2-s25)"
 logo: "../images/logo.png"
 format: 
   revealjs: 
@@ -10,6 +10,8 @@ format:
     multiplex: true
     transition: fade
     slide-number: true
+    revealjs-plugins:
+      - drop      
 editor: source
 execute:
   freeze: auto
@@ -42,15 +44,15 @@ library(fontawesome)
 
 ## Lab schedule
 
-1/18: Introduction to R and R Studio, working with data\
-1/25: Intro to Visualization\
-2/01: Probability, linear modeling\
-**2/08: Data wrangling, model summaries**\
-2/15: Simulation, Resampling\
-2/22: Iteration\
-3/01: Creating functions, debugging\
-3/15: Flex: more modeling (brms, glmmTMB)\
-3/29: Spatial data or tidymodeling
+1/22: Introduction to R and R Studio, working with data\
+1/29: Visualizing data\
+2/05: Probability, linear modeling\
+**2/12: Data wrangling, model summaries**\
+2/19: Simulation, Resampling\
+2/26: Iteration\
+3/19: Creating functions, debugging\
+4/02: working with Spatial data
+4/09: Flex: automated reporting & Quarto\
 
 **Acknowledgements: Mine Çetinkaya-Rundel, Allison Horst**
 

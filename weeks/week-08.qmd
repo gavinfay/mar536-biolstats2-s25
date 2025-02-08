@@ -4,7 +4,7 @@ subtitle: "Mixed Effects Models, Writing your own functions"
 editor: visual
 ---
 
-**Take-home MIDTERM due this week (3/16)\
+**Take-home MIDTERM due this week (3/20)\
 Mid-semester self-reflection survey on R lab component.**
 
 ## Prepare
@@ -23,7 +23,9 @@ Mid-semester self-reflection survey on R lab component.**
 
 🖥️ [Lecture 14 - more mixed effects](../lectures/lec-13.pptx)
 
-<br><br>
+## Practice
+
+Lab 7 exercise is due on Tuesday Apr 1.
 
 ::: {style="font-size: 0.875em;"}
 Back to [course schedule](/ "Course schedule") ⏎

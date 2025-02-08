@@ -1,12 +1,11 @@
 ---
 title: "poisson glm in R"
 author: "Gavin Fay"
-date: "2/7/2023"
+date: "2025-02-11"
 output:
   beamer_presentation:
     colortheme: seagull
     fonttheme: structurebold
-  ioslides_presentation: default
 ---
 
 ## setup
@@ -78,17 +77,15 @@ Note that the default link for the poisson is `log` so we don't have to specify 
 
 ## `summary(RIKZ_poisson)`
 
-```{=tex}
 \begingroup
 \fontsize{10}{11}\selectfont
-```
+
 ```{r prompt=TRUE,comment='',collapse=TRUE,echo=FALSE}
 summary(RIKZ_poisson)
 ```
 
-```{=tex}
 \endgroup
-```
+
 ## `broom::augment()`
 
 As with `lm()`, the `augment()` function can be used to obtain the predictions from a fitted model object, and for a new data frame.
@@ -103,10 +100,9 @@ Note: default for `type.predict` is on the scale of the linear predictors. Set t
 
 ## Observed and fitted values for Poisson RIKZ
 
-```{=tex}
 \begingroup
 \fontsize{10}{11}\selectfont
-```
+
 ```{r prompt=TRUE,comment='',collapse=TRUE,echo=TRUE,fig.show='hide'}
 #create new values for beach height
 new_data <- tibble(NAP = seq(-1.5,2.5,length.out=100))
@@ -125,9 +121,7 @@ ggplot(RIKZ, aes(x=NAP, y= Richness)) +
          ylim(0,25) + xlim(-1.5,2.5)
 ```
 
-```{=tex}
 \endgroup
-```
 
 ------------------------------------------------------------------------
 

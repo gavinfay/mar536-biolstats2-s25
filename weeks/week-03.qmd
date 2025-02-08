@@ -16,7 +16,7 @@ editor: visual
 
 🖥️ (Tuesday) [Lecture 4 - Regression review](../lectures/lec-04-regression.pptx)
 
-⌨️ [Lab 3 - Probability & Linear Modeling in ](../labs/lab-03.pdf)[R](../labs/lab-03.html) (just the [exercise](../labs/lab-exercise-03.pdf))
+⌨️ [Lab 3 - Probability & Linear Modeling in R](../labs/lab-03.html) (just the [exercise](../labs/lab-exercise-03.pdf))
 
 -   [species richness on beaches data (RIKZ.txt, Zuur Chapter 5, 27)](https://github.com/gavinfay/mar536-biolstats2-s23/tree/main/data/RIKZ.txt)
 

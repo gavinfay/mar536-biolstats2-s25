@@ -6,19 +6,17 @@ editor: visual
 
 **Note that there is no lab on Wednesday due to the [UMass Marine Science Symposium](https://imssymposium2023.sites.umassd.edu/) (all are welcome to attend).**
 
-**Gavin is out sick so there is a slight change in plans. Lecture materials are via recordings, class sessions on Tuesday and Thursday will be question/answer sessions and chances to get feedback/help from others on your projects.**
-
 ## Prepare
 
 📖 Tue:
 
--   [Lecture 14 - Zero inflated models](https://drive.google.com/file/d/1UFWAsmqwmqWRcUqXNaSSGwmPhTCcST-n/view?usp=share_link) (Recording)
+-   [Lecture 14 - Zero inflated models](https://drive.google.com/file/d/1UFWAsmqwmqWRcUqXNaSSGwmPhTCcST-n/view?usp=share_link)
 
 -   Reading: [Chapter 11 of Zuur et al. 2009](../documents/Zuur2009_Chap11.pdf)
 
 📖 Thu:
 
--   [Lecture 15 - Spatial GLM(M)s](https://www.dropbox.com/s/pq4whigu69301w1/GMT20200407-141706_MAR536-Bio_1920x1200.mp4?dl=0) (Recording - lecture starts \~20 min in)
+-   [Lecture 15 - Spatial GLM(M)s](https://www.dropbox.com/s/pq4whigu69301w1/GMT20200407-141706_MAR536-Bio_1920x1200.mp4?dl=0)
 
 ## Participate
 

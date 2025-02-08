@@ -1,6 +1,6 @@
 ---
 title: "Week 7"
-subtitle: "Principal Component Analysis, Writing your own functions"
+subtitle: "Principal Component Analysis"
 editor: visual
 ---
 
@@ -8,23 +8,21 @@ editor: visual
 
 ## Prepare
 
-📖 Tue + Thu: Read Chapter 12 Zuur et al. 2007.
+📖 Wed + Thu: Read Chapter 12 Zuur et al. 2007.
 
 ## Participate
 
-🖥️ [Lecture 11 - Matrix Algebra Review](../lectures/lec-11.pdf)
+📂 Tue In class Project Updates on data exploration
 
-⌨️ [Lab 7 - Functions](../labs/lab-07.html) (just the [exercises](../labs/lab-exercise-07.pdf))
+🖥️ (Wed) [Lecture 11 - Matrix Algebra Review](../lectures/lec-11.pdf)
 
--   Data sets for the lab can be found in the [class-data folder](#class-data).
-
-🖥️ [Lecture 12 - Principal Component Analysis](../lectures/lec-12.pptx)
+🖥️ (Thu) [Lecture 12 - Principal Component Analysis](../lectures/lec-12.pptx)
 
 -   [PCA with palmerpenguins from Dr. Allison Horst](https://allisonhorst.github.io/palmerpenguins/articles/pca.html)
 
 ## Practice
 
-Lab 7 exercise is due before lab on Wednesday Mar 22.
+Midterm is due Thursday Mar 20.
 
 <br><br>
 
