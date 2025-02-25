@@ -1,8 +1,8 @@
 ---
 title: 'Bio Stats II : Lecture 8, Resampling methods'
-subtitle: "James et al. (2021), Chapter 5"
+subtitle: "James et al., Chapter 5"
 author: "Gavin Fay"
-date: "02/14/2023"
+date: "02/19/2025"
 output:
   beamer_presentation:
     colortheme: seagull
@@ -115,7 +115,7 @@ summarize(gap_sample, avg_lifeExp = mean(lifeExp))
 
 ## Mean life expectancy example
 
-To estimate the variability of our estimate for the mean, we can:   
+To estimate the variability of our estimate for the mean, we can:\
 - repeatedly draw different samples from our sampled countries,\
 - compute the mean life expectancy from those samples,\
 - summarize the distribution of estimates for the mean,\
@@ -125,13 +125,10 @@ To estimate the variability of our estimate for the mean, we can:
 
 ![](figs/visualize.png)
 
-
 ## Mean life expectancy from 20 countries
 
-```{=tex}
 \begingroup
 \fontsize{9}{10}\selectfont
-```
 
 ```{r collapse = TRUE}
 gapminder |> 
@@ -139,16 +136,12 @@ gapminder |>
   rep_sample_n(size = 20)
 ```
 
-```{=tex}
 \endgroup
-```
 
 ## Mean life expectancy from 20 countries
 
-```{=tex}
 \begingroup
 \fontsize{9}{10}\selectfont
-```
 
 ```{r collapse = TRUE}
 gapminder |> 
@@ -157,16 +150,12 @@ gapminder |>
   summarize(avg_lifeExp = mean(lifeExp))
 ```
 
-```{=tex}
 \endgroup
-```
 
 ## 24 replicates of 20 countries
 
-```{=tex}
 \begingroup
 \fontsize{9}{10}\selectfont
-```
 
 ```{r collapse = TRUE}
 gapminder |> 
@@ -174,16 +163,12 @@ gapminder |>
   rep_sample_n(size = 20, reps = 24)
 ```
 
-```{=tex}
 \endgroup
-```
 
 ## 24 replicates of 20 countries
 
-```{=tex}
 \begingroup
 \fontsize{9}{10}\selectfont
-```
 
 ```{r collapse = TRUE}
 gapminder |> 
@@ -192,9 +177,7 @@ gapminder |>
   summarize(avg_lifeExp = mean(lifeExp))
 ```
 
-```{=tex}
 \endgroup
-```
 
 ```{r include=FALSE}
 meanlife_samp <- gapminder |> 
@@ -202,7 +185,6 @@ meanlife_samp <- gapminder |>
   rep_sample_n(size = 20, reps = 24) |>
   summarize(avg_lifeExp = mean(lifeExp))
 ```
-
 
 ## Distribution of 24 estimates of the mean
 
@@ -212,7 +194,6 @@ ggplot(meanlife_samp, aes(x = avg_lifeExp)) +
   labs(x = "Mean life expectancy from 20 countries", 
        title = "Distribution of 42 life expectancy means") 
 ```
-
 
 ## Regression Example
 
@@ -240,10 +221,7 @@ Resampling approaches can be computationally expensive.\
 
 Used to estimate:\
 - bias in sample statistics,\
-  filter(year == 2007) |> 
-  rep_sample_
-  filter(year == 2007) |> 
-  rep_sample_e data $x_1\text{, } x_2\text{, }, \dots \text{, } x_n$ and we are computing the mean.
+filter(year == 2007) \|\> rep_sample\_ filter(year == 2007) \|\> rep_sample_e data $x_1\text{, } x_2\text{, }, \dots \text{, } x_n$ and we are computing the mean.
 
 Systematically leave out one observation at a time and recompute the statistic.\
 mean$(x_2, \dots, x_n)$; mean$(x_1, x_3, \dots, x_n)$; mean$(x_1, x_2, x_4, \dots, x_n)$
@@ -264,25 +242,34 @@ $\hat{Bias}_{\theta} = n \hat{\theta}_{(.)} - (n-1)\bar{\theta}_{(jk)}$
 
 Systematic - estimates from jacknifing will always be the same.
 
-More reading: http://www.physics.utah.edu/\~detar/phycs6730/handouts/jackknife/jackknife/
+More reading: [http://www.physics.utah.edu/\\\~detar/phycs6730/handouts/jackknife/jackknife/](http://www.physics.utah.edu/\~detar/phycs6730/handouts/jackknife/jackknife/){.uri}
 
 <!-- ## Jackknife -->
 
 <!-- `Auto` dataset from `library(ISLR)` -->
 
 <!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE,echo=FALSE, out.width="75%"} -->
+
 <!-- ggplot(Auto, aes(y = mpg, x = horsepower)) + -->
+
 <!--   geom_point(col = "slateblue", alpha = 0.5, size = 4) + -->
+
 <!--   theme_minimal() + -->
+
 <!--   geom_smooth(method = "lm", col = "orange") -->
+
 <!-- ``` -->
 
 <!-- ## Using `jackknife()` (in `bootstrap`) -->
 
 <!-- ```{=tex} -->
+
 <!-- \begingroup -->
+
 <!-- \fontsize{9}{10}\selectfont -->
+
 <!-- ``` -->
+
 <!-- Usage: `jackknife(x, theta, ...)` -->
 
 <!-- `x` is vector containing the data, `theta` is function to be jackknifed. -->
@@ -290,18 +277,30 @@ More reading: http://www.physics.utah.edu/\~detar/phycs6730/handouts/jackknife/j
 <!-- e.g. slope of mpg\~horsepower -->
 
 <!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE,R.options=library(ISLR)} -->
+
 <!-- slope <- function(x) lm(mpg~horsepower,  -->
+
 <!--                         data = slice(Auto, x))$coef[2] -->
+
 <!-- jack <- jackknife(1:nrow(Auto),slope) -->
+
 <!-- jack$jack.bias -->
+
+```{=html}
 <!-- jack$jack.gapmindergapmindergapminder
 <!-- jack$jack.se^2 -->
+```
+
 <!-- quantile(jack$jack.values,c(0.025,0.975)) -->
+
 <!-- ``` -->
 
 <!-- ```{=tex} -->
+
 <!-- \endgroup -->
+
 <!-- ``` -->
+
 ## Bootstrapping
 
 Widely applicable and extremely powerful statistical tool.
@@ -338,20 +337,26 @@ Variance associated with resampling (with replacement) from sample should reflec
 <!-- Recall that `sample()` can be used to obtain samples from a given vector. -->
 
 <!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE} -->
+
 <!-- # determine order of 6 players -->
+
 <!-- sample(1:6,replace=FALSE) -->
+
 <!-- # roll six dice -->
+
 <!-- sample(1:6,replace=TRUE) -->
+
 <!-- # pick six lottery numbers -->
+
 <!-- sample(1:49,6,replace=FALSE) -->
+
 <!-- ``` -->
 
 ## Bootstrapping example, mean life expectancy
 
-```{=tex}
 \begingroup
 \fontsize{9}{10}\selectfont
-```
+
 use functionality from `infer` package\
 1 resample:
 
@@ -364,16 +369,13 @@ calculate(gap_resample, stat = "mean")
 gap_resample
 ```
 
-```{=tex}
 \endgroup
-```
 
 ## Bootstrapping example, mean life expectancy
 
-```{=tex}
 \begingroup
 \fontsize{9}{10}\selectfont
-```
+
 Many resamples:
 
 ```{r boot gapsamples}
@@ -385,9 +387,7 @@ gap_resamples <- gapminder |>
 gap_resamples
 ```
 
-```{=tex}
 \endgroup
-```
 
 ------------------------------------------------------------------------
 
@@ -398,10 +398,9 @@ visualize(gap_resamples,
 
 ## Regression example
 
-```{=tex}
 \begingroup
 \fontsize{10}{11}\selectfont
-```
+
 ```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,echo=TRUE}
 slope_bootstrap <- Auto |>
   specify(formula = mpg ~ horsepower) |> 
@@ -413,9 +412,7 @@ percentile_ci <- slope_bootstrap |>
 percentile_ci
 ```
 
-```{=tex}
 \endgroup
-```
 
 ------------------------------------------------------------------------
 
@@ -495,10 +492,9 @@ visualize(slope_bootstrap)
 
 ## Case bootstrapping using `boot()`
 
-```{=tex}
 \begingroup
 \fontsize{9}{10}\selectfont
-```
+
 In package `boot()`
 
 `boot()` is very powerful, can be used to do (almost) all kinds of bootstraps.\
@@ -521,9 +517,8 @@ Good description of `boot()` function in Fox (2002).
        cl = NULL)
 ```
 
-```{=tex}
 \endgroup
-```
+
 ## When is bootstrapping useful?
 
 -   theoretical distribution of a statistic of interest is complicated or unknown.
@@ -618,7 +613,7 @@ Often makes little difference and easy to run both and compare.
 
 Bootstrap gives different results when repeated on same data, whereas jackknife gives exactly the same result each time.
 
-Subsampling is an alternative method for approximating the sampling distribution of an estimator.  
+Subsampling is an alternative method for approximating the sampling distribution of an estimator.\
 Two key differences to bootstrap:\
 - resample size is smaller than the sample size\
 - resampling done without replacement.
@@ -635,10 +630,9 @@ Cross-validation methods therefore differ by the approach/algorithm taken to per
 
 ## Validation set approach
 
-```{=tex}
 \begingroup
 \fontsize{10}{11}\selectfont
-```
+
 Split data into training set and a validation (or hold-out) set.
 
 Fit model to training set, fitted model used to predict the responses for the observations in the validation set.
@@ -658,9 +652,8 @@ lm.fit3 <- lm(mpg ~ poly(horsepower, 3), data=Auto,
 mean((Auto$mpg - predict(lm.fit3, Auto))[-train]^2)
 ```
 
-```{=tex}
 \endgroup
-```
+
 ## Validation set approach
 
 Conceptually simple and easy to implement.
@@ -691,10 +684,9 @@ $$CV_{(n)} = \frac{1}{n} \displaystyle\sum_{i=1}^{n} \text{MSE}_i$$
 
 ## Cross-Validation of GLM, LOOCV
 
-```{=tex}
 \begingroup
 \fontsize{9}{10}\selectfont
-```
+
 Make use of `cv.glm` in `boot`.
 
 ```{r prompt=TRUE,comment='',collapse=TRUE,eval=TRUE}
@@ -712,9 +704,8 @@ cv.error <- map(1:5,
 cv.error
 ```
 
-```{=tex}
 \endgroup
-```
+
 ## More on LOOCV
 
 Less biased than validation set approach.
@@ -778,10 +769,9 @@ In practice perform either $k=5$ or $k=10$.
 
 Use `cv.glm()` with argument `K=k` to perform k-fold cross-validation.
 
-```{=tex}
 \begingroup
 \fontsize{9}{10}\selectfont
-```
+
 ```{r prompt=FALSE,comment='',collapse=TRUE,eval=TRUE,R.options=library(ISLR)}
 set.seed(17)
 cv_error <- expand.grid(poly = 1:10,
@@ -792,12 +782,19 @@ cv_error <- expand.grid(poly = 1:10,
                               K=10)$delta[1]))
 ```
 
-```{=tex}
 \endgroup
-```
+
 Setting K=n replicates LOOCV.
 
-<!--   for (ideg in 1:10) { --> <!--   glm.fit <- glm(mpg~poly(horsepower,ideg),data=Auto) --> <!--   cv.error.10[isim,] <- cv.glm(Auto, --> <!--                             glm.fit,K=10)$delta[1] --> <!-- }   -->
+<!--   for (ideg in 1:10) { -->
+
+<!--   glm.fit <- glm(mpg~poly(horsepower,ideg),data=Auto) -->
+
+<!--   cv.error.10[isim,] <- cv.glm(Auto, -->
+
+<!--                             glm.fit,K=10)$delta[1] -->
+
+<!-- }   -->
 
 ------------------------------------------------------------------------
 
@@ -812,8 +809,6 @@ ggplot(cv_error) +
   scale_x_discrete(name ="degree of polynomial", 
                     limits=factor(1:10))
 ```
-
-
 
 ## Cross-Validation
 
@@ -935,9 +930,6 @@ The bootstrap is used in several contexts, most commonly to provide a measure of
 
 ------------------------------------------------------------------------
 
-_Tomorrow..._ 
-Lab Exercises on Resampling methods    
+*Tomorrow...* Lab Exercises on Resampling methods
 
-![](../images/opinions/bushbaby.png){width=60%}
-
--   Thu 2/16: nonlinear modeling, splines
+![](../images/opinions/bushbaby.png){width="60%"}

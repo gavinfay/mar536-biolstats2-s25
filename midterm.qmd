@@ -6,4 +6,4 @@ The midterm (20% of course grade) is a take home exam covering core course topic
 
 As detailed on the syllabus this will be distributed Mar 04 and is due Mar 20.
 
-A practice midterm will be posted here early in the semester.
+[A practice midterm can be found here](documents/practice-midterm.pdf).
