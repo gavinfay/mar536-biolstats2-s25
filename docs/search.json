@@ -473,21 +473,21 @@
     "href": "labs/lab-06.html#lab-schedule",
     "title": "MAR 536 Lab 6",
     "section": "Lab schedule",
-    "text": "Lab schedule\n1/18: Introduction to R and R Studio, working with data\n1/25: Intro to Visualization\n2/01: Probability, linear modeling\n2/08: Data wrangling, model summaries\n2/15: Simulation, Resampling\n2/22: Iteration\n3/01: Creating functions, debugging\n3/15: Flex: more modeling (brms, glmmTMB)\n3/29: Spatial data or tidymodeling"
+    "text": "Lab schedule\n1/22: Introduction to R and R Studio, working with data\n1/29: Visualizing data\n2/05: Probability, linear modeling\n2/12: Data wrangling, model summaries\n2/20: Simulation, Resampling\n2/26: Iteration\n3/19: Creating functions, debugging\n4/02: working with Spatial data\n4/09: Flex: automated reporting & Quarto"
   },
   {
     "objectID": "labs/lab-06.html#acknowledgements",
     "href": "labs/lab-06.html#acknowledgements",
     "title": "MAR 536 Lab 6",
     "section": "Acknowledgements",
-    "text": "Acknowledgements\n\nDan Ovando\nMaia Kapur\nMine Çetinkaya-Rundel\n\nAlison Hill\nMegsie Siple\nSander Quyts"
+    "text": "Acknowledgements\n\nDan Ovando\nMaia Kapur\nMine Çetinkaya-Rundel\nAlison Hill\nMegsie Siple\nSander Quyts"
   },
   {
     "objectID": "labs/lab-06.html#reducing-code-duplication",
     "href": "labs/lab-06.html#reducing-code-duplication",
     "title": "MAR 536 Lab 6",
     "section": "Reducing code duplication",
-    "text": "Reducing code duplication\n\nEasier to see the intent of your code, eyes are drawn to what’s different, not what stays the same.\nEasier to respond to changes, only need to make changes in one place, rather than every place you copied-and-pasted.\nLikely to have fewer bugs because each line of code is used in more places.\n\nHow? Iteration (today) & Functions (next wk)"
+    "text": "Reducing code duplication\n\nEasier to see the intent of your code, eyes are drawn to what’s different, not what stays the same.\nEasier to respond to changes, only need to make changes in one place, rather than every place you copied-and-pasted.\nLikely to have fewer bugs because each line of code is used in more places.\n\nHow? Iteration (today) & Functions (later)"
   },
   {
     "objectID": "labs/lab-06.html#iteration",
@@ -571,14 +571,14 @@
     "href": "labs/lab-06.html#extending-to-multiple-input-lists",
     "title": "MAR 536 Lab 6",
     "section": "Extending to multiple input lists",
-    "text": "Extending to multiple input lists\nmap2 allows you to map over two sets of inputs.\n\nmap2(list1, list2, ~function(.x,.y), ...)\n\ne.g. generate 3 sets of 5 normal random variables, with the means & standard deviations different in each set.\n\nmu &lt;- list(5, 10, -3)\nsigma &lt;- list(1, 5, 10)\nmap2(mu, sigma, rnorm, n = 5) |&gt; str()\n## List of 3\n##  $ : num [1:5] 4.54 4.97 5.57 3.39 5\n##  $ : num [1:5] 11.28 9.39 4.62 13.42 3.85\n##  $ : num [1:5] -5.07 -5.9 -7.1 -21.36 -8.55"
+    "text": "Extending to multiple input lists\nmap2 allows you to map over two sets of inputs.\n\nmap2(list1, list2, ~function(.x,.y), ...)\n\ne.g. generate 3 sets of 5 normal random variables, with the means & standard deviations different in each set.\n\nmu &lt;- list(5, 10, -3)\nsigma &lt;- list(1, 5, 10)\nmap2(mu, sigma, rnorm, n = 5) |&gt; str()\n## List of 3\n##  $ : num [1:5] 5.65 3.44 4.54 6.07 3.58\n##  $ : num [1:5] 3.02 11.67 5.84 12.34 7.49\n##  $ : num [1:5] -0.884 -20.596 -23.703 0.995 -10.01"
   },
   {
     "objectID": "labs/lab-06.html#more-than-2-inputs-use-pmap",
     "href": "labs/lab-06.html#more-than-2-inputs-use-pmap",
     "title": "MAR 536 Lab 6",
     "section": "More than 2 inputs, use pmap",
-    "text": "More than 2 inputs, use pmap\ne.g. same problem as previous, but now n varies in each set.\n\nn &lt;- list(1, 3, 5)\nmu &lt;- list(5, 10, -3)\nsigma &lt;- list(1, 5, 10)\n\nargs1 &lt;- list(mean = mu, sd = sigma, n = n)\nargs1 |&gt;\n  pmap(rnorm) |&gt;\n  str()\n## List of 3\n##  $ : num 4.91\n##  $ : num [1:3] 15.43 14.02 4.27\n##  $ : num [1:5] 4.542 -0.992 -9.346 2.794 -11.452\n\nSafest to use named arguments with pmap, as it will do positional matching if not."
+    "text": "More than 2 inputs, use pmap\ne.g. same problem as previous, but now n varies in each set.\n\nn &lt;- list(1, 3, 5)\nmu &lt;- list(5, 10, -3)\nsigma &lt;- list(1, 5, 10)\n\nargs1 &lt;- list(mean = mu, sd = sigma, n = n)\nargs1 |&gt;\n  pmap(rnorm) |&gt;\n  str()\n## List of 3\n##  $ : num 2.33\n##  $ : num [1:3] 7.25 8.12 11.97\n##  $ : num [1:5] -7.215 -19.18 3.742 -0.222 -2.891\n\nSafest to use named arguments with pmap, as it will do positional matching if not."
   },
   {
     "objectID": "labs/lab-06.html#debugging-using-safely",
@@ -620,7 +620,7 @@
     "href": "labs/lab-06.html#residual-bootstrapping-2",
     "title": "MAR 536 Lab 6",
     "section": "residual bootstrapping",
-    "text": "residual bootstrapping\n\n# we'll do resampling from the residuals for each year within each rookery\n# rather than getting complicated with nested lists, we'll use sample_frac() to do the resamples\ntosample &lt;- ssl_boot |&gt; \n  select(sitename, resid) |&gt; \n  group_by(sitename)\nresamples &lt;-\n   map_dfr(seq_len(nboot), ~slice_sample(tosample, prop = 1, replace = TRUE)) |&gt;\n   ungroup() |&gt; \n   mutate(replicate = rep(1:nboot, each = nrow(tosample)))\nresamples\n## # A tibble: 37,200 × 3\n##    sitename           resid replicate\n##    &lt;chr&gt;              &lt;dbl&gt;     &lt;int&gt;\n##  1 ADAK/LAKE POINT  0.0886          1\n##  2 ADAK/LAKE POINT  0.00614         1\n##  3 ADAK/LAKE POINT  0.0454          1\n##  4 ADAK/LAKE POINT -0.0888          1\n##  5 ADAK/LAKE POINT  0.0509          1\n##  6 ADAK/LAKE POINT  0.0454          1\n##  7 ADAK/LAKE POINT  0.0454          1\n##  8 ADUGAK           0.168           1\n##  9 ADUGAK          -0.0193          1\n## 10 ADUGAK           0.0416          1\n## # ℹ 37,190 more rows"
+    "text": "residual bootstrapping\n\n# we'll do resampling from the residuals for each year within each rookery\n# rather than getting complicated with nested lists, we'll use sample_frac() to do the resamples\ntosample &lt;- ssl_boot |&gt; \n  select(sitename, resid) |&gt; \n  group_by(sitename)\nresamples &lt;-\n   map_dfr(seq_len(nboot), ~slice_sample(tosample, prop = 1, replace = TRUE)) |&gt;\n   ungroup() |&gt; \n   mutate(replicate = rep(1:nboot, each = nrow(tosample)))\nresamples\n## # A tibble: 37,200 × 3\n##    sitename           resid replicate\n##    &lt;chr&gt;              &lt;dbl&gt;     &lt;int&gt;\n##  1 ADAK/LAKE POINT  0.00614         1\n##  2 ADAK/LAKE POINT -0.0888          1\n##  3 ADAK/LAKE POINT  0.0454          1\n##  4 ADAK/LAKE POINT  0.0454          1\n##  5 ADAK/LAKE POINT  0.0454          1\n##  6 ADAK/LAKE POINT  0.0886          1\n##  7 ADAK/LAKE POINT  0.0509          1\n##  8 ADUGAK          -0.0193          1\n##  9 ADUGAK          -0.0384          1\n## 10 ADUGAK           0.168           1\n## # ℹ 37,190 more rows"
   },
   {
     "objectID": "labs/lab-06.html#accumulate",
@@ -634,7 +634,7 @@
     "href": "labs/lab-06.html#population-projections",
     "title": "MAR 536 Lab 6",
     "section": "Population projections",
-    "text": "Population projections\nStatus for endangered species are often based on a risk evaluation of population projections. We want to project population dynamics forward in time given uncertainty in future dynamics. We want to do this lots of times to quantify the risk of extinction.\nCurrent (2022) estimates of the North Atlantic Right Whale population are 340 individuals. The population has been declining on average around 3% per year since 2011. What is the year in which the probability that the right whale population drops below 100 individuals is at least 50% (P(N&lt;100)&gt;=0.5)?\n\nnsim &lt;- 100\nnyr &lt;- 100\ninitN &lt;- 340\nsd_proc &lt;- 0.1\nlambda &lt;- 0.97\ngrowth_rates &lt;- map(seq_len(nsim), ~rlnorm(nyr,log(lambda),sd_proc))\n\n# population model\npop_update &lt;- function(N, growth_rate = 1) N*growth_rate\n\n# population projection for each time series of process errors\npop_proj &lt;- tibble(sim = seq_len(nsim)) |&gt;\n  mutate(popsize = map(growth_rates,~accumulate(., pop_update, \n                                                .init = initN))) |&gt;\n  unnest(cols = c(popsize)) |&gt;\n  mutate(year = rep(2022:2122, nsim))\npop_proj\n## # A tibble: 10,100 × 3\n##      sim popsize  year\n##    &lt;int&gt;   &lt;dbl&gt; &lt;int&gt;\n##  1     1    340   2022\n##  2     1    354.  2023\n##  3     1    373.  2024\n##  4     1    412.  2025\n##  5     1    386.  2026\n##  6     1    342.  2027\n##  7     1    351.  2028\n##  8     1    332.  2029\n##  9     1    374.  2030\n## 10     1    374.  2031\n## # ℹ 10,090 more rows"
+    "text": "Population projections\nStatus for endangered species are often based on a risk evaluation of population projections. We want to project population dynamics forward in time given uncertainty in future dynamics. We want to do this lots of times to quantify the risk of extinction.\nThe 2022 estimate of the North Atlantic Right Whale population was 340 individuals. The population has been declining on average around 3% per year since 2011. What is the year in which the probability that the right whale population drops below 100 individuals is at least 50% (P(N&lt;100)&gt;=0.5)?\n\nnsim &lt;- 100\nnyr &lt;- 100\ninitN &lt;- 340\nsd_proc &lt;- 0.1\nlambda &lt;- 0.97\ngrowth_rates &lt;- map(seq_len(nsim), ~rlnorm(nyr,log(lambda),sd_proc))\n\n# population model\npop_update &lt;- function(N, growth_rate = 1) N*growth_rate\n\n# population projection for each time series of process errors\npop_proj &lt;- tibble(sim = seq_len(nsim)) |&gt;\n  mutate(popsize = map(growth_rates,~accumulate(., pop_update, \n                                                .init = initN))) |&gt;\n  unnest(cols = c(popsize)) |&gt;\n  mutate(year = rep(2022:2122, nsim))\npop_proj\n## # A tibble: 10,100 × 3\n##      sim popsize  year\n##    &lt;int&gt;   &lt;dbl&gt; &lt;int&gt;\n##  1     1    340   2022\n##  2     1    331.  2023\n##  3     1    276.  2024\n##  4     1    286.  2025\n##  5     1    254.  2026\n##  6     1    225.  2027\n##  7     1    213.  2028\n##  8     1    207.  2029\n##  9     1    219.  2030\n## 10     1    190.  2031\n## # ℹ 10,090 more rows"
   },
   {
     "objectID": "labs/lab-06.html#the-while-loop",
@@ -662,7 +662,7 @@
     "href": "labs/lab-06.html#improving-speed-of-loops",
     "title": "MAR 536 Lab 6",
     "section": "Improving speed of loops",
-    "text": "Improving speed of loops\nLooping over very large data sets can sometimes become slow in R. Overcome by:\n\ncreate storage objects apriori (don’t grow objects).\neliminate certain operations in loops or\n\navoidg loops over the data-intensive dimension in an object altogether.\n\n\nthe latter can be achieved by performing mainly vector-to-vecor or matrix-to-matrix computations (often &gt; 100x faster than for() or apply() or map()).\n\nMake use of existing speed-optimized R functions (e.g.: rowSums, rowMeans, table) or write your own fast functions.\n\nxdat &lt;- matrix(rnorm(1000000), 100000, 10)\nsystem.time(x_mean &lt;- apply(xdat, 1, mean))\n   user  system elapsed \n  0.200   0.001   0.201 \nsystem.time(x_mean &lt;- rowMeans(xdat))\n   user  system elapsed \n      0       0       0"
+    "text": "Improving speed of loops\nLooping over very large data sets can sometimes become slow in R. Overcome by:\n\ncreate storage objects apriori (don’t grow objects).\neliminate certain operations in loops or\n\navoidg loops over the data-intensive dimension in an object altogether.\n\n\nthe latter can be achieved by performing mainly vector-to-vecor or matrix-to-matrix computations (often &gt; 100x faster than for() or apply() or map()).\n\nMake use of existing speed-optimized R functions (e.g.: rowSums, rowMeans, table) or write your own fast functions.\n\nxdat &lt;- matrix(rnorm(1000000), 100000, 10)\nsystem.time(x_mean &lt;- apply(xdat, 1, mean))\n   user  system elapsed \n  0.204   0.003   0.206 \nsystem.time(x_mean &lt;- rowMeans(xdat))\n   user  system elapsed \n  0.001   0.000   0.000"
   },
   {
     "objectID": "labs/lab-06.html#lab-exercise-33",
@@ -676,7 +676,7 @@
     "href": "labs/lab-06.html#lab-exercise-3-continued",
     "title": "MAR 536 Lab 6",
     "section": "Lab Exercise 3 continued…",
-    "text": "Lab Exercise 3 continued…\nWe might hypothesisze that “The bigger the size of a genome, the higher the number of proteins”.\n\nFit a linear model of log10_proteins ~ log10_size_mb for each group.\n\nExtract the R^2 for each model and print these for each group.\n\nAssess the validity of your modeling approach.\n\nObtain and plot predictions for each group for genome sizes 0.5, 123, and 500 MB.\n\nHow do you interpret the results in terms of the original hypothesis?\n\nBONUS use residual bootstrapping to obtain distributions for the predictions made in part 11.\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
+    "text": "Lab Exercise 3 continued…\nWe might hypothesisze that “The bigger the size of a genome, the higher the number of proteins”.\n\nFit a linear model of log10_proteins ~ log10_size_mb for each group.\n\nExtract the R^2 for each model and print these for each group.\n\nAssess the validity of your modeling approach.\n\nObtain and plot predictions for each group for genome sizes 0.5, 123, and 500 MB.\n\nHow do you interpret the results in terms of the original hypothesis?\n\nBONUS use residual bootstrapping to obtain distributions for the predictions made in part 11.\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s25"
   },
   {
     "objectID": "labs/lab-01.html#lab-schedule",
