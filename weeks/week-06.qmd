@@ -22,7 +22,8 @@ editor: visual
 
 (Thu) Student Meeting with Fisheries Faculty Search Candidate
 
-🖥️ (Thu) [Lecture 10 - Generalized Additive Models](../lectures/lec-10.pdf) (Watch in own time)
+🖥️ (Thu) [Lecture 10 - Generalized Additive Models](https://gavinfay.github.io/mar536-biolstats2-s23/lectures/lec-10.pdf) (slides)\
+[Video recording (Watch in own time)](https://www.dropbox.com/scl/fo/03gvgjtxayov8k1gryl1t/h/2023-02-23?subfolder_nav_tracking=1&dl=0)
 
 ## Practice
 

@@ -16,14 +16,15 @@ This page will contain an outline of the topics, content, and assignments for th
 
 \[2025-01-25: probability review lecture moved to Thu Jan 30, subsequent changes to lecture schedule to come\]\
 \[2025-02-08: reorganization of sequence of material Feb 13 through Mar 5\]\
-\[2025-02-08: asynchronous class Feb 27, in-class project updates moved to Mar 4\]
+\[2025-02-08: asynchronous class Feb 27, in-class project updates moved to Mar 4\]\
+\[2025-02-25: data exploration report deadline moved to Mar 4\]
 
 ::: column-screen-inset-right
-<table style="width:86%;">
+<table style="width:82%;">
 <colgroup>
 <col style="width: 8%" />
 <col style="width: 8%" />
-<col style="width: 11%" />
+<col style="width: 8%" />
 <col style="width: 8%" />
 <col style="width: 8%" />
 <col style="width: 8%" />
@@ -332,7 +333,7 @@ This page will contain an outline of the topics, content, and assignments for th
 <td><p>GAMs<br />
 <strong>ASYNCHRONOUS</strong></p></td>
 <td style="text-align: center;"><p><a href="weeks/week-06.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="lectures/lec-10.pdf"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><a href="weeks/week-06.html#prepare"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -352,9 +353,9 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"></td>
-<td><p>Thu, Feb 27</p></td>
-<td><p>Due: Data Exploration Report</p></td>
+<td style="text-align: center;"><p><a href="weeks/week-07.html">7</a></p></td>
+<td><p>Tue, Mar 04</p></td>
+<td><p>Project Updates</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -364,9 +365,9 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><p><a href="weeks/week-07.html">7</a></p></td>
+<td style="text-align: center;"></td>
 <td><p>Tue, Mar 04</p></td>
-<td><p>Project Updates</p></td>
+<td><p>Due: Data Exploration Report</p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>

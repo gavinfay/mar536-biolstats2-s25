@@ -14,6 +14,8 @@ editor: visual
 
 📂 Tue In class Project Updates on data exploration
 
+-   data exploration reports due Tue Mar 4
+
 🖥️ (Wed) [Lecture 11 - Matrix Algebra Review](../lectures/lec-11.pdf)
 
 🖥️ (Thu) [Lecture 12 - Principal Component Analysis](../lectures/lec-12.pptx)
