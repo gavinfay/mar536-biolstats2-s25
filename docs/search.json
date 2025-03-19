@@ -1033,14 +1033,14 @@
     "href": "labs/lab-07.html#a-simple-function-cv",
     "title": "MAR 536 Lab 7: Functions",
     "section": "A simple function: cv()",
-    "text": "A simple function: cv()\nThere is no R function for the CV, or coefficient of variation (standard deviation divided by the mean)\n\ncv &lt;- function(xvec) { \n   cv_value &lt;- sd(xvec)/mean(xvec) \n   return(cv_value) \n} \nvalues &lt;- rnorm(n=1000, mean=5, sd=2) \ncv(values) \n[1] 0.3877163\n\nAvailable objects\nOnly the new function cv() and the object values are available in the workspace (they are global).\nObject cv_value (defined inside the function) is encapsulated within the function cv() and not available outside it.\nWell-designed functions only receive inputs through their arguments."
+    "text": "A simple function: cv()\nThere is no R function for the CV, or coefficient of variation (standard deviation divided by the mean)\n\ncv &lt;- function(xvec) { \n   cv_value &lt;- sd(xvec)/mean(xvec) \n   return(cv_value) \n} \nvalues &lt;- rnorm(n=1000, mean=5, sd=2) \ncv(values) \n[1] 0.4064673\n\nAvailable objects\nOnly the new function cv() and the object values are available in the workspace (they are global).\nObject cv_value (defined inside the function) is encapsulated within the function cv() and not available outside it.\nWell-designed functions only receive inputs through their arguments."
   },
   {
     "objectID": "labs/lab-07.html#optional-arguments",
     "href": "labs/lab-07.html#optional-arguments",
     "title": "MAR 536 Lab 7: Functions",
     "section": "Optional arguments",
-    "text": "Optional arguments\nIf xvec includes NAs the function won’t work, instead, add an optional argument.\n\ncv_new &lt;- function(xvec, na.rm = FALSE) {  \n   cv_value &lt;- sd(xvec, na.rm = na.rm)/\n               mean(xvec, na.rm = na.rm) \n   return(cv_value) \n} \nvalues &lt;- rnorm(n=1000, mean=5, sd=2)\nvalues[100] &lt;- NA \ncv_new(values)\n[1] NA\ncv_new(values[-100])\n[1] 0.3837022\ncv_new(values, na.rm = TRUE) \n[1] 0.3837022\n\nSome built-in R functions (e.g. lm()) have many optional arguments.\nqnorm(0.25,0,1), qnorm(x = 0.25), and qnorm(0.25,sd=1) all return the same result."
+    "text": "Optional arguments\nIf xvec includes NAs the function won’t work, instead, add an optional argument.\n\ncv_new &lt;- function(xvec, na.rm = FALSE) {  \n   cv_value &lt;- sd(xvec, na.rm = na.rm)/\n               mean(xvec, na.rm = na.rm) \n   return(cv_value) \n} \nvalues &lt;- rnorm(n=1000, mean=5, sd=2)\nvalues[100] &lt;- NA \ncv_new(values)\n[1] NA\ncv_new(values[-100])\n[1] 0.3846821\ncv_new(values, na.rm = TRUE) \n[1] 0.3846821\n\nSome built-in R functions (e.g. lm()) have many optional arguments.\nqnorm(0.25,0,1), qnorm(x = 0.25), and qnorm(0.25,sd=1) all return the same result."
   },
   {
     "objectID": "labs/lab-07.html#lab-exercise-14",
@@ -1075,7 +1075,7 @@
     "href": "labs/lab-07.html#outputting-many-values-from-a-function",
     "title": "MAR 536 Lab 7: Functions",
     "section": "Outputting many values from a function",
-    "text": "Outputting many values from a function\nAchieved by returning a list object.\n(e.g. value returned by lm())\n\ncompute_stats &lt;- function(xvec) {\n  ave &lt;- mean(xvec)\n  var &lt;- var(xvec)\n  cv &lt;- cv_new(xvec)  # call to our own function    \n  cat(ave, var, cv, \"\\n\") \n  out &lt;- list(ave = ave, var = var, \n              sd = sqrt(var), cv = cv)\n  return(out)\n}\nvalues &lt;- rnorm(n=1000, mean=5, sd=2)\nvalues_summary &lt;- compute_stats(values) \n5.016149 3.78282 0.3877371"
+    "text": "Outputting many values from a function\nAchieved by returning a list object.\n(e.g. value returned by lm())\n\ncompute_stats &lt;- function(xvec) {\n  ave &lt;- mean(xvec)\n  var &lt;- var(xvec)\n  cv &lt;- cv_new(xvec)  # call to our own function    \n  cat(ave, var, cv, \"\\n\") \n  out &lt;- list(ave = ave, var = var, \n              sd = sqrt(var), cv = cv)\n  return(out)\n}\nvalues &lt;- rnorm(n=1000, mean=5, sd=2)\nvalues_summary &lt;- compute_stats(values) \n4.922024 4.079823 0.4103712"
   },
   {
     "objectID": "labs/lab-07.html#lab-exercise-24",
@@ -1166,7 +1166,7 @@
     "href": "labs/lab-07.html#lab-exercise-44",
     "title": "MAR 536 Lab 7: Functions",
     "section": "Lab exercise 4/4",
-    "text": "Lab exercise 4/4\nWrite a function (or set of functions) that:\na. takes two vectors of data,\nb. produces a scatterplot of one vector vs the other,\nc. adds a title that is a species name,\nd. performs a regression if there is enough data,\ne. adds the estimated regression line to the plot, and\nf. returns the coefficients of the regression.\nAdd an argument that determines whether the regression should be based on the logs of the input vectors.\nHint Test your functions with some dummy data. Reuse code from earlier today and from other labs.\nApply your function(s) to the Laengelmavesi2 data.\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s23"
+    "text": "Lab exercise 4/4\nWrite a function (or set of functions) that:\na. takes two vectors of data,\nb. produces a scatterplot of one vector vs the other,\nc. adds a title that is a species name,\nd. performs a regression if there is enough data,\ne. adds the estimated regression line to the plot, and\nf. returns the coefficients of the regression.\nAdd an argument that determines whether the regression should be based on the logs of the input vectors.\nHint Test your functions with some dummy data. Reuse code from earlier today and from other labs.\nApply your function(s) to the Laengelmavesi2 data.\n\n\n\n\ngavinfay.github.io/mar536-biolstats2-s25"
   },
   {
     "objectID": "about.html",

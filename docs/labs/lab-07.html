@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.56">
 
-  <meta name="dcterms.date" content="2023-03-01">
+  <meta name="dcterms.date" content="2025-03-19">
   <title>MAR 536 - Spring 2025 – MAR 536 Lab 7: Functions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -99,6 +99,7 @@
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-drop/drop-runtime.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -398,7 +399,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2023-03-01</p>
+  <p class="date">2025-03-19</p>
 </section>
 <section id="recommended-reading" class="slide level2">
 <h2>Recommended reading</h2>
@@ -447,7 +448,7 @@
 <span id="cb3-4"><a></a>} </span>
 <span id="cb3-5"><a></a>values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">mean=</span><span class="dv">5</span>, <span class="at">sd=</span><span class="dv">2</span>) </span>
 <span id="cb3-6"><a></a><span class="fu">cv</span>(values) </span>
-<span id="cb3-7"><a></a>[<span class="dv">1</span>] <span class="fl">0.3877163</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a></a>[<span class="dv">1</span>] <span class="fl">0.4064673</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>Available objects</em><br>
 Only the new function <code>cv()</code> and the object values are available in the workspace (they are global).<br>
@@ -468,9 +469,9 @@ Well-designed functions only receive inputs through their arguments.</p>
 <span id="cb4-8"><a></a><span class="fu">cv_new</span>(values)</span>
 <span id="cb4-9"><a></a>[<span class="dv">1</span>] <span class="cn">NA</span></span>
 <span id="cb4-10"><a></a><span class="fu">cv_new</span>(values[<span class="sc">-</span><span class="dv">100</span>])</span>
-<span id="cb4-11"><a></a>[<span class="dv">1</span>] <span class="fl">0.3837022</span></span>
+<span id="cb4-11"><a></a>[<span class="dv">1</span>] <span class="fl">0.3846821</span></span>
 <span id="cb4-12"><a></a><span class="fu">cv_new</span>(values, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb4-13"><a></a>[<span class="dv">1</span>] <span class="fl">0.3837022</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-13"><a></a>[<span class="dv">1</span>] <span class="fl">0.3846821</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Some built-in <code>R</code> functions (e.g.&nbsp;<code>lm()</code>) have many optional arguments.<br>
 <code>qnorm(0.25,0,1)</code>, <code>qnorm(x = 0.25)</code>, and <code>qnorm(0.25,sd=1)</code> all return the same result.</p>
@@ -548,7 +549,7 @@ A good function is general, carefully written, and well documented.</p>
 <span id="cb5-9"><a></a>}</span>
 <span id="cb5-10"><a></a>values <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n=</span><span class="dv">1000</span>, <span class="at">mean=</span><span class="dv">5</span>, <span class="at">sd=</span><span class="dv">2</span>)</span>
 <span id="cb5-11"><a></a>values_summary <span class="ot">&lt;-</span> <span class="fu">compute_stats</span>(values) </span>
-<span id="cb5-12"><a></a><span class="fl">5.016149</span> <span class="fl">3.78282</span> <span class="fl">0.3877371</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-12"><a></a><span class="fl">4.922024</span> <span class="fl">4.079823</span> <span class="fl">0.4103712</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="lab-exercise-24" class="slide level2 small">
@@ -699,7 +700,7 @@ Calling a function given a list of arguments using <code>do.call()</code></p>
 <h2>Debugging + defensive programming</h2>
 <p>What happens when something goes wrong with your <code>R</code> code?</p>
 
-<img data-src="../images/opinions/dogtears.png" class="r-stretch"></section>
+<img data-src="../images/opinions/no-problemo.jpg" class="r-stretch"></section>
 <section id="debugging-defensive-programming-1" class="slide level2 small">
 <h2>Debugging + defensive programming</h2>
 <p>What happens when something goes wrong with your <code>R</code> code?</p>
@@ -753,7 +754,7 @@ f.&nbsp;returns the coefficients of the regression.</p>
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p><a href="https://gavinfay.github.io/mar536-biolstats2-s23">gavinfay.github.io/mar536-biolstats2-s23</a></p>
+<p><a href="https://gavinfay.github.io/mar536-biolstats2-s25">gavinfay.github.io/mar536-biolstats2-s25</a></p>
 </div>
 </div>
 </section>
@@ -769,6 +770,7 @@ f.&nbsp;returns the coefficients of the regression.</p>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
   <script src="../site_libs/revealjs/plugin/multiplex/socket.io.js"></script>
   <script src="../site_libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-drop/drop-runtime.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -791,6 +793,7 @@ f.&nbsp;returns the coefficients of the regression.</p>
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'multiplex': {"secret":null,"id":"eb81b7ccaccf94a1","url":"https://reveal-multiplex.glitch.me/"},
+'drop': {"button":true,"shortcut":"`","engine":"webr","webr":{"packages":[]},"pyodide":{"packages":[]}},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -961,7 +964,7 @@ f.&nbsp;returns the coefficients of the regression.</p>
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealDrop, QuartoSupport,
 
           RevealMath,
           
