@@ -4,35 +4,36 @@ subtitle: "Zero-inflated models, Spatial GLMMs"
 editor: visual
 ---
 
-**Note that there is no lab on Wednesday due to the [UMass Marine Science Symposium](https://imssymposium2023.sites.umassd.edu/) (all are welcome to attend).**
+**Note that there is no lab on Wednesday due to the [UMass Marine Science Symposium](https://imssymposium2025.sites.umassd.edu/) (all are welcome to attend).**
 
 ## Prepare
 
 📖 Tue:
 
--   [Lecture 14 - Zero inflated models](https://drive.google.com/file/d/1UFWAsmqwmqWRcUqXNaSSGwmPhTCcST-n/view?usp=share_link)
+<!-- -   [Lecture 14 - Zero inflated models](https://drive.google.com/file/d/1UFWAsmqwmqWRcUqXNaSSGwmPhTCcST-n/view?usp=share_link) -->
 
 -   Reading: [Chapter 11 of Zuur et al. 2009](../documents/Zuur2009_Chap11.pdf)
 
 📖 Thu:
 
--   [Lecture 15 - Spatial GLM(M)s](https://www.dropbox.com/s/pq4whigu69301w1/GMT20200407-141706_MAR536-Bio_1920x1200.mp4?dl=0)
+-   Reading: Anderson, S. C., Ward, E. J., English, P. A., & Barnett, L. A. (2022). sdmTMB: an R package for fast, flexible, and user-friendly generalized linear mixed effects models with spatial and spatiotemporal random fields. BioRxiv, 2022-03. [https://doi.org/10.1101/2022.03.24.485545 ](https://doi.org/10.1101/2022.03.24.485545 ) 
+<!-- -   [Lecture 15 - Spatial GLM(M)s](https://www.dropbox.com/s/pq4whigu69301w1/GMT20200407-141706_MAR536-Bio_1920x1200.mp4?dl=0) -->
 
 ## Participate
 
-🖥️ [Lecture 14 slide deck](https://drive.google.com/file/d/1pqx8xzQ_twup9p9AGbtKsFvquNnaFOkE/view?usp=share_link) (from 2020)
+🖥️ [Lecture 14 slide deck](https://drive.google.com/file/d/1pqx8xzQ_twup9p9AGbtKsFvquNnaFOkE/view?usp=share_link)
 
 -   [Rmd with examples from the lecture](https://drive.google.com/file/d/1u5Zm_Sw_B7pu9Rhq3dXXR39s_tEYpfdM/view?usp=share_link)
--   *NB: Today I would likely fit the models in the lecture solely using glmmTMB, e.g. using code similar to the owls example below*
+<!-- -   *NB: Today I would likely fit the models in the lecture solely using glmmTMB, e.g. using code similar to the owls example below* -->
 -   [Owls example, zero inflation using glmmTMB](https://journal.r-project.org/archive/2017/RJ-2017-066/RJ-2017-066.pdf) (Brooks et al. 2017)
     -   [paper with rationale for models by Bolker et al. (2012)](../documents/owls.pdf)
 -   Data sets can be found in the [class-data folder](#class-data).
 
-🖥️ [Lecture 15 slide deck](https://docs.google.com/presentation/d/1APFJWJ44PuGowN4fReL-8EIgcSi0biGK/edit?usp=share_link&ouid=100082783551785338508&rtpof=true&sd=true) (from 2020)
+🖥️ [Lecture 15 slide deck](https://docs.google.com/presentation/d/1APFJWJ44PuGowN4fReL-8EIgcSi0biGK/edit?usp=share_link&ouid=100082783551785338508&rtpof=true&sd=true)
 
 -   [Rmd with examples from the lecture](https://drive.google.com/file/d/1vXUnKFxd4I2RlVhBmPU1V9OBq4J_4Vvt/view?usp=share_link)
 
--   *NB: In future offerings, I will replace a lot of this material with focus on sdmTMB, which allows us to use the same type of formula syntax we've been using.* *Here's a bonus lecture on sdmTMB ([recording from my Ecosystem models class](https://umassd.zoom.us/rec/share/zXMtITwEaHAJ7e8WN6GQw9Tltr6823vYsmk1WzyRGX3_fcRMp23LJRRJC4odNjLZ.BBhKbmjj4KvuAsrW), lecture by Dr. Eric Ward)*
+-   *NB: Here's a bonus lecture on sdmTMB ([recording from my Ecosystem models class](https://umassd.zoom.us/rec/share/zXMtITwEaHAJ7e8WN6GQw9Tltr6823vYsmk1WzyRGX3_fcRMp23LJRRJC4odNjLZ.BBhKbmjj4KvuAsrW), lecture by Dr. Eric Ward)*
 
 <br><br>
 
