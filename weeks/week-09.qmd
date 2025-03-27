@@ -1,5 +1,5 @@
 ---
-title: "Week 9"
+title: "Weeks 9 and 10"
 subtitle: "Zero-inflated models, Spatial GLMMs"
 editor: visual
 ---
@@ -8,13 +8,13 @@ editor: visual
 
 ## Prepare
 
-📖 Tue:
+📖 Tue Mar 25:
 
 <!-- -   [Lecture 14 - Zero inflated models](https://drive.google.com/file/d/1UFWAsmqwmqWRcUqXNaSSGwmPhTCcST-n/view?usp=share_link) -->
 
 -   Reading: [Chapter 11 of Zuur et al. 2009](../documents/Zuur2009_Chap11.pdf)
 
-📖 Thu:
+📖 Thu Mar 27, Tue Apr 01:
 
 -   Reading: Anderson, S. C., Ward, E. J., English, P. A., & Barnett, L. A. (2022). sdmTMB: an R package for fast, flexible, and user-friendly generalized linear mixed effects models with spatial and spatiotemporal random fields. BioRxiv, 2022-03. <https://doi.org/10.1101/2022.03.24.485545> <!-- -   [Lecture 15 - Spatial GLM(M)s](https://www.dropbox.com/s/pq4whigu69301w1/GMT20200407-141706_MAR536-Bio_1920x1200.mp4?dl=0) -->
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Weeks 9 and 10 – MAR 536 - Spring 2025</title>
+<title>Week 11 – MAR 536 - Spring 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../class-data.html" rel="next">
-<link href="../weeks/week-08.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -71,8 +69,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Weeks 9 and 10 – MAR 536 - Spring 2025">
-<meta property="og:description" content="Zero-inflated models, Spatial GLMMs">
+<meta property="og:title" content="Week 11 – MAR 536 - Spring 2025">
+<meta property="og:description" content="Classification">
 <meta property="og:site_name" content="MAR 536 - Spring 2025">
 </head>
 
@@ -85,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-01.html">Weekly materials</a></li><li class="breadcrumb-item"><a href="../weeks/week-09.html">Week 9</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 11</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -168,13 +166,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Weekly materials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week-01.html" class="sidebar-item-text sidebar-link">
@@ -225,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week-09.html" class="sidebar-item-text sidebar-link active">
+  <a href="../weeks/week-09.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 9</span></a>
   </div>
 </li>
@@ -250,15 +248,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#prepare" id="toc-prepare" class="nav-link active" data-scroll-target="#prepare">Prepare</a></li>
   <li><a href="#participate" id="toc-participate" class="nav-link" data-scroll-target="#participate">Participate</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/gavinfay/mar536-biolstats2-s25/edit/main/weeks/week-09.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gavinfay/mar536-biolstats2-s25/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/gavinfay/mar536-biolstats2-s25/edit/main/weeks/week-11.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gavinfay/mar536-biolstats2-s25/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-01.html">Weekly materials</a></li><li class="breadcrumb-item"><a href="../weeks/week-09.html">Week 9</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Weeks 9 and 10</h1>
-<p class="subtitle lead">Zero-inflated models, Spatial GLMMs</p>
+<h1 class="title">Week 11</h1>
+<p class="subtitle lead">Classification</p>
 </div>
 
 
@@ -275,38 +273,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Note that there is no lab on Wednesday due to the <a href="https://imssymposium2025.sites.umassd.edu/">UMass Marine Science Symposium</a> (all are welcome to attend).</strong></p>
+<p><strong>Gavin is still recovering from illness and so there is a slight change in plans. Lecture materials are via recordings, class sessions on Tuesday and Thursday will be question/answer sessions and live walk-through of examples from the lectures. Wednesday’s lab will be on using spatial data in R.</strong></p>
 <section id="prepare" class="level2">
 <h2 class="anchored" data-anchor-id="prepare">Prepare</h2>
-<p>📖 Tue Mar 25:</p>
-<!-- -   [Lecture 14 - Zero inflated models](https://drive.google.com/file/d/1UFWAsmqwmqWRcUqXNaSSGwmPhTCcST-n/view?usp=share_link) -->
+<p>📖 Tue:</p>
 <ul>
-<li>Reading: <a href="../documents/Zuur2009_Chap11.pdf">Chapter 11 of Zuur et al.&nbsp;2009</a></li>
+<li><p>Reading: Chapter 14 of Zuur et al.&nbsp;2007</p></li>
+<li><p><a href="https://www.dropbox.com/s/10cyxwhjrprs6s6/zoom_0.mp4?dl=0">Lecture 16 - Linear Discriminant Analysis</a> (Recording)</p>
+<ul>
+<li><p>(lecture starts at 15m30s)</p></li>
+<li><p><a href="https://docs.google.com/presentation/d/19Yg0ij8pjCcHGFSbu1NskeDeCp0q62X9/edit?usp=share_link&amp;ouid=100082783551785338508&amp;rtpof=true&amp;sd=true">slide deck from recorded lecture</a></p></li>
+</ul></li>
 </ul>
-<p>📖 Thu Mar 27, Tue Apr 01:</p>
+<p>📖 Thu:</p>
 <ul>
-<li>Reading: Anderson, S. C., Ward, E. J., English, P. A., &amp; Barnett, L. A. (2022). sdmTMB: an R package for fast, flexible, and user-friendly generalized linear mixed effects models with spatial and spatiotemporal random fields. BioRxiv, 2022-03. <a href="https://doi.org/10.1101/2022.03.24.485545" class="uri">https://doi.org/10.1101/2022.03.24.485545</a> <!-- -   [Lecture 15 - Spatial GLM(M)s](https://www.dropbox.com/s/pq4whigu69301w1/GMT20200407-141706_MAR536-Bio_1920x1200.mp4?dl=0) --></li>
+<li>Reading: Chapter 9 of Zuur et al.&nbsp;2007</li>
+<li><a href="https://drive.google.com/file/d/1z6Zg6qVni0Tj25aooGis7KN3sfnSmB1E/view?usp=share_link">Lecture 17 - Trees (Classification/Regression)</a> (Recording)
+<ul>
+<li><a href="https://docs.google.com/presentation/d/1vd0PvZEQ2v5l55CJGPuP8ApxdFdthiZi/edit?usp=share_link&amp;ouid=100082783551785338508&amp;rtpof=true&amp;sd=true">slide deck from recorded lecture</a></li>
+</ul></li>
 </ul>
 </section>
 <section id="participate" class="level2">
 <h2 class="anchored" data-anchor-id="participate">Participate</h2>
-<p>🖥️ <a href="../lectures/MAR536_Lecture-14_ZeroInflatedModels.pdf">Lecture 14 slide deck</a></p>
+<p>🖥️ Linear Discriminant Analysis</p>
 <ul>
-<li><a href="https://drive.google.com/file/d/1u5Zm_Sw_B7pu9Rhq3dXXR39s_tEYpfdM/view?usp=share_link">Rmd with examples from the lecture</a> <!-- -   *NB: Today I would likely fit the models in the lecture solely using glmmTMB, e.g. using code similar to the owls example below* --></li>
-<li><a href="https://journal.r-project.org/archive/2017/RJ-2017-066/RJ-2017-066.pdf">Owls example, zero inflation using glmmTMB</a> (Brooks et al.&nbsp;2017)
-<ul>
-<li><a href="../documents/owls.pdf">paper with rationale for models by Bolker et al.&nbsp;(2012)</a></li>
-</ul></li>
+<li><a href="https://drive.google.com/file/d/1zhNw0YcDTH9ufbdhgwbylMsiK9mz-gGl/view?usp=share_link">Rmd with examples from the lecture</a></li>
 <li>Data sets can be found in the <a href="#class-data">class-data folder</a>.</li>
 </ul>
-<p>🖥️ <a href="../lectures/MAR536_Lecture_15_spatial_glmms.pptx">Lecture 15 motivating slide deck</a></p>
+<p>🖥️ Lab 8 - working with spatial data in R</p>
 <ul>
-<li><p><a href="https://drive.google.com/file/d/1vXUnKFxd4I2RlVhBmPU1V9OBq4J_4Vvt/view?usp=share_link">Rmd with examples from the lecture</a></p></li>
-<li><p><a href="https://pbs-assess.github.io/sdmTMB-teaching/amaremed-2024/index.html">Spatial mixed effects models using sdmTMB lecture materials</a></p>
+<li><p><a href="../labs/lab-08a.html">slide deck for Lab 8 part 1</a></p>
 <ul>
-<li>acknowledgements: Eric Ward, Lewis Barnett, Sean Anderson</li>
+<li><a href="https://github.com/gavinfay/mar536-biolstats2-s23/blob/main/labs/lab-08a.qmd">.qmd (code)</a></li>
 </ul></li>
-<li><p><em>NB: Here’s a bonus lecture on sdmTMB (<a href="https://umassd.zoom.us/rec/share/zXMtITwEaHAJ7e8WN6GQw9Tltr6823vYsmk1WzyRGX3_fcRMp23LJRRJC4odNjLZ.BBhKbmjj4KvuAsrW">recording from my Ecosystem models class</a>, lecture by Dr.&nbsp;Eric Ward)</em></p></li>
+<li><p><a href="../labs/lab-08b.html">slide deck for Lab 8 part 2</a></p>
+<ul>
+<li><a href="https://github.com/gavinfay/mar536-biolstats2-s23/blob/main/labs/lab-08b.Rmd">.Rmd (code)</a></li>
+</ul></li>
+<li><p><a href="../labs/lab-exercise-08.pdf">just the lab 8 exercises</a></p></li>
+</ul>
+<p>🖥️ Trees</p>
+<ul>
+<li>Rmd with examples from the lecture</li>
 </ul>
 <p><br><br></p>
 <div style="font-size: 0.875em;">
@@ -881,18 +890,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../weeks/week-08.html" class="pagination-link" aria-label="Week 8">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 8</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../class-data.html" class="pagination-link" aria-label="Course Data Sets">
-        <span class="nav-page-text">Course Data Sets</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -901,7 +898,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gavinfay/mar536-biolstats2-s25/edit/main/weeks/week-09.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gavinfay/mar536-biolstats2-s25/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gavinfay/mar536-biolstats2-s25/edit/main/weeks/week-11.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/gavinfay/mar536-biolstats2-s25/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
