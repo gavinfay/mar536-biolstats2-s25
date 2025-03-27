@@ -20,16 +20,20 @@ editor: visual
 
 ## Participate
 
-🖥️ [Lecture 14 slide deck](lectures/MAR536_Lecture-14_ZeroInflatedModels.pdf)
+🖥️ [Lecture 14 slide deck](../lectures/MAR536_Lecture-14_ZeroInflatedModels.pdf)
 
 -   [Rmd with examples from the lecture](https://drive.google.com/file/d/1u5Zm_Sw_B7pu9Rhq3dXXR39s_tEYpfdM/view?usp=share_link) <!-- -   *NB: Today I would likely fit the models in the lecture solely using glmmTMB, e.g. using code similar to the owls example below* -->
 -   [Owls example, zero inflation using glmmTMB](https://journal.r-project.org/archive/2017/RJ-2017-066/RJ-2017-066.pdf) (Brooks et al. 2017)
     -   [paper with rationale for models by Bolker et al. (2012)](../documents/owls.pdf)
 -   Data sets can be found in the [class-data folder](#class-data).
 
-🖥️ [Lecture 15 slide deck](https://docs.google.com/presentation/d/1APFJWJ44PuGowN4fReL-8EIgcSi0biGK/edit?usp=share_link&ouid=100082783551785338508&rtpof=true&sd=true)
+🖥️ [Lecture 15 motivating slide deck](../lectures/MAR536_Lecture_15_spatial_glmms.pptx)
 
 -   [Rmd with examples from the lecture](https://drive.google.com/file/d/1vXUnKFxd4I2RlVhBmPU1V9OBq4J_4Vvt/view?usp=share_link)
+
+-   [Spatial mixed effects models using sdmTMB lecture materials](https://pbs-assess.github.io/sdmTMB-teaching/amaremed-2024/index.html)
+
+    -   acknowledgements: Eric Ward, Lewis Barnett, Sean Anderson
 
 -   *NB: Here's a bonus lecture on sdmTMB ([recording from my Ecosystem models class](https://umassd.zoom.us/rec/share/zXMtITwEaHAJ7e8WN6GQw9Tltr6823vYsmk1WzyRGX3_fcRMp23LJRRJC4odNjLZ.BBhKbmjj4KvuAsrW), lecture by Dr. Eric Ward)*
 
