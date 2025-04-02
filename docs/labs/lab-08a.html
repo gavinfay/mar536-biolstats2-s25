@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.56">
 
-  <meta name="dcterms.date" content="2023-03-29">
+  <meta name="dcterms.date" content="2025-04-02">
   <title>MAR 536 - Spring 2025 – MAR 536 Lab 8: plotting spatial data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -398,7 +398,7 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2023-03-29</p>
+  <p class="date">2025-04-02</p>
 </section>
 <section id="today-advanced-plotting" class="slide level2">
 <h2>Today: Advanced plotting</h2>
@@ -648,9 +648,10 @@
 
 </div>
 <img data-src="lab-08a_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
-<section id="census-data-example" class="slide level2">
+<section id="census-data-example" class="slide level2 small">
 <h2>census data example</h2>
-<div class="cell">
+<div class="cell columns column-output-location">
+<div class="column">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">library</span>(tidycensus)</span>
 <span id="cb17-2"><a></a><span class="co">#options(tigris_use_cache = TRUE)</span></span>
 <span id="cb17-3"><a></a></span>
@@ -660,115 +661,142 @@
 <span id="cb17-7"><a></a>  <span class="at">state =</span> <span class="st">"MA"</span>,</span>
 <span id="cb17-8"><a></a>  <span class="at">geometry =</span> <span class="cn">TRUE</span></span>
 <span id="cb17-9"><a></a>)</span>
-<span id="cb17-10"><a></a><span class="do">## </span></span>
-<span id="cb17-11"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-12"><a></a>  <span class="er">|</span>                                                                      <span class="er">|</span>   <span class="dv">0</span>%</span>
-<span id="cb17-13"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-14"><a></a>  <span class="er">|==</span>                                                                    <span class="er">|</span>   <span class="dv">3</span>%</span>
-<span id="cb17-15"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-16"><a></a>  <span class="er">|====</span>                                                                  <span class="er">|</span>   <span class="dv">5</span>%</span>
-<span id="cb17-17"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-18"><a></a>  <span class="er">|======</span>                                                                <span class="er">|</span>   <span class="dv">8</span>%</span>
-<span id="cb17-19"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-20"><a></a>  <span class="er">|=======</span>                                                               <span class="er">|</span>  <span class="dv">11</span>%</span>
-<span id="cb17-21"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-22"><a></a>  <span class="er">|=========</span>                                                             <span class="er">|</span>  <span class="dv">13</span>%</span>
-<span id="cb17-23"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-24"><a></a>  <span class="er">|===========</span>                                                           <span class="er">|</span>  <span class="dv">16</span>%</span>
-<span id="cb17-25"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-26"><a></a>  <span class="er">|=============</span>                                                         <span class="er">|</span>  <span class="dv">18</span>%</span>
-<span id="cb17-27"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-28"><a></a>  <span class="er">|==============</span>                                                        <span class="er">|</span>  <span class="dv">20</span>%</span>
-<span id="cb17-29"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-30"><a></a>  <span class="er">|===============</span>                                                       <span class="er">|</span>  <span class="dv">22</span>%</span>
-<span id="cb17-31"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-32"><a></a>  <span class="er">|=================</span>                                                     <span class="er">|</span>  <span class="dv">25</span>%</span>
-<span id="cb17-33"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-34"><a></a>  <span class="er">|===================</span>                                                   <span class="er">|</span>  <span class="dv">27</span>%</span>
-<span id="cb17-35"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-36"><a></a>  <span class="er">|=====================</span>                                                 <span class="er">|</span>  <span class="dv">30</span>%</span>
-<span id="cb17-37"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-38"><a></a>  <span class="er">|=======================</span>                                               <span class="er">|</span>  <span class="dv">32</span>%</span>
-<span id="cb17-39"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-40"><a></a>  <span class="er">|===========================</span>                                           <span class="er">|</span>  <span class="dv">39</span>%</span>
-<span id="cb17-41"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-42"><a></a>  <span class="er">|================================</span>                                      <span class="er">|</span>  <span class="dv">45</span>%</span>
-<span id="cb17-43"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-44"><a></a>  <span class="er">|==================================</span>                                    <span class="er">|</span>  <span class="dv">48</span>%</span>
-<span id="cb17-45"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-46"><a></a>  <span class="er">|=====================================</span>                                 <span class="er">|</span>  <span class="dv">53</span>%</span>
-<span id="cb17-47"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-48"><a></a>  <span class="er">|=======================================</span>                               <span class="er">|</span>  <span class="dv">56</span>%</span>
-<span id="cb17-49"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-50"><a></a>  <span class="er">|==========================================</span>                            <span class="er">|</span>  <span class="dv">59</span>%</span>
-<span id="cb17-51"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-52"><a></a>  <span class="er">|===========================================</span>                           <span class="er">|</span>  <span class="dv">62</span>%</span>
-<span id="cb17-53"><a></a>  <span class="sc">|</span>                                                                            </span>
-<span id="cb17-54"><a></a>  <span class="er">|======================================================================|</span> <span class="dv">100</span>%</span>
-<span id="cb17-55"><a></a><span class="fu">ggplot</span>(age_data, <span class="fu">aes</span>(<span class="at">fill =</span> estimate)) <span class="sc">+</span> </span>
-<span id="cb17-56"><a></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span> </span>
-<span id="cb17-57"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span> </span>
-<span id="cb17-58"><a></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span> </span>
-<span id="cb17-59"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Massachusetts median income"</span>,</span>
-<span id="cb17-60"><a></a>       <span class="at">subtitle =</span> <span class="st">"2017-2021 ACS"</span>,</span>
-<span id="cb17-61"><a></a>       <span class="at">fill =</span> <span class="st">"Estimate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<span id="cb17-10"><a></a><span class="fu">ggplot</span>(age_data, <span class="fu">aes</span>(<span class="at">fill =</span> estimate)) <span class="sc">+</span> </span>
+<span id="cb17-11"><a></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span> </span>
+<span id="cb17-12"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span> </span>
+<span id="cb17-13"><a></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span> </span>
+<span id="cb17-14"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Massachusetts median income"</span>,</span>
+<span id="cb17-15"><a></a>       <span class="at">subtitle =</span> <span class="st">"2017-2021 ACS"</span>,</span>
+<span id="cb17-16"><a></a>       <span class="at">fill =</span> <span class="st">"Estimate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lab-08a_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+</figure>
 </div>
-<img data-src="lab-08a_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
-<section id="looking-at-the-sf-object" class="slide level2">
+</div>
+<pre><code>## 
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |==                                                                    |   3%
+  |                                                                            
+  |====                                                                  |   5%
+  |                                                                            
+  |=====                                                                 |   8%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |=========                                                             |  13%
+  |                                                                            
+  |===========                                                           |  15%
+  |                                                                            
+  |=============                                                         |  18%
+  |                                                                            
+  |==============                                                        |  21%
+  |                                                                            
+  |================                                                      |  23%
+  |                                                                            
+  |==================                                                    |  26%
+  |                                                                            
+  |====================                                                  |  28%
+  |                                                                            
+  |======================                                                |  31%
+  |                                                                            
+  |=======================                                               |  33%
+  |                                                                            
+  |=========================                                             |  36%
+  |                                                                            
+  |=============================                                         |  41%
+  |                                                                            
+  |================================                                      |  46%
+  |                                                                            
+  |==================================                                    |  49%
+  |                                                                            
+  |====================================                                  |  51%
+  |                                                                            
+  |=======================================                               |  56%
+  |                                                                            
+  |===========================================                           |  61%
+  |                                                                            
+  |===============================================                       |  67%
+  |                                                                            
+  |==================================================                    |  72%
+  |                                                                            
+  |========================================================              |  79%
+  |                                                                            
+  |=========================================================             |  82%
+  |                                                                            
+  |================================================================      |  92%
+  |                                                                            
+  |====================================================================  |  97%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+</div></div>
+</section>
+<section id="looking-at-the-sf-object" class="slide level2 small">
 <h2>looking at the <code>sf</code> object</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>age_data</span>
-<span id="cb18-2"><a></a><span class="do">## Simple feature collection with 1620 features and 5 fields (with 7 geometries empty)</span></span>
-<span id="cb18-3"><a></a><span class="do">## Geometry type: MULTIPOLYGON</span></span>
-<span id="cb18-4"><a></a><span class="do">## Dimension:     XY</span></span>
-<span id="cb18-5"><a></a><span class="do">## Bounding box:  xmin: -73.50814 ymin: 41.23796 xmax: -69.92839 ymax: 42.88659</span></span>
-<span id="cb18-6"><a></a><span class="do">## Geodetic CRS:  NAD83</span></span>
-<span id="cb18-7"><a></a><span class="do">## First 10 features:</span></span>
-<span id="cb18-8"><a></a><span class="do">##          GEOID                                                  NAME   variable</span></span>
-<span id="cb18-9"><a></a><span class="do">## 1  25001011300    Census Tract 113; Barnstable County; Massachusetts B19013_001</span></span>
-<span id="cb18-10"><a></a><span class="do">## 2  25001012601 Census Tract 126.01; Barnstable County; Massachusetts B19013_001</span></span>
-<span id="cb18-11"><a></a><span class="do">## 3  25001013500    Census Tract 135; Barnstable County; Massachusetts B19013_001</span></span>
-<span id="cb18-12"><a></a><span class="do">## 4  25009250100        Census Tract 2501; Essex County; Massachusetts B19013_001</span></span>
-<span id="cb18-13"><a></a><span class="do">## 5  25009250500        Census Tract 2505; Essex County; Massachusetts B19013_001</span></span>
-<span id="cb18-14"><a></a><span class="do">## 6  25009250900        Census Tract 2509; Essex County; Massachusetts B19013_001</span></span>
-<span id="cb18-15"><a></a><span class="do">## 7  25009266200        Census Tract 2662; Essex County; Massachusetts B19013_001</span></span>
-<span id="cb18-16"><a></a><span class="do">## 8  25009266300        Census Tract 2663; Essex County; Massachusetts B19013_001</span></span>
-<span id="cb18-17"><a></a><span class="do">## 9  25009260100        Census Tract 2601; Essex County; Massachusetts B19013_001</span></span>
-<span id="cb18-18"><a></a><span class="do">## 10 25009268100        Census Tract 2681; Essex County; Massachusetts B19013_001</span></span>
-<span id="cb18-19"><a></a><span class="do">##    estimate   moe                       geometry</span></span>
-<span id="cb18-20"><a></a><span class="do">## 1    108889 12602 MULTIPOLYGON (((-70.24078 4...</span></span>
-<span id="cb18-21"><a></a><span class="do">## 2     68143 18196 MULTIPOLYGON (((-70.3366 41...</span></span>
-<span id="cb18-22"><a></a><span class="do">## 3    141453 21889 MULTIPOLYGON (((-70.48384 4...</span></span>
-<span id="cb18-23"><a></a><span class="do">## 4     32684  9412 MULTIPOLYGON (((-71.16964 4...</span></span>
-<span id="cb18-24"><a></a><span class="do">## 5     51317 11369 MULTIPOLYGON (((-71.17166 4...</span></span>
-<span id="cb18-25"><a></a><span class="do">## 6     35119  8040 MULTIPOLYGON (((-71.15623 4...</span></span>
-<span id="cb18-26"><a></a><span class="do">## 7     90580 20856 MULTIPOLYGON (((-70.97472 4...</span></span>
-<span id="cb18-27"><a></a><span class="do">## 8     93450 17993 MULTIPOLYGON (((-70.93725 4...</span></span>
-<span id="cb18-28"><a></a><span class="do">## 9     34050 10705 MULTIPOLYGON (((-71.08812 4...</span></span>
-<span id="cb18-29"><a></a><span class="do">## 10   211607 39650 MULTIPOLYGON (((-70.94029 4...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>age_data</span>
+<span id="cb19-2"><a></a><span class="do">## Simple feature collection with 1620 features and 5 fields (with 7 geometries empty)</span></span>
+<span id="cb19-3"><a></a><span class="do">## Geometry type: MULTIPOLYGON</span></span>
+<span id="cb19-4"><a></a><span class="do">## Dimension:     XY</span></span>
+<span id="cb19-5"><a></a><span class="do">## Bounding box:  xmin: -73.50814 ymin: 41.23796 xmax: -69.92839 ymax: 42.88659</span></span>
+<span id="cb19-6"><a></a><span class="do">## Geodetic CRS:  NAD83</span></span>
+<span id="cb19-7"><a></a><span class="do">## First 10 features:</span></span>
+<span id="cb19-8"><a></a><span class="do">##          GEOID                                                  NAME   variable</span></span>
+<span id="cb19-9"><a></a><span class="do">## 1  25001011300    Census Tract 113; Barnstable County; Massachusetts B19013_001</span></span>
+<span id="cb19-10"><a></a><span class="do">## 2  25001012601 Census Tract 126.01; Barnstable County; Massachusetts B19013_001</span></span>
+<span id="cb19-11"><a></a><span class="do">## 3  25001013500    Census Tract 135; Barnstable County; Massachusetts B19013_001</span></span>
+<span id="cb19-12"><a></a><span class="do">## 4  25009250100        Census Tract 2501; Essex County; Massachusetts B19013_001</span></span>
+<span id="cb19-13"><a></a><span class="do">## 5  25009250500        Census Tract 2505; Essex County; Massachusetts B19013_001</span></span>
+<span id="cb19-14"><a></a><span class="do">## 6  25009250900        Census Tract 2509; Essex County; Massachusetts B19013_001</span></span>
+<span id="cb19-15"><a></a><span class="do">## 7  25009266200        Census Tract 2662; Essex County; Massachusetts B19013_001</span></span>
+<span id="cb19-16"><a></a><span class="do">## 8  25009266300        Census Tract 2663; Essex County; Massachusetts B19013_001</span></span>
+<span id="cb19-17"><a></a><span class="do">## 9  25009260100        Census Tract 2601; Essex County; Massachusetts B19013_001</span></span>
+<span id="cb19-18"><a></a><span class="do">## 10 25009268100        Census Tract 2681; Essex County; Massachusetts B19013_001</span></span>
+<span id="cb19-19"><a></a><span class="do">##    estimate   moe                       geometry</span></span>
+<span id="cb19-20"><a></a><span class="do">## 1    108889 12602 MULTIPOLYGON (((-70.24078 4...</span></span>
+<span id="cb19-21"><a></a><span class="do">## 2     68143 18196 MULTIPOLYGON (((-70.3366 41...</span></span>
+<span id="cb19-22"><a></a><span class="do">## 3    141453 21889 MULTIPOLYGON (((-70.48384 4...</span></span>
+<span id="cb19-23"><a></a><span class="do">## 4     32684  9412 MULTIPOLYGON (((-71.16964 4...</span></span>
+<span id="cb19-24"><a></a><span class="do">## 5     51317 11369 MULTIPOLYGON (((-71.17166 4...</span></span>
+<span id="cb19-25"><a></a><span class="do">## 6     35119  8040 MULTIPOLYGON (((-71.15623 4...</span></span>
+<span id="cb19-26"><a></a><span class="do">## 7     90580 20856 MULTIPOLYGON (((-70.97472 4...</span></span>
+<span id="cb19-27"><a></a><span class="do">## 8     93450 17993 MULTIPOLYGON (((-70.93725 4...</span></span>
+<span id="cb19-28"><a></a><span class="do">## 9     34050 10705 MULTIPOLYGON (((-71.08812 4...</span></span>
+<span id="cb19-29"><a></a><span class="do">## 10   211607 39650 MULTIPOLYGON (((-70.94029 4...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="just-for-bristol-county" class="slide level2">
+<section id="just-for-bristol-county" class="slide level2 small">
 <h2>just for Bristol County</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>age_data <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
-<span id="cb19-2"><a></a>  <span class="at">geography =</span> <span class="st">"tract"</span>,</span>
-<span id="cb19-3"><a></a>  <span class="at">variables =</span> <span class="st">"B19013_001"</span>,  <span class="co">#for median age = "B01002_001",</span></span>
-<span id="cb19-4"><a></a>  <span class="at">state =</span> <span class="st">"MA"</span>,</span>
-<span id="cb19-5"><a></a>  <span class="at">county =</span> <span class="st">"Bristol"</span>,</span>
-<span id="cb19-6"><a></a>  <span class="at">geometry =</span> <span class="cn">TRUE</span></span>
-<span id="cb19-7"><a></a>)</span>
-<span id="cb19-8"><a></a></span>
-<span id="cb19-9"><a></a><span class="fu">ggplot</span>(age_data, <span class="fu">aes</span>(<span class="at">fill =</span> estimate)) <span class="sc">+</span> </span>
-<span id="cb19-10"><a></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span> </span>
-<span id="cb19-11"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span> </span>
-<span id="cb19-12"><a></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span> </span>
-<span id="cb19-13"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bristol County median income"</span>,</span>
-<span id="cb19-14"><a></a>       <span class="at">subtitle =</span> <span class="st">"2017-2021 ACS"</span>,</span>
-<span id="cb19-15"><a></a>       <span class="at">fill =</span> <span class="st">"Estimate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>age_data <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
+<span id="cb20-2"><a></a>  <span class="at">geography =</span> <span class="st">"tract"</span>,</span>
+<span id="cb20-3"><a></a>  <span class="at">variables =</span> <span class="st">"B19013_001"</span>,  <span class="co">#for median age = "B01002_001",</span></span>
+<span id="cb20-4"><a></a>  <span class="at">state =</span> <span class="st">"MA"</span>,</span>
+<span id="cb20-5"><a></a>  <span class="at">county =</span> <span class="st">"Bristol"</span>,</span>
+<span id="cb20-6"><a></a>  <span class="at">geometry =</span> <span class="cn">TRUE</span></span>
+<span id="cb20-7"><a></a>)</span>
+<span id="cb20-8"><a></a></span>
+<span id="cb20-9"><a></a><span class="fu">ggplot</span>(age_data, <span class="fu">aes</span>(<span class="at">fill =</span> estimate)) <span class="sc">+</span> </span>
+<span id="cb20-10"><a></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="cn">NA</span>) <span class="sc">+</span> </span>
+<span id="cb20-11"><a></a>  <span class="fu">theme_void</span>() <span class="sc">+</span> </span>
+<span id="cb20-12"><a></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span> </span>
+<span id="cb20-13"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bristol County median income"</span>,</span>
+<span id="cb20-14"><a></a>       <span class="at">subtitle =</span> <span class="st">"2017-2021 ACS"</span>,</span>
+<span id="cb20-15"><a></a>       <span class="at">fill =</span> <span class="st">"Estimate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="lab-08a_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
+</figure>
 </div>
+</div>
+</div></div>
 <!-- Packages of interest:   -->
 <!-- ```{r prompt=TRUE,comment='',collapse=TRUE,eval=FALSE} -->
 <!-- library(maps)    #contains functions to make maps -->
@@ -870,7 +898,7 @@
 <!--                     ymin = 45.5, ymax = 49.2) # Determines placement & size of incert -->
 <!-- FinalPlot -->
 <!-- ``` -->
-<img data-src="lab-08a_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
+</section>
 <section id="exercise-2" class="slide level2 small">
 <h2>Exercise 2</h2>
 <p>Use <code>ggplot</code> to create a map of Cape Cod with the following features:</p>
@@ -884,8 +912,8 @@
 </ul>
 <p>For coastline use:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(<span class="st">"rnaturalearthhires"</span>) <span class="co"># for scale = large</span></span>
-<span id="cb20-2"><a></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"large"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">library</span>(<span class="st">"rnaturalearthhires"</span>) <span class="co"># for scale = large</span></span>
+<span id="cb21-2"><a></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"large"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- ## Mapping continued... topography -->
 <!-- Shapefiles & polygons may also be used to map physical features like topography and bathymetry. -->
@@ -967,7 +995,7 @@
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p><a href="https://gavinfay.github.io/mar536-biolstats2-s23">gavinfay.github.io/mar536-biolstats2-s23</a></p>
+<p><a href="https://gavinfay.github.io/mar536-biolstats2-s25">gavinfay.github.io/mar536-biolstats2-s25</a></p>
 </div>
 </div>
 </section>
