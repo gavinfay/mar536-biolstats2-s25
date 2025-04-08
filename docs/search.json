@@ -2744,20 +2744,32 @@
     "href": "weeks/week-11.html",
     "title": "Week 11",
     "section": "",
-    "text": "Gavin is still recovering from illness and so there is a slight change in plans. Lecture materials are via recordings, class sessions on Tuesday and Thursday will be question/answer sessions and live walk-through of examples from the lectures. Wednesday’s lab will be on using spatial data in R."
+    "text": "📖 Tue:\n\nReading: Chapter 14 of Zuur et al. 2007\n\n📖 Thu:\n\nReading: Chapter 9 of Zuur et al. 2007",
+    "crumbs": [
+      "Weekly materials",
+      "Week 11"
+    ]
   },
   {
     "objectID": "weeks/week-11.html#prepare",
     "href": "weeks/week-11.html#prepare",
     "title": "Week 11",
-    "section": "Prepare",
-    "text": "Prepare\n📖 Tue:\n\nReading: Chapter 14 of Zuur et al. 2007\nLecture 16 - Linear Discriminant Analysis (Recording)\n\n(lecture starts at 15m30s)\nslide deck from recorded lecture\n\n\n📖 Thu:\n\nReading: Chapter 9 of Zuur et al. 2007\nLecture 17 - Trees (Classification/Regression) (Recording)\n\nslide deck from recorded lecture"
+    "section": "",
+    "text": "📖 Tue:\n\nReading: Chapter 14 of Zuur et al. 2007\n\n📖 Thu:\n\nReading: Chapter 9 of Zuur et al. 2007",
+    "crumbs": [
+      "Weekly materials",
+      "Week 11"
+    ]
   },
   {
     "objectID": "weeks/week-11.html#participate",
     "href": "weeks/week-11.html#participate",
     "title": "Week 11",
     "section": "Participate",
-    "text": "Participate\n🖥️ Linear Discriminant Analysis\n\nRmd with examples from the lecture\nData sets can be found in the class-data folder.\n\n🖥️ Lab 8 - working with spatial data in R\n\nslide deck for Lab 8 part 1\n\n.qmd (code)\n\nslide deck for Lab 8 part 2\n\n.Rmd (code)\n\njust the lab 8 exercises\n\n🖥️ Trees\n\nRmd with examples from the lecture\n\n\n\nBack to course schedule ⏎"
+    "text": "Participate\n🖥️ Linear Discriminant Analysis\n\nSlide deck\nRmd with examples from the lecture\nData sets can be found in the class-data folder.\n\n🖥️ Wednesday - Project consult / Lab 9\n🖥️ Trees\n\nRmd with examples from the lecture\n\n\n\nBack to course schedule ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 11"
+    ]
   }
 ]

@@ -21,18 +21,18 @@ This page will contain an outline of the topics, content, and assignments for th
 \[2025-03-27: project update moved to Apr 3, Apr 1 more sdmTMB\]
 
 ::: column-screen-inset-right
-<table style="width:58%;">
+<table style="width:48%;">
 <colgroup>
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -570,11 +570,11 @@ This page will contain an outline of the topics, content, and assignments for th
 <td style="text-align: center;"><p><span class="emoji" data-emoji="open_file_folder">📂</span></p></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><p>11</p></td>
+<td style="text-align: center;"><p><a href="weeks/week-11.html">11</a></p></td>
 <td><p>Tue, Apr 08</p></td>
 <td><p>Classification / Linear Discriminant Analysis</p></td>
-<td style="text-align: center;"><p><a href="weeks/week-10.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
-<td style="text-align: center;"><p><a href="weeks/week-10.html#prepare"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
+<td style="text-align: center;"><p><a href="weeks/week-11.html#prepare"><span class="emoji" data-emoji="book">📖</span></a></p></td>
+<td style="text-align: center;"><p><a href="https://docs.google.com/presentation/d/19SNo2AjcM8Y_R5pp6BkMT9M9a0V975YE/edit?usp=sharing&amp;ouid=100082783551785338508&amp;rtpof=true&amp;sd=true"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
