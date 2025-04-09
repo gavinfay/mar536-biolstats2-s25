@@ -17,7 +17,7 @@ Deliverables include:
 
 **Project report expectations**
 
-[A rubric for the project report can be found here](documents/MAR536-SPR2023_project-rubric.pdf).
+[A rubric for the project report can be found here](documents/project-rubric.pdf).
 
 **Project presentation scheduling**
 
