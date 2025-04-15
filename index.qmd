@@ -21,18 +21,18 @@ This page will contain an outline of the topics, content, and assignments for th
 \[2025-03-27: project update moved to Apr 3, Apr 1 more sdmTMB\]
 
 ::: column-screen-inset-right
-<table style="width:48%;">
+<table style="width:39%;">
 <colgroup>
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
-<col style="width: 4%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 3%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -620,9 +620,9 @@ This page will contain an outline of the topics, content, and assignments for th
 <tr class="even">
 <td style="text-align: center;"><p>12</p></td>
 <td><p>Tue, Apr 15</p></td>
-<td><p>Ordination methods</p></td>
+<td><p>ensemble methods / GAMs again</p></td>
 <td style="text-align: center;"><p><span class="emoji" data-emoji="book">📖</span></p></td>
-<td style="text-align: center;"><p><span class="emoji" data-emoji="desktop_computer">🖥️</span></p></td>
+<td style="text-align: center;"><p><a href="lectures/MAR536_Lecture_20_ensembles.html"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>

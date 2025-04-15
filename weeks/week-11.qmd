@@ -28,7 +28,8 @@ editor: visual
 
 🖥️ Trees
 
--   Rmd with examples from the lecture
+-   [slide deck](https://docs.google.com/presentation/d/1vOhvkkijSlDwObChklSHpMwQz-dl1YQ7/edit?usp=sharing&ouid=100082783551785338508&rtpof=true&sd=true)
+<!-- -   Rmd with examples from the lecture -->
 
 <br><br>
 
