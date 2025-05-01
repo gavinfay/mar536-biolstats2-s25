@@ -18,21 +18,22 @@ This page will contain an outline of the topics, content, and assignments for th
 \[2025-02-08: reorganization of sequence of material Feb 13 through Mar 5\]\
 \[2025-02-08: asynchronous class Feb 27, in-class project updates moved to Mar 4\]\
 \[2025-02-25: data exploration report deadline moved to Mar 4\]\
-\[2025-03-27: project update moved to Apr 3, Apr 1 more sdmTMB\]
+\[2025-03-27: project update moved to Apr 3, Apr 1 more sdmTMB\]\
+\[2025-04-29: review session moved to May 1\]
 
 ::: column-screen-inset-right
-<table style="width:39%;">
+<table style="width:29%;">
 <colgroup>
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
-<col style="width: 3%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
+<col style="width: 2%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -691,10 +692,10 @@ This page will contain an outline of the topics, content, and assignments for th
 </tr>
 <tr class="even">
 <td style="text-align: center;"></td>
-<td><p>Wed, Apr 30</p></td>
+<td><p>Thu, May 01</p></td>
 <td><p>Course Review</p></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;"><p><a href="lectures/MAR536_Review.pptx"><span class="emoji" data-emoji="desktop_computer">🖥️</span></a></p></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
