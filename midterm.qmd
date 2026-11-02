@@ -5,4 +5,3 @@ title: "Midterm"
 The midterm (20% of course grade) is a take home exam covering core course topics, through (and including) material in week 7 (up to PCA).
 
 As detailed on the syllabus this will be distributed Mar 04 and is due Mar 20.
-
