@@ -162,3 +162,29 @@ xyplot(Weight~Length|factor(Subject),data=WtLen)
 
 
 ```
+
+Poisson GLMM, species richness on beaches (RIKZ data)
+
+```{r}
+library(lme4)
+library(lattice)
+
+RIKZ <- readRDS("../data/RIKZ.rds")
+
+# no random effects
+m1 <- glm(Richness ~ NAP, data = RIKZ, family = poisson())
+m1
+# random intercept
+m5 <- glmer(Richness ~ NAP + (1|Beach), data = RIKZ, family = poisson())
+m5
+# random intercepts and slopes
+m6 <- glmer(Richness ~ NAP + (1 + NAP|Beach), data = RIKZ, family = poisson())
+m6
+
+AIC(m1,m5,m6)
+
+#xyplot(Richness~NAP|factor(Beach),data=RIKZ)
+plot(m6,Richness~fitted(.)|factor(Beach),abline = c(0,1))
+plot(m6)
+
+```

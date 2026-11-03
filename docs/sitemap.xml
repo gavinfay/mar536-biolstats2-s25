@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/lectures/lec-03.html</loc>
-    <lastmod>2025-01-28T14:37:33.737Z</lastmod>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/LICENSE.html</loc>
+    <lastmod>2025-01-20T20:04:02.286Z</lastmod>
   </url>
   <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-06.html</loc>
-    <lastmod>2025-02-25T16:49:55.356Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-01.html</loc>
-    <lastmod>2025-01-22T13:46:36.332Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-07.html</loc>
-    <lastmod>2025-03-19T13:11:15.585Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/about.html</loc>
-    <lastmod>2025-01-20T17:57:03.692Z</lastmod>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/weeks/week-11.html</loc>
+    <lastmod>2025-04-10T13:15:30.644Z</lastmod>
   </url>
   <url>
     <loc>https://gavinfay.github.io/mar536-biolstats2-s25/weeks/week-09.html</loc>
@@ -45,16 +33,28 @@
     <lastmod>2026-11-02T19:17:28.531Z</lastmod>
   </url>
   <url>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-08a.html</loc>
+    <lastmod>2025-04-02T13:36:33.224Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-06.html</loc>
+    <lastmod>2025-02-25T16:49:55.356Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-02.html</loc>
+    <lastmod>2025-01-29T11:59:44.073Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/index.html</loc>
+    <lastmod>2025-05-01T12:44:26.661Z</lastmod>
+  </url>
+  <url>
     <loc>https://gavinfay.github.io/mar536-biolstats2-s25/course-overview.html</loc>
     <lastmod>2025-01-20T17:57:03.692Z</lastmod>
   </url>
   <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/LICENSE.html</loc>
-    <lastmod>2025-01-20T20:04:02.286Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-03.html</loc>
-    <lastmod>2025-02-05T14:47:40.996Z</lastmod>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/about.html</loc>
+    <lastmod>2025-01-20T17:57:03.692Z</lastmod>
   </url>
   <url>
     <loc>https://gavinfay.github.io/mar536-biolstats2-s25/class-data.html</loc>
@@ -63,6 +63,22 @@
   <url>
     <loc>https://gavinfay.github.io/mar536-biolstats2-s25/course-syllabus.html</loc>
     <lastmod>2025-02-27T17:38:32.918Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-01.html</loc>
+    <lastmod>2025-01-22T13:46:36.332Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-04.html</loc>
+    <lastmod>2025-02-12T14:52:13.338Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-07.html</loc>
+    <lastmod>2025-03-19T13:11:15.585Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/lectures/lec-03.html</loc>
+    <lastmod>2025-01-28T14:37:33.737Z</lastmod>
   </url>
   <url>
     <loc>https://gavinfay.github.io/mar536-biolstats2-s25/project-description.html</loc>
@@ -89,23 +105,7 @@
     <lastmod>2025-01-20T17:57:04.290Z</lastmod>
   </url>
   <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/index.html</loc>
-    <lastmod>2025-05-01T12:44:26.661Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-08a.html</loc>
-    <lastmod>2025-04-02T13:36:33.224Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-02.html</loc>
-    <lastmod>2025-01-29T11:59:44.073Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-04.html</loc>
-    <lastmod>2025-02-12T14:52:13.338Z</lastmod>
-  </url>
-  <url>
-    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/weeks/week-11.html</loc>
-    <lastmod>2025-04-10T13:15:30.644Z</lastmod>
+    <loc>https://gavinfay.github.io/mar536-biolstats2-s25/labs/lab-03.html</loc>
+    <lastmod>2025-02-05T14:47:40.996Z</lastmod>
   </url>
 </urlset>
